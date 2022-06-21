@@ -1,0 +1,78 @@
+import { Injectable, Injector } from '@angular/core';
+import { PoDynamicFormField, PoDynamicViewField, PoTableColumn } from '@po-ui/ng-components';
+import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
+import { Sales } from '../interfaces/sales';
+import { CustomerService } from './../../../my-customers/shared/services/customer.service';
+import { SalesStatus } from './../interfaces/sales-status.enum';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SalesService extends BaseResourceService<Sales> {
+  constructor(protected override injector: Injector,
+    protected customerService: CustomerService) {
+    super('api/sales/', injector);
+  }
+
+  getColumns(): PoTableColumn[] {
+    return [
+      { property: 'status', label: 'Status', type: 'label', labels: [
+        { value: SalesStatus.Open, color: 'color-11', label: 'Aberto' },
+        { value: SalesStatus.Closed, color: 'color-07', label: 'Encerrado' },
+      ]},
+      { property: 'id', label: 'Código', type: 'number', width: '8%' },
+      { property: 'customerId', label: 'Cliente', type: 'number', visible: false },
+      { property: 'customerName', label: 'Nome Cliente', type: 'string' },
+      { property: 'issueDate', label: 'Dt. Emissão', type: 'dateTime' }
+    ];
+  }
+
+  getFormFields(): Array<PoDynamicFormField> {
+    let fields:  Array<PoDynamicFormField> = [
+      {
+        label: 'Cliente',
+        property: 'customerId',
+        gridColumns: 3,
+        gridSmColumns: 12,
+        gridMdColumns: 5,
+        gridLgColumns: 4,
+        gridXlColumns: 3,
+        options: []
+      },
+      {
+        label: 'Dt. Emissão',
+        property: 'issueDate',
+        type: 'date',
+        format: 'dd/mm/yyyy',
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 3,
+        gridLgColumns: 3,
+        gridXlColumns: 2,
+      },
+      {
+        label: 'Cond. Pagamento',
+        property: 'paymentMethodId',
+        gridColumns: 3,
+        gridSmColumns: 12,
+        gridMdColumns: 5,
+        gridLgColumns: 4,
+        gridXlColumns: 3,
+        options: []
+      }
+    ];
+    return fields
+  }
+
+  getViewFields(): PoDynamicViewField[] {
+    return [
+      { property: 'id', label: 'Núm. Pedido', divider: 'Dados Gerais' },
+      { property: 'customerId', label: 'Código Cliente' },
+      { property: 'customerName', label: 'Nome do Cliente', type: 'string' },
+      { property: 'issueDate', label: 'Dt. Emissão', type: 'date' },
+      { property: 'paymentMethodId', label: 'Cond. Pagamento' },
+      { property: 'paymentMethodDescription', label: 'Desc. Pagamento' },
+      { property: 'status', label: 'Status',  tag: true, color: 'color-11', icon: 'po-icon-ok'},
+    ]
+  }
+}
