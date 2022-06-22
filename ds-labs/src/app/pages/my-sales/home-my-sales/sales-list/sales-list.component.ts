@@ -82,4 +82,8 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
       .subscribe();
   }
 
+  handleSearch(resource: SalesBrw[], search: string): SalesBrw[] {
+    throw new Error('Method not implemented.');
+  }
+
 }

@@ -54,7 +54,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
     this.titleService.setTitle(`DSLABs | ${title}`);
   }
 
-  getItems(): void {
+  getItems(search?: string): void {
     this.items$ = this.resourceService.getAll()
       .pipe(
         tap(() => {
@@ -64,11 +64,22 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
         finalize(() => this.isLoading = false)
       )
       .subscribe({
-        next: resource => this.items = resource,
+        next: resource => {
+          if (search) {
+            this.items = this.handleSearch(resource, search)
+          } else  {
+           this.items = resource;
+          }
+        },
         error: () => this.poNotification.error('Falha ao carregar Lista')
       })
   }
 
+  onSearchResources(search: string): void {
+    this.getItems(search);
+  }
+
   abstract getActions(): PoPageAction[];
   abstract getTableActions(): PoTableAction[];
+  abstract handleSearch(resource: T[], search: string): T[];
 }

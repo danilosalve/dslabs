@@ -24,7 +24,8 @@ import { FilterInputComponent } from './components/filter-input/filter-input.com
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    PoTemplatesModule
+    PoTemplatesModule,
+    FilterInputComponent
   ]
 })
 export class SharedModule { }

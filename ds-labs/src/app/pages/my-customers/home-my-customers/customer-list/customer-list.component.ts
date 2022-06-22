@@ -17,6 +17,13 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
       super(injector, customerService, 'Meus Clientes');
     }
 
+    handleSearch(resource: Customer[], search: string): Customer[] {
+      return resource.filter(customers => customers.id?.toString().includes(search) ||
+      customers.name
+        ?.toLowerCase()
+        .includes(search.toLowerCase()));
+    }
+
     getActions(): PoPageAction[] {
       return [];
     }
