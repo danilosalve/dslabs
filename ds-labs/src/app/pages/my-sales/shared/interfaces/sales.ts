@@ -4,7 +4,12 @@ export interface Sales {
   customerId: number;
   paymentMethodId?: number;
   issueDate: Date;
+  carrierId: number;
   status: SalesStatus;
+  freight?: number;
+  insurance?: number;
+  expenses?: number;
+  discount?: number;
 }
 
 export interface SalesBrw extends Sales {

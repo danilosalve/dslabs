@@ -15,7 +15,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
   tableActions: PoTableAction[] = [];
 
   private titleService: Title;
-  private poNotification: PoNotificationService;
+  protected poNotification: PoNotificationService;
 
   constructor(
     protected injector: Injector,

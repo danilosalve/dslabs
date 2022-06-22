@@ -1,0 +1,18 @@
+<po-page-edit p-title="Novo Pedido" [p-breadcrumb]="breadcrumb" (p-cancel)="cancel()" (p-save)="onSubmit()" (p-disable-submit)="canSubmit()">
+  <po-tabs>
+    <po-tab [p-active]="true" p-label="Dados Gerais">
+    <app-general-data [sales]="sales" [dynamicForm]="dynamicForm"></app-general-data>
+    </po-tab>
+    <po-tab p-label="Produtos">
+      <!-- <app-products-list [products$]="products$" (changeItems)="addSalesItem($event)"></app-products-list>  !-->
+    </po-tab>
+    <po-tab p-label="Visualizar Json">
+      <po-widget appDarkenOnHover p-title="Cabeçalho do pedido">
+        <pre class="po-md-2 po-mt-2">{{ sales | json }}</pre>
+      </po-widget>
+      <po-widget appDarkenOnHover p-title="Items do pedido">
+        <!-- <pre class="po-md-2 po-mt-2">{{ salesItems | json }}</pre> !-->
+      </po-widget>
+    </po-tab>
+  </po-tabs>
+</po-page-edit>

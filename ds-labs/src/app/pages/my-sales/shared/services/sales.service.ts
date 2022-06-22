@@ -2,15 +2,13 @@ import { Injectable, Injector } from '@angular/core';
 import { PoDynamicFormField, PoDynamicViewField, PoTableColumn } from '@po-ui/ng-components';
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
 import { Sales } from '../interfaces/sales';
-import { CustomerService } from './../../../my-customers/shared/services/customer.service';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SalesService extends BaseResourceService<Sales> {
-  constructor(protected override injector: Injector,
-    protected customerService: CustomerService) {
+  constructor(protected override injector: Injector) {
     super('api/sales/', injector);
   }
 
@@ -37,7 +35,8 @@ export class SalesService extends BaseResourceService<Sales> {
         gridMdColumns: 5,
         gridLgColumns: 4,
         gridXlColumns: 3,
-        options: []
+        options: [],
+        required: true
       },
       {
         label: 'Dt. Emissão',
@@ -49,6 +48,7 @@ export class SalesService extends BaseResourceService<Sales> {
         gridMdColumns: 3,
         gridLgColumns: 3,
         gridXlColumns: 2,
+        required: true
       },
       {
         label: 'Cond. Pagamento',
@@ -58,7 +58,53 @@ export class SalesService extends BaseResourceService<Sales> {
         gridMdColumns: 5,
         gridLgColumns: 4,
         gridXlColumns: 3,
-        options: []
+        options: [],
+        required: true,
+        divider: 'Pagamento'
+      },
+      {
+        label: 'Desconto',
+        property: 'discount',
+        type: 'currency',
+        decimalsLength: 2,
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 3,
+        gridLgColumns: 3,
+        gridXlColumns: 2
+      },
+      {
+        label: 'Transportadora',
+        property: 'carrierId',
+        gridColumns: 3,
+        gridSmColumns: 12,
+        gridMdColumns: 5,
+        gridLgColumns: 4,
+        gridXlColumns: 3,
+        options: [],
+        divider: 'Entrega'
+      },
+      {
+        label: 'Frete',
+        property: 'freight',
+        type: 'currency',
+        decimalsLength: 2,
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 3,
+        gridLgColumns: 3,
+        gridXlColumns: 2,
+      },
+      {
+        label: 'Seguro',
+        property: 'insurance',
+        type: 'currency',
+        decimalsLength: 2,
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 3,
+        gridLgColumns: 3,
+        gridXlColumns: 2,
       }
     ];
     return fields

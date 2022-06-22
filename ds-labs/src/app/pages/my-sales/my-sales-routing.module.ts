@@ -1,4 +1,5 @@
 import { SalesListComponent } from './home-my-sales/sales-list/sales-list.component';
+import { SalesFormComponent } from './sales-form/sales-form.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: SalesListComponent,
     data: {
       title: 'Meus Pedidos',
+    },
+  },
+  {
+    path: 'new',
+    component: SalesFormComponent,
+    data: {
+      title: 'Novo Pedidos',
     },
   },
 ];

@@ -4,9 +4,34 @@ import { Customer } from './pages/my-customers/shared/interface/customer';
 import { CustomerStatus } from './pages/my-customers/shared/interface/customer-status.enum';
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
+import { Carrier } from './shared/interfaces/carrier';
+import { PaymentMethod } from './shared/interfaces/payment-method';
 
 export class InMemoryDatabase implements InMemoryDbService {
   createDb(reqInfo?: RequestInfo | undefined): {} | Observable<{}> | Promise<{}> {
+    const carriers: Carrier[] = [
+      {
+        id: 1,
+        name: 'Ligeirinho Express'
+      },
+      {
+        id: 2,
+        name: 'Estrela Cadente Express'
+      },
+      {
+        id: 3,
+        name: 'RodoNeves'
+      },
+      {
+        id: 4,
+        name: 'Sedax 11'
+      },
+      {
+        id: 5,
+        name: 'Fusca Azul Transportes'
+      },
+    ];
+
     const customers: Customer[] = [
       {
         id: 1,
@@ -72,7 +97,16 @@ export class InMemoryDatabase implements InMemoryDbService {
         city: 'Curitiba',
         status: CustomerStatus.active
       },
-    ]
+    ];
+
+    const paymentMethod: PaymentMethod[] = [
+      { id: 1, description: 'A Vista' },
+      { id: 2, description: 'A prazo 30 Dias' },
+      { id: 3, description: '3x - 30, 60 e 90' },
+      { id: 4, description: 'Pagamento Antecipado' },
+      { id: 5, description: '2x - 0 + 30 dias' },
+    ];
+
     const products = [
       {
         id: '0001',
@@ -89,7 +123,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         description: 'TELEVISÃO',
         price: 3099.99
       }
-  ]
+  ];
 
   const sales: Sales[] = [
     {
@@ -97,6 +131,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 1,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 1,
       status: SalesStatus.Closed
     },
     {
@@ -104,6 +139,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 2,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 1,
       status: SalesStatus.Closed
     },
     {
@@ -111,6 +147,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 1,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 5,
       status: SalesStatus.Closed
     },
     {
@@ -118,6 +155,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 3,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 4,
       status: SalesStatus.Open
     },
     {
@@ -125,6 +163,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 3,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 3,
       status: SalesStatus.Closed
     },
     {
@@ -132,17 +171,19 @@ export class InMemoryDatabase implements InMemoryDbService {
       customerId: 2,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 2,
       status: SalesStatus.Open
     },
     {
-      id: 3,
+      id: 7,
       customerId: 4,
       paymentMethodId: 1,
       issueDate: new Date(),
+      carrierId: 2,
       status: SalesStatus.Open
     }
-  ]
-    const db = { customers, products, sales };
+  ];
+    const db = { carriers, customers, paymentMethod, products, sales };
     return of(db).pipe(delay(1300));
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { PoTableColumn } from '@po-ui/ng-components';
+import { PoSelectOption, PoTableColumn } from '@po-ui/ng-components';
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
 import { Customer } from '../interface/customer';
 import { CustomerStatus } from './../interface/customer-status.enum';
@@ -24,5 +24,12 @@ export class CustomerService extends BaseResourceService<Customer> {
       { property: 'state', label: 'UF', type: 'string' },
       { property: 'city', label: 'Municipio', type: 'string' },
     ];
+  }
+
+  getComboOptions(customers: Customer[]): PoSelectOption[] {
+    return customers.map(customer => ({
+      value: customer.id,
+      label: customer.name
+    }))
   }
 }

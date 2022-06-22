@@ -1,10 +1,11 @@
 import { Component, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
 import { of } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { CustomerService } from 'src/app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceList } from 'src/app/shared/components/base-resource-list.component';
-import { SalesBrw } from '../../shared/interfaces/sales';
+import { Sales, SalesBrw } from '../../shared/interfaces/sales';
 import { SalesService } from '../../shared/services/sales.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
   constructor(
     protected salesService: SalesService,
     protected override injector: Injector,
-    protected customerService: CustomerService
+    protected customerService: CustomerService,
+    protected router: Router
   ) {
     super(injector, salesService, 'Meus Pedidos');
   }
@@ -28,12 +30,12 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
   getTableActions(): PoTableAction[] {
     return [
       {
-        // action: this.onShowSale.bind(this),
+        action: this.onShowSale.bind(this),
         icon: 'po-icon-eye',
         label: 'Visualizar',
       },
       {
-        //action: this.onDelete.bind(this),
+        action: this.onDelete.bind(this),
         icon: 'po-icon-delete',
         label: 'Excluir',
       },
@@ -86,4 +88,33 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
     throw new Error('Method not implemented.');
   }
 
+  onShowSale(sale: Sales): void {
+    this.isLoading = true;
+    this.router.navigate(['sales/view', sale.id]);
+  }
+
+  onDelete(sales: Sales): void {
+    this.isLoading = true;
+    this.salesService
+      .delete(sales.id ? sales.id : 0)
+      .pipe(
+        finalize(() => this.isLoading = false)
+      )
+      .subscribe({
+        next: () => {
+          const index = this.items.findIndex( res => res.id === sales.id);
+          if (index > -1) {
+            this.poNotification.success(`Pedido ${sales.id?.toString()} excluído com sucesso`)
+            this.getItems();
+          } else {
+            this.handleErrorDelete(sales)
+          }
+        },
+        error: () => this.handleErrorDelete(sales)
+      });
+  }
+
+  handleErrorDelete(sales: Sales): void {
+    this.poNotification.error(`Falha ao excluir pedido ${sales.id?.toString()}`)
+  }
 }
