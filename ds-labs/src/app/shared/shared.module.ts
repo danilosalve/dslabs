@@ -4,9 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { FilterInputComponent } from './components/filter-input/filter-input.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FilterInputComponent
+  ],
   imports: [
     CommonModule,
     PoModule,
