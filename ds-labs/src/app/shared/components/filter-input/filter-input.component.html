@@ -1,1 +1,10 @@
-<p>filter-input works!</p>
+<form [formGroup]="searchOrder">
+  <po-input
+    formControlName="search"
+    [p-placeholder]="placeHolder"
+    p-help="{{ help }}"
+    p-icon="po-icon-search"
+    [p-no-autocomplete]="true"
+    p-clean
+  ></po-input>
+</form>
