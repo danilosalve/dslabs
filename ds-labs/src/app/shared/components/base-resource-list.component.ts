@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
+import { BaseResourceServiceFull } from 'src/app/shared/services/base-resource-full.service';
 
 @Directive()
 export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
@@ -19,7 +19,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
 
   constructor(
     protected injector: Injector,
-    protected resourceService: BaseResourceService<T>,
+    protected resourceService: BaseResourceServiceFull<T>,
     @Inject(String) protected title: string
   ) {
     this.titleService = injector.get(Title);

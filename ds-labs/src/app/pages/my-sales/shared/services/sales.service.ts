@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
 import { PoDynamicFormField, PoDynamicViewField, PoTableColumn } from '@po-ui/ng-components';
-import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
+import { BaseResourceServiceFull } from 'src/app/shared/services/base-resource-full.service';
 import { Sales } from '../interfaces/sales';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SalesService extends BaseResourceService<Sales> {
+export class SalesService extends BaseResourceServiceFull<Sales> {
   constructor(protected override injector: Injector) {
     super('api/sales/', injector);
   }
@@ -37,6 +37,7 @@ export class SalesService extends BaseResourceService<Sales> {
         gridXlColumns: 3,
         options: [],
         required: true
+
       },
       {
         label: 'Dt. Emissão',

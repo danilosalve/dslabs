@@ -1,9 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, Injector } from '@angular/core';
-import { PoTableColumn } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +43,4 @@ export abstract class BaseResourceService<T> {
     const url = `${this.apiPath}${id}`;
     return this.http.delete(url);
   }
-
-  abstract getColumns(): PoTableColumn[];
 }

@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { PoSelectOption, PoTableColumn } from '@po-ui/ng-components';
+import { PoSelectOption } from '@po-ui/ng-components';
 import { Carrier } from './../interfaces/carrier';
 import { BaseResourceService } from './base-resource.service';
 
@@ -16,9 +16,5 @@ export class CarrierService extends BaseResourceService<Carrier> {
       value: carrier.id,
       label: carrier.name,
     }));
-  }
-
-  getColumns(): PoTableColumn[] {
-    throw new Error('Method not implemented.');
   }
 }

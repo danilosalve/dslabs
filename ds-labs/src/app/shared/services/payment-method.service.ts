@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { PoSelectOption, PoTableColumn } from '@po-ui/ng-components';
+import { PoSelectOption } from '@po-ui/ng-components';
 import { PaymentMethod } from '../interfaces/payment-method';
 import { BaseResourceService } from './base-resource.service';
 
@@ -16,9 +16,5 @@ export class PaymentMethodService extends BaseResourceService<PaymentMethod> {
       value: payment.id,
       label: payment.description,
     }));
-  }
-
-  getColumns(): PoTableColumn[] {
-    throw new Error('Method not implemented.');
   }
 }

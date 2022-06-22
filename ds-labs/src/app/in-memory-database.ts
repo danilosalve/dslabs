@@ -3,6 +3,7 @@ import { delay, Observable, of } from 'rxjs';
 import { Customer } from './pages/my-customers/shared/interface/customer';
 import { CustomerStatus } from './pages/my-customers/shared/interface/customer-status.enum';
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
+import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
 import { Carrier } from './shared/interfaces/carrier';
 import { PaymentMethod } from './shared/interfaces/payment-method';
@@ -35,7 +36,7 @@ export class InMemoryDatabase implements InMemoryDbService {
     const customers: Customer[] = [
       {
         id: 1,
-        name: 'Antônia e Gael Marketing ME',
+        name: 'MADG Marketing ME',
         document: '84696014000181',
         state: 'SP',
         city: 'Bragança Paulista',
@@ -43,7 +44,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 2,
-        name: 'Carlos e Louise Padaria ME',
+        name: 'Breadcrumb Padaria ME',
         document: '52299624000155',
         state: 'AM',
         city: 'Manaus',
@@ -51,7 +52,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 3,
-        name: 'Gabrielly e Isabelle Alimentos ME',
+        name: 'Kibaum Alimentos ME',
         document: '41129289000120',
         state: 'MG',
         city: 'Timóteo',
@@ -59,7 +60,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 4,
-        name: 'Aline e Emanuel Marcenaria Ltda',
+        name: 'Marcenaria do Manuel Ltda',
         document: '23478793000154',
         state: 'MG',
         city: 'Ipatinga',
@@ -67,7 +68,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 5,
-        name: 'Regina e Tânia Filmagens Ltda',
+        name: 'CactusMovie Filmagens Ltda',
         document: '97174374000165',
         state: 'CE',
         city: 'Maracanaú',
@@ -75,7 +76,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 6,
-        name: 'Betina e Clara Informática ME',
+        name: 'Três Irmãos Informática ME',
         document: '84870812000188',
         state: 'GO',
         city: 'Luziânia',
@@ -91,7 +92,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 8,
-        name: 'Mariane e Vicente Mudanças Ltda',
+        name: 'Mudanças Ursinhos Ltda',
         document: '90054224000179',
         state: 'PR',
         city: 'Curitiba',
@@ -111,7 +112,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: '0001',
         description: 'CELULAR',
-        price: 3099.99
+        price: 2499.99
       },
       {
         id: '0002',
@@ -183,7 +184,24 @@ export class InMemoryDatabase implements InMemoryDbService {
       status: SalesStatus.Open
     }
   ];
-    const db = { carriers, customers, paymentMethod, products, sales };
+
+  const salesItems: SalesItems[] = [
+    { id: 1, salesId: 1, itemId: 1, productId: 1, value: 2499.99, quantity: 2, amount: 2499.99 },
+    { id: 2, salesId: 1, itemId: 1, productId: 2, value: 5099.99, quantity: 1, amount: 10199.98 },
+    { id: 3, salesId: 1, itemId: 1, productId: 3, value: 3099.99, quantity: 3, amount: 9299.97 },
+    { id: 4, salesId: 2, itemId: 1, productId: 1, value: 2499.99, quantity: 4, amount: 9999.96 },
+    { id: 5, salesId: 2, itemId: 1, productId: 2, value: 5099.99, quantity: 6, amount: 30599.94 },
+    { id: 6, salesId: 3, itemId: 1, productId: 3, value: 3099.99, quantity: 7, amount: 21699.93 },
+    { id: 7, salesId: 4, itemId: 1, productId: 1, value: 2499.99, quantity: 10, amount: 24990.99 },
+    { id: 8, salesId: 4, itemId: 1, productId: 3, value: 3099.99, quantity: 1, amount: 3099.99 },
+    { id: 9, salesId: 4, itemId: 1, productId: 2, value: 5099.99, quantity: 12, amount: 61199.88 },
+    { id: 10, salesId: 5, itemId: 1, productId: 3, value: 3099.99, quantity: 8, amount: 24799.92 },
+    { id: 11, salesId: 5, itemId: 1, productId: 2, value: 5099.99, quantity: 6, amount: 30599.94 },
+    { id: 12, salesId: 6, itemId: 1, productId: 1, value: 2499.99, quantity: 5, amount: 12499.95 },
+    { id: 13, salesId: 7, itemId: 1, productId: 2, value: 5099.99, quantity: 3, amount: 15299.97 },
+    { id: 14, salesId: 7, itemId: 1, productId: 1, value: 2499.99, quantity: 1, amount: 2499.99 }
+  ];
+    const db = { carriers, customers, paymentMethod, products, sales, salesItems };
     return of(db).pipe(delay(1300));
   }
 }
