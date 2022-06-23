@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
+import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import { PoDynamicFormField, PoDynamicViewField, PoTableColumn } from '@po-ui/ng-components';
-import { BaseResourceServiceFull } from 'src/app/shared/services/base-resource-full.service';
 import { Sales } from '../interfaces/sales';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 

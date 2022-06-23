@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
+import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
 import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
-import { BaseResourceList } from 'src/app/shared/components/base-resource-list.component';
 import { CustomerService } from '../../shared/services/customer.service';
 import { Customer } from './../../shared/interface/customer';
 

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { BaseResourceServiceFull } from 'src/app/shared/services/base-resource-full.service';
+import { BaseResourceServiceFull } from '../services/base-resource-full.service';
 
 @Directive()
 export abstract class BaseResourceList<T> implements OnInit, OnDestroy {

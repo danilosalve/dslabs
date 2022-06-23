@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
+import { PaymentMethodService } from '@app/shared/services/payment-method.service';
 import {
   PoDynamicFormField, PoNotificationService, PoSelectOption
 } from '@po-ui/ng-components';
 import { forkJoin } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { CustomerService } from 'src/app/pages/my-customers/shared/services/customer.service';
-import { PaymentMethodService } from 'src/app/shared/services/payment-method.service';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesService } from '../../shared/services/sales.service';
 import { CarrierService } from './../../../../shared/services/carrier.service';
@@ -87,7 +87,6 @@ export class GeneralDataComponent implements OnInit {
   }
 
   getForm(form: NgForm) {
-    console.log(form);
     this.dynamicForm = form;
   }
 }

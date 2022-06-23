@@ -1,6 +1,6 @@
 import { Inject, Injectable, Injector } from '@angular/core';
 import { PoTableColumn } from '@po-ui/ng-components';
-import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
+import { BaseResourceService } from './base-resource.service';
 
 @Injectable({
   providedIn: 'root'

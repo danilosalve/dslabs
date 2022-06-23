@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
+import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import { PoSelectOption, PoTableColumn } from '@po-ui/ng-components';
-import { BaseResourceServiceFull } from 'src/app/shared/services/base-resource-full.service';
 import { Customer } from '../interface/customer';
 import { CustomerStatus } from './../interface/customer-status.enum';
 
