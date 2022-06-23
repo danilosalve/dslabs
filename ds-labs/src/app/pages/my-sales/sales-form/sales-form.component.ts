@@ -6,6 +6,7 @@ import { PoBreadcrumb, PoNotificationService } from '@po-ui/ng-components';
 import { Sales } from '../shared/interfaces/sales';
 import { SalesStatus } from '../shared/interfaces/sales-status.enum';
 import { SalesService } from '../shared/services/sales.service';
+import { SalesItems } from './../shared/interfaces/sales-items';
 
 @Component({
   selector: 'app-sales-form',
@@ -25,6 +26,8 @@ export class SalesFormComponent implements OnInit {
   };
   isDisableSubmit = false;
   dynamicForm: NgForm | undefined;
+  salesItems: SalesItems[] = [];
+  itemId = 0;
 
   readonly breadcrumb: PoBreadcrumb = {
     items: [
@@ -77,5 +80,10 @@ export class SalesFormComponent implements OnInit {
 
   canSubmit(): boolean {
     return !this.dynamicForm?.valid
+  }
+
+  addSalesItem(salesItem: any): void {
+    this.isDisableSubmit = false;
+    this.salesItems = this.salesItems.concat(salesItem);
   }
 }
