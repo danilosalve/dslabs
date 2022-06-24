@@ -1,2 +1,12 @@
-<po-menu [p-filter]="true" [p-menus]="menus">
-</po-menu>
+<div class="po-wrapper">
+  <po-toolbar p-title="DSalve - Labs"></po-toolbar>
+  <po-menu
+    [p-filter]="true"
+    [p-menus]="menus"
+    [p-collapsed]="false"
+    p-short-logo="../../../assets/img/png/logo.png"
+    p-logo-alt="Logo da TOTVS"
+  >
+  </po-menu>
+  <router-outlet></router-outlet>
+</div>
