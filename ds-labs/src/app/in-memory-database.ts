@@ -117,7 +117,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: '0002',
-        description: 'NOTEBOOK CEU',
+        description: 'NOTEBOOK CEUU',
         price: 5099.99
       },
       {
@@ -179,6 +179,11 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: '0014',
         description: 'CADEIRA ESCRITORIO',
+        price: 925
+      },
+      {
+        id: '0015',
+        description: 'MOUSE SEM FIO',
         price: 925
       }
   ];

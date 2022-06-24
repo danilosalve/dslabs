@@ -5,6 +5,7 @@
   p-primary-label="Adicionar ao Carrinho"
   (p-primary-action)="addProduct(salesItem)"
   [p-height]="300"
+  (p-setting)="pageSlide.open()"
 >
   <div>
     <div class="po-row">
@@ -26,33 +27,35 @@
           p-icon="po-icon-finance"
         >
         </po-decimal>
+        <ng-container *ngIf="formItem.get('price')?.touched">
+          <po-info *ngIf="formItem.get('price')?.errors?.['required']">
+            Campo obrigatório
+          </po-info>
 
-        <po-info *ngIf="formItem.get('price')?.errors?.['required']">
-          Campo obrigatório
-        </po-info>
-
-        <po-info
-        *ngIf="formItem.get('price')?.errors?.['required']"
-        p-label="Campo obrigatório"
-      ></po-info>
-      <po-info
-        *ngIf="formItem.get('price')?.errors?.['min']"
-        p-label="Valor Inválido"
-      ></po-info>
+          <po-info
+            *ngIf="formItem.get('price')?.errors?.['required']"
+            p-label="Campo obrigatório"
+          ></po-info>
+          <po-info
+            *ngIf="formItem.get('price')?.errors?.['min']"
+            p-label="Valor Inválido"
+          ></po-info>
+        </ng-container>
       </div>
 
       <div class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mt-1">
-          <po-number
-            id="quantity"
-            formControlName="quantity"
-            p-label="Quantidade"
-            required="true"
-            p-step="1"
-            p-placeholder="0"
-            p-clean="true"
-            (p-blur)="onChange('quantity')"
-          >
-          </po-number>
+        <po-number
+          id="quantity"
+          formControlName="quantity"
+          p-label="Quantidade"
+          required="true"
+          p-step="1"
+          p-placeholder="0"
+          p-clean="true"
+          (p-blur)="onChange('quantity')"
+        >
+        </po-number>
+        <ng-container *ngIf="formItem.get('quantity')?.touched">
           <po-info
             *ngIf="formItem.get('quantity')?.errors?.['required']"
             p-label="Campo obrigatório"
@@ -61,40 +64,40 @@
             *ngIf="formItem.get('quantity')?.errors?.['min']"
             p-label="Valor Inválido"
           ></po-info>
+        </ng-container>
       </div>
 
       <div class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mt-1">
         <po-decimal
-        id="amount"
-        formControlName="amount"
-        p-label="Vlr Total"
-        required="true"
-        p-placeholder="0,00"
-        p-disabled="true"
-        p-icon="po-icon-finance"
-      >
-      </po-decimal>
-      <po-info
-      *ngIf="formItem.get('amount')?.errors?.['required']"
-      p-label="Campo obrigatório"
-    ></po-info>
-    <po-info
-      *ngIf="formItem.get('amount')?.errors?.['min']"
-      p-label="Valor Inválido"
-    ></po-info>
+          id="amount"
+          formControlName="amount"
+          p-label="Vlr Total"
+          required="true"
+          p-placeholder="0,00"
+          p-disabled="true"
+          p-icon="po-icon-finance"
+        >
+        </po-decimal>
+        <ng-container *ngIf="formItem.get('quantity')?.touched">
+          <po-info
+            *ngIf="formItem.get('amount')?.errors?.['required']"
+            p-label="Campo obrigatório"
+          ></po-info>
+          <po-info
+            *ngIf="formItem.get('amount')?.errors?.['min']"
+            p-label="Valor Inválido"
+          ></po-info>
+        </ng-container>
       </div>
-
     </form>
   </div>
 </po-widget>
 
-<!--<po-widget *ngIf="salesItems"
-  class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mt-1"
-  p-no-shadow
-  [p-secondary-label]="returnButtonString()"
-  (p-secondary-action)="sendItem(item)"
-  p-primary-label="{{ literals.str0327 }}"
-  (p-primary-action)="openSideBar(item)"
-  [p-disabled]="disableButton"
+<po-page-slide
+  p-title="Mais Informações"
+  p-subtitle="Informações Adicionais do Produto"
+  p-size="auto"
+  #pageSlide
 >
--->
+  <app-more-information [salesItems]="salesItem" [formCard]="formItem"></app-more-information>
+</po-page-slide>

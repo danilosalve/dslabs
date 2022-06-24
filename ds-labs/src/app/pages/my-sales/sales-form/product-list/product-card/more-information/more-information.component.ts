@@ -1,0 +1,148 @@
+import { CurrencyPipe } from '@angular/common';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PoNotificationService } from '@po-ui/ng-components';
+import { debounceTime } from 'rxjs/operators';
+import { SalesItems } from './../../../../shared/interfaces/sales-items';
+
+const DEBOUNCE_TIME = 300;
+
+@Component({
+  selector: 'app-more-information',
+  templateUrl: './more-information.component.html',
+  styleUrls: ['./more-information.component.css'],
+})
+export class MoreInformationComponent implements OnInit, OnChanges {
+  @Input() formCard!: FormGroup;
+  @Input() salesItems: SalesItems = {
+    productId: '',
+    productName: '',
+    quantity: 0,
+    id: 0,
+    salesId: 0,
+    itemId: 0,
+    value: 0,
+    amount: 0,
+  };
+  amount: string = '';
+  value: string = '';
+  formItem!: FormGroup;
+
+  constructor(
+    private currencyPipe: CurrencyPipe,
+    private fb: FormBuilder,
+    private poNotification: PoNotificationService
+  ) {
+    this.poNotification.setDefaultDuration(5000);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.onInitPage();
+  }
+
+  ngOnInit(): void {
+    this.onInitForm();
+  }
+
+  onInitPage(): void {
+    this.amount =
+      this.currencyPipe.transform(this.salesItems.amount, 'BRL') + '';
+    this.value = this.currencyPipe.transform(this.salesItems.value, 'BRL') + '';
+  }
+
+  onInitForm(): void {
+    this.formItem = this.fb.group({
+      discount: [this.salesItems.discount, Validators.min(0)],
+      discountamount: [0, [Validators.min(0), Validators.max(99.99)]],
+    });
+  }
+
+  onChange(): void {
+    this.onInitPage();
+    if (this.canApplyDiscount()) {
+      this.formItem
+        .get('discount')
+        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME))
+        .subscribe((percentage) => {
+          if (this.isAValidDiscountPercentage(percentage)) {
+            this.calculateDiscountAmount(percentage);
+          } else {
+            this.poNotification.error('Percentual de Desconto invalido');
+          }
+        });
+
+      this.formItem
+        .get('discountamount')
+        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME))
+        .subscribe((value) => {
+          this.calculateDiscountPercentage(value);
+        });
+    } else {
+      this.poNotification.error('Preencher Quantidade do Produto');
+      this.cleanDiscounts();
+    }
+  }
+
+  cleanDiscounts(): void {
+    this.formItem.get('discount')?.setValue(0, { emitEvent: false });
+    this.formItem.get('discountamount')?.setValue(0, { emitEvent: false });
+    this.setItemDiscount(0);
+  }
+
+  calculateDiscountAmount(percentage: number): void {
+    let discountValue = 0;
+    if (percentage > 0) {
+      discountValue =
+        ((percentage * this.salesItems.value) / 100) * this.salesItems.quantity;
+      this.formItem
+        .get('discountamount')
+        ?.setValue(discountValue, { emitEvent: false });
+      this.setItemDiscount(discountValue);
+    } else {
+      this.cleanDiscounts();
+    }
+  }
+
+  calculateDiscountPercentage(value: number): void {
+    let percentage = 0;
+    if (value > 0) {
+      percentage =
+        ((value * 100) / this.salesItems.value) * this.salesItems.quantity;
+      if (this.isAValidDiscountPercentage(percentage)) {
+        this.formItem
+          .get('discount')
+          ?.setValue(percentage, { emitEvent: false });
+        this.setItemDiscount(value);
+      } else {
+        this.poNotification.error('Percentual de Desconto invalido');
+      }
+    } else {
+      this.cleanDiscounts();
+    }
+  }
+
+  canApplyDiscount(): boolean {
+    return this.salesItems.quantity > 0 && this.salesItems.amount > 0;
+  }
+
+  isAValidDiscountPercentage(percentage: number): boolean {
+    return percentage >= 0 && percentage < 100;
+  }
+
+  setItemDiscount(discount: number): void {
+    const price = this.salesItems.value - discount / this.salesItems.quantity;
+    const amount = price * this.salesItems.quantity;
+
+    if (this.salesItems.quantity > 0) {
+      this.formCard.get('discount')?.setValue(discount, { emitEvent: false });
+      this.formCard.get('price')?.setValue(price, { emitEvent: false });
+      this.formCard.get('amount')?.setValue(amount, { emitEvent: false });
+    }
+  }
+}

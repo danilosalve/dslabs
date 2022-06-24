@@ -1,0 +1,48 @@
+<po-container *ngIf="salesItems" [p-no-border]="true" [p-no-shadow]="true" [p-no-padding]="true">
+  <p class="po-font-subtitle color">{{ salesItems.productName }}</p>
+  <p class="po-font-text-large">{{ salesItems.productId }}</p>
+  <div class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+    <po-info
+    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+    p-label="Valor Unitário"
+    [p-value]="value">
+  </po-info>
+
+  <po-info
+    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+    p-label="Valor Total"
+    [p-value]="amount">
+  </po-info>
+  </div>
+
+  <form [formGroup]="formItem" class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+    <po-decimal
+      id="discount"
+      formControlName="discount"
+      class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
+      p-label="Desconto percentual (%)"
+      p-placeholder="0%"
+      p-help="Apenas números."
+      (p-blur)="onChange()"
+      p-clean="true"
+      [p-auto-focus]="false"
+      >
+    </po-decimal>
+
+    <po-decimal
+      id="discountamount"
+      formControlName="discountamount"
+      class="po-sm-12 po-md-5 po-lg-5 po-xl-5"
+      p-label="Valor do desconto"
+      p-placeholder="00,00"
+      p-help="Apenas números."
+      (p-blur)="onChange()"
+      p-clean="true"
+      [p-auto-focus]="false">
+    </po-decimal>
+  </form>
+
+  <div class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+    <po-button p-label="Consultar Estoque" p-icon="po-icon-pallet-full"></po-button>
+  </div>
+</po-container>

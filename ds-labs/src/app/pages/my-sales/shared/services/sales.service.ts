@@ -49,7 +49,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridMdColumns: 3,
         gridLgColumns: 3,
         gridXlColumns: 2,
-        required: true
+        required: true,
+        disabled: true
       },
       {
         label: 'Cond. Pagamento',

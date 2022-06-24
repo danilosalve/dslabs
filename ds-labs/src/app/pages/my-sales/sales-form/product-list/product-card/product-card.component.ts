@@ -69,7 +69,7 @@ export class ProductCardComponent implements OnInit {
     const price = this.formItem.get('price')?.value;
     const quantity = this.formItem.get('quantity')?.value;
     const amount = price * quantity;
-    this.formItem.get('amount')?.setValue(amount.toPrecision(2));
+    this.formItem.get('amount')?.setValue(amount.toFixed(2));
     this.salesItem.quantity = quantity;
     this.salesItem.amount = amount;
   }
