@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
@@ -11,6 +11,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesService } from '../../shared/services/sales.service';
 import { CarrierService } from './../../../../shared/services/carrier.service';
+import { PriceListService } from './../../../../shared/services/price-list.service';
 
 @Component({
   selector: 'app-general-data',
@@ -19,6 +20,7 @@ import { CarrierService } from './../../../../shared/services/carrier.service';
 export class GeneralDataComponent implements OnInit {
   @Input() sales: Sales | undefined;
   @Input() dynamicForm: NgForm | undefined;
+  @Output() getForm = new EventEmitter();
   fields: Array<PoDynamicFormField> = [];
   isLoading = true;
 
@@ -26,6 +28,7 @@ export class GeneralDataComponent implements OnInit {
     protected carrierService: CarrierService,
     protected customerService: CustomerService,
     protected paymentService: PaymentMethodService,
+    protected priceListService: PriceListService,
     protected salesService: SalesService,
     protected poNotification: PoNotificationService,
     protected router: Router
@@ -36,14 +39,16 @@ export class GeneralDataComponent implements OnInit {
   }
 
   getFields(): void {
-    let carrierList: Array<PoSelectOption>;
-    let customerList: Array<PoSelectOption>;
-    let paymentList: Array<PoSelectOption>;
+    let carrierList: PoSelectOption[];
+    let customerList: PoSelectOption[];
+    let paymentList: PoSelectOption[];
+    let priceList: PoSelectOption[];
 
     forkJoin({
       carriers: this.carrierService.getAll(),
       customers: this.customerService.getAll(),
       payments: this.paymentService.getAll(),
+      priceLists: this.priceListService.getAll()
     })
       .pipe(
         tap(() => (this.isLoading = true)),
@@ -56,10 +61,12 @@ export class GeneralDataComponent implements OnInit {
           );
           paymentList = this.paymentService.getComboOptions(response.payments);
           carrierList = this.carrierService.getComboOptions(response.carriers);
+          priceList = this.priceListService.getComboOptions(response.priceLists);
           this.fields = this.salesService.getFormFields();
           this.setFieldOptions('customerId', customerList);
           this.setFieldOptions('paymentMethodId', paymentList);
           this.setFieldOptions('carrierId', carrierList);
+          this.setFieldOptions('priceListId', priceList);
         },
         error: err => {
           console.error(err);
@@ -86,7 +93,8 @@ export class GeneralDataComponent implements OnInit {
     this.router.navigate(['sales']);
   }
 
-  getForm(form: NgForm) {
+  formEmitter(form: NgForm) {
     this.dynamicForm = form;
+    this.getForm.emit(form);
   }
 }

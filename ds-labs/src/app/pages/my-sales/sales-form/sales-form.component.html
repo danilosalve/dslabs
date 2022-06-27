@@ -1,7 +1,16 @@
-<po-page-edit p-title="Novo Pedido" [p-breadcrumb]="breadcrumb" (p-cancel)="cancel()" (p-save)="onSubmit()" (p-disable-submit)="canSubmit()">
+<po-page-edit
+  p-title="Novo Pedido"
+  [p-breadcrumb]="breadcrumb"
+  (p-cancel)="cancel()"
+  (p-save)="onSubmit()"
+>
   <po-tabs>
     <po-tab [p-active]="true" p-label="Dados Gerais">
-    <app-general-data [sales]="sales" [dynamicForm]="dynamicForm"></app-general-data>
+      <app-general-data
+        [sales]="sales"
+        [dynamicForm]="dynamicForm"
+        (getForm)="getForm($event)"
+      ></app-general-data>
     </po-tab>
     <po-tab p-label="Produtos">
       <app-product-list (changeItems)="addSalesItem($event)"></app-product-list>

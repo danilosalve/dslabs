@@ -55,7 +55,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
         switchMap((sales: SalesBrw[]) => {
           sales.forEach((sale) => {
             this.customerService
-              .getById(sale.customerId)
+              .getById(sale.customerId!)
               .pipe(
                 map((customer) => ({
                   ...sale,

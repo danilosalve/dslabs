@@ -1,10 +1,11 @@
 import { SalesStatus } from './sales-status.enum';
 export interface Sales {
   id?: number;
-  customerId: number;
-  paymentMethodId?: number;
+  customerId: number | undefined;
+  paymentMethodId?: number | undefined;
   issueDate: Date;
-  carrierId: number;
+  carrierId: number | undefined;
+  priceListId: number | undefined;
   status: SalesStatus;
   freight?: number;
   insurance?: number;

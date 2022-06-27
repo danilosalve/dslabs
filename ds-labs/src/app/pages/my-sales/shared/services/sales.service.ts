@@ -37,7 +37,6 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridXlColumns: 3,
         options: [],
         required: true
-
       },
       {
         label: 'Dt. Emissão',
@@ -63,6 +62,17 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         options: [],
         required: true,
         divider: 'Pagamento'
+      },
+      {
+        label: 'Tab. de Preços',
+        property: 'priceListId',
+        gridColumns: 3,
+        gridSmColumns: 12,
+        gridMdColumns: 5,
+        gridLgColumns: 4,
+        gridXlColumns: 3,
+        options: [],
+        required: false
       },
       {
         label: 'Desconto',

@@ -7,6 +7,7 @@ import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
 import { Carrier } from './shared/interfaces/carrier';
 import { PaymentMethod } from './shared/interfaces/payment-method';
+import { PriceList } from './shared/interfaces/price-list/price-list';
 import { Product } from './shared/interfaces/product';
 import { ProductBalance } from './shared/interfaces/product-balance';
 
@@ -110,6 +111,29 @@ export class InMemoryDatabase implements InMemoryDbService {
       { id: 3, description: '3x - 30, 60 e 90' },
       { id: 4, description: 'Pagamento Antecipado' },
       { id: 5, description: '2x - 0 + 30 dias' },
+    ];
+
+    const priceList: PriceList[] = [
+      {
+        id: 1,
+        description: 'PADRÃO',
+        active: true
+      },
+      {
+        id: 2,
+        description: 'PROMOÇÃO RELAMPAGO',
+        active: true
+      },
+      {
+        id: 3,
+        description: 'SOMENTE AVISTA',
+        active: true
+      },
+      {
+        id: 4,
+        description: 'DESATIVADA',
+        active: false
+      },
     ];
 
     const products: Product[] = [
@@ -500,6 +524,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 1,
+        priceListId: 1,
         status: SalesStatus.Closed,
       },
       {
@@ -508,6 +533,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 1,
+        priceListId: undefined,
         status: SalesStatus.Closed,
       },
       {
@@ -516,6 +542,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 5,
+        priceListId: 1,
         status: SalesStatus.Closed,
       },
       {
@@ -524,6 +551,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 4,
+        priceListId: 1,
         status: SalesStatus.Open,
       },
       {
@@ -532,6 +560,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 3,
+        priceListId: 1,
         status: SalesStatus.Closed,
       },
       {
@@ -540,6 +569,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 2,
+        priceListId: 1,
         status: SalesStatus.Open,
       },
       {
@@ -548,6 +578,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 2,
+        priceListId: 1,
         status: SalesStatus.Open,
       },
     ];
@@ -698,6 +729,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       carriers,
       customers,
       paymentMethod,
+      priceList,
       productBalance,
       products,
       sales,
