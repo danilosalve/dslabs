@@ -13,6 +13,12 @@
     p-label="Valor Total"
     [p-value]="amount">
   </po-info>
+
+  <po-info
+    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+    p-label="Vlr. Unitário com desconto"
+    [p-value]="discountedValue">
+  </po-info>
   </div>
 
   <form [formGroup]="formItem" class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
@@ -32,7 +38,7 @@
     <po-decimal
       id="discountamount"
       formControlName="discountamount"
-      class="po-sm-12 po-md-5 po-lg-5 po-xl-5"
+      class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
       p-label="Valor do desconto"
       p-placeholder="00,00"
       p-help="Apenas números."
@@ -42,7 +48,7 @@
     </po-decimal>
   </form>
 
-  <div class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
-    <po-button p-label="Consultar Estoque" p-icon="po-icon-pallet-full"></po-button>
+  <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+    <app-product-balance [productId]="salesItems.productId" [productName]="salesItems.productName"></app-product-balance>
   </div>
 </po-container>

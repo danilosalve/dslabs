@@ -8,29 +8,32 @@ import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enu
 import { Carrier } from './shared/interfaces/carrier';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { Product } from './shared/interfaces/product';
+import { ProductBalance } from './shared/interfaces/product-balance';
 
 export class InMemoryDatabase implements InMemoryDbService {
-  createDb(reqInfo?: RequestInfo | undefined): {} | Observable<{}> | Promise<{}> {
+  createDb(
+    reqInfo?: RequestInfo | undefined
+  ): {} | Observable<{}> | Promise<{}> {
     const carriers: Carrier[] = [
       {
         id: 1,
-        name: 'Ligeirinho Express'
+        name: 'Ligeirinho Express',
       },
       {
         id: 2,
-        name: 'Estrela Cadente Express'
+        name: 'Estrela Cadente Express',
       },
       {
         id: 3,
-        name: 'RodoNeves'
+        name: 'RodoNeves',
       },
       {
         id: 4,
-        name: 'Sedax 11'
+        name: 'Sedax 11',
       },
       {
         id: 5,
-        name: 'Fusca Azul Transportes'
+        name: 'Fusca Azul Transportes',
       },
     ];
 
@@ -41,7 +44,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '84696014000181',
         state: 'SP',
         city: 'Bragança Paulista',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 2,
@@ -49,7 +52,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '52299624000155',
         state: 'AM',
         city: 'Manaus',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 3,
@@ -57,7 +60,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '41129289000120',
         state: 'MG',
         city: 'Timóteo',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 4,
@@ -65,7 +68,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '23478793000154',
         state: 'MG',
         city: 'Ipatinga',
-        status: CustomerStatus.inactive
+        status: CustomerStatus.inactive,
       },
       {
         id: 5,
@@ -73,7 +76,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '97174374000165',
         state: 'CE',
         city: 'Maracanaú',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 6,
@@ -81,7 +84,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '84870812000188',
         state: 'GO',
         city: 'Luziânia',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 7,
@@ -89,7 +92,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '80040460000182',
         state: 'SP',
         city: 'São Paulo',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
       {
         id: 8,
@@ -97,7 +100,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '90054224000179',
         state: 'PR',
         city: 'Curitiba',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
       },
     ];
 
@@ -113,157 +116,593 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: '0001',
         description: 'SMARTPHONE IPEAR 15',
-        price: 15099.9
+        price: 15099.9,
       },
       {
         id: '0002',
         description: 'NOTEBOOK CEUU',
-        price: 5099.99
+        price: 5099.99,
       },
       {
         id: '0003',
         description: 'TELEVISÃO 43',
-        price: 2398.75
+        price: 2398.75,
       },
       {
         id: '0004',
         description: 'MONITOR 23.5',
-        price: 899.9
+        price: 899.9,
       },
       {
         id: '0005',
         description: 'NOTEBOOK GAMER',
-        price: 3699.00
+        price: 3699.0,
       },
       {
         id: '0006',
         description: 'TELEVISÃO 50 4K',
-        price: 2599
+        price: 2599,
       },
       {
         id: '0007',
         description: 'TELEVISÃO 65 4K',
-        price: 3989.05
-
+        price: 3989.05,
       },
       {
         id: '0008',
         description: 'SMARTPHONE XINGLING',
-        price: 1551.03
+        price: 1551.03,
       },
       {
         id: '0009',
         description: 'KIT TECLADO+MOUSE GAMER 5X1',
-        price: 214
+        price: 214,
       },
       {
         id: '0010',
         description: 'TECLADO GAMER',
-        price: 52.74
+        price: 52.74,
       },
       {
         id: '0011',
         description: 'MOUSE GAMER',
-        price: 269
+        price: 269,
       },
       {
         id: '0012',
         description: 'CADEIRA GAMER AZUL',
-        price: 1349.9
+        price: 1349.9,
       },
       {
         id: '0013',
         description: 'CADEIRA GAMER VERMELHA',
-        price: 1434
+        price: 1434,
       },
       {
         id: '0014',
         description: 'CADEIRA ESCRITORIO',
-        price: 925
+        price: 925,
       },
       {
         id: '0015',
         description: 'MOUSE SEM FIO',
-        price: 925
-      }
-  ];
+        price: 925,
+      },
+    ];
 
-  const sales: Sales[] = [
-    {
-      id: 1,
-      customerId: 1,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 1,
-      status: SalesStatus.Closed
-    },
-    {
-      id: 2,
-      customerId: 2,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 1,
-      status: SalesStatus.Closed
-    },
-    {
-      id: 3,
-      customerId: 1,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 5,
-      status: SalesStatus.Closed
-    },
-    {
-      id: 4,
-      customerId: 3,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 4,
-      status: SalesStatus.Open
-    },
-    {
-      id: 5,
-      customerId: 3,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 3,
-      status: SalesStatus.Closed
-    },
-    {
-      id: 6,
-      customerId: 2,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 2,
-      status: SalesStatus.Open
-    },
-    {
-      id: 7,
-      customerId: 4,
-      paymentMethodId: 1,
-      issueDate: new Date(),
-      carrierId: 2,
-      status: SalesStatus.Open
-    }
-  ];
+    const productBalance: ProductBalance[] = [
+      {
+        id: 1,
+        productId: '0001',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 1000,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 2,
+        productId: '0002',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 700,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 3,
+        productId: '0003',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 904,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 4,
+        productId: '0004',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 2706,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 5,
+        productId: '0005',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 2022,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 6,
+        productId: '0006',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 601,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 7,
+        productId: '0007',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 276,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 8,
+        productId: '0008',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 2001,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 9,
+        productId: '0009',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 205,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 10,
+        productId: '0010',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 201,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 11,
+        productId: '0011',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 300,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 12,
+        productId: '0012',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 400,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 13,
+        productId: '0013',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 199,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 14,
+        productId: '0014',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 300,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 15,
+        productId: '0015',
+        warehouse: '01',
+        warehouseDescription: 'CD SP',
+        availablequantity: 400,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 16,
+        productId: '0001',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 822,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 17,
+        productId: '0002',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 1152,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 18,
+        productId: '0003',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 52,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 19,
+        productId: '0004',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 11,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 20,
+        productId: '0005',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 12,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 21,
+        productId: '0006',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 990,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 22,
+        productId: '0007',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 100,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 23,
+        productId: '0008',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 300,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 24,
+        productId: '0009',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 15,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 25,
+        productId: '0010',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 20,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 26,
+        productId: '0011',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 33,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 27,
+        productId: '0012',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 500,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 28,
+        productId: '0013',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 227,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 29,
+        productId: '0014',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 150,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+      {
+        id: 30,
+        productId: '0015',
+        warehouse: '02',
+        warehouseDescription: 'CD CAMPINAS',
+        availablequantity: 10,
+        allocatedquantity: 0,
+        expectedinflow: 0,
+        orderquantity: 0,
+      },
+    ];
 
-  const salesItems: SalesItems[] = [
-    { id: 1, salesId: 1, itemId: 1, productId: '0001', value: 2499.99, quantity: 2, amount: 2499.99, productName: '' },
-    { id: 2, salesId: 1, itemId: 1, productId: '0002', value: 5099.99, quantity: 1, amount: 10199.98, productName: '' },
-    { id: 3, salesId: 1, itemId: 1, productId: '0003', value: 3099.99, quantity: 3, amount: 9299.97, productName: '' },
-    { id: 4, salesId: 2, itemId: 1, productId: '0001', value: 2499.99, quantity: 4, amount: 9999.96, productName: '' },
-    { id: 5, salesId: 2, itemId: 1, productId: '0002', value: 5099.99, quantity: 6, amount: 30599.94, productName: '' },
-    { id: 6, salesId: 3, itemId: 1, productId: '0003', value: 3099.99, quantity: 7, amount: 21699.93, productName: '' },
-    { id: 7, salesId: 4, itemId: 1, productId: '0001', value: 2499.99, quantity: 10, amount: 24990.99, productName: '' },
-    { id: 8, salesId: 4, itemId: 1, productId: '0003', value: 3099.99, quantity: 1, amount: 3099.99, productName: '' },
-    { id: 9, salesId: 4, itemId: 1, productId: '0002', value: 5099.99, quantity: 12, amount: 61199.88, productName: '' },
-    { id: 10, salesId: 5, itemId: 1, productId: '0003', value: 3099.99, quantity: 8, amount: 24799.92, productName: '' },
-    { id: 11, salesId: 5, itemId: 1, productId: '0002', value: 5099.99, quantity: 6, amount: 30599.94, productName: '' },
-    { id: 12, salesId: 6, itemId: 1, productId: '0001', value: 2499.99, quantity: 5, amount: 12499.95, productName: '' },
-    { id: 13, salesId: 7, itemId: 1, productId: '0002', value: 5099.99, quantity: 3, amount: 15299.97, productName: '' },
-    { id: 14, salesId: 7, itemId: 1, productId: '0001', value: 2499.99, quantity: 1, amount: 2499.99, productName: '' }
-  ];
-    const db = { carriers, customers, paymentMethod, products, sales, salesItems };
+    const sales: Sales[] = [
+      {
+        id: 1,
+        customerId: 1,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 1,
+        status: SalesStatus.Closed,
+      },
+      {
+        id: 2,
+        customerId: 2,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 1,
+        status: SalesStatus.Closed,
+      },
+      {
+        id: 3,
+        customerId: 1,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 5,
+        status: SalesStatus.Closed,
+      },
+      {
+        id: 4,
+        customerId: 3,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 4,
+        status: SalesStatus.Open,
+      },
+      {
+        id: 5,
+        customerId: 3,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 3,
+        status: SalesStatus.Closed,
+      },
+      {
+        id: 6,
+        customerId: 2,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 2,
+        status: SalesStatus.Open,
+      },
+      {
+        id: 7,
+        customerId: 4,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 2,
+        status: SalesStatus.Open,
+      },
+    ];
+
+    const salesItems: SalesItems[] = [
+      {
+        id: 1,
+        salesId: 1,
+        itemId: 1,
+        productId: '0001',
+        value: 2499.99,
+        quantity: 2,
+        amount: 2499.99,
+        productName: '',
+      },
+      {
+        id: 2,
+        salesId: 1,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 1,
+        amount: 10199.98,
+        productName: '',
+      },
+      {
+        id: 3,
+        salesId: 1,
+        itemId: 1,
+        productId: '0003',
+        value: 3099.99,
+        quantity: 3,
+        amount: 9299.97,
+        productName: '',
+      },
+      {
+        id: 4,
+        salesId: 2,
+        itemId: 1,
+        productId: '0001',
+        value: 2499.99,
+        quantity: 4,
+        amount: 9999.96,
+        productName: '',
+      },
+      {
+        id: 5,
+        salesId: 2,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 6,
+        amount: 30599.94,
+        productName: '',
+      },
+      {
+        id: 6,
+        salesId: 3,
+        itemId: 1,
+        productId: '0003',
+        value: 3099.99,
+        quantity: 7,
+        amount: 21699.93,
+        productName: '',
+      },
+      {
+        id: 7,
+        salesId: 4,
+        itemId: 1,
+        productId: '0001',
+        value: 2499.99,
+        quantity: 10,
+        amount: 24990.99,
+        productName: '',
+      },
+      {
+        id: 8,
+        salesId: 4,
+        itemId: 1,
+        productId: '0003',
+        value: 3099.99,
+        quantity: 1,
+        amount: 3099.99,
+        productName: '',
+      },
+      {
+        id: 9,
+        salesId: 4,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 12,
+        amount: 61199.88,
+        productName: '',
+      },
+      {
+        id: 10,
+        salesId: 5,
+        itemId: 1,
+        productId: '0003',
+        value: 3099.99,
+        quantity: 8,
+        amount: 24799.92,
+        productName: '',
+      },
+      {
+        id: 11,
+        salesId: 5,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 6,
+        amount: 30599.94,
+        productName: '',
+      },
+      {
+        id: 12,
+        salesId: 6,
+        itemId: 1,
+        productId: '0001',
+        value: 2499.99,
+        quantity: 5,
+        amount: 12499.95,
+        productName: '',
+      },
+      {
+        id: 13,
+        salesId: 7,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 3,
+        amount: 15299.97,
+        productName: '',
+      },
+      {
+        id: 14,
+        salesId: 7,
+        itemId: 1,
+        productId: '0001',
+        value: 2499.99,
+        quantity: 1,
+        amount: 2499.99,
+        productName: '',
+      },
+    ];
+    const db = {
+      carriers,
+      customers,
+      paymentMethod,
+      productBalance,
+      products,
+      sales,
+      salesItems,
+    };
     return of(db).pipe(delay(1300));
   }
 }

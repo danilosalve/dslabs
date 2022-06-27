@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PoNotificationService } from '@po-ui/ng-components';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SalesItems } from './../../../../shared/interfaces/sales-items';
 
 const DEBOUNCE_TIME = 300;
@@ -32,6 +32,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
   };
   amount: string = '';
   value: string = '';
+  discountedValue: string = '';
   formItem!: FormGroup;
 
   constructor(
@@ -48,18 +49,21 @@ export class MoreInformationComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.onInitForm();
+    this.onChangeDiscount();
   }
 
   onInitPage(): void {
     this.amount =
       this.currencyPipe.transform(this.salesItems.amount, 'BRL') + '';
     this.value = this.currencyPipe.transform(this.salesItems.value, 'BRL') + '';
+    this.discountedValue =
+      this.currencyPipe.transform(this.salesItems.value, 'BRL') + '';
   }
 
   onInitForm(): void {
     this.formItem = this.fb.group({
-      discount: [this.salesItems.discount, Validators.min(0)],
-      discountamount: [0, [Validators.min(0), Validators.max(99.99)]],
+      discount: [this.salesItems.discount, [Validators.min(0), Validators.max(99.99)]],
+      discountamount: [0, Validators.min(0)],
     });
   }
 
@@ -68,7 +72,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
     if (this.canApplyDiscount()) {
       this.formItem
         .get('discount')
-        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME))
+        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
         .subscribe((percentage) => {
           if (this.isAValidDiscountPercentage(percentage)) {
             this.calculateDiscountAmount(percentage);
@@ -79,7 +83,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
 
       this.formItem
         .get('discountamount')
-        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME))
+        ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
         .subscribe((value) => {
           this.calculateDiscountPercentage(value);
         });
@@ -89,10 +93,23 @@ export class MoreInformationComponent implements OnInit, OnChanges {
     }
   }
 
+  onChangeDiscount(): void {
+    this.formItem
+    .get('discount')
+    ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
+    .subscribe((percentage) => {
+      if (this.isAValidDiscountPercentage(percentage)) {
+        this.calculateDiscountAmount(percentage);
+      } else {
+        this.poNotification.error('Percentual de Desconto invalido');
+      }
+    });
+  }
+
   cleanDiscounts(): void {
     this.formItem.get('discount')?.setValue(0, { emitEvent: false });
     this.formItem.get('discountamount')?.setValue(0, { emitEvent: false });
-    this.setItemDiscount(0);
+    this.setItemDiscount(0, 0);
   }
 
   calculateDiscountAmount(percentage: number): void {
@@ -103,7 +120,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
       this.formItem
         .get('discountamount')
         ?.setValue(discountValue, { emitEvent: false });
-      this.setItemDiscount(discountValue);
+      this.setItemDiscount(discountValue, percentage);
     } else {
       this.cleanDiscounts();
     }
@@ -118,7 +135,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
         this.formItem
           .get('discount')
           ?.setValue(percentage, { emitEvent: false });
-        this.setItemDiscount(value);
+        this.setItemDiscount(value, percentage);
       } else {
         this.poNotification.error('Percentual de Desconto invalido');
       }
@@ -135,14 +152,16 @@ export class MoreInformationComponent implements OnInit, OnChanges {
     return percentage >= 0 && percentage < 100;
   }
 
-  setItemDiscount(discount: number): void {
+  setItemDiscount(discount: number, percentage: number): void {
     const price = this.salesItems.value - discount / this.salesItems.quantity;
     const amount = price * this.salesItems.quantity;
 
     if (this.salesItems.quantity > 0) {
-      this.formCard.get('discount')?.setValue(discount, { emitEvent: false });
-      this.formCard.get('price')?.setValue(price, { emitEvent: false });
-      this.formCard.get('amount')?.setValue(amount, { emitEvent: false });
+      this.discountedValue = this.currencyPipe.transform(price.toFixed(2), 'BRL') + '';
+      this.salesItems.discount = percentage;
+      this.formCard.get('discount')?.setValue(percentage, { emitEvent: false });
+      this.formCard.get('price')?.setValue(price.toFixed(2), { emitEvent: false });
+      this.formCard.get('amount')?.setValue(amount.toFixed(2), { emitEvent: false });
     }
   }
 }
