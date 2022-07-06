@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import { PoSelectOption, PoTableColumn } from '@po-ui/ng-components';
+import { Observable } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { Customer } from '../interface/customer';
 import { CustomerStatus } from './../interface/customer-status.enum';
 
@@ -10,6 +13,15 @@ import { CustomerStatus } from './../interface/customer-status.enum';
 export class CustomerService extends BaseResourceServiceFull<Customer> {
   constructor(protected override injector: Injector) {
     super('api/customers/', injector);
+  }
+
+  getByName(name: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.apiPath}?name=${name}`).pipe(
+      retry(2),
+      catchError((error: HttpErrorResponse) => {
+        throw (error);
+      })
+    )
   }
 
   getColumns(): PoTableColumn[] {
