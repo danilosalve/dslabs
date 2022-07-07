@@ -1,5 +1,6 @@
-<po-container [hidden]="isLoading">
-  <p class="po-font-title po-mb-3">Meus Indicadores de Vendas</p>
+<po-container>
+<po-loading-overlay [hidden]="!isLoading" p-text="Carregando Indicadores">
+</po-loading-overlay>
   <div class="po-row">
     <div class="po-md-6">
       <po-gauge
@@ -11,6 +12,7 @@
     </div>
     <div class="po-md-6">
       <po-chart
+        [hidden]="isLoading"
         p-title="Pedidos em Abertos x Encerrados"
         [p-series]="salesChartSeries"
         [p-type]="typeChart"

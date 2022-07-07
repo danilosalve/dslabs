@@ -1,4 +1,5 @@
-<po-table
+<po-container class="po-m-1">
+  <po-table
   *ngIf="columns"
   [p-sort]="true"
   [p-items]="sales"
@@ -8,3 +9,5 @@
   [p-height]="200"
   [p-loading]="isLoading"
 ></po-table>
+</po-container>
+
