@@ -4,6 +4,7 @@
   <div class="po-row">
     <div class="po-md-6">
       <po-gauge
+      [hidden]="isLoading"
         p-title="Pedidos Encerrados"
         [p-value]="totalClosedSales"
         [p-ranges]="salesRanges"
