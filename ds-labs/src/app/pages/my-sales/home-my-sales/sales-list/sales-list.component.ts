@@ -37,6 +37,11 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
         label: 'Visualizar',
       },
       {
+        action: this.onEditSale.bind(this),
+        icon: 'po-icon-edit',
+        label: 'Editar',
+      },
+      {
         action: this.onDelete.bind(this),
         icon: 'po-icon-delete',
         label: 'Excluir',
@@ -93,6 +98,11 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
   onShowSale(sale: Sales): void {
     this.isLoading = true;
     this.router.navigate(['sales/view', sale.id]);
+  }
+
+  onEditSale(sale: Sales): void {
+    this.isLoading = true;
+    this.router.navigate(['sales/edit', sale.id]);
   }
 
   onDelete(sales: Sales): void {
