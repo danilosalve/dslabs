@@ -2,10 +2,11 @@ import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
-import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
+import { PoDialogService, PoPageAction, PoTableAction } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Sales, SalesBrw } from '../../shared/interfaces/sales';
+import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { SalesService } from '../../shared/services/sales.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
     protected salesService: SalesService,
     protected override injector: Injector,
     protected customerService: CustomerService,
-    protected router: Router
+    protected router: Router,
+    protected poDialog: PoDialogService
   ) {
     super(injector, salesService, 'Meus Pedidos');
   }
@@ -94,8 +96,9 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
   }
 
   onDelete(sales: Sales): void {
-    this.isLoading = true;
-    this.salesService
+    if (sales.status !== SalesStatus.Closed) {
+      this.isLoading = true;
+      this.salesService
       .delete(sales.id ? sales.id : 0)
       .pipe(
         finalize(() => this.isLoading = false)
@@ -112,6 +115,9 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
         },
         error: () => this.handleErrorDelete(sales)
       });
+    } else {
+      this.poDialog.alert({title: 'Não permitido', message: 'Não é permitida a exclusão de Pedidos de Vendas Encerrados'});
+    }
   }
 
   handleErrorDelete(sales: Sales): void {
