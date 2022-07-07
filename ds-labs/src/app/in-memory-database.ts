@@ -522,7 +522,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 1,
         customerId: 1,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 1,
         priceListId: 1,
         status: SalesStatus.Closed,
@@ -531,7 +531,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 2,
         customerId: 2,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 1,
         priceListId: undefined,
         status: SalesStatus.Closed,
@@ -540,7 +540,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 3,
         customerId: 1,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 5,
         priceListId: 1,
         status: SalesStatus.Closed,
@@ -549,7 +549,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 4,
         customerId: 8,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
         status: SalesStatus.Blocked,
@@ -558,7 +558,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 5,
         customerId: 3,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 4,
         priceListId: 1,
         status: SalesStatus.Open,
@@ -567,7 +567,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 6,
         customerId: 3,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 3,
         priceListId: 1,
         status: SalesStatus.Closed,
@@ -576,7 +576,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 7,
         customerId: 2,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
         status: SalesStatus.Open,
@@ -585,7 +585,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 8,
         customerId: 4,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
         status: SalesStatus.Blocked,
@@ -594,7 +594,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 9,
         customerId: 5,
         paymentMethodId: 1,
-        issueDate: new Date(),
+        issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
         status: SalesStatus.Open,
@@ -783,6 +783,16 @@ export class InMemoryDatabase implements InMemoryDbService {
       sales,
       salesItems,
     };
+
     return of(db).pipe(delay(1300));
   }
+
+  getDateRandom(): Date {
+    const year = new Date().getFullYear();
+    const dateIni = new Date(`${year}-01-01`);
+    const dateEnd = new Date();
+    const diff =  dateEnd.getTime() - dateIni.getTime();
+    return new Date(dateIni.getTime() + (diff * Math.random()));
+  }
+
 }
