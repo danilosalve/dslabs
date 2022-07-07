@@ -50,4 +50,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.sales = sales;
       });
   }
+
+  showMeSales(): void {
+    this.ngZone.run(() => this.router.navigate(['/sales']));
+  }
 }

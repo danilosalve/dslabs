@@ -1,5 +1,5 @@
 <po-page-default p-title="Meus Indicadores de Vendas">
-  <app-home-charts [sales]="sales" [isLoading]="isLoading"></app-home-charts>
+  <app-home-charts [sales]="sales" [isLoading]="isLoading" (showMeSalesEvent)="showMeSales()"></app-home-charts>
   <app-home-sales-table
     [sales]="sales"
     [isLoading]="isLoading"
