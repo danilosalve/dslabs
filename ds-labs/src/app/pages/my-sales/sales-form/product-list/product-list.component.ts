@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -16,7 +10,7 @@ import { SalesItems } from './../../shared/interfaces/sales-items';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnDestroy {
   @Output() changeItems = new EventEmitter();
   items: SalesItems[] = [];
   selectedItem: SalesItems[] = [];
@@ -28,8 +22,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     protected productService: ProductService,
     protected poNotification: PoNotificationService
   ) {}
-
-  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.product$.unsubscribe();

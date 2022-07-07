@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductBalanceService } from '@app/shared/services/product-balance.service';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { finalize, tap } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { ProductBalance } from './../../../../../../../shared/interfaces/product
   selector: 'app-product-balance',
   templateUrl: './product-balance.component.html'
 })
-export class ProductBalanceComponent implements OnInit {
+export class ProductBalanceComponent {
   @Input() productId: string = '';
   @Input() productName: string = '';
   isLoading = false;
@@ -19,8 +19,6 @@ export class ProductBalanceComponent implements OnInit {
     protected productBalance: ProductBalanceService,
     protected poNotification: PoNotificationService
   ) {}
-
-  ngOnInit(): void {}
 
   handleClickButton(): void {
     this.getProductBalance();

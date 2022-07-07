@@ -10,7 +10,7 @@ import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { SalesService } from '../../shared/services/sales.service';
 
 @Component({
-  selector: 'app-SalesList',
+  selector: 'app-sales-list',
   templateUrl: './sales-list.component.html',
 })
 export class SalesListComponent extends BaseResourceList<SalesBrw> {
