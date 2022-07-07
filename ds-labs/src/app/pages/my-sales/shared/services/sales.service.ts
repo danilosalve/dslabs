@@ -17,6 +17,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       { property: 'status', label: 'Status', type: 'label', labels: [
         { value: SalesStatus.Open, color: 'color-11', label: 'Aberto' },
         { value: SalesStatus.Closed, color: 'color-07', label: 'Encerrado' },
+        { value: SalesStatus.Blocked, color: 'color-08', label: 'Bloqueado' },
       ]},
       { property: 'id', label: 'Código', type: 'number', width: '8%' },
       { property: 'customerId', label: 'Cliente', type: 'number', visible: false },

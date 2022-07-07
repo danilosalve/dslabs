@@ -210,7 +210,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: '0015',
         description: 'MOUSE SEM FIO',
-        price: 925,
+        price: 29.9,
       },
     ];
 
@@ -547,6 +547,15 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 4,
+        customerId: 8,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 2,
+        priceListId: 1,
+        status: SalesStatus.Blocked,
+      },
+      {
+        id: 5,
         customerId: 3,
         paymentMethodId: 1,
         issueDate: new Date(),
@@ -555,7 +564,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         status: SalesStatus.Open,
       },
       {
-        id: 5,
+        id: 6,
         customerId: 3,
         paymentMethodId: 1,
         issueDate: new Date(),
@@ -564,7 +573,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         status: SalesStatus.Closed,
       },
       {
-        id: 6,
+        id: 7,
         customerId: 2,
         paymentMethodId: 1,
         issueDate: new Date(),
@@ -573,8 +582,17 @@ export class InMemoryDatabase implements InMemoryDbService {
         status: SalesStatus.Open,
       },
       {
-        id: 7,
+        id: 8,
         customerId: 4,
+        paymentMethodId: 1,
+        issueDate: new Date(),
+        carrierId: 2,
+        priceListId: 1,
+        status: SalesStatus.Blocked,
+      },
+      {
+        id: 9,
+        customerId: 5,
         paymentMethodId: 1,
         issueDate: new Date(),
         carrierId: 2,
@@ -722,6 +740,36 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 2499.99,
         quantity: 1,
         amount: 2499.99,
+        productName: '',
+      },
+      {
+        id: 15,
+        salesId: 8,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 1,
+        amount: 5099.99,
+        productName: '',
+      },
+      {
+        id: 16,
+        salesId: 8,
+        itemId: 2,
+        productId: '0015',
+        value: 29.9,
+        quantity: 1,
+        amount: 29.9,
+        productName: '',
+      },
+      {
+        id: 17,
+        salesId: 9,
+        itemId: 1,
+        productId: '0002',
+        value: 5099.99,
+        quantity: 5,
+        amount: 25499.95,
         productName: '',
       },
     ];

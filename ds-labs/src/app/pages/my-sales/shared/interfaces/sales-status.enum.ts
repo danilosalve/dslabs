@@ -1,4 +1,5 @@
 export enum SalesStatus {
   Open = 'A',
-  Closed = 'E'
+  Closed = 'E',
+  Blocked = 'B'
 }
