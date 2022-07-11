@@ -32,13 +32,13 @@ export class ProductBalanceComponent {
         finalize(() => (this.isLoading = false))
       )
       .subscribe({
-        next: (products) => {
+        next: products => {
           this.productBalances = products.filter(
-            (p) => p.productId === this.productId
+            p => p.productId === this.productId
           ),
           this.isDisplayList = true;
         },
-        error: () => this.poNotification.error('Falha ao Localizar produto'),
+        error: () => this.poNotification.error('Falha ao Localizar produto')
       });
   }
 }

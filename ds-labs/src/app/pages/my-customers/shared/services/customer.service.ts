@@ -28,13 +28,13 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
     return [
       { property: 'status', label: 'Status', type: 'label', labels: [
         { value: CustomerStatus.active, color: 'color-11', label: 'Ativo' },
-        { value: CustomerStatus.inactive, color: 'color-07', label: 'Inativo' },
+        { value: CustomerStatus.inactive, color: 'color-07', label: 'Inativo' }
       ]},
       { property: 'id', label: 'Código', type: 'number', width: '8%' },
       { property: 'name', label: 'Nome Cliente', type: 'string' },
       { property: 'document', label: 'CPF/CNPJ', type: 'string' },
       { property: 'state', label: 'UF', type: 'string' },
-      { property: 'city', label: 'Municipio', type: 'string' },
+      { property: 'city', label: 'Municipio', type: 'string' }
     ];
   }
 

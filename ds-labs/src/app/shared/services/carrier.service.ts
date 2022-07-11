@@ -12,9 +12,9 @@ export class CarrierService extends BaseResourceService<Carrier> {
   }
 
   getComboOptions(carriers: Carrier[]): PoSelectOption[] {
-    return carriers.map((carrier) => ({
+    return carriers.map(carrier => ({
       value: carrier.id,
-      label: carrier.name,
+      label: carrier.name
     }));
   }
 }

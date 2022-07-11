@@ -19,12 +19,12 @@ export class HomeChartsComponent implements OnChanges {
   salesChartSeries: Array<PoChartSerie> = [
     { label: 'Aberto', data: 4, tooltip: 'Pedidos em aberto' },
     { label: 'Bloqueado', data: 3, tooltip: 'Pedidos Bloqueados' },
-    { label: 'Encerrado', data: 2, tooltip: 'Pedidos Encerrados' },
+    { label: 'Encerrado', data: 2, tooltip: 'Pedidos Encerrados' }
   ];
   salesRanges: Array<PoGaugeRanges> = [
     { from: 0, to: 0, label: 'Baixo', color: '#c64840' },
     { from: 0, to: 1, label: 'Médio', color: '#ea9b3e' },
-    { from: 0, to: 2, label: 'Alto', color: '#00b28e' },
+    { from: 0, to: 2, label: 'Alto', color: '#00b28e' }
   ];
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -61,7 +61,7 @@ export class HomeChartsComponent implements OnChanges {
     this.salesChartSeries = [
       { label: 'Aberto', data: this.openSales.length, tooltip: 'Pedidos em aberto' },
       { label: 'Bloqueado', data: this.blockedSales.length, tooltip: 'Pedidos Bloqueados' },
-      { label: 'Encerrado', data: this.totalClosedSales, tooltip: 'Pedidos Encerrados' },
+      { label: 'Encerrado', data: this.totalClosedSales, tooltip: 'Pedidos Encerrados' }
     ];
   }
 

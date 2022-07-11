@@ -5,7 +5,7 @@ import { Sales } from '../interfaces/sales';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SalesService extends BaseResourceServiceFull<Sales> {
   constructor(protected override injector: Injector) {
@@ -17,7 +17,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       { property: 'status', label: 'Status', type: 'label', labels: [
         { value: SalesStatus.Open, color: 'color-11', label: 'Aberto' },
         { value: SalesStatus.Closed, color: 'color-07', label: 'Encerrado' },
-        { value: SalesStatus.Blocked, color: 'color-08', label: 'Bloqueado' },
+        { value: SalesStatus.Blocked, color: 'color-08', label: 'Bloqueado' }
       ]},
       { property: 'id', label: 'Código', type: 'number', width: '8%' },
       { property: 'customerId', label: 'Cliente', type: 'number', visible: false },
@@ -106,7 +106,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2,
+        gridXlColumns: 2
       },
       {
         label: 'Seguro',
@@ -117,7 +117,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2,
+        gridXlColumns: 2
       }
     ];
     return fields
@@ -131,7 +131,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       { property: 'issueDate', label: 'Dt. Emissão', type: 'date' },
       { property: 'paymentMethodId', label: 'Cond. Pagamento' },
       { property: 'paymentMethodDescription', label: 'Desc. Pagamento' },
-      { property: 'status', label: 'Status',  tag: true, color: 'color-11', icon: 'po-icon-ok'},
+      { property: 'status', label: 'Status',  tag: true, color: 'color-11', icon: 'po-icon-ok'}
     ]
   }
 }

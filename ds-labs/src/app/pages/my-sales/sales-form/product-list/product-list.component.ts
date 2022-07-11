@@ -8,7 +8,7 @@ import { SalesItems } from './../../shared/interfaces/sales-items';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnDestroy {
   @Output() changeItems = new EventEmitter();
@@ -35,8 +35,8 @@ export class ProductListComponent implements OnDestroy {
           this.items = [];
           this.isProductNotFound = false;
         }),
-        map((products) =>
-          products.map((product) => ({
+        map(products =>
+          products.map(product => ({
             id: 0,
             salesId: 0,
             itemId: 0,
@@ -45,12 +45,12 @@ export class ProductListComponent implements OnDestroy {
             value: product.price,
             quantity: 0,
             amount: 0,
-            discount: 0,
+            discount: 0
           }))
         )
       )
       .subscribe({
-        next: (products) => {
+        next: products => {
           if (search) {
             const items = products.filter(
               p =>
@@ -64,7 +64,7 @@ export class ProductListComponent implements OnDestroy {
             }
           }
         },
-        error: () => this.poNotification.error('Falha ao localizar produto'),
+        error: () => this.poNotification.error('Falha ao localizar produto')
       });
   }
 

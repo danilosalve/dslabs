@@ -12,7 +12,7 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
 
   constructor(
     protected customerService: CustomerService,
-    protected override injector: Injector,
+    protected override injector: Injector
     ) {
       super(injector, customerService, 'Meus Clientes');
     }

@@ -40,7 +40,7 @@ export class FilterInputComponent implements OnInit, OnDestroy {
         value => value.search.length >= this.minValue || !value.search.length
       ),
       distinctUntilChanged(),
-      switchMap(value => this.filterEmitter(value.search)),
+      switchMap(value => this.filterEmitter(value.search))
     )
     .subscribe();
   }

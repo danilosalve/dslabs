@@ -15,7 +15,7 @@ import { PriceListService } from './../../../../shared/services/price-list.servi
 
 @Component({
   selector: 'app-general-data',
-  templateUrl: './general-data.component.html',
+  templateUrl: './general-data.component.html'
 })
 export class GeneralDataComponent implements OnInit {
   @Input() sales: Sales | undefined;
@@ -55,7 +55,7 @@ export class GeneralDataComponent implements OnInit {
         finalize(() => (this.isLoading = false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           customerList = this.customerService.getComboOptions(
             response.customers
           );
@@ -68,8 +68,7 @@ export class GeneralDataComponent implements OnInit {
           this.setFieldOptions('carrierId', carrierList);
           this.setFieldOptions('priceListId', priceList);
         },
-        error: err => {
-          console.error(err);
+        error: () => {
           this.handleError('Ocorreu um erro ao inicializar o formulario');
         }
       });

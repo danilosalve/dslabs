@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
         shortLabel: 'Home',
         action: () => {
           this.router.navigate(['']);
-        },
+        }
       },
       {
         label: 'Meus Clientes',
@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
         shortLabel: 'Clientes',
         action: () => {
           this.router.navigate(['customers']);
-        },
+        }
       },
       {
         label: 'Meus Pedidos',
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
         icon: 'po-icon-cart',
         action: () => {
           this.router.navigate(['sales']);
-        },
+        }
       }
     ]
   }

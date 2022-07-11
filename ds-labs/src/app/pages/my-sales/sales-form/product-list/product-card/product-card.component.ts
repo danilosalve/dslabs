@@ -6,7 +6,7 @@ import { PoNotificationService } from '@po-ui/ng-components';
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css'],
+  styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
   @Output() changeItems = new EventEmitter();
@@ -18,7 +18,7 @@ export class ProductCardComponent implements OnInit {
     salesId: 0,
     itemId: 0,
     value: 0,
-    amount: 0,
+    amount: 0
   };
   formItem!: FormGroup;
   isEnableButton = false;
@@ -37,10 +37,10 @@ export class ProductCardComponent implements OnInit {
       price: [this.salesItem.value, [Validators.required, Validators.min(0.01)]],
       quantity: [
         this.salesItem.quantity,
-        [Validators.required, Validators.min(1)],
+        [Validators.required, Validators.min(1)]
       ],
       amount: [this.salesItem.amount, [Validators.required, Validators.min(0.01)]],
-      discount: [0, [Validators.min(0), Validators.max(99.99)]],
+      discount: [0, [Validators.min(0), Validators.max(99.99)]]
     });
   }
 
@@ -49,7 +49,6 @@ export class ProductCardComponent implements OnInit {
       this.changeItems.emit({...product});
       this.resetForm();
     } else {
-      console.log(this.formItem);
       this.poNotification.warning('Um ou mais campo obrigatorio não foram preenchidos');
     }
   }

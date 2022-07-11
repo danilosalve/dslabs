@@ -7,7 +7,7 @@ import { SalesBrw } from './../../../my-sales/shared/interfaces/sales';
 
 @Component({
   selector: 'app-home-sales-table',
-  templateUrl: './home-sales-table.component.html',
+  templateUrl: './home-sales-table.component.html'
 })
 export class HomeSalesTableComponent implements OnInit, OnChanges {
   @Input() sales: SalesBrw[] = [];

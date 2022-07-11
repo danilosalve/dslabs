@@ -12,7 +12,7 @@ export class PriceListService extends BaseResourceService<PriceList> {
   }
 
   getComboOptions(priceLists: PriceList[]): PoSelectOption[] {
-    return priceLists.map((priceList) => ({
+    return priceLists.map(priceList => ({
       value: priceList.id,
       label: priceList.description
     }));

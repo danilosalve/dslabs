@@ -5,6 +5,6 @@ import { SalesListComponent } from './sales-list/sales-list.component';
 
 @NgModule({
   declarations: [SalesListComponent],
-  imports: [SharedModule],
+  imports: [SharedModule]
 })
 export class HomeMySalesModule {}

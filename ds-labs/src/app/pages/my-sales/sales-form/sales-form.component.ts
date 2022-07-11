@@ -35,8 +35,8 @@ export class SalesFormComponent implements OnInit {
   readonly breadcrumb: PoBreadcrumb = {
     items: [
       { label: 'Meus Pedidos', action: this.cancel.bind(this) },
-      { label: 'Novo Pedido' },
-    ],
+      { label: 'Novo Pedido' }
+    ]
   };
 
   constructor(
@@ -60,9 +60,9 @@ export class SalesFormComponent implements OnInit {
       this.salesService
       .create(this.sales)
       .pipe(
-        tap((res) => this.updateSalesIdOnItems(res.id)),
-        switchMap((sales) => {
-          this.salesItems.forEach((item) =>
+        tap(res => this.updateSalesIdOnItems(res.id)),
+        switchMap(sales => {
+          this.salesItems.forEach(item =>
             this.salesItemService.create(item).subscribe({
               error: () => this.handleErrorSubmit()
             })
@@ -71,7 +71,7 @@ export class SalesFormComponent implements OnInit {
         })
       )
       .subscribe({
-        next: (sale) => {
+        next: sale => {
           this.poNotification.success(`Pedido de Venda ${sale.id} incluído com sucesso!!!`);
           this.router.navigate(['sales']);
         },

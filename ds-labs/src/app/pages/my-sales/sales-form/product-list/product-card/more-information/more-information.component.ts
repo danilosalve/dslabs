@@ -16,7 +16,7 @@ const DEBOUNCE_TIME = 300;
 @Component({
   selector: 'app-more-information',
   templateUrl: './more-information.component.html',
-  styleUrls: ['./more-information.component.css'],
+  styleUrls: ['./more-information.component.css']
 })
 export class MoreInformationComponent implements OnInit, OnChanges {
   @Input() formCard!: FormGroup;
@@ -28,7 +28,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
     salesId: 0,
     itemId: 0,
     value: 0,
-    amount: 0,
+    amount: 0
   };
   amount: string = '';
   value: string = '';
@@ -63,7 +63,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
   onInitForm(): void {
     this.formItem = this.fb.group({
       discount: [this.salesItems.discount, [Validators.min(0), Validators.max(99.99)]],
-      discountamount: [0, Validators.min(0)],
+      discountamount: [0, Validators.min(0)]
     });
   }
 
@@ -73,7 +73,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
       this.formItem
         .get('discount')
         ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
-        .subscribe((percentage) => {
+        .subscribe(percentage => {
           if (this.isAValidDiscountPercentage(percentage)) {
             this.calculateDiscountAmount(percentage);
           } else {
@@ -84,7 +84,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
       this.formItem
         .get('discountamount')
         ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
-        .subscribe((value) => {
+        .subscribe(value => {
           this.calculateDiscountPercentage(value);
         });
     } else {
@@ -97,7 +97,7 @@ export class MoreInformationComponent implements OnInit, OnChanges {
     this.formItem
     .get('discount')
     ?.valueChanges.pipe(debounceTime(DEBOUNCE_TIME), distinctUntilChanged())
-    .subscribe((percentage) => {
+    .subscribe(percentage => {
       if (this.isAValidDiscountPercentage(percentage)) {
         this.calculateDiscountAmount(percentage);
       } else {

@@ -7,13 +7,13 @@ const routes: Routes = [
     path: '',
     component: CustomerListComponent,
     data: {
-      title: 'Meus Clientes',
-    },
-  },
+      title: 'Meus Clientes'
+    }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class MyCustomersRoutingModule {}

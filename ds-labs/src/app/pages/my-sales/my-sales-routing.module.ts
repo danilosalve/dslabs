@@ -9,20 +9,20 @@ const routes: Routes = [
     path: '',
     component: SalesListComponent,
     data: {
-      title: 'Meus Pedidos',
-    },
+      title: 'Meus Pedidos'
+    }
   },
   {
     path: 'new',
     component: SalesFormComponent,
     data: {
-      title: 'Novo Pedidos',
-    },
-  },
+      title: 'Novo Pedidos'
+    }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class MySalesRoutingModule {}

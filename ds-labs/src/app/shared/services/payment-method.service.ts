@@ -4,7 +4,7 @@ import { PaymentMethod } from '../interfaces/payment-method';
 import { BaseResourceService } from './base-resource.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PaymentMethodService extends BaseResourceService<PaymentMethod> {
   constructor(protected override injector: Injector) {
@@ -12,9 +12,9 @@ export class PaymentMethodService extends BaseResourceService<PaymentMethod> {
   }
 
   getComboOptions(payments: PaymentMethod[]): PoSelectOption[] {
-    return payments.map((payment) => ({
+    return payments.map(payment => ({
       value: payment.id,
-      label: payment.description,
+      label: payment.description
     }));
   }
 }

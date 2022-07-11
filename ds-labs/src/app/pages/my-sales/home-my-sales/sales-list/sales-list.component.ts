@@ -11,7 +11,7 @@ import { SalesService } from '../../shared/services/sales.service';
 
 @Component({
   selector: 'app-sales-list',
-  templateUrl: './sales-list.component.html',
+  templateUrl: './sales-list.component.html'
 })
 export class SalesListComponent extends BaseResourceList<SalesBrw> {
 
@@ -34,18 +34,18 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
       {
         action: this.onShowSale.bind(this),
         icon: 'po-icon-eye',
-        label: 'Visualizar',
+        label: 'Visualizar'
       },
       {
         action: this.onEditSale.bind(this),
         icon: 'po-icon-edit',
-        label: 'Editar',
+        label: 'Editar'
       },
       {
         action: this.onDelete.bind(this),
         icon: 'po-icon-delete',
-        label: 'Excluir',
-      },
+        label: 'Excluir'
+      }
     ];
   }
 
@@ -60,15 +60,15 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
           this.isLoading = true;
         }),
         switchMap((sales: SalesBrw[]) => {
-          sales.forEach((sale) => {
+          sales.forEach(sale => {
             this.customerService
               .getById(sale.customerId!)
               .pipe(
-                map((customer) => ({
+                map(customer => ({
                   ...sale,
-                  customerName: customer.name,
+                  customerName: customer.name
                 })),
-                tap((saleBrw) => {
+                tap(saleBrw => {
                   this.items = this.items.concat(saleBrw);
                 }),
                 tap(() => (this.isLoading = false))
@@ -76,7 +76,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
               .subscribe(() => {
                 if (search) {
                   this.items = this.items.filter(
-                    (sales) =>
+                    sales =>
                       sales.id?.toString().includes(search) ||
                       sales.customerName
                         ?.toLowerCase()

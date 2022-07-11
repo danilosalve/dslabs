@@ -8,7 +8,7 @@ import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   sales$ = new Subscription();
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         take(1),
         finalize(() => (this.isLoading = false))
       )
-      .subscribe((sales) => {
+      .subscribe(sales => {
         this.sales = sales;
       });
   }
