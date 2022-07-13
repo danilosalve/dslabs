@@ -3,6 +3,7 @@
   [p-breadcrumb]="breadcrumb"
   (p-cancel)="cancel()"
   (p-save)="onSubmit()"
+  [p-disable-submit]="isDisableSubmit"
 >
   <po-tabs>
     <po-tab [p-active]="true" p-label="Dados Gerais">

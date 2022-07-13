@@ -27,7 +27,7 @@ export class SalesFormComponent implements OnInit {
     expenses: 0,
     discount: 0
   };
-  isDisableSubmit = false;
+  isDisableSubmit = true;
   dynamicForm: NgForm | undefined;
   salesItems: SalesItems[] = [];
   itemId = 0;
@@ -91,8 +91,8 @@ export class SalesFormComponent implements OnInit {
   }
 
   addSalesItem(salesItem: any): void {
-    this.isDisableSubmit = false;
     this.salesItems = this.salesItems.concat(salesItem);
+    this.isDisableSubmit = !this.canSaveSalesOrder();
   }
 
   updateSalesIdOnItems(id: number): void {
@@ -105,5 +105,8 @@ export class SalesFormComponent implements OnInit {
 
   getForm(form: NgForm) {
     this.dynamicForm = form;
+    this.dynamicForm.valueChanges?.subscribe(() => {
+      this.isDisableSubmit = !this.canSaveSalesOrder();
+    })
   }
 }
