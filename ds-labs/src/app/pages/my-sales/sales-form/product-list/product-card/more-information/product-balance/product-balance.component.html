@@ -10,7 +10,7 @@
 
   <div *ngIf="isDisplayList">
     <div *ngFor="let item of productBalances">
-      <po-widget [p-title]="item.warehouseDescription" class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mt-1">
+      <po-widget [p-title]="item.warehouseDescription" class="po-xl-6 po-lg-12 po-md-12 po-sm-12 po-mt-1">
         <div class="po-row">
           <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Armazem" [p-value]="item.warehouse"></po-info>
           <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Saldo Atual" [p-value]="item.availablequantity + ''"></po-info>
