@@ -1,23 +1,25 @@
-<div class="po-row">
-  <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
-    <app-filter-input
-      placeHolder="Pesquisar..."
-      (changeSearch)="onSearchProducts($event)"
-      help="Efetue a busca utilizando código ou Descrição do Produto"
-      [debounceInput]="1000"
-    ></app-filter-input>
+<po-container [p-no-border]="true">
+  <div class="po-row">
+    <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
+      <app-filter-input
+        placeHolder="Pesquisar..."
+        (changeSearch)="onSearchProducts($event)"
+        help="Efetue a busca utilizando código ou Descrição do Produto"
+        [debounceInput]="1000"
+      ></app-filter-input>
+    </div>
   </div>
-</div>
 
-<div *ngIf="isEmpty(items)">
-  <img class="image"
-  src="../../../../../assets/img/svg/empty_cart.svg"
-  />
-  <p class="imageTitle po-font-subtitle" *ngIf="isProductNotFound">Produto Não Localizado</p>
-</div>
-
-<div *ngIf="!isEmpty(items)">
-  <div *ngFor="let item of items">
-    <app-product-card [salesItem]="item" (changeItems)="addItem($event)"></app-product-card>
+  <div *ngIf="isEmpty(items)">
+    <img class="image"
+    src="../../../../../assets/img/svg/empty_cart.svg"
+    />
+    <p class="imageTitle po-font-subtitle" *ngIf="isProductNotFound">Produto Não Localizado</p>
   </div>
-</div>
+
+  <div *ngIf="!isEmpty(items)">
+    <div *ngFor="let item of items">
+      <app-product-card [salesItem]="item" (changeItems)="addItem($event)"></app-product-card>
+    </div>
+  </div>
+</po-container>
