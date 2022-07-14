@@ -7,6 +7,7 @@ import { forkJoin, of } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
+import { DocumentPipe } from './../../../../shared/pipe/document.pipe';
 import { CarrierService } from './../../../../shared/services/carrier.service';
 import { PriceListService } from './../../../../shared/services/price-list.service';
 import { TypeOfFreight } from './../../shared/interfaces/typeOfFreight.enum';
@@ -33,7 +34,8 @@ export class GeneralDataComponent implements OnInit {
       protected paymentService: PaymentMethodService,
       protected poNotificationService: PoNotificationService,
       protected priceListService: PriceListService,
-      protected salesService: SalesService
+      protected salesService: SalesService,
+      protected documentPipe: DocumentPipe
     ) {}
 
     ngOnInit(): void {
@@ -118,7 +120,7 @@ export class GeneralDataComponent implements OnInit {
           this.headerPresentation = {
             ...this.headerPresentation,
             customerName: response.customer.name,
-            customerDocument: response.customer.document,
+            customerDocument: this.documentPipe.transform(response.customer.document),
             customerState: response.customer.state,
             customerCity: response.customer.city,
             paymentMethodDescription: this.getDescription(response.paymentMethod.description),

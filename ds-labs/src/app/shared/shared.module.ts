@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
+import { DocumentPipe } from './pipe/document.pipe';
 
 @NgModule({
   declarations: [
-    FilterInputComponent
+    FilterInputComponent,
+    DocumentPipe
   ],
   imports: [
     CommonModule,

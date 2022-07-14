@@ -9,7 +9,6 @@ import { Customer } from './../../shared/interface/customer';
   templateUrl: './customer-list.component.html'
 })
 export class CustomerListComponent extends BaseResourceList<Customer> {
-
   constructor(
     protected customerService: CustomerService,
     protected override injector: Injector
