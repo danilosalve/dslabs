@@ -5,6 +5,7 @@ import { CustomerStatus } from './pages/my-customers/shared/interface/customer-s
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
+import { TypeOfFreight } from './pages/my-sales/shared/interfaces/typeOfFreight.enum';
 import { Carrier } from './shared/interfaces/carrier';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { PriceList } from './shared/interfaces/price-list/price-list';
@@ -525,7 +526,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 1,
         priceListId: 1,
-        status: SalesStatus.Closed
+        status: SalesStatus.Closed,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 2,
@@ -534,7 +536,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 1,
         priceListId: undefined,
-        status: SalesStatus.Closed
+        status: SalesStatus.Closed,
+        typeOfFreight: TypeOfFreight.FOB
       },
       {
         id: 3,
@@ -543,7 +546,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 5,
         priceListId: 1,
-        status: SalesStatus.Closed
+        status: SalesStatus.Closed,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 4,
@@ -552,7 +556,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
-        status: SalesStatus.Blocked
+        status: SalesStatus.Blocked,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 5,
@@ -561,7 +566,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 4,
         priceListId: 1,
-        status: SalesStatus.Open
+        status: SalesStatus.Open,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 6,
@@ -570,7 +576,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 3,
         priceListId: 1,
-        status: SalesStatus.Closed
+        status: SalesStatus.Closed,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 7,
@@ -579,7 +586,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
-        status: SalesStatus.Open
+        status: SalesStatus.Open,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 8,
@@ -588,7 +596,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
-        status: SalesStatus.Blocked
+        status: SalesStatus.Blocked,
+        typeOfFreight: TypeOfFreight.CIF
       },
       {
         id: 9,
@@ -597,7 +606,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         issueDate: this.getDateRandom(),
         carrierId: 2,
         priceListId: 1,
-        status: SalesStatus.Open
+        status: SalesStatus.Open,
+        typeOfFreight: TypeOfFreight.CIF
       }
     ];
 

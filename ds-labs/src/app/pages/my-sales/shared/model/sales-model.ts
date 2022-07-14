@@ -1,4 +1,5 @@
 import { SalesStatus } from '../interfaces/sales-status.enum';
+import { TypeOfFreight } from '../interfaces/typeOfFreight.enum';
 
 export class SalesModel {
   customerId: undefined;
@@ -11,6 +12,7 @@ export class SalesModel {
   insurance = 0;
   expenses = 0;
   discount = 0;
+  typeOfFreight = TypeOfFreight.SEMFRETE
 
   constructor() {}
 }

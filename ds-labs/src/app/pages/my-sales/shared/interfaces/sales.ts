@@ -1,4 +1,5 @@
 import { SalesStatus } from './sales-status.enum';
+import { TypeOfFreight } from './typeOfFreight.enum';
 export interface Sales {
   id?: number;
   customerId: number | undefined;
@@ -12,6 +13,7 @@ export interface Sales {
   expenses?: number;
   discount?: number;
   comment?: string;
+  typeOfFreight: TypeOfFreight
 }
 
 export interface SalesBrw extends Sales {

@@ -26,7 +26,7 @@ export class SalesItemsService extends BaseResourceServiceFull<SalesItems> {
   getColumns(): PoTableColumn[] {
     return [
       { property: 'itemId', label: 'Item', type: 'number', width: '8%' },
-      { property: 'productId', label: 'Cód. Produto', type: 'number', visible: false },
+      { property: 'productId', label: 'Cód. Produto', type: 'string', visible: false },
       { property: 'productName', label: 'Desc. Produto', type: 'string' },
       { property: 'value', label: 'Vlr. Unitário', type: 'currency', format: 'BRL' },
       { property: 'quantity', label: 'Quantidade', type: 'number' },

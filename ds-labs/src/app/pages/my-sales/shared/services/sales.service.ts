@@ -3,6 +3,7 @@ import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full
 import { PoDynamicFormField, PoDynamicViewField, PoTableColumn } from '@po-ui/ng-components';
 import { Sales } from '../interfaces/sales';
 import { SalesStatus } from './../interfaces/sales-status.enum';
+import { TypeOfFreight } from './../interfaces/typeOfFreight.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridLgColumns: 4,
         gridXlColumns: 3,
         options: [],
-        required: true
+        required: true,
+        placeholder: 'Selecione o Cliente'
       },
       {
         label: 'Dt. Emissão',
@@ -53,7 +55,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         disabled: true
       },
       {
-        label: 'Cond. Pagamento',
+        label: 'Modo de Pagamento',
         property: 'paymentMethodId',
         gridColumns: 3,
         gridSmColumns: 12,
@@ -62,7 +64,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridXlColumns: 3,
         options: [],
         required: true,
-        divider: 'Pagamento'
+        divider: 'Pagamento',
+        placeholder: 'Selecione o Modo de Pagamento'
       },
       {
         label: 'Tab. de Preços',
@@ -74,7 +77,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridLgColumns: 4,
         gridXlColumns: 3,
         options: [],
-        required: false
+        required: false,
+        placeholder: 'Selecione a Tabela de Preços'
       },
       {
         label: 'Desconto',
@@ -86,7 +90,11 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2
+        gridXlColumns: 2,
+        minValue: 0,
+        maxValue: 99.99,
+        thousandMaxlength: 2,
+        placeholder: '0,00'
       },
       {
         label: 'Transportadora',
@@ -98,7 +106,44 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridLgColumns: 4,
         gridXlColumns: 3,
         options: [],
-        divider: 'Entrega'
+        divider: 'Entrega',
+        placeholder: 'Selecione a Transportadora'
+      },
+      {
+        label: 'Tp. Frete',
+        property: 'typeOfFreight',
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 5,
+        gridLgColumns: 4,
+        gridXlColumns: 3,
+        options: [
+          {
+            label: 'CIF',
+            value: TypeOfFreight.CIF
+          },
+          {
+            label: 'FOB',
+            value: TypeOfFreight.FOB
+          },
+          {
+            label: 'Por conta terceiros',
+            value: TypeOfFreight.TERCEIROS
+          },
+          {
+            label: 'Por conta remetente',
+            value: TypeOfFreight.REMETENTE
+          },
+          {
+            label: 'Por conta destinatário',
+            value: TypeOfFreight.DESTINARIO
+          },
+          {
+            label: 'Sem Frete',
+            value: TypeOfFreight.SEMFRETE
+          }
+        ],
+        divider: ''
       },
       {
         label: 'Frete',
@@ -110,7 +155,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2
+        gridXlColumns: 2,
+        placeholder: '0,00'
       },
       {
         label: 'Seguro',
@@ -122,7 +168,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2
+        gridXlColumns: 2,
+        placeholder: '0,00'
       },
       {
         label: 'Despesa',
@@ -134,7 +181,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
-        gridXlColumns: 2
+        gridXlColumns: 2,
+        placeholder: '0,00'
       },
       {
         label: 'Comentario',
@@ -147,7 +195,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridSmColumns: 12,
         gridMdColumns: 12,
         gridLgColumns: 12,
-        gridXlColumns: 12
+        gridXlColumns: 12,
+        placeholder: 'O comentario não será enviado para a nota fiscal'
       }
     ];
     return fields
@@ -158,15 +207,16 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       { property: 'id', label: 'Núm. Pedido', divider: 'Dados Gerais', key: true },
       { property: 'issueDate', label: 'Dt. Emissão', type: 'date' },
       { property: 'statusDescription', label: 'Status', tag: true, color: 'color-11', icon: 'po-icon-ok'},
-      { property: 'customerId', label: 'Cliente', divider: 'Dados do Cliente' },
-      { property: 'customerName', label: 'Nome', type: 'string' },
+      { property: 'customerId', label: 'Cliente', divider: 'Dados do Cliente', visible: false },
+      { property: 'customerName', label: 'Nome', type: 'string', divider: 'Dados do Cliente' },
       { property: 'customerDocument', label: 'CNPJ/CPF', type: 'string' },
       { property: 'customerState', label: 'UF', type: 'string' },
       { property: 'customerCity', label: 'Municipio', type: 'string' },
-      { property: 'paymentMethodDescription', label: 'Cond. Pagamento', divider: 'Pagamento' },
+      { property: 'paymentMethodDescription', label: 'Modo de Pagamento', divider: 'Pagamento' },
       { property: 'priceListDescription', label: 'Tab. de Preços' },
       { property: 'discount', label: 'Desconto', type: 'currency' },
       { property: 'carrierDescription', label: 'Transportadora', divider: 'Entrega' },
+      { property: 'typeOfFreight', label: 'Tp. Frete', type: 'string' },
       { property: 'freight', label: 'Frete', type: 'currency' },
       { property: 'insurance', label: 'Seguro', type: 'currency' },
       { property: 'expenses', label: 'Despesa', type: 'currency' },

@@ -9,6 +9,7 @@ import { Sales } from '../../shared/interfaces/sales';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { CarrierService } from './../../../../shared/services/carrier.service';
 import { PriceListService } from './../../../../shared/services/price-list.service';
+import { TypeOfFreight } from './../../shared/interfaces/typeOfFreight.enum';
 import { SalesModel } from './../../shared/model/sales-model';
 
 interface HeaderStatus {
@@ -61,7 +62,8 @@ export class GeneralDataComponent implements OnInit {
             freight: this.header.freight ? this.header.freight : 0,
             insurance: this.header.insurance ? this.header.insurance : 0,
             expenses: this.header.expenses ? this.header.expenses : 0,
-            comment: this.getDescription(this.header.comment)
+            comment: this.getDescription(this.header.comment),
+            typeOfFreight: this.getTypeOfFreight(this.header.typeOfFreight)
         };
         this.getResources(this.header);
         this.isLoading = false
@@ -130,5 +132,24 @@ export class GeneralDataComponent implements OnInit {
 
     getDescription(value: string | undefined): string {
       return value ? value : 'Não Especificado';
+    }
+
+    getTypeOfFreight(type: string): string {
+      switch (type) {
+        case TypeOfFreight.CIF:
+          return 'CIF';
+        case TypeOfFreight.FOB:
+          return 'FOB';
+        case TypeOfFreight.DESTINARIO:
+          return 'Por conta - Destinario';
+        case TypeOfFreight.REMETENTE:
+          return 'Por conta - Remetente';
+        case TypeOfFreight.TERCEIROS:
+          return 'Por conta - Terceiros';
+        case TypeOfFreight.SEMFRETE:
+          return 'Sem Frete';
+        default:
+          return 'Não especificado'
+      }
     }
 }
