@@ -45,7 +45,8 @@ export class ProductListComponent implements OnDestroy {
             value: product.price,
             quantity: 0,
             amount: 0,
-            discount: 0
+            discount: 0,
+            isSelected: false
           }))
         )
       )
@@ -58,10 +59,14 @@ export class ProductListComponent implements OnDestroy {
                 p.productName.toLowerCase().includes(search.toLocaleLowerCase())
             );
             if (items.length > 0) {
-              this.items = items as unknown as SalesItems[];
+              this.items = items as SalesItems[];
             } else {
               this.isProductNotFound = true;
             }
+
+            this.items.map(item => {
+              item.isSelected = this.isProductSelected(item);
+            })
           }
         },
         error: () => this.poNotification.error('Falha ao localizar produto')
@@ -76,9 +81,34 @@ export class ProductListComponent implements OnDestroy {
   }
 
   addItem(item: SalesItems): void {
-    this.itemId++;
-    item.itemId = this.itemId;
-    this.selectedItem.push(item);
-    this.changeItems.emit(item);
+    if (this.canAddTheItem(item)) {
+      this.handleItemTag(item);
+      this.itemId++;
+      item.itemId = this.itemId;
+      this.selectedItem.push(item);
+      this.changeItems.emit(item);
+    } else {
+      this.poNotification.error('Este produto já foi adicionado ao Carrinho de compras');
+    }
+  }
+
+  canAddTheItem(item: SalesItems): boolean {
+    return !item.isSelected || false;
+  }
+
+  isProductSelected(item: SalesItems): boolean {
+    const saleItem = this.selectedItem.find(i => i.productId === item.productId);
+    if (this.selectedItem.length === 0) {
+      return false;
+    } else {
+      return (saleItem || {productId: ''}).productId.length > 0;
+    }
+  }
+
+  handleItemTag(item: SalesItems): void {
+    const index = this.items.findIndex(i => i.productId === item.productId);
+    if (index >= 0) {
+      this.items[index].isSelected = true;
+    }
   }
 }

@@ -8,4 +8,5 @@ export interface SalesItems {
   amount: number,
   productName: string;
   discount?: number;
+  isSelected?: boolean;
 }
