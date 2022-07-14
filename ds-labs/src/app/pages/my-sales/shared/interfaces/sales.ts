@@ -11,6 +11,7 @@ export interface Sales {
   insurance?: number;
   expenses?: number;
   discount?: number;
+  comment?: string;
 }
 
 export interface SalesBrw extends Sales {

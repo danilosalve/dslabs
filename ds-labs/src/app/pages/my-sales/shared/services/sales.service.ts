@@ -67,6 +67,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       {
         label: 'Tab. de Preços',
         property: 'priceListId',
+        optional: true,
         gridColumns: 3,
         gridSmColumns: 12,
         gridMdColumns: 5,
@@ -79,6 +80,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         label: 'Desconto',
         property: 'discount',
         type: 'currency',
+        optional: true,
         decimalsLength: 2,
         gridColumns: 2,
         gridSmColumns: 12,
@@ -89,6 +91,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
       {
         label: 'Transportadora',
         property: 'carrierId',
+        optional: true,
         gridColumns: 3,
         gridSmColumns: 12,
         gridMdColumns: 5,
@@ -101,6 +104,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         label: 'Frete',
         property: 'freight',
         type: 'currency',
+        optional: true,
         decimalsLength: 2,
         gridColumns: 2,
         gridSmColumns: 12,
@@ -112,12 +116,26 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         label: 'Seguro',
         property: 'insurance',
         type: 'currency',
+        optional: true,
         decimalsLength: 2,
         gridColumns: 2,
         gridSmColumns: 12,
         gridMdColumns: 3,
         gridLgColumns: 3,
         gridXlColumns: 2
+      },
+      {
+        label: 'Comentario',
+        property: 'comment',
+        help: 'Informe um Comentario para o Pedido de Venda',
+        rows: 3,
+        optional: true,
+        divider: 'Outros',
+        gridColumns: 12,
+        gridSmColumns: 12,
+        gridMdColumns: 12,
+        gridLgColumns: 12,
+        gridXlColumns: 12
       }
     ];
     return fields
