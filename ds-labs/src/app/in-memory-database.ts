@@ -610,27 +610,30 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 2499.99,
         quantity: 2,
         amount: 2499.99,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 2,
         salesId: 1,
-        itemId: 1,
+        itemId: 2,
         productId: '0002',
         value: 5099.99,
         quantity: 1,
         amount: 10199.98,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 3,
         salesId: 1,
-        itemId: 1,
+        itemId: 3,
         productId: '0003',
         value: 3099.99,
         quantity: 3,
         amount: 9299.97,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 4,
@@ -640,17 +643,19 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 2499.99,
         quantity: 4,
         amount: 9999.96,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 5,
         salesId: 2,
-        itemId: 1,
+        itemId: 2,
         productId: '0002',
         value: 5099.99,
         quantity: 6,
         amount: 30599.94,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 6,
@@ -660,7 +665,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 3099.99,
         quantity: 7,
         amount: 21699.93,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 7,
@@ -670,27 +676,30 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 2499.99,
         quantity: 10,
         amount: 24990.99,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 8,
         salesId: 4,
-        itemId: 1,
+        itemId: 2,
         productId: '0003',
         value: 3099.99,
         quantity: 1,
         amount: 3099.99,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 9,
         salesId: 4,
-        itemId: 1,
+        itemId: 3,
         productId: '0002',
         value: 5099.99,
         quantity: 12,
         amount: 61199.88,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 10,
@@ -700,17 +709,19 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 3099.99,
         quantity: 8,
         amount: 24799.92,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 11,
         salesId: 5,
-        itemId: 1,
+        itemId: 2,
         productId: '0002',
         value: 5099.99,
         quantity: 6,
         amount: 30599.94,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 12,
@@ -720,7 +731,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 2499.99,
         quantity: 5,
         amount: 12499.95,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 13,
@@ -730,17 +742,19 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 5099.99,
         quantity: 3,
         amount: 15299.97,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 14,
         salesId: 7,
-        itemId: 1,
+        itemId: 2,
         productId: '0001',
         value: 2499.99,
         quantity: 1,
         amount: 2499.99,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 15,
@@ -750,7 +764,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 5099.99,
         quantity: 1,
         amount: 5099.99,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 16,
@@ -760,7 +775,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 29.9,
         quantity: 1,
         amount: 29.9,
-        productName: ''
+        productName: '',
+        discount: 0
       },
       {
         id: 17,
@@ -770,7 +786,8 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 5099.99,
         quantity: 5,
         amount: 25499.95,
-        productName: ''
+        productName: '',
+        discount: 0
       }
     ];
     const db = {

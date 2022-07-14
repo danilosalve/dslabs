@@ -1,0 +1,11 @@
+<po-page-detail [p-breadcrumb]="breadcrumb" (p-back)="handleBack()" p-title="Detalhes do Pedido">
+  <po-tabs>
+    <po-tab p-label="Dados Gerais" [p-active]="true">
+      <app-general-data *ngIf="header" [header]="header"></app-general-data>
+    </po-tab>
+    <po-tab p-label="Items">
+      <app-items [items]="items"></app-items>
+    </po-tab>
+  </po-tabs>
+</po-page-detail>
+

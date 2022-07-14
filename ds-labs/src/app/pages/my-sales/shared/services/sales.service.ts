@@ -125,6 +125,18 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         gridXlColumns: 2
       },
       {
+        label: 'Despesa',
+        property: 'expenses',
+        type: 'currency',
+        optional: true,
+        decimalsLength: 2,
+        gridColumns: 2,
+        gridSmColumns: 12,
+        gridMdColumns: 3,
+        gridLgColumns: 3,
+        gridXlColumns: 2
+      },
+      {
         label: 'Comentario',
         property: 'comment',
         help: 'Informe um Comentario para o Pedido de Venda',
@@ -143,13 +155,22 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
 
   getViewFields(): PoDynamicViewField[] {
     return [
-      { property: 'id', label: 'Núm. Pedido', divider: 'Dados Gerais' },
-      { property: 'customerId', label: 'Código Cliente' },
-      { property: 'customerName', label: 'Nome do Cliente', type: 'string' },
+      { property: 'id', label: 'Núm. Pedido', divider: 'Dados Gerais', key: true },
       { property: 'issueDate', label: 'Dt. Emissão', type: 'date' },
-      { property: 'paymentMethodId', label: 'Cond. Pagamento' },
-      { property: 'paymentMethodDescription', label: 'Desc. Pagamento' },
-      { property: 'status', label: 'Status',  tag: true, color: 'color-11', icon: 'po-icon-ok'}
+      { property: 'statusDescription', label: 'Status', tag: true, color: 'color-11', icon: 'po-icon-ok'},
+      { property: 'customerId', label: 'Cliente', divider: 'Dados do Cliente' },
+      { property: 'customerName', label: 'Nome', type: 'string' },
+      { property: 'customerDocument', label: 'CNPJ/CPF', type: 'string' },
+      { property: 'customerState', label: 'UF', type: 'string' },
+      { property: 'customerCity', label: 'Municipio', type: 'string' },
+      { property: 'paymentMethodDescription', label: 'Cond. Pagamento', divider: 'Pagamento' },
+      { property: 'priceListDescription', label: 'Tab. de Preços' },
+      { property: 'discount', label: 'Desconto', type: 'currency' },
+      { property: 'carrierDescription', label: 'Transportadora', divider: 'Entrega' },
+      { property: 'freight', label: 'Frete', type: 'currency' },
+      { property: 'insurance', label: 'Seguro', type: 'currency' },
+      { property: 'expenses', label: 'Despesa', type: 'currency' },
+      { property: 'comment', label: 'Comentarios', type: 'string', divider: 'Outros'}
     ]
   }
 }

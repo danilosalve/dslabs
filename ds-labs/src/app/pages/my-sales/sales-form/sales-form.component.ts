@@ -6,7 +6,7 @@ import { PoBreadcrumb, PoNotificationService } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
-import { SalesStatus } from '../shared/interfaces/sales-status.enum';
+import { SalesModel } from '../shared/model/sales-model';
 import { SalesItemsService } from '../shared/services/sales-items.service';
 import { SalesService } from '../shared/services/sales.service';
 import { SalesItems } from './../shared/interfaces/sales-items';
@@ -15,18 +15,7 @@ import { SalesItems } from './../shared/interfaces/sales-items';
   templateUrl: './sales-form.component.html'
 })
 export class SalesFormComponent implements OnInit {
-  sales: Sales = {
-    customerId: undefined,
-    paymentMethodId: undefined,
-    priceListId: undefined,
-    issueDate: new Date(),
-    status: SalesStatus.Open,
-    carrierId: undefined,
-    freight: 0,
-    insurance: 0,
-    expenses: 0,
-    discount: 0
-  };
+  sales: Sales = new SalesModel();
   isDisableSubmit = true;
   dynamicForm: NgForm | undefined;
   salesItems: SalesItems[] = [];
