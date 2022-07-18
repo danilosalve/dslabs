@@ -4,7 +4,7 @@
     [p-height]="height"
 >
     <p class="po-font-subtitle po-xl-11 po-lg-11 po-md-11 po-sm-11">
-        Total do Pedido
+        Total do Pedido (=)
     </p>
 
     <p class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-font-subtitle po-mt-2">
@@ -17,32 +17,32 @@
     <div>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Sub-Total"
+            p-label="Sub-Total (+)"
             [p-value]="transformValue(saleTotal.subTotal)"
         ></po-info>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Impostos"
+            p-label="Impostos (+)"
             [p-value]="transformValue(taxes)"
         ></po-info>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Frete"
+            p-label="Frete (+)"
             [p-value]="transformValue(saleTotal.freight)"
         ></po-info>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Seguro"
+            p-label="Seguro (+)"
             [p-value]="transformValue(saleTotal.insurance)"
         ></po-info>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Despesas"
+            p-label="Despesas (+)"
             [p-value]="transformValue(saleTotal.expense)"
         ></po-info>
         <po-info
             class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
-            p-label="Descontos"
+            p-label="Descontos (-)"
             [p-value]="transformValue(saleTotal.discounts)"
         ></po-info>
     </div>
