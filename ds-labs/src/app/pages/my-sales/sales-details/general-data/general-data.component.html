@@ -1,7 +1,12 @@
 <po-loading-overlay [hidden]="!isLoading"></po-loading-overlay>
-<po-dynamic-view
-    *ngIf="!isLoading"
-    [p-fields]="fields"
-    [p-value]="headerPresentation"
->
-</po-dynamic-view>
+<po-container class="po-xl-8 po-lg-8 po-md-8 po-sm-12">
+    <po-dynamic-view
+        *ngIf="!isLoading"
+        [p-fields]="fields"
+        [p-value]="headerPresentation"
+    >
+    </po-dynamic-view>
+</po-container>
+<aside class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mt-sm-2" style="float: right">
+    <app-total *ngIf="header && items" [header]="header" [items]="items"></app-total>
+</aside>

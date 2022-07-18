@@ -6,6 +6,7 @@ import { PoDynamicViewField, PoNotificationService } from '@po-ui/ng-components'
 import { forkJoin, of } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
+import { SalesItems } from '../../shared/interfaces/sales-items';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { DocumentPipe } from './../../../../shared/pipe/document.pipe';
 import { CarrierService } from './../../../../shared/services/carrier.service';
@@ -24,6 +25,7 @@ interface HeaderStatus {
 })
 export class GeneralDataComponent implements OnInit {
     @Input() header: Sales = new SalesModel();
+    @Input() items: SalesItems[] = [];
     fields: PoDynamicViewField[] = [];
     headerPresentation: any;
     isLoading = true;

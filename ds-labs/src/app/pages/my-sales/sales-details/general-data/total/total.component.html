@@ -1,0 +1,49 @@
+<po-widget
+    class="po-row po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
+    style="position: relative"
+    [p-height]="height"
+>
+    <p class="po-font-subtitle po-xl-11 po-lg-11 po-md-11 po-sm-11">
+        Total do Pedido
+    </p>
+
+    <p class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-font-subtitle po-mt-2">
+      {{ saleTotal.total | currency:'BRL'}}
+    </p>
+    <span #target class="po-clickable po-icon po-icon-help" (click)="popup.toggle()"> </span>
+    <po-popup #popup [p-actions]="[{ label: 'Total do Pedido contempla a soma dos valores Sub-Total, impostos, Frete, Seguro e Despesa, subtraido pelo Desconto' }]" [p-target]="target"> </po-popup>
+    <br />
+
+    <div>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Sub-Total"
+            [p-value]="transformValue(saleTotal.subTotal)"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Impostos"
+            [p-value]="transformValue(taxes)"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Frete"
+            [p-value]="transformValue(saleTotal.freight)"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Seguro"
+            [p-value]="transformValue(saleTotal.insurance)"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Despesas"
+            [p-value]="transformValue(saleTotal.expense)"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mt-xl-5 po-mt-lg-5 po-mt-mg-5 po-mt-sm-2"
+            p-label="Descontos"
+            [p-value]="transformValue(saleTotal.discounts)"
+        ></po-info>
+    </div>
+</po-widget>

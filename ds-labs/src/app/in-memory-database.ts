@@ -36,6 +36,10 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 5,
         name: 'Fusca Azul Transportes'
+      },
+      {
+        id: 6,
+        name: 'CLIENTE RETIRA'
       }
     ];
 
@@ -102,6 +106,14 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '90054224000179',
         state: 'PR',
         city: 'Curitiba',
+        status: CustomerStatus.active
+      },
+      {
+        id: 9,
+        name: 'THOR Ferramentas LTDA',
+        document: '78739414000124',
+        state: 'SP',
+        city: 'São Roque',
         status: CustomerStatus.active
       }
     ];
@@ -625,6 +637,31 @@ export class InMemoryDatabase implements InMemoryDbService {
         priceListId: 1,
         status: SalesStatus.Open,
         typeOfFreight: TypeOfFreight.CIF
+      },
+      {
+        id: 10,
+        customerId: 6,
+        paymentMethodId: 1,
+        issueDate: this.getDateRandom(),
+        carrierId: 6,
+        priceListId: 1,
+        status: SalesStatus.Open,
+        discount: 2,
+        typeOfFreight: TypeOfFreight.SEMFRETE
+      },
+      {
+        id: 11,
+        customerId: 9,
+        paymentMethodId: 3,
+        issueDate: this.getDateRandom(),
+        carrierId: 2,
+        priceListId: 1,
+        status: SalesStatus.Open,
+        discount: 2,
+        typeOfFreight: TypeOfFreight.SEMFRETE,
+        expenses: 10.49,
+        insurance: 44.9,
+        freight: 200.9
       }
     ];
 
@@ -665,7 +702,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 4,
         salesId: 1,
-        itemId: 3,
+        itemId: 4,
         productId: '0014',
         value: 3.73,
         quantity: 3,
@@ -687,7 +724,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 6,
         salesId: 2,
-        itemId: 1,
+        itemId: 2,
         productId: '0005',
         value: 3.99,
         quantity: 2,
@@ -698,7 +735,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 7,
         salesId: 2,
-        itemId: 2,
+        itemId: 3,
         productId: '0002',
         value: 4.06,
         quantity: 6,
@@ -720,7 +757,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 9,
         salesId: 3,
-        itemId: 1,
+        itemId: 2,
         productId: '0010',
         value: 2.29,
         quantity: 5,
@@ -731,7 +768,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 10,
         salesId: 3,
-        itemId: 1,
+        itemId: 3,
         productId: '0004',
         value: 7.49,
         quantity: 1,
@@ -753,7 +790,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 12,
         salesId: 4,
-        itemId: 1,
+        itemId: 2,
         productId: '0004',
         value: 7.49,
         quantity: 1,
@@ -764,7 +801,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 13,
         salesId: 4,
-        itemId: 1,
+        itemId: 3,
         productId: '0006',
         value: 5.39,
         quantity: 2,
@@ -775,7 +812,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 14,
         salesId: 4,
-        itemId: 1,
+        itemId: 4,
         productId: '0008',
         value: 24.88,
         quantity: 1,
@@ -786,7 +823,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 15,
         salesId: 4,
-        itemId: 1,
+        itemId: 5,
         productId: '0010',
         value: 2.29,
         quantity: 1,
@@ -797,7 +834,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 16,
         salesId: 4,
-        itemId: 1,
+        itemId: 6,
         productId: '0011',
         value: 1.79,
         quantity: 3,
@@ -808,7 +845,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 17,
         salesId: 4,
-        itemId: 1,
+        itemId: 7,
         productId: '0014',
         value: 4.09,
         quantity: 4,
@@ -819,7 +856,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 18,
         salesId: 4,
-        itemId: 1,
+        itemId: 8,
         productId: '0016',
         value: 4.99,
         quantity: 5,
@@ -830,7 +867,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 19,
         salesId: 4,
-        itemId: 1,
+        itemId: 9,
         productId: '0017',
         value: 7.9,
         quantity: 2,
@@ -841,7 +878,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 20,
         salesId: 4,
-        itemId: 1,
+        itemId: 10,
         productId: '0018',
         value: 10.99,
         quantity: 1,
@@ -852,7 +889,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 21,
         salesId: 4,
-        itemId: 2,
+        itemId: 12,
         productId: '0003',
         value: 3.49,
         quantity: 1,
@@ -863,7 +900,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 22,
         salesId: 4,
-        itemId: 3,
+        itemId: 13,
         productId: '0002',
         value: 4.06,
         quantity: 12,
@@ -896,7 +933,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 25,
         salesId: 5,
-        itemId: 1,
+        itemId: 3,
         productId: '0012',
         value: 7.49,
         quantity: 4,
@@ -907,7 +944,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 26,
         salesId: 5,
-        itemId: 1,
+        itemId: 4,
         productId: '0016',
         value: 4.99,
         quantity: 3,
@@ -940,7 +977,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 29,
         salesId: 6,
-        itemId: 1,
+        itemId: 2,
         productId: '0007',
         value: 5.36,
         quantity: 2,
@@ -1000,6 +1037,61 @@ export class InMemoryDatabase implements InMemoryDbService {
         value: 10.99,
         quantity: 3,
         amount: 32.97,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 35,
+        salesId: 10,
+        itemId: 1,
+        productId: '0005',
+        value: 3.99,
+        quantity: 3,
+        amount: 11.97,
+        productName: '',
+        discount: 10
+      },
+      {
+        id: 36,
+        salesId: 10,
+        itemId: 1,
+        productId: '0006',
+        value: 5.39,
+        quantity: 1,
+        amount: 5.39,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 37,
+        salesId: 10,
+        itemId: 1,
+        productId: '0007',
+        value: 5.36,
+        quantity: 3,
+        amount: 37.52,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 38,
+        salesId: 11,
+        itemId: 1,
+        productId: '0018',
+        value: 10.99,
+        quantity: 50,
+        amount: 549.5,
+        productName: '',
+        discount: 5
+      },
+      {
+        id: 39,
+        salesId: 11,
+        itemId: 2,
+        productId: '0002',
+        value: 4.06,
+        quantity: 500,
+        amount: 2030,
         productName: '',
         discount: 0
       }
