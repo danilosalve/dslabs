@@ -107,11 +107,12 @@ export class InMemoryDatabase implements InMemoryDbService {
     ];
 
     const paymentMethod: PaymentMethod[] = [
-      { id: 1, description: 'A Vista' },
-      { id: 2, description: 'A prazo 30 Dias' },
-      { id: 3, description: '3x - 30, 60 e 90' },
-      { id: 4, description: 'Pagamento Antecipado' },
-      { id: 5, description: '2x - 0 + 30 dias' }
+      { id: 1, description: 'A Vista - Dinheiro' },
+      { id: 2, description: 'A Vista - Debito' },
+      { id: 3, description: 'Credito - A Vista' },
+      { id: 4, description: 'PicPay' },
+      { id: 5, description: 'Mercado Pago' },
+      { id: 6, description: 'Credito - Parcelado' }
     ];
 
     const priceList: PriceList[] = [
@@ -122,13 +123,14 @@ export class InMemoryDatabase implements InMemoryDbService {
       },
       {
         id: 2,
-        description: 'PROMOÇÃO RELAMPAGO',
+        description: 'FINAL DA FEIRA',
         active: true
       },
       {
         id: 3,
-        description: 'SOMENTE AVISTA',
-        active: true
+        description: 'SOMENTE NO DINHEIRO',
+        active: true,
+        paymentMethod: 1
       },
       {
         id: 4,
@@ -140,78 +142,93 @@ export class InMemoryDatabase implements InMemoryDbService {
     const products: Product[] = [
       {
         id: '0001',
-        description: 'SMARTPHONE IPEAR 15',
-        price: 15099.9
+        description: 'ABACATE - KG',
+        price: 4.09
       },
       {
         id: '0002',
-        description: 'NOTEBOOK CEUU',
-        price: 5099.99
+        description: 'ABACAXI PEROLA - UN',
+        price: 4.06
       },
       {
         id: '0003',
-        description: 'TELEVISÃO 43',
-        price: 2398.75
+        description: 'BANANA NANICA - KG',
+        price: 3.49
       },
       {
         id: '0004',
-        description: 'MONITOR 23.5',
-        price: 899.9
+        description: 'BANANA OURO - KG',
+        price: 7.49
       },
       {
         id: '0005',
-        description: 'NOTEBOOK GAMER',
-        price: 3699.0
+        description: 'BANANA PRATA - KG',
+        price: 3.99
       },
       {
         id: '0006',
-        description: 'TELEVISÃO 50 4K',
-        price: 2599
+        description: 'CAQUI RAMA FORTE - KG',
+        price: 5.39
       },
       {
         id: '0007',
-        description: 'TELEVISÃO 65 4K',
-        price: 3989.05
+        description: 'GOIABA BRANCA - KG',
+        price: 5.36
       },
       {
         id: '0008',
-        description: 'SMARTPHONE XINGLING',
-        price: 1551.03
+        description: 'KIWI - BANJERA C/ 6 FRUTAS',
+        price: 24.88
       },
       {
         id: '0009',
-        description: 'KIT TECLADO+MOUSE GAMER 5X1',
-        price: 214
+        description: 'LARANJA BAIA - DUZIA',
+        price: 2.79
       },
       {
         id: '0010',
-        description: 'TECLADO GAMER',
-        price: 52.74
+        description: 'LARANJA PERA - DUZIA',
+        price: 2.29
       },
       {
         id: '0011',
-        description: 'MOUSE GAMER',
-        price: 269
+        description: 'LIMAO TAITI - DUZIA',
+        price: 1.79
       },
       {
         id: '0012',
-        description: 'CADEIRA GAMER AZUL',
-        price: 1349.9
+        description: 'MACA NACIONAL FUJI',
+        price: 7.49
       },
       {
         id: '0013',
-        description: 'CADEIRA GAMER VERMELHA',
-        price: 1434
+        description: 'MAMAO FORMOSA - UN',
+        price: 5.53
       },
       {
         id: '0014',
-        description: 'CADEIRA ESCRITORIO',
-        price: 925
+        description: 'MANGA PALMER - KG',
+        price: 4.09
       },
       {
         id: '0015',
-        description: 'MOUSE SEM FIO',
-        price: 29.9
+        description: 'MARACUJA AZEDO',
+        price: 3.73
+      },
+      {
+        id: '0016',
+        description: 'MORANGO - CAIXA',
+        price: 4.99
+      },
+      {
+        id: '0017',
+        description: 'UVA ITALIA - KG',
+        price: 7.9
+      },
+      {
+        id: '0018',
+        description: 'UVA RUBI - KG',
+        price: 10.99
       }
     ];
 
@@ -617,9 +634,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         salesId: 1,
         itemId: 1,
         productId: '0001',
-        value: 2499.99,
+        value: 4.09,
         quantity: 2,
-        amount: 2499.99,
+        amount: 8.18,
         productName: '',
         discount: 0
       },
@@ -628,9 +645,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         salesId: 1,
         itemId: 2,
         productId: '0002',
-        value: 5099.99,
+        value: 4.06,
         quantity: 1,
-        amount: 10199.98,
+        amount: 4.06,
         productName: '',
         discount: 0
       },
@@ -639,163 +656,350 @@ export class InMemoryDatabase implements InMemoryDbService {
         salesId: 1,
         itemId: 3,
         productId: '0003',
-        value: 3099.99,
+        value: 3.49,
         quantity: 3,
-        amount: 9299.97,
+        amount: 10.47,
         productName: '',
         discount: 0
       },
       {
         id: 4,
-        salesId: 2,
-        itemId: 1,
-        productId: '0001',
-        value: 2499.99,
-        quantity: 4,
-        amount: 9999.96,
+        salesId: 1,
+        itemId: 3,
+        productId: '0014',
+        value: 3.73,
+        quantity: 3,
+        amount: 11.19,
         productName: '',
         discount: 0
       },
       {
         id: 5,
         salesId: 2,
-        itemId: 2,
-        productId: '0002',
-        value: 5099.99,
-        quantity: 6,
-        amount: 30599.94,
+        itemId: 1,
+        productId: '0001',
+        value: 4.09,
+        quantity: 12,
+        amount: 49.08,
         productName: '',
         discount: 0
       },
       {
         id: 6,
-        salesId: 3,
+        salesId: 2,
         itemId: 1,
-        productId: '0003',
-        value: 3099.99,
-        quantity: 7,
-        amount: 21699.93,
+        productId: '0005',
+        value: 3.99,
+        quantity: 2,
+        amount: 7.98,
         productName: '',
         discount: 0
       },
       {
         id: 7,
-        salesId: 4,
-        itemId: 1,
-        productId: '0001',
-        value: 2499.99,
-        quantity: 10,
-        amount: 24990.99,
+        salesId: 2,
+        itemId: 2,
+        productId: '0002',
+        value: 4.06,
+        quantity: 6,
+        amount: 24.36,
         productName: '',
         discount: 0
       },
       {
         id: 8,
-        salesId: 4,
-        itemId: 2,
+        salesId: 3,
+        itemId: 1,
         productId: '0003',
-        value: 3099.99,
-        quantity: 1,
-        amount: 3099.99,
+        value: 3.49,
+        quantity: 7,
+        amount: 24.43,
         productName: '',
         discount: 0
       },
       {
         id: 9,
-        salesId: 4,
-        itemId: 3,
-        productId: '0002',
-        value: 5099.99,
-        quantity: 12,
-        amount: 61199.88,
+        salesId: 3,
+        itemId: 1,
+        productId: '0010',
+        value: 2.29,
+        quantity: 5,
+        amount: 11.45,
         productName: '',
         discount: 0
       },
       {
         id: 10,
-        salesId: 5,
+        salesId: 3,
         itemId: 1,
-        productId: '0003',
-        value: 3099.99,
-        quantity: 8,
-        amount: 24799.92,
+        productId: '0004',
+        value: 7.49,
+        quantity: 1,
+        amount: 7.49,
         productName: '',
         discount: 0
       },
       {
         id: 11,
-        salesId: 5,
-        itemId: 2,
-        productId: '0002',
-        value: 5099.99,
-        quantity: 6,
-        amount: 30599.94,
+        salesId: 4,
+        itemId: 1,
+        productId: '0001',
+        value: 4.09,
+        quantity: 10,
+        amount: 40.9,
         productName: '',
         discount: 0
       },
       {
         id: 12,
-        salesId: 6,
+        salesId: 4,
         itemId: 1,
-        productId: '0001',
-        value: 2499.99,
-        quantity: 5,
-        amount: 12499.95,
+        productId: '0004',
+        value: 7.49,
+        quantity: 1,
+        amount: 7.49,
         productName: '',
         discount: 0
       },
       {
         id: 13,
-        salesId: 7,
+        salesId: 4,
         itemId: 1,
-        productId: '0002',
-        value: 5099.99,
-        quantity: 3,
-        amount: 15299.97,
+        productId: '0006',
+        value: 5.39,
+        quantity: 2,
+        amount: 10.78,
         productName: '',
         discount: 0
       },
       {
         id: 14,
-        salesId: 7,
-        itemId: 2,
-        productId: '0001',
-        value: 2499.99,
+        salesId: 4,
+        itemId: 1,
+        productId: '0008',
+        value: 24.88,
         quantity: 1,
-        amount: 2499.99,
+        amount: 24.8,
         productName: '',
         discount: 0
       },
       {
         id: 15,
-        salesId: 8,
+        salesId: 4,
         itemId: 1,
-        productId: '0002',
-        value: 5099.99,
+        productId: '0010',
+        value: 2.29,
         quantity: 1,
-        amount: 5099.99,
+        amount: 2.29,
         productName: '',
         discount: 0
       },
       {
         id: 16,
-        salesId: 8,
-        itemId: 2,
-        productId: '0015',
-        value: 29.9,
-        quantity: 1,
-        amount: 29.9,
+        salesId: 4,
+        itemId: 1,
+        productId: '0011',
+        value: 1.79,
+        quantity: 3,
+        amount: 5.37,
         productName: '',
         discount: 0
       },
       {
         id: 17,
-        salesId: 9,
+        salesId: 4,
+        itemId: 1,
+        productId: '0014',
+        value: 4.09,
+        quantity: 4,
+        amount: 16.36,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 18,
+        salesId: 4,
+        itemId: 1,
+        productId: '0016',
+        value: 4.99,
+        quantity: 5,
+        amount: 24.95,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 19,
+        salesId: 4,
+        itemId: 1,
+        productId: '0017',
+        value: 7.9,
+        quantity: 2,
+        amount: 15.8,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 20,
+        salesId: 4,
+        itemId: 1,
+        productId: '0018',
+        value: 10.99,
+        quantity: 1,
+        amount: 10.99,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 21,
+        salesId: 4,
+        itemId: 2,
+        productId: '0003',
+        value: 3.49,
+        quantity: 1,
+        amount: 3.49,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 22,
+        salesId: 4,
+        itemId: 3,
+        productId: '0002',
+        value: 4.06,
+        quantity: 12,
+        amount: 48.72,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 23,
+        salesId: 5,
+        itemId: 1,
+        productId: '0003',
+        value: 3.49,
+        quantity: 8,
+        amount: 27.92,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 24,
+        salesId: 5,
+        itemId: 2,
+        productId: '0002',
+        value: 4.06,
+        quantity: 6,
+        amount: 24.36,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 25,
+        salesId: 5,
+        itemId: 1,
+        productId: '0012',
+        value: 7.49,
+        quantity: 4,
+        amount: 29.96,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 26,
+        salesId: 5,
+        itemId: 1,
+        productId: '0016',
+        value: 4.99,
+        quantity: 3,
+        amount: 14.97,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 27,
+        salesId: 5,
+        itemId: 1,
+        productId: '0017',
+        value: 7.9,
+        quantity: 2,
+        amount: 15.8,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 28,
+        salesId: 6,
+        itemId: 1,
+        productId: '0001',
+        value: 4.09,
+        quantity: 5,
+        amount: 20.45,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 29,
+        salesId: 6,
+        itemId: 1,
+        productId: '0007',
+        value: 5.36,
+        quantity: 2,
+        amount: 10.72,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 30,
+        salesId: 7,
         itemId: 1,
         productId: '0002',
-        value: 5099.99,
+        value: 4.06,
+        quantity: 3,
+        amount: 12.18,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 31,
+        salesId: 7,
+        itemId: 2,
+        productId: '0001',
+        value: 4.09,
         quantity: 5,
-        amount: 25499.95,
+        amount: 20.45,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 32,
+        salesId: 8,
+        itemId: 1,
+        productId: '0002',
+        value: 10.99,
+        quantity: 3,
+        amount: 32.97,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 33,
+        salesId: 8,
+        itemId: 2,
+        productId: '0015',
+        value: 3.73,
+        quantity: 3,
+        amount: 11.19,
+        productName: '',
+        discount: 0
+      },
+      {
+        id: 34,
+        salesId: 9,
+        itemId: 1,
+        productId: '0018',
+        value: 10.99,
+        quantity: 3,
+        amount: 32.97,
         productName: '',
         discount: 0
       }
