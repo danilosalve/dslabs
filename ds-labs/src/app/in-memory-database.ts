@@ -2,6 +2,7 @@ import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { delay, Observable, of } from 'rxjs';
 import { Customer } from './pages/my-customers/shared/interface/customer';
 import { CustomerStatus } from './pages/my-customers/shared/interface/customer-status.enum';
+import { CustomerType } from './pages/my-customers/shared/interface/customer-type';
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
@@ -50,7 +51,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '84696014000181',
         state: 'SP',
         city: 'Bragança Paulista',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 2,
@@ -58,7 +61,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '52299624000155',
         state: 'AM',
         city: 'Manaus',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.DEALER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 3,
@@ -66,7 +71,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '41129289000120',
         state: 'MG',
         city: 'Timóteo',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.DEALER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 4,
@@ -74,7 +81,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '23478793000154',
         state: 'MG',
         city: 'Ipatinga',
-        status: CustomerStatus.inactive
+        status: CustomerStatus.inactive,
+        customerType: CustomerType.DEALER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 5,
@@ -82,7 +91,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '97174374000165',
         state: 'CE',
         city: 'Maracanaú',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 6,
@@ -90,7 +101,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '84870812000188',
         state: 'GO',
         city: 'Luziânia',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 7,
@@ -98,7 +111,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '80040460000182',
         state: 'SP',
         city: 'São Paulo',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 8,
@@ -106,7 +121,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '90054224000179',
         state: 'PR',
         city: 'Curitiba',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       },
       {
         id: 9,
@@ -114,7 +131,9 @@ export class InMemoryDatabase implements InMemoryDbService {
         document: '78739414000124',
         state: 'SP',
         city: 'São Roque',
-        status: CustomerStatus.active
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
       }
     ];
 

@@ -41,6 +41,6 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
 
     onShowCustomer(customer: Customer): void {
       this.isLoading = true;
-      this.router.navigate(['customer/view', customer.id]);
+      this.router.navigate(['customers/view', customer.id]);
     }
 }

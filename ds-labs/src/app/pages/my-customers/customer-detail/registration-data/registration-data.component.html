@@ -1,0 +1,5 @@
+<po-loading-overlay [hidden]="!isLoading"></po-loading-overlay>
+<po-container>
+  <po-dynamic-view *ngIf="!isLoading" [p-fields]="fields" [p-value]="customerPresentation"></po-dynamic-view>
+</po-container>
+
