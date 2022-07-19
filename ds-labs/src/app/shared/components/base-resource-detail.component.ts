@@ -7,15 +7,13 @@ import { PoBreadcrumb } from '@po-ui/ng-components';
 export abstract class BaseResourceDetail implements OnInit {
     breadcrumb!: PoBreadcrumb;
     detailId = '';
+    titlePage = '';
 
     protected activatedroute: ActivatedRoute;
     private titleService: Title;
     private router: Router;
 
-    constructor(
-        protected injector: Injector,
-        protected routeBack: string
-    ) {
+    constructor(protected injector: Injector, protected routeBack: string) {
         this.titleService = injector.get(Title);
         this.activatedroute = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
@@ -32,9 +30,10 @@ export abstract class BaseResourceDetail implements OnInit {
             res => (this.detailId = res['id'])
         );
 
-        this.activatedroute.data.subscribe(res =>
-            this.titleService.setTitle(`DSLABs | ${res['title']}`)
-        );
+        this.activatedroute.data.subscribe(res => {
+            this.titlePage = res['title'];
+            this.titleService.setTitle(`DSLABs | ${res['title']}`);
+        });
     }
 
     handleBack(): void {

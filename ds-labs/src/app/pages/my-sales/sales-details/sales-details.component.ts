@@ -23,7 +23,7 @@ export class SalesDetailsComponent extends BaseResourceDetail {
         return {
             items: [
                 { label: 'Meus Pedidos', link: '/sales' },
-                { label: 'Detalhes do Pedido de Venda' }
+                { label: this.titlePage }
             ]
         };
     }

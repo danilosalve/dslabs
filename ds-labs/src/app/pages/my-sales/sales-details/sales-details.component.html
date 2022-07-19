@@ -1,4 +1,4 @@
-<po-page-detail [p-breadcrumb]="breadcrumb" (p-back)="handleBack()" p-title="Detalhes do Pedido">
+<po-page-detail [p-breadcrumb]="breadcrumb" (p-back)="handleBack()" [p-title]="titlePage">
   <po-tabs>
     <po-tab p-label="Dados Gerais" [p-active]="true">
       <app-general-data *ngIf="header" [header]="header" [items]="items"></app-general-data>
