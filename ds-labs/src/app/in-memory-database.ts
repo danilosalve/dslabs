@@ -1054,7 +1054,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 36,
         salesId: 10,
-        itemId: 1,
+        itemId: 2,
         productId: '0006',
         value: 5.39,
         quantity: 1,
@@ -1065,7 +1065,7 @@ export class InMemoryDatabase implements InMemoryDbService {
       {
         id: 37,
         salesId: 10,
-        itemId: 1,
+        itemId: 3,
         productId: '0007',
         value: 5.36,
         quantity: 3,

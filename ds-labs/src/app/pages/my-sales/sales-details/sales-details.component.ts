@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Injector } from '@angular/core';
+import { BaseResourceDetail } from '@app/shared/components/base-resource-detail.component';
 import { PoBreadcrumb } from '@po-ui/ng-components';
 import { Sales } from '../shared/interfaces/sales';
 import { SalesItems } from '../shared/interfaces/sales-items';
@@ -10,40 +9,28 @@ import { SalesModel } from '../shared/model/sales-model';
     selector: 'app-sales-details',
     templateUrl: './sales-details.component.html'
 })
-export class SalesDetailsComponent implements OnInit {
+export class SalesDetailsComponent extends BaseResourceDetail {
     header: Sales = new SalesModel();
     items: SalesItems[] = [];
-    readonly breadcrumb: PoBreadcrumb = {
-        items: [
-            { label: 'Meus Pedidos', link: '/sales' },
-            { label: 'Detalhes do Pedido de Venda' }
-        ]
-    };
-    id: string = '1';
 
     constructor(
-        protected activatedroute: ActivatedRoute,
-        protected router: Router,
-        protected titleService: Title
-    ) {}
-
-    ngOnInit(): void {
-        this.onInitPage();
-        this.onInitResources();
+      protected override injector: Injector
+    ) {
+      super(injector, 'sales/','Detalhes do Pedido' )
     }
 
-    onInitPage(): void {
-        this.titleService.setTitle('DSLABs | Detalhes do Pedido');
-        this.activatedroute.params.subscribe(res => (this.id = res['id']));
+    getBreadCrumb(): PoBreadcrumb {
+        return {
+            items: [
+                { label: 'Meus Pedidos', link: '/sales' },
+                { label: 'Detalhes do Pedido de Venda' }
+            ]
+        };
     }
 
     onInitResources(): void {
         this.getSalesHeaderByRoute();
         this.getSalesItemsByRoute();
-    }
-
-    handleBack(): void {
-        this.router.navigate(['sales/']);
     }
 
     getSalesHeaderByRoute(): void {
@@ -52,6 +39,8 @@ export class SalesDetailsComponent implements OnInit {
 
     getSalesItemsByRoute(): void {
         this.items = this.activatedroute.snapshot.data['items'];
-        this.items = this.items.filter(i => i.salesId.toString() === this.id);
+        this.items = this.items.filter(
+            i => i.salesId.toString() === this.detailId
+        );
     }
 }
