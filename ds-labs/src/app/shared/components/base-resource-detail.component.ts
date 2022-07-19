@@ -1,4 +1,4 @@
-import { Directive, Inject, Injector, OnInit } from '@angular/core';
+import { Directive, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumb } from '@po-ui/ng-components';
@@ -14,8 +14,7 @@ export abstract class BaseResourceDetail implements OnInit {
 
     constructor(
         protected injector: Injector,
-        protected routeBack: string,
-        @Inject(String) protected title: string
+        protected routeBack: string
     ) {
         this.titleService = injector.get(Title);
         this.activatedroute = injector.get(ActivatedRoute);
@@ -29,9 +28,12 @@ export abstract class BaseResourceDetail implements OnInit {
     }
 
     onInitPage(): void {
-        this.titleService.setTitle(`DSLABs | ${this.title}`);
         this.activatedroute.params.subscribe(
             res => (this.detailId = res['id'])
+        );
+
+        this.activatedroute.data.subscribe(res =>
+            this.titleService.setTitle(`DSLABs | ${res['title']}`)
         );
     }
 

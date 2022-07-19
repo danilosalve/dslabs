@@ -16,7 +16,7 @@ export class SalesDetailsComponent extends BaseResourceDetail {
     constructor(
       protected override injector: Injector
     ) {
-      super(injector, 'sales/','Detalhes do Pedido' )
+      super(injector, 'sales/')
     }
 
     getBreadCrumb(): PoBreadcrumb {
