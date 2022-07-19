@@ -7,45 +7,51 @@ import { SalesItems } from '../shared/interfaces/sales-items';
 import { SalesModel } from '../shared/model/sales-model';
 
 @Component({
-  selector: 'app-sales-details',
-  templateUrl: './sales-details.component.html'
+    selector: 'app-sales-details',
+    templateUrl: './sales-details.component.html'
 })
 export class SalesDetailsComponent implements OnInit {
-  header: Sales = new SalesModel();
-  items: SalesItems[] = [];
-  readonly breadcrumb: PoBreadcrumb = {
-    items: [{ label: 'Meus Pedidos', link: '/sales' }, { label: 'Detalhes do Pedido de Venda' }]
-  };
+    header: Sales = new SalesModel();
+    items: SalesItems[] = [];
+    readonly breadcrumb: PoBreadcrumb = {
+        items: [
+            { label: 'Meus Pedidos', link: '/sales' },
+            { label: 'Detalhes do Pedido de Venda' }
+        ]
+    };
+    id: string = '1';
 
-  constructor(
-    protected activatedroute: ActivatedRoute,
-    protected router: Router,
-    protected titleService: Title
-  ) {}
+    constructor(
+        protected activatedroute: ActivatedRoute,
+        protected router: Router,
+        protected titleService: Title
+    ) {}
 
-  ngOnInit(): void {
-    this.onInitPage();
-    this.onInitResources();
-  }
+    ngOnInit(): void {
+        this.onInitPage();
+        this.onInitResources();
+    }
 
-  onInitPage(): void {
-    this.titleService.setTitle('DSLABs | Detalhes do Pedido');
-  }
+    onInitPage(): void {
+        this.titleService.setTitle('DSLABs | Detalhes do Pedido');
+        this.activatedroute.params.subscribe(res => (this.id = res['id']));
+    }
 
-  onInitResources(): void {
-    this.getSalesHeaderByRoute();
-    this.getSalesItemsByRoute();
-  }
+    onInitResources(): void {
+        this.getSalesHeaderByRoute();
+        this.getSalesItemsByRoute();
+    }
 
-  handleBack(): void {
-    this.router.navigate(['sales/']);
-  }
+    handleBack(): void {
+        this.router.navigate(['sales/']);
+    }
 
-  getSalesHeaderByRoute(): void {
-    this.header = this.activatedroute.snapshot.data['header'];
-  }
+    getSalesHeaderByRoute(): void {
+        this.header = this.activatedroute.snapshot.data['header'];
+    }
 
-  getSalesItemsByRoute(): void {
-    this.items = this.activatedroute.snapshot.data['items'];
-  }
+    getSalesItemsByRoute(): void {
+        this.items = this.activatedroute.snapshot.data['items'];
+        this.items = this.items.filter(i => i.salesId.toString() === this.id);
+    }
 }
