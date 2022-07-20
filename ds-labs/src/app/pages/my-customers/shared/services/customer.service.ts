@@ -49,7 +49,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
             },
             { property: 'id', label: 'Código', type: 'number', width: '8%' },
             { property: 'name', label: 'Nome Cliente', type: 'string' },
-            { property: 'document', label: 'CPF/CNPJ', type: 'string' },
+            { property: 'document', label: 'CPF/CNPJ', type: 'columnTemplate', width: '10%' },
             { property: 'state', label: 'UF', type: 'string' },
             { property: 'city', label: 'Municipio', type: 'string' }
         ];

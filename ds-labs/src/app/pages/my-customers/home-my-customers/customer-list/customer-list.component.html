@@ -17,6 +17,11 @@
     [p-loading]="isLoading"
     [p-actions]="tableActions"
     [p-height]="450"
-  ></po-table>
+  >
+  <ng-template  p-table-column-template [p-property]="'document'" let-value>
+    <span [innerText]="transformDocument(value)"></span>
+  </ng-template>
+</po-table>
+
 </po-page-list>
 
