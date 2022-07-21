@@ -53,7 +53,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 visible: false
             },
             { property: 'customerName', label: 'Nome Cliente', type: 'string' },
-            { property: 'issueDate', label: 'Dt. Emissão', type: 'dateTime' }
+            { property: 'issueDate', label: 'Dt. Emissão', type: 'date' }
         ];
     }
 

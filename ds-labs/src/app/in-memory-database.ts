@@ -134,6 +134,26 @@ export class InMemoryDatabase implements InMemoryDbService {
         status: CustomerStatus.active,
         customerType: CustomerType.FINAL_COSTUMER,
         registerDate: this.getDateRandom()
+      },
+      {
+        id: 10,
+        name: 'Beatriz Lúcia Sebastiana da Costa',
+        document: '79590029833',
+        state: 'SP',
+        city: 'São Paulo',
+        status: CustomerStatus.active,
+        customerType: CustomerType.FINAL_COSTUMER,
+        registerDate: this.getDateRandom()
+      },
+      {
+        id: 11,
+        name: 'Carlos Heitor Miguel Baptista',
+        document: '45633994850',
+        state: 'SP',
+        city: 'Águas de São Pedro',
+        status: CustomerStatus.active,
+        customerType: CustomerType.RURAL_PRODUCER,
+        registerDate: this.getDateRandom()
       }
     ];
 

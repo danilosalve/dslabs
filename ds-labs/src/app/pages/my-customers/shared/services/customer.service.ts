@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Customer } from '../interface/customer';
+import { CustomerType } from '../interface/customer-type';
 import { CustomerStatus } from './../interface/customer-status.enum';
 
 @Injectable({
@@ -34,6 +35,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                 property: 'status',
                 label: 'Status',
                 type: 'label',
+                width: '8%',
                 labels: [
                     {
                         value: CustomerStatus.active,
@@ -47,11 +49,53 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                     }
                 ]
             },
-            { property: 'id', label: 'Código', type: 'number', width: '8%' },
+            { property: 'id', label: 'Código', type: 'number', width:'100px' },
             { property: 'name', label: 'Nome Cliente', type: 'string' },
-            { property: 'document', label: 'CPF/CNPJ', type: 'columnTemplate', width: '10%' },
+            {
+                property: 'document',
+                label: 'CPF/CNPJ',
+                type: 'columnTemplate',
+                width: '10%'
+            },
             { property: 'state', label: 'UF', type: 'string' },
-            { property: 'city', label: 'Municipio', type: 'string' }
+            { property: 'city', label: 'Municipio', type: 'string' },
+            {
+                property: 'registerDate',
+                label: 'Dt. Nasc/Registro',
+                type: 'date'
+            },
+            {
+              property: 'customerType',
+              label: 'Tipo',
+              type: 'subtitle',
+              width:'100px',
+              subtitles: [
+                  {
+                      value: CustomerType.FINAL_COSTUMER,
+                      color: 'color-10',
+                      label: 'Cons. Final',
+                      content: 'F'
+                  },
+                  {
+                      value: CustomerType.DEALER,
+                      color: 'color-07',
+                      label: 'Revendedor',
+                      content: 'R'
+                  },
+                  {
+                      value: CustomerType.EXPORT,
+                      color: 'color-08',
+                      label: 'Exportação',
+                      content: 'EX'
+                  },
+                  {
+                      value: CustomerType.RURAL_PRODUCER,
+                      color: 'color-03',
+                      label: 'Produtor Rural',
+                      content: 'P'
+                  }
+              ]
+          }
         ];
     }
 
@@ -69,24 +113,32 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                 label: 'Código',
                 key: true
             },
-            { property: 'registerDate', label: 'Dt. Nascimento/Registro', type: 'date' },
             {
-              property: 'statusDescription',
-              label: 'Status',
-              tag: true,
-              color: 'color-11',
-              icon: 'po-icon-ok'
-          },
-          {
-            property: 'name',
-            label: 'Nome',
-            type: 'string',
-            divider: 'Dados do Cliente'
-        },
-        { property: 'document', label: 'CNPJ/CPF', type: 'string' },
-        { property: 'state', label: 'UF', type: 'string' },
-        { property: 'city', label: 'Municipio', type: 'string' },
-        { property: 'customerTypeDescription', label: 'Tp. Cliente', type: 'string'}
+                property: 'registerDate',
+                label: 'Dt. Nascimento/Registro',
+                type: 'date'
+            },
+            {
+                property: 'statusDescription',
+                label: 'Status',
+                tag: true,
+                color: 'color-11',
+                icon: 'po-icon-ok'
+            },
+            {
+                property: 'name',
+                label: 'Nome',
+                type: 'string',
+                divider: 'Dados do Cliente'
+            },
+            { property: 'document', label: 'CNPJ/CPF', type: 'string' },
+            { property: 'state', label: 'UF', type: 'string' },
+            { property: 'city', label: 'Municipio', type: 'string' },
+            {
+                property: 'customerTypeDescription',
+                label: 'Tp. Cliente',
+                type: 'string'
+            }
         ];
     }
 }
