@@ -45,6 +45,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 ]
             },
             { property: 'id', label: 'Código', type: 'number', width: '8%' },
+            { property: 'detail', label: 'detail', type: 'detail'},
             {
                 property: 'customerId',
                 label: 'Cliente',

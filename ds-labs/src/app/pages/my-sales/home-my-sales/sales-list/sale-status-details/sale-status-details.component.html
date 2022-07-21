@@ -1,0 +1,10 @@
+<po-widget>
+    <po-stepper>
+        <po-step
+            *ngFor="let step of stepList"
+            [p-label]="step.label"
+            [p-can-active-next-step]="canActiveNextStep.bind(this)"
+        >
+        </po-step>
+    </po-stepper>
+</po-widget>

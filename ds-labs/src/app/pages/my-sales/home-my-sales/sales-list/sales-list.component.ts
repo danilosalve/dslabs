@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
-import { PoDialogService, PoPageAction, PoTableAction } from '@po-ui/ng-components';
+import { PoDialogService, PoPageAction, PoTableAction, PoTableRowTemplateArrowDirection } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Sales, SalesBrw } from '../../shared/interfaces/sales';
@@ -14,7 +14,7 @@ import { SalesService } from '../../shared/services/sales.service';
   templateUrl: './sales-list.component.html'
 })
 export class SalesListComponent extends BaseResourceList<SalesBrw> {
-
+  templateDirection = PoTableRowTemplateArrowDirection.Left;
   constructor(
     protected salesService: SalesService,
     protected override injector: Injector,
