@@ -22,6 +22,12 @@ const routes: Routes = [
     )
   },
   {
+    path: 'settings',
+    loadChildren: () => import('./pages/my-settings/my-settings.module').then(
+      m => m.MySettingsModule
+    )
+  },
+  {
     path: "not-found",
     component: NotFoundComponent,
     data: {

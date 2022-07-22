@@ -7,6 +7,10 @@ import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
 import { TypeOfFreight } from './pages/my-sales/shared/interfaces/typeOfFreight.enum';
+import { Field } from './pages/my-settings/shared/interfaces/field';
+import { FieldType } from './pages/my-settings/shared/interfaces/field-type.enum';
+import { Table } from './pages/my-settings/shared/interfaces/table';
+import { TableStatus } from './pages/my-settings/shared/interfaces/table-status.enum';
 import { Carrier } from './shared/interfaces/carrier';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { PriceList } from './shared/interfaces/price-list/price-list';
@@ -1135,15 +1139,168 @@ export class InMemoryDatabase implements InMemoryDbService {
         discount: 0
       }
     ];
+
+    const tables: Table[] = [
+      {
+        id: 1,
+        table: 'SA1',
+        description: 'Clientes',
+        status: TableStatus.DISABLED,
+        canEdit: true,
+        filter: ''
+      },
+      {
+        id: 2,
+        table: 'SA4',
+        description: 'Transportadoras',
+        status: TableStatus.ACTIVATED,
+        canEdit: false,
+        filter: ''
+      },
+      {
+        id: 3,
+        table: 'SE4',
+        description: 'Condições de Pagamento',
+        status: TableStatus.ACTIVATED,
+        canEdit: false,
+        filter: ''
+      },
+      {
+        id: 4,
+        table: 'DA0',
+        description: 'Tabela de Preços',
+        status: TableStatus.ACTIVATED,
+        canEdit: false,
+        filter: ''
+      },
+      {
+        id: 5,
+        table: 'SB1',
+        description: 'Produtos',
+        status: TableStatus.DISABLED,
+        canEdit: true,
+        filter: ''
+      },
+      {
+        id: 6,
+        table: 'SB2',
+        description: 'Saldos do Produto',
+        status: TableStatus.DISABLED,
+        canEdit: false,
+        filter: ''
+      },
+      {
+        id: 7,
+        table: 'SC5',
+        description: 'Pedidos de Venda',
+        status: TableStatus.DISABLED,
+        canEdit: true,
+        filter: ''
+      },
+      {
+        id: 8,
+        table: 'SC6',
+        description: 'Itens dos Pedidos de Venda',
+        status: TableStatus.DISABLED,
+        canEdit: true,
+        filter: ''
+      }
+    ];
+
+    const fields: Field[] = [
+      {
+        id: 1,
+        tableId: 1,
+        field: 'id',
+        label: 'Código',
+        description: 'Código do Cliente',
+        type: FieldType.NUMBER,
+        lenght: 6,
+        decimal: 0
+      },
+      {
+        id: 2,
+        tableId: 1,
+        field: 'name',
+        label: 'Nome',
+        description: 'Nome/Razão Social do Cliente',
+        type: FieldType.STRING,
+        lenght: 20,
+        decimal: 0
+      },
+      {
+        id: 3,
+        tableId: 1,
+        field: 'document',
+        label: 'CPF/CNPJ',
+        description: 'CPF/CNPJ',
+        type: FieldType.STRING,
+        lenght: 14,
+        decimal: 0
+      },
+      {
+        id: 4,
+        tableId: 1,
+        field: 'state',
+        label: 'UF',
+        description: 'Estado/Unidade Federativa',
+        type: FieldType.STRING,
+        lenght: 2,
+        decimal: 0
+      },
+      {
+        id: 5,
+        tableId: 1,
+        field: 'city',
+        label: 'Municipio',
+        description: 'Cidade/Municipio',
+        type: FieldType.STRING,
+        lenght: 20,
+        decimal: 0
+      },
+      {
+        id: 6,
+        tableId: 1,
+        field: 'status',
+        label: 'Status',
+        description: 'Status do Cliente',
+        type: FieldType.STRING,
+        lenght: 1,
+        decimal: 0
+      },
+      {
+        id: 7,
+        tableId: 1,
+        field: 'customerType',
+        label: 'Tipo',
+        description: 'Tipo do Cliente',
+        type: FieldType.STRING,
+        lenght: 1,
+        decimal: 0
+      },
+      {
+        id: 8,
+        tableId: 1,
+        field: 'registerDate',
+        label: 'Dt. Nasc/Registro',
+        description: 'Data de Nascimento/Registro',
+        type: FieldType.DATE,
+        lenght: 8,
+        decimal: 0
+      }
+    ];
+
     const db = {
       carriers,
       customers,
+      fields,
       paymentMethod,
       priceList,
       productBalance,
       products,
       sales,
-      salesItems
+      salesItems,
+      tables
     };
 
     return of(db).pipe(delay(1300));

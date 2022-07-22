@@ -46,9 +46,9 @@ export class MenuComponent implements OnInit {
         }
       },
       {
-        label: 'Configurações',
-        shortLabel: 'Configurações',
+        label: 'Minhas Configurações',
         icon: 'po-icon-settings',
+        shortLabel: 'Config.',
         action: () => {
           this.router.navigate(['settings']);
         }
