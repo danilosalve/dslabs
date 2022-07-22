@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { PoBreadcrumb, PoNotificationService } from '@po-ui/ng-components';
+import { BaseResourceForm } from '@app/shared/components/base-resource-form.component';
+import { PoBreadcrumb } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
@@ -14,34 +13,27 @@ import { SalesItems } from './../shared/interfaces/sales-items';
   selector: 'app-sales-form',
   templateUrl: './sales-form.component.html'
 })
-export class SalesFormComponent implements OnInit {
+export class SalesFormComponent extends BaseResourceForm {
   sales: Sales = new SalesModel();
-  isDisableSubmit = true;
   dynamicForm: NgForm | undefined;
   salesItems: SalesItems[] = [];
   itemId = 0;
 
-  readonly breadcrumb: PoBreadcrumb = {
-    items: [
-      { label: 'Meus Pedidos', action: this.cancel.bind(this) },
-      { label: 'Novo Pedido' }
-    ]
-  };
-
   constructor(
-    protected router: Router,
-    protected poNotification: PoNotificationService,
     protected salesService: SalesService,
     protected salesItemService: SalesItemsService,
-    protected titleService: Title
-  ) { }
-
-  ngOnInit(): void {
-    this.titleService.setTitle('DSLabs | Novo Pedido');
+    protected override injector: Injector
+  ) {
+    super(injector, 'sales');
   }
 
-  cancel(): void {
-    this.router.navigate(['sales']);
+  getBreadCrumb(): PoBreadcrumb {
+    return {
+      items: [
+        { label: 'Meus Pedidos', action: this.handleBack.bind(this) },
+        { label: 'Novo Pedido' }
+      ]
+    };
   }
 
   onSubmit(): void {
@@ -62,7 +54,7 @@ export class SalesFormComponent implements OnInit {
       .subscribe({
         next: sale => {
           this.poNotification.success(`Pedido de Venda ${sale.id} incluído com sucesso!!!`);
-          this.router.navigate(['sales']);
+          this.handleBack();
         },
         error: () => this.handleErrorSubmit()
       });
