@@ -17,7 +17,7 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
     protected router: Router,
     protected documentPipe: DocumentPipe
     ) {
-      super(injector, customerService, 'Meus Clientes');
+      super(injector, customerService);
     }
 
     handleSearch(resource: Customer[], search: string): Customer[] {

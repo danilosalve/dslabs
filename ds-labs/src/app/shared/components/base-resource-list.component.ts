@@ -1,5 +1,6 @@
-import { Directive, Inject, Injector, OnDestroy, OnInit } from '@angular/core';
+import { Directive, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -13,17 +14,19 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
   items: T[] = [];
   items$ = new Subscription();
   tableActions: PoTableAction[] = [];
+  titlePage = '';
 
   private titleService: Title;
   protected poNotification: PoNotificationService;
+  protected activatedroute: ActivatedRoute;
 
   constructor(
     protected injector: Injector,
-    protected resourceService: BaseResourceServiceFull<T>,
-    @Inject(String) protected title: string
+    protected resourceService: BaseResourceServiceFull<T>
   ) {
-    this.titleService = injector.get(Title);
+    this.activatedroute = injector.get(ActivatedRoute);
     this.poNotification = injector.get(PoNotificationService);
+    this.titleService = injector.get(Title);
   }
 
   ngOnInit(): void {
@@ -38,7 +41,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
 
   onInitPage(): void {
     this.actions = this.getActions();
-    this.setPageTitle(this.title);
+    this.setPageTitle();
   }
 
   onInitTable(): void {
@@ -50,8 +53,11 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
     return this.resourceService.getColumns();
   }
 
-  setPageTitle(title: string): void {
-    this.titleService.setTitle(`DSLABs | ${title}`);
+  setPageTitle(): void {
+    this.activatedroute.data.subscribe(res => {
+      this.titlePage = res['title'];
+      this.titleService.setTitle(`DSLABs | ${res['title']}`);
+    });
   }
 
   getItems(search?: string): void {

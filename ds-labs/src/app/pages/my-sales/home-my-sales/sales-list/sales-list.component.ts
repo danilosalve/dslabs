@@ -22,7 +22,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
     protected router: Router,
     protected poDialog: PoDialogService
   ) {
-    super(injector, salesService, 'Meus Pedidos');
+    super(injector, salesService);
   }
 
   getActions(): PoPageAction[] {
