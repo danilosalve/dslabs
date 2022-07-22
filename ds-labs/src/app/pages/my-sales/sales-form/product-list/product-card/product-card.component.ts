@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { TypeDevice } from '@app/shared/interfaces/type-device.enum';
 import { DeviceService } from '@app/shared/services/device.service';
@@ -22,12 +22,12 @@ export class ProductCardComponent implements OnInit {
         value: 0,
         amount: 0
     };
-    formItem!: FormGroup;
+    formItem!: UntypedFormGroup;
     isEnableButton = false;
     sizeSlide = 'auto';
 
     constructor(
-        protected fb: FormBuilder,
+        protected fb: UntypedFormBuilder,
         protected poNotification: PoNotificationService,
         protected deviceService: DeviceService
     ) {}

@@ -6,7 +6,7 @@ import {
   OnInit,
   SimpleChanges
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SalesItems } from './../../../../shared/interfaces/sales-items';
@@ -19,7 +19,7 @@ const DEBOUNCE_TIME = 300;
   styleUrls: ['./more-information.component.css']
 })
 export class MoreInformationComponent implements OnInit, OnChanges {
-  @Input() formCard!: FormGroup;
+  @Input() formCard!: UntypedFormGroup;
   @Input() salesItems: SalesItems = {
     productId: '',
     productName: '',
@@ -33,11 +33,11 @@ export class MoreInformationComponent implements OnInit, OnChanges {
   amount: string = '';
   value: string = '';
   discountedValue: string = '';
-  formItem!: FormGroup;
+  formItem!: UntypedFormGroup;
 
   constructor(
     private currencyPipe: CurrencyPipe,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private poNotification: PoNotificationService
   ) {
     this.poNotification.setDefaultDuration(5000);

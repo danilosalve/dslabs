@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable, of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 
@@ -17,12 +17,12 @@ export class FilterInputComponent implements OnInit, OnDestroy {
   @Output() changeSearch = new EventEmitter();
   searchInput$ = new Subscription();
 
-  searchOrder: FormGroup = this.formBuilder.group({
+  searchOrder: UntypedFormGroup = this.formBuilder.group({
     search: ['']
   });
 
   constructor(
-    protected formBuilder: FormBuilder
+    protected formBuilder: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {
