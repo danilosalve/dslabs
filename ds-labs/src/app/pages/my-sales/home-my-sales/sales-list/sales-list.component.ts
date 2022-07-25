@@ -107,7 +107,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
     }
 
     onDelete(sales: Sales): void {
-        if (sales.status !== SalesStatus.Closed) {
+        if (this.canEditOrDelete(sales)) {
             this.isLoading = true;
             this.salesService
                 .delete(sales.id ? sales.id : 0)
@@ -186,5 +186,9 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
                 subTotal: res
             }))
         );
+    }
+
+    canEditOrDelete(sale: Sales): boolean {
+      return sale.status !== SalesStatus.Closed;
     }
 }
