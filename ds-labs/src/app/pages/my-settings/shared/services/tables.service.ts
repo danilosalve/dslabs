@@ -24,7 +24,7 @@ export class TablesService extends BaseResourceServiceFull<Table> {
                 property: 'status',
                 label: 'Status',
                 type: 'label',
-                width: '8%',
+                width: '15%',
                 labels: [
                     {
                         value: TableStatus.ACTIVATED,

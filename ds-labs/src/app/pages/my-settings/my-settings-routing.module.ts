@@ -9,7 +9,18 @@ const routes: Routes = [
     data: {
       title: 'Minhas Configurações'
     }
-  }
+  }/*,
+  {
+    path: 'edit/:id',
+    component: SettingsListComponent,
+    data: {
+      title: 'Minhas Configurações'
+    },
+    resolve: {
+      header: SalesHeaderGuard,
+      items: SalesItemsGuard
+    }
+  }*/
 ];
 
 @NgModule({
