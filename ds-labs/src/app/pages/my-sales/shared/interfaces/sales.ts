@@ -18,4 +18,5 @@ export interface Sales {
 
 export interface SalesBrw extends Sales {
   customerName?: string;
+  subTotal?: number;
 }

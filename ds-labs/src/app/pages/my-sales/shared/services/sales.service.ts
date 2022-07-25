@@ -6,17 +6,23 @@ import {
   PoDynamicViewField,
   PoTableColumn
 } from '@po-ui/ng-components';
+import { firstValueFrom, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Sales } from '../interfaces/sales';
 import { SalesOrderTotal } from '../interfaces/sales-order-total';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 import { TypeOfFreight } from './../interfaces/typeOfFreight.enum';
 import { SalesTotalModel } from './../model/sales-total.model';
+import { SalesItemsService } from './sales-items.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SalesService extends BaseResourceServiceFull<Sales> {
-    constructor(protected override injector: Injector) {
+    constructor(
+        protected override injector: Injector,
+        private salesItemsService: SalesItemsService
+    ) {
         super('api/sales/', injector);
     }
 
@@ -26,6 +32,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 property: 'status',
                 label: 'Status',
                 type: 'label',
+                width: '10%',
                 labels: [
                     {
                         value: SalesStatus.Open,
@@ -45,7 +52,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 ]
             },
             { property: 'id', label: 'Código', type: 'number', width: '8%' },
-            { property: 'detail', label: 'detail', type: 'detail'},
+            { property: 'detail', label: 'detail', type: 'detail' },
             {
                 property: 'customerId',
                 label: 'Cliente',
@@ -53,7 +60,18 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 visible: false
             },
             { property: 'customerName', label: 'Nome Cliente', type: 'string' },
-            { property: 'issueDate', label: 'Dt. Emissão', type: 'date' }
+            {
+                property: 'issueDate',
+                label: 'Dt. Emissão',
+                type: 'date',
+                width: '15%'
+            },
+            {
+                property: 'subTotal',
+                label: 'Subtotal',
+                type: 'currency',
+                width: '15%'
+            }
         ];
     }
 
@@ -297,9 +315,34 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         saleTotal.total += saleTotal.freight = sale.freight! | 0;
         saleTotal.total += saleTotal.insurance = sale.insurance! | 0;
         this.calculateSalesOrderItemsTotal(items, saleTotal);
-        saleTotal.discounts += this.calculateSalesOrderDiscount(items, sale.discount! | 0);
+        saleTotal.discounts += this.calculateSalesOrderDiscount(
+            items,
+            sale.discount! | 0
+        );
         saleTotal.total += saleTotal.subTotal - saleTotal.discounts;
         return saleTotal;
+    }
+
+    async getAsyncSubtotalWithSaleId(id: number): Promise<number> {
+      const data$ = this.salesItemsService.getBySalesId(id.toString())
+      .pipe(
+        map(items => items.filter(i => i.salesId === id)),
+        map(items => items.reduce((amount, currency) => amount + currency.amount, 0))
+      )
+
+      try {
+        return await firstValueFrom(data$, {defaultValue: 0}) ?? 0 ;
+      } catch(e) {
+        throw(e);
+      }
+    }
+
+    getSubtotalWithSaleId(id: number): Observable<number> {
+      return this.salesItemsService.getBySalesId(id.toString())
+      .pipe(
+        map(items => items.filter(i => i.salesId === id)),
+        map(items => items.reduce((amount, currency) => amount + currency.amount, 0))
+      )
     }
 
     private calculateSalesOrderItemsTotal(
@@ -321,7 +364,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
             const value: number = currency.value! | 0;
             const quantity: number = currency.quantity! | 0;
             return discount
-                ? amount + this.calculateDiscountValue(value, discount, quantity)
+                ? amount +
+                      this.calculateDiscountValue(value, discount, quantity)
                 : amount;
         }, 0);
         return itemDiscount + discount;
