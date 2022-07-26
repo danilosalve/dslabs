@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base-resource-form.component';
-import { PoBreadcrumb } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
@@ -24,7 +24,7 @@ export class SalesFormComponent extends BaseResourceForm {
     protected salesItemService: SalesItemsService,
     protected override injector: Injector
   ) {
-    super(injector, 'sales');
+    super(injector, 'sales', true);
   }
 
   getBreadCrumb(): PoBreadcrumb {
@@ -89,5 +89,9 @@ export class SalesFormComponent extends BaseResourceForm {
     this.dynamicForm.valueChanges?.subscribe(() => {
       this.isDisableSubmit = !this.canSaveSalesOrder();
     })
+  }
+
+  getFields(): PoDynamicFormField[] {
+    throw new Error('Method not implemented.');
   }
 }

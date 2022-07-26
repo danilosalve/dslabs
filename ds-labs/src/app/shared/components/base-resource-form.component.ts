@@ -1,7 +1,7 @@
 import { Directive, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PoBreadcrumb, PoNotificationService } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoDynamicFormField, PoNotificationService } from '@po-ui/ng-components';
 
 @Directive()
 export abstract class BaseResourceForm implements OnInit {
@@ -10,17 +10,22 @@ export abstract class BaseResourceForm implements OnInit {
     isDisableSubmit = true;
     resourceId!: string | number;
     titlePage = '';
+    fields: PoDynamicFormField[] = [];
 
     protected activatedroute: ActivatedRoute;
     protected poNotification: PoNotificationService;
     private router: Router;
     private titleService: Title;
 
-    constructor(protected injector: Injector, protected routeBack: string) {
-      this.activatedroute = injector.get(ActivatedRoute);
-      this.poNotification = injector.get(PoNotificationService);
-      this.router = injector.get(Router);
-      this.titleService = injector.get(Title);
+    constructor(
+        protected injector: Injector,
+        protected routeBack: string,
+        protected isPage: boolean
+    ) {
+        this.activatedroute = injector.get(ActivatedRoute);
+        this.poNotification = injector.get(PoNotificationService);
+        this.router = injector.get(Router);
+        this.titleService = injector.get(Title);
     }
 
     ngOnInit(): void {
@@ -29,6 +34,11 @@ export abstract class BaseResourceForm implements OnInit {
 
     onInitPage(): void {
         this.setCurrentAction();
+        this.breadcrumb = this.getBreadCrumb();
+
+        if (!this.isPage) {
+          this.fields = this.getFields();
+        }
 
         if (this.isEdit()) {
             this.activatedroute.params.subscribe(
@@ -45,23 +55,10 @@ export abstract class BaseResourceForm implements OnInit {
     handleBack(): void {
         this.router.navigate([this.routeBack]);
     }
-    /*
-    protected loadResource(): void {
-      if (this.currentAction === 'edit') {
-        this.route.paramMap.pipe(
-          switchMap(params => this.resourceService.getById(+params.get('id')))
-        )
-        // tslint:disable-next-line: deprecation
-        .subscribe(
-          resource => {
-            this.resource = resource;
-            this.resourceForm.patchValue(resource);
-        },
-        () => toastr.error('Ocorreu um erro no servidor, tenta mais tarde.')
-        );
-      }
+
+    getResourceByActivatedroute(route: string): any {
+      return this.activatedroute.snapshot.data[route];
     }
-*/
 
     protected setCurrentAction(): void {
         if (this.activatedroute.snapshot.url[0].path === 'new') {
@@ -77,4 +74,5 @@ export abstract class BaseResourceForm implements OnInit {
 
     abstract getBreadCrumb(): PoBreadcrumb;
     abstract onSubmit(): void;
+    abstract getFields(): PoDynamicFormField[];
 }
