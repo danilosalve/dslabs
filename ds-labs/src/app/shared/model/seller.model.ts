@@ -9,6 +9,7 @@ export class SellerModel {
     zipCode: string;
     document: string;
     birthday: Date;
+    email: string;
 
     constructor(
         id?: number,
@@ -20,7 +21,8 @@ export class SellerModel {
         state?: string,
         zipCode?: string,
         document?: string,
-        birthday?: Date
+        birthday?: Date,
+        email?: string
     ) {
         this.id = id || 0;
         this.name = name || '';
@@ -32,5 +34,6 @@ export class SellerModel {
         this.zipCode = zipCode || '';
         this.document = document || '';
         this.birthday = birthday || new Date();
+        this.email = email || '';
     }
 }

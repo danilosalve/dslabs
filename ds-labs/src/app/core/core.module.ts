@@ -6,6 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDatabase } from '../in-memory-database';
 import { ErrorsModule } from './errors/errors.module';
 import { MenuModule } from './menu/menu.module';
+import { ToolbarModule } from './toolbar/toolbar.module';
 
 @NgModule({
   declarations: [],
@@ -15,14 +16,16 @@ import { MenuModule } from './menu/menu.module';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
     MenuModule,
-    ErrorsModule
+    ErrorsModule,
+    ToolbarModule
   ],
   exports: [
     BrowserModule,
     SharedModule,
     HttpClientModule,
     MenuModule,
-    ErrorsModule
+    ErrorsModule,
+    ToolbarModule
   ]
 })
 export class CoreModule { }

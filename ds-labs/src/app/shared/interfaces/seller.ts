@@ -9,4 +9,5 @@ export interface Seller {
   zipCode: string;
   document: string;
   birthday: Date;
+  email: string;
 }
