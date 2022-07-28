@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import {
+  PoDynamicFormField,
   PoNotificationService, PoTableColumn,
   PoTableColumnIcon
 } from '@po-ui/ng-components';
@@ -15,7 +16,7 @@ export class TablesService extends BaseResourceServiceFull<Table> {
         protected override injector: Injector,
         protected poNotification: PoNotificationService
     ) {
-        super('api/tables', injector);
+        super('api/tables/', injector);
     }
 
     getColumns(): PoTableColumn[] {
@@ -61,7 +62,7 @@ export class TablesService extends BaseResourceServiceFull<Table> {
                 property: 'status',
                 label: 'Sincronizar?',
                 type: 'icon',
-                width: '9%',
+                width: '15%',
                 icons: [
                     {
                         action: (value: Table, row: PoTableColumnIcon) => {
@@ -88,13 +89,49 @@ export class TablesService extends BaseResourceServiceFull<Table> {
         ];
     }
 
+    getFormFields(): PoDynamicFormField[] {
+      return [
+        {
+          label: 'Tabela',
+          property: 'table',
+          type: 'String',
+          required: true,
+          placeholder: 'Alias da Tabela',
+          help: "Alias da Tabela",
+          disabled: true
+        },
+        {
+          label: 'Descrição',
+          property: 'description',
+          type: 'String',
+          required: true,
+          placeholder: 'Descrição da Tabela',
+          help: 'Descrição da Tabela',
+          disabled: true
+        },
+        {
+          label: 'Sincronizar?',
+          property: 'isSync',
+          type: 'Boolean',
+          help: 'Habilitar/Desabilitar o Sincronismo',
+          booleanTrue: 'Habilitado',
+          booleanFalse: 'Desabilitado',
+          disabled: false
+        }
+      ];
+    }
+
     private handleClickSync(value: Table, row: PoTableColumnIcon): void {
         if (this.canEditTheTable(value)) {
+          const action = value.status === TableStatus.ACTIVATED ? 'Desabilitado' : 'Habilitado';
             value.status =
                 value.status === TableStatus.ACTIVATED
                     ? TableStatus.DISABLED
                     : TableStatus.ACTIVATED;
-            this.put(value, value.id);
+            this.put(value, value.id).subscribe({
+              next: () => this.poNotification.success(`Sincronismo ${action} com sucesso`),
+              error: () => this.poNotification.error(`Falha ao ${action} Sincronismo`)
+            });
         } else {
           this.poNotification.error('Tabela não pode ser Editada')
         }

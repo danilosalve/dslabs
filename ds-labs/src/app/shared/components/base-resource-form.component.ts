@@ -11,6 +11,7 @@ export abstract class BaseResourceForm implements OnInit {
     resourceId!: string | number;
     titlePage = '';
     fields: PoDynamicFormField[] = [];
+    isLoading = false;
 
     protected activatedroute: ActivatedRoute;
     protected poNotification: PoNotificationService;

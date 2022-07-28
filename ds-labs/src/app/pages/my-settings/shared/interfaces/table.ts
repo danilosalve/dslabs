@@ -7,4 +7,5 @@ export interface Table {
   status: TableStatus;
   canEdit: boolean;
   filter: string;
+  isSync?: boolean
 }

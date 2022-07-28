@@ -1,0 +1,40 @@
+<po-page-edit
+    [p-title]="titlePage"
+    [p-breadcrumb]="breadcrumb"
+    (p-cancel)="handleBack()"
+    (p-save)="onSubmit()"
+    [p-disable-submit]="isDisableSubmit"
+>
+    <po-loading
+        p-text="Salvando configurações"
+        [hidden]="!isLoading"
+    ></po-loading>
+    <po-dynamic-form
+        [p-fields]="fields"
+        [p-value]="table"
+        (p-form)="setForm($event)"
+    ></po-dynamic-form>
+    <po-divider p-label="Filtros"> </po-divider>
+    <app-advanced-filter
+        [fieldsTable]="fieldsTable"
+        (filterEvent)="handleAdvancedFilter($event)"
+        [disclaimer]="disclaimerFilters"
+    ></app-advanced-filter>
+    <po-divider></po-divider>
+    <po-container>
+        <div class="po-row">
+            <po-disclaimer-group
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                [p-hide-remove-all]="true"
+                [p-disclaimers]="disclaimerFilters"
+                p-title="Filtrar registros por:"
+            ></po-disclaimer-group>
+            <div
+                *ngIf="disclaimerFilters.length === 0"
+                class="po-table-no-data po-text-center"
+            >
+                <span>Não há dados</span>
+            </div>
+        </div>
+    </po-container>
+</po-page-edit>

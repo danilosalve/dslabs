@@ -1,0 +1,115 @@
+<po-button
+    p-class="po-mt-2 po-mb-2"
+    p-label="Definir Filtros"
+    p-icon="po-icon-filter"
+    (p-click)="handleFilterButton()"
+></po-button>
+
+<po-modal
+    p-title="Criar/Editar Filtros"
+    [p-primary-action]="confirm"
+    [p-secondary-action]="cancel"
+>
+    <po-container>
+        <po-widget>
+            <form [formGroup]="formField">
+                <div class="po-row">
+                    <po-combo
+                        class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+                        id="field"
+                        formControlName="field"
+                        [p-options]="fieldsList"
+                        [p-required]="true"
+                        p-label="Campo"
+                        p-help="Selecione o campo desejado"
+                        p-placeholder="Selecionar Campo"
+                        (p-change)="onChangeField($event)"
+                    ></po-combo>
+
+                    <po-select
+                        class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+                        id="operator"
+                        formControlName="operator"
+                        [p-options]="operatorList"
+                        [p-required]="true"
+                        p-label="Operador"
+                        p-help="Selecione o tipo de operador lógico"
+                        p-placeholder="Selecionar Operador"
+                    ></po-select>
+                </div>
+                <div class="po-row">
+                    <po-input
+                        *ngIf="isString"
+                        class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        id="expression"
+                        formControlName="expression"
+                        p-label="Expressão"
+                        p-help="Informe a Expressão utilizada para filtrar o registro"
+                        p-placeholder="Exemplo: 000001"
+                        p-required="true"
+                        p-clean="true"
+                    ></po-input>
+
+                    <po-datepicker
+                        *ngIf="isDate"
+                        class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        id="expression"
+                        formControlName="expression"
+                        p-label="Expressão"
+                        p-help="Informe a data utilizada para filtrar o registro"
+                        p-placeholder="00/00/0000"
+                        p-clean="true"
+                        p-required="true"
+                    ></po-datepicker>
+
+                    <po-number
+                        *ngIf="isNumeric"
+                        class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        id="expression"
+                        formControlName="expression"
+                        p-label="Expressão"
+                        p-help="Informe a data utilizada para filtrar o registro"
+                        p-placeholder="0"
+                        p-clean="true"
+                        p-required="true"
+                    ></po-number>
+
+                    <po-decimal
+                        *ngIf="isDecimal"
+                        class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        id="expression"
+                        formControlName="expression"
+                        p-label="Expressão"
+                        p-help="Informe a data utilizada para filtrar o registro"
+                        p-placeholder="0,00"
+                        p-clean="true"
+                        p-required="true"
+                    ></po-decimal>
+                </div>
+                <div class="po-row">
+                    <po-button-group
+                        class="po-xl-8 po-lg-8 po-md-8 po-sm-12 po-mb-1"
+                        [p-buttons]="operatorLogical"
+                    ></po-button-group>
+                    <po-button
+                        class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mb-1"
+                        p-label="Adicionar"
+                        p-kind="primary"
+                        [p-disabled]="formField.invalid"
+                        (p-click)="addFilter()"
+                    ></po-button>
+                </div>
+            </form>
+        </po-widget>
+        <po-widget>
+            <div class="po-row">
+                <po-disclaimer-group
+                    class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                    [p-disclaimers]="disclaimerFilters"
+                    (p-remove-all)="onRemoveAll()"
+                >
+                </po-disclaimer-group>
+            </div>
+        </po-widget>
+    </po-container>
+</po-modal>
