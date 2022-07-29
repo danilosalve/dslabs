@@ -10,6 +10,7 @@ export class SellerModel {
     document: string;
     birthday: Date;
     email: string;
+    isAdmin: boolean;
 
     constructor(
         id?: number,
@@ -22,7 +23,8 @@ export class SellerModel {
         zipCode?: string,
         document?: string,
         birthday?: Date,
-        email?: string
+        email?: string,
+        isAdmin = false
     ) {
         this.id = id || 0;
         this.name = name || '';
@@ -35,5 +37,6 @@ export class SellerModel {
         this.document = document || '';
         this.birthday = birthday || new Date();
         this.email = email || '';
+        this.isAdmin = isAdmin
     }
 }

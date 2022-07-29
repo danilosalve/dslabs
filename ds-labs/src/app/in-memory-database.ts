@@ -1453,7 +1453,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 'SP',
                 '02511000',
                 '26314792894',
-                new Date('1978-01-01'),
+                new Date('1978-01-02'),
                 'marshall.eriksen@dslabs.com.br'
             )
         ];

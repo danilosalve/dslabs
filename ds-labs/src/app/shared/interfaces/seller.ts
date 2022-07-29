@@ -10,4 +10,5 @@ export interface Seller {
   document: string;
   birthday: Date;
   email: string;
+  isAdmin: boolean;
 }
