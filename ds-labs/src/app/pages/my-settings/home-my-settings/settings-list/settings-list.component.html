@@ -2,6 +2,7 @@
     <div class="po-row">
         <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
             <app-filter-input
+                [bdcWalkTriggerFor]="settingsListStep1"
                 placeHolder="Pesquisar..."
                 (changeSearch)="onSearchResources($event)"
                 help="Efetue a busca utilizando Tabela ou Descrição"
@@ -10,6 +11,7 @@
         </div>
     </div>
     <po-table
+        [bdcWalkTriggerFor]="settingsListStep2"
         [p-sort]="true"
         [p-items]="items"
         [p-columns]="columns"
@@ -19,3 +21,54 @@
         [p-height]="450"
     ></po-table>
 </po-page-list>
+
+<bdc-walk-dialog #dialogFinish name="dialogFinish" width="650px">
+  <div class="po-row">
+    <p class="po-font-title">Novo por aqui?</p>
+    <p class="po-font-subtitle">
+      Não se preocupe, conheça todas as funcionalidades da página Minhas Configurações.
+    </p>
+    <p class="po-font-text">
+      Com ela você poderá definir quais cadastros serão sincronizados com o Gestão de Vendas,
+      Os cadastros habilitados poderão ser utilizados sempre que você perder a conexão com a Internet,
+      mas cuidado, serão carregados somente dez registros por cadastros, portando lembre-se de filtrar quais registros serão realmente utilizados.
+    </p>
+  </div>
+  <div class="po-row">
+    <po-button class="po-mt-3"(click)="dialogFinish.close()" p-label="Fechar"></po-button>
+  </div>
+</bdc-walk-dialog>
+
+<bdc-walk-popup
+    #settingsListStep1
+    name="settingsListStep1"
+    header="Passo 1"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsListStep1: 1 }"
+    class="warning"
+    sideNoteText="1/2"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Pesquise utilizando o <b>código</b> da Tabela ou <b>Descrição</b>,
+        exemplo: Clientes
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsListStep2
+    name="settingsListStep2"
+    header="Passo 2"
+    xPosition="after"
+    [mustCompleted]="{ settingsListStep1: 1 }"
+    class="warning"
+    sideNoteText="2/2"
+    [showButton]="true"
+    buttonText="Entendi"
+>
+    <p>
+        Clique em <b>editar</b> para acessar as configurações de
+        <b>sincronismo</b> da tabela.
+    </p>
+</bdc-walk-popup>

@@ -8,6 +8,7 @@ import {
   PoToolbarAction,
   PoToolbarProfile
 } from '@po-ui/ng-components';
+import { BdcWalkService } from 'bdc-walkthrough';
 import { take } from 'rxjs/operators';
 import { SellerModel } from './../../shared/model/seller.model';
 import { PhonePipe } from './../../shared/pipe/phone.pipe';
@@ -34,6 +35,11 @@ export class ToolbarComponent implements OnInit {
             icon: 'po-icon-settings',
             label: 'Configurações',
             action: () => this.navigateToSettings()
+        },
+        {
+            icon: 'po-icon-help',
+            label: 'Reiniciar Tutorial',
+            action: () => this.clearBdcWalk()
         },
         { icon: 'po-icon-exit', label: 'Sair', type: 'danger', separator: true }
     ];
@@ -62,7 +68,8 @@ export class ToolbarComponent implements OnInit {
         private router: Router,
         private documentPipe: DocumentPipe,
         private phonePipe: PhonePipe,
-        private zipcodePipe: ZipcodePipe
+        private zipcodePipe: ZipcodePipe,
+        private bdcWalkService: BdcWalkService
     ) {}
 
     ngOnInit() {
@@ -118,5 +125,9 @@ export class ToolbarComponent implements OnInit {
 
     transformZipCodeSeller(zipCode: string): string {
       return this.zipcodePipe.transform(zipCode);
+    }
+
+    clearBdcWalk(): void {
+      this.bdcWalkService.reset();
     }
 }
