@@ -16,6 +16,7 @@
                 <div class="po-row">
                     <po-combo
                         class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep1"
                         id="field"
                         formControlName="field"
                         [p-options]="fieldsList"
@@ -28,6 +29,7 @@
 
                     <po-select
                         class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep2"
                         id="operator"
                         formControlName="operator"
                         [p-options]="operatorList"
@@ -41,6 +43,7 @@
                     <po-input
                         *ngIf="isString"
                         class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep3"
                         id="expression"
                         formControlName="expression"
                         p-label="Expressão"
@@ -53,6 +56,7 @@
                     <po-datepicker
                         *ngIf="isDate"
                         class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep3"
                         id="expression"
                         formControlName="expression"
                         p-label="Expressão"
@@ -65,6 +69,7 @@
                     <po-number
                         *ngIf="isNumeric"
                         class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep3"
                         id="expression"
                         formControlName="expression"
                         p-label="Expressão"
@@ -77,6 +82,7 @@
                     <po-decimal
                         *ngIf="isDecimal"
                         class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep3"
                         id="expression"
                         formControlName="expression"
                         p-label="Expressão"
@@ -89,10 +95,12 @@
                 <div class="po-row">
                     <po-button-group
                         class="po-xl-8 po-lg-8 po-md-8 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep4"
                         [p-buttons]="operatorLogical"
                     ></po-button-group>
                     <po-button
                         class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mb-1"
+                        [bdcWalkTriggerFor]="settingsAdvancedFilterStep5"
                         p-label="Adicionar"
                         p-kind="primary"
                         [p-disabled]="formField.invalid"
@@ -102,7 +110,7 @@
             </form>
         </po-widget>
         <po-widget>
-            <div class="po-row">
+            <div class="po-row" [bdcWalkTriggerFor]="settingsAdvancedFilterStep6">
                 <po-disclaimer-group
                     class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
                     [p-disclaimers]="disclaimerFilters"
@@ -113,3 +121,104 @@
         </po-widget>
     </po-container>
 </po-modal>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep1
+    name="settingsAdvancedFilterStep1"
+    header="Passo 1"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep1: 1 }"
+    class="warning"
+    sideNoteText="1/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Selecione um ou mais <b>campos</b> desejados para filtrar os registros.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep2
+    name="settingsAdvancedFilterStep2"
+    header="Passo 2"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep2: 1 }"
+    [mustCompleted]="{ settingsAdvancedFilterStep1: 1 }"
+    class="warning"
+    sideNoteText="2/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+      Selecione um <b>operador</b> filtrar os registros.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep3
+    name="settingsAdvancedFilterStep3"
+    header="Passo 3"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep3: 1 }"
+    [mustCompleted]="{ settingsAdvancedFilterStep2: 1 }"
+    class="warning"
+    sideNoteText="3/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+      Informe o conteudo do filtro
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep4
+    name="settingsAdvancedFilterStep4"
+    header="Passo 4"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep4: 1 }"
+    [mustCompleted]="{ settingsAdvancedFilterStep3: 1 }"
+    class="warning"
+    sideNoteText="4/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Caso queira juntar um ou mais filtros selecione uma das opções.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep5
+    name="settingsAdvancedFilterStep5"
+    header="Passo 5"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep5: 1 }"
+    [mustCompleted]="{ settingsAdvancedFilterStep4: 1 }"
+    class="warning"
+    sideNoteText="5/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Clique em Adicionar para incluir a expressão na lista.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsAdvancedFilterStep6
+    name="settingsAdvancedFilterStep6"
+    header="Passo 6"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsAdvancedFilterStep6: 1 }"
+    [mustCompleted]="{ settingsAdvancedFilterStep5: 1 }"
+    class="warning"
+    sideNoteText="6/6"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Clique em <b>Confirmar</b> para salvar o filtro de busca.
+    </p>
+</bdc-walk-popup>

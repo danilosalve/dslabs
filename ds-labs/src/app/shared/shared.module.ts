@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { BdcWalkModule } from 'bdc-walkthrough';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { DocumentPipe } from './pipe/document.pipe';
 
@@ -18,7 +19,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     PoTemplatesModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    BdcWalkModule
   ],
   exports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     FormsModule,
     RouterModule,
     PoTemplatesModule,
-    FilterInputComponent
+    FilterInputComponent,
+    BdcWalkModule
   ]
 })
 export class SharedModule { }

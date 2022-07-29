@@ -10,12 +10,14 @@
         [hidden]="!isLoading"
     ></po-loading>
     <po-dynamic-form
+        [bdcWalkTriggerFor]="settingsFormStep1"
         [p-fields]="fields"
         [p-value]="table"
         (p-form)="setForm($event)"
     ></po-dynamic-form>
     <po-divider p-label="Filtros"> </po-divider>
     <app-advanced-filter
+        [bdcWalkTriggerFor]="settingsFormStep2"
         [fieldsTable]="fieldsTable"
         (filterEvent)="handleAdvancedFilter($event)"
         [disclaimer]="disclaimerFilters"
@@ -24,6 +26,7 @@
     <po-container>
         <div class="po-row">
             <po-disclaimer-group
+                [bdcWalkTriggerFor]="settingsFormStep3"
                 class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
                 [p-hide-remove-all]="true"
                 [p-disclaimers]="disclaimerFilters"
@@ -38,3 +41,52 @@
         </div>
     </po-container>
 </po-page-edit>
+
+<bdc-walk-popup
+    #settingsFormStep1
+    name="settingsFormStep1"
+    header="Passo 1"
+    xPosition="before"
+    [onButtonCompleteTask]="{ settingsFormStep1: 1 }"
+    class="warning"
+    sideNoteText="1/3"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Visualize os dados da Tabela e clique em <b>habilitar</b>, para iniciar o sincronismo deste cadastro.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsFormStep2
+    name="settingsFormStep2"
+    header="Passo 2"
+    xPosition="after"
+    [onButtonCompleteTask]="{ settingsFormStep2: 1 }"
+    [mustCompleted]="{ settingsFormStep1: 1 }"
+    class="warning"
+    sideNoteText="2/3"
+    [showButton]="true"
+    buttonText="Próximo"
+>
+    <p>
+        Selecione os <b>Filtros</b> utilizados para buscar os registros.
+    </p>
+</bdc-walk-popup>
+
+<bdc-walk-popup
+    #settingsFormStep3
+    name="settingsFormStep3"
+    header="Passo 2"
+    xPosition="after"
+    [mustCompleted]="{ settingsFormStep2: 1 }"
+    class="warning"
+    sideNoteText="3/3"
+    [showButton]="true"
+    buttonText="Entendi"
+>
+    <p>
+        Visualize os filtros cadastrados.
+    </p>
+</bdc-walk-popup>
