@@ -160,6 +160,106 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.RURAL_PRODUCER,
                 registerDate: this.getDateRandom()
+            },
+            {
+                id: 12,
+                name: 'Anderson Kauê Heitor Lopes',
+                document: '99823412863',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 13,
+                name: 'Luís Renato Pedro Ribeiro',
+                document: '58167534871',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 14,
+                name: 'Jennifer Vera Pereira',
+                document: '26107997806',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 15,
+                name: 'Benedita Isabelly Moraes',
+                document: '77998490888',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 16,
+                name: 'Eduarda Sandra Sabrina Nogueira',
+                document: '04452686893',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 17,
+                name: 'Augusto e Mariane Contábil ME',
+                document: '16639016000189',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 18,
+                name: 'Sacolão -  Meu pé de Laranja Lima',
+                document: '01112463000108',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.DEALER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 19,
+                name: 'Betina Lorena Drumond',
+                document: '81107387884',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.FINAL_COSTUMER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 20,
+                name: 'Pães e Doces Dona Florinda',
+                document: '34971954000163',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.DEALER,
+                registerDate: this.getDateRandom()
+            },
+            {
+                id: 21,
+                name: 'Luiza e Maitê Restaurante ME',
+                document: '43571746000168',
+                state: 'SP',
+                city: 'São Paulo',
+                status: CustomerStatus.active,
+                customerType: CustomerType.DEALER,
+                registerDate: this.getDateRandom()
             }
         ];
 

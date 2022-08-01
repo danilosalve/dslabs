@@ -1,4 +1,4 @@
-import { Directive, Injector, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, HostListener, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
@@ -7,7 +7,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { BaseResourceServiceFull } from '../services/base-resource-full.service';
 
 @Directive()
-export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
+export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterViewInit {
   actions: PoPageAction[] = [];
   columns: Array<PoTableColumn> = [];
   isLoading = true;
@@ -15,6 +15,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
   items$ = new Subscription();
   tableActions: PoTableAction[] = [];
   titlePage = '';
+  tableHeight: number = 400;
 
   private titleService: Title;
   protected poNotification: PoNotificationService;
@@ -27,6 +28,11 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
     this.activatedroute = injector.get(ActivatedRoute);
     this.poNotification = injector.get(PoNotificationService);
     this.titleService = injector.get(Title);
+  }
+
+  ngAfterViewInit(): void {
+    this.onResize();
+
   }
 
   ngOnInit(): void {
@@ -83,6 +89,33 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
 
   onSearchResources(search: string): void {
     this.getItems(search);
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    setTimeout(() => this.setTableHeight(), 200);
+  }
+
+  setTableHeight(): void {
+    let elements = [];
+
+    elements.push(this.getElementHeightById('.po-menu-mobile po-clickable'));
+    elements.push(this.getElementHeightById('.filter-input'));
+    elements.push(this.getElementHeightById('.po-button'));
+    elements.push(this.getElementHeightById('.po-page-header'));
+    elements.push(this.getElementHeightById('.toolbar'));
+    elements.push(this.getElementHeightById('.po-table-subtitle-footer-container'));
+
+    this.tableHeight = this.calculateTableHeight(elements) - 200;
+  }
+
+  getElementHeightById(id: string): number {
+    const el = document.querySelector(id);
+    return el ? el.clientHeight : 0;
+  }
+
+  calculateTableHeight(elements: number[]): number {
+    return elements.reduce((amount, currency) => amount - currency, window.innerHeight);
   }
 
   abstract getActions(): PoPageAction[];

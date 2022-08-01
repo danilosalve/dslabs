@@ -49,26 +49,27 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                     }
                 ]
             },
-            { property: 'id', label: 'Código', type: 'number', width:'100px' },
-            { property: 'name', label: 'Nome Cliente', type: 'string' },
+            { property: 'id', label: 'Código', type: 'number', width:'8%' },
+            { property: 'name', label: 'Nome Cliente', type: 'string', width:'25%' },
             {
                 property: 'document',
                 label: 'CPF/CNPJ',
                 type: 'columnTemplate',
                 width: '10%'
             },
-            { property: 'state', label: 'UF', type: 'string' },
-            { property: 'city', label: 'Municipio', type: 'string' },
+            { property: 'state', label: 'UF', type: 'string', width:'10%' },
+            { property: 'city', label: 'Municipio', type: 'string', width:'15%' },
             {
                 property: 'registerDate',
                 label: 'Dt. Nasc/Registro',
-                type: 'date'
+                type: 'date',
+                width:'15%'
             },
             {
               property: 'customerType',
               label: 'Tipo',
               type: 'subtitle',
-              width:'100px',
+              width:'5%',
               subtitles: [
                   {
                       value: CustomerType.FINAL_COSTUMER,

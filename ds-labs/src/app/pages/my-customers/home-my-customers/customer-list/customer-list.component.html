@@ -16,7 +16,7 @@
     [p-max-columns]="8"
     [p-loading]="isLoading"
     [p-actions]="tableActions"
-    [p-height]="450"
+    [p-height]="tableHeight"
   >
   <ng-template  p-table-column-template [p-property]="'document'" let-value>
     <span [innerText]="transformDocument(value)"></span>
