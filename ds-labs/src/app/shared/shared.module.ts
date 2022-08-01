@@ -6,12 +6,14 @@ import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { BdcWalkModule } from 'bdc-walkthrough';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
+import { ViewButtonComponent } from './components/view-button/view-button.component';
 import { DocumentPipe } from './pipe/document.pipe';
 
 @NgModule({
   declarations: [
     FilterInputComponent,
-    DocumentPipe
+    DocumentPipe,
+    ViewButtonComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     RouterModule,
     PoTemplatesModule,
     FilterInputComponent,
-    BdcWalkModule
+    BdcWalkModule,
+    ViewButtonComponent
   ]
 })
 export class SharedModule { }

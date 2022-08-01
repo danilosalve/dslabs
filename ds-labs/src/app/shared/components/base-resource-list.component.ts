@@ -5,6 +5,7 @@ import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } fro
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { BaseResourceServiceFull } from '../services/base-resource-full.service';
+import { DEVICE_BUTTON_STYLE } from './view-button/view-button.component';
 
 @Directive()
 export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterViewInit {
@@ -16,6 +17,8 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterVie
   tableActions: PoTableAction[] = [];
   titlePage = '';
   tableHeight: number = 400;
+  isSmartPhone = false;
+  classDevice: string = DEVICE_BUTTON_STYLE;
 
   private titleService: Title;
   protected poNotification: PoNotificationService;
@@ -106,7 +109,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterVie
     elements.push(this.getElementHeightById('.toolbar'));
     elements.push(this.getElementHeightById('.po-table-subtitle-footer-container'));
 
-    this.tableHeight = this.calculateTableHeight(elements) - 200;
+    this.tableHeight = this.calculateTableHeight(elements) - 175;
   }
 
   getElementHeightById(id: string): number {
@@ -116,6 +119,13 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterVie
 
   calculateTableHeight(elements: number[]): number {
     return elements.reduce((amount, currency) => amount - currency, window.innerHeight);
+  }
+
+  onChangeDevice(device: {isSmartphone: boolean, class: string}): void {
+    setTimeout(() => {
+      this.classDevice = device.class;
+      this.isSmartPhone = device.isSmartphone;
+    }, 1000);
   }
 
   abstract getActions(): PoPageAction[];
