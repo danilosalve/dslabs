@@ -1,0 +1,74 @@
+<div class="po-row">
+    <po-avatar
+        class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+        p-size="lg"
+        [p-src]="avatarUrl"
+    ></po-avatar>
+    <po-checkbox
+        class="po-xl-2 po-lg-2 po-md-2 po-sm-2"
+        name="seller.isAdmin"
+        [(ngModel)]="seller.isAdmin"
+        [p-disabled]="true"
+        p-label="Usuário Administrador"
+    >
+    </po-checkbox>
+</div>
+<po-divider p-label="Dados Gerais"></po-divider>
+<div class="po-row">
+    <po-info
+        class="po-xl-6 po-lg-12 po-md-12 po-sm-12"
+        p-label="Nome"
+        [p-value]="seller.name"
+    ></po-info>
+    <po-info
+        class="po-xl-3 po-lg-6 po-md-6 po-sm-6"
+        p-label="CPF"
+        [p-value]="transformDocumentSeller(seller.document)"
+    ></po-info>
+    <po-info
+        class="po-xl-3 po-lg-6 po-md-6 po-sm-6"
+        p-label="Dt. Nascimento"
+        [p-value]="transformBirthDaySeller(seller.birthday)"
+    ></po-info>
+</div>
+<po-divider p-label="Contato"></po-divider>
+<div class="po-row">
+    <po-info
+        class="po-xl-6 po-lg-12 po-md-12 po-sm-12"
+        p-label="E-mail"
+        [p-value]="seller.email"
+    ></po-info>
+    <po-info
+        class="po-xl-1 po-lg-1 po-md-1 po-sm-2"
+        p-label="DDD"
+        [p-value]="seller.ddd.toString()"
+    ></po-info>
+    <po-info
+        class="po-xl-5 po-lg-11 po-md-11 po-sm-10"
+        p-label="Celular"
+        [p-value]="transformPhoneSeller(seller.phone)"
+    ></po-info>
+</div>
+<po-divider p-label="Endereço"></po-divider>
+<div class="po-row">
+    <po-info
+        class="po-xl-6 po-lg-12 po-md-12 po-sm-12"
+        p-label="Logradouro"
+        [p-value]="seller.address"
+    ></po-info>
+    <po-info
+        class="po-xl-5 po-lg-5 po-md-6 po-sm-10"
+        p-label="Cidade"
+        [p-value]="seller.city"
+    ></po-info>
+    <po-info
+        class="po-xl-1 po-lg-1 po-md-2 po-sm-2"
+        p-label="UF"
+        [p-value]="seller.state"
+    ></po-info>
+    <po-info
+        class="po-xl-5 po-lg-5 po-md-5 po-sm-12"
+        p-label="CEP"
+        [p-value]="transformZipCodeSeller(seller.zipCode)"
+    ></po-info>
+</div>

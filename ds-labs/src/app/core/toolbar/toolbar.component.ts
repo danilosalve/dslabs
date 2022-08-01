@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Seller } from '@app/shared/interfaces/seller';
-import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import {
   PoModalComponent,
   PoNotificationService,
@@ -11,8 +10,6 @@ import {
 import { BdcWalkService } from 'bdc-walkthrough';
 import { take } from 'rxjs/operators';
 import { SellerModel } from './../../shared/model/seller.model';
-import { PhonePipe } from './../../shared/pipe/phone.pipe';
-import { ZipcodePipe } from './../../shared/pipe/zipcode.pipe';
 import { SellerService } from './../../shared/services/seller.service';
 
 @Component({
@@ -32,14 +29,19 @@ export class ToolbarComponent implements OnInit {
             action: () => this.handleProfileSeller()
         },
         {
-            icon: 'po-icon-settings',
-            label: 'Configurações',
-            action: () => this.navigateToSettings()
+          icon: 'po-icon-settings',
+          label: 'Configurações',
+          action: () => this.navigateToSettings()
         },
         {
-            icon: 'po-icon-help',
-            label: 'Reiniciar Tutorial',
-            action: () => this.clearBdcWalk()
+          icon: 'po-icon-help',
+          label: 'Reiniciar Tutorial',
+          action: () => this.clearBdcWalk()
+        },
+        {
+            icon: 'po-icon-info',
+            label: 'Sobre',
+            action: () => this.handleAbout()
         },
         { icon: 'po-icon-exit', label: 'Sair', type: 'danger', separator: true }
     ];
@@ -60,15 +62,14 @@ export class ToolbarComponent implements OnInit {
         },
         { icon: 'po-icon-message', label: 'Pedido incluido com sucesso 000001' }
     ];
+    isProfile = true;
+    titleModal = '';
     @ViewChild(PoModalComponent, { static: true }) poModal!: PoModalComponent;
 
     constructor(
         private sellerService: SellerService,
         private poNotification: PoNotificationService,
         private router: Router,
-        private documentPipe: DocumentPipe,
-        private phonePipe: PhonePipe,
-        private zipcodePipe: ZipcodePipe,
         private bdcWalkService: BdcWalkService
     ) {}
 
@@ -104,30 +105,18 @@ export class ToolbarComponent implements OnInit {
     }
 
     handleProfileSeller(): void {
+        this.titleModal = 'Meu Perfil';
+        this.isProfile = true;
         this.poModal.open();
     }
 
-    transformDocumentSeller(document: string): string {
-        return this.documentPipe.transform(document);
-    }
-
-    transformBirthDaySeller(birthday: Date): string {
-        const date =
-            typeof birthday.toLocaleDateString === 'function'
-                ? birthday
-                : new Date(birthday);
-        return date ? date.toLocaleDateString() : '';
-    }
-
-    transformPhoneSeller(phone: number): string {
-      return this.phonePipe.transform(phone);
-    }
-
-    transformZipCodeSeller(zipCode: string): string {
-      return this.zipcodePipe.transform(zipCode);
+    handleAbout(): void {
+        this.titleModal = 'Sobre';
+        this.isProfile = false;
+        this.poModal.open();
     }
 
     clearBdcWalk(): void {
-      this.bdcWalkService.reset();
+        this.bdcWalkService.reset();
     }
 }
