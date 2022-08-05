@@ -168,7 +168,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
     }
 
     getCustomer(sale: Sales): Observable<SalesBrw> {
-        return this.customerService.getById(sale.id!).pipe(
+        return this.customerService.getById(sale.customerId!).pipe(
             map(customer => ({
                 ...sale,
                 customerName: customer.name
