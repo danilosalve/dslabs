@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gestao-de-vendas-labs": {
+      "hosting": {
+        "ds-labs": [
+          "gestao-de-vendas-labs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gestao-de-vendas-labs"
+  }
+}

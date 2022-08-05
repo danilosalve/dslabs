@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "ds-labs",
+    "public": "dist/ds-labs",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
