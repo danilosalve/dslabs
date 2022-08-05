@@ -37,7 +37,6 @@ export class ProductListComponent implements OnDestroy {
         }),
         map(products =>
           products.map(product => ({
-            id: 0,
             salesId: 0,
             itemId: 0,
             productId: product.id,

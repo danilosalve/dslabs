@@ -10,88 +10,94 @@ import { SalesItemsService } from '../shared/services/sales-items.service';
 import { SalesService } from '../shared/services/sales.service';
 import { SalesItems } from './../shared/interfaces/sales-items';
 @Component({
-  selector: 'app-sales-form',
-  templateUrl: './sales-form.component.html'
+    selector: 'app-sales-form',
+    templateUrl: './sales-form.component.html'
 })
 export class SalesFormComponent extends BaseResourceForm {
-  sales: Sales = new SalesModel();
-  dynamicForm: NgForm | undefined;
-  salesItems: SalesItems[] = [];
-  itemId = 0;
+    sales: Sales = new SalesModel();
+    dynamicForm: NgForm | undefined;
+    salesItems: SalesItems[] = [];
+    itemId = 0;
 
-  constructor(
-    protected salesService: SalesService,
-    protected salesItemService: SalesItemsService,
-    protected override injector: Injector
-  ) {
-    super(injector, 'sales', true);
-  }
-
-  getBreadCrumb(): PoBreadcrumb {
-    return {
-      items: [
-        { label: 'Meus Pedidos', action: this.handleBack.bind(this) },
-        { label: 'Novo Pedido' }
-      ]
-    };
-  }
-
-  onSubmit(): void {
-    if (this.canSaveSalesOrder()) {
-      this.salesService
-      .create(this.sales)
-      .pipe(
-        tap(res => this.updateSalesIdOnItems(res.id)),
-        switchMap(sales => {
-          this.salesItems.forEach(item =>
-            this.salesItemService.create(item).subscribe({
-              error: () => this.handleErrorSubmit()
-            })
-          );
-          return of(sales);
-        })
-      )
-      .subscribe({
-        next: sale => {
-          this.poNotification.success(`Pedido de Venda ${sale.id} incluído com sucesso!!!`);
-          this.handleBack();
-        },
-        error: () => this.handleErrorSubmit()
-      });
-    } else {
-      if (this.salesItems.length === 0) {
-        this.poNotification.error('Adicione ao menos um produto no carrinho para Salvar o Pedido');
-      } else {
-        this.poNotification.error('Um ou mais campos obrigatorios não foram preenchidos');
-      }
+    constructor(
+        protected salesService: SalesService,
+        protected salesItemService: SalesItemsService,
+        protected override injector: Injector
+    ) {
+        super(injector, 'sales', true);
     }
-  }
 
-  handleErrorSubmit(): void {
-    this.poNotification.error('Falha ao incluir Pedido');
-  }
+    getBreadCrumb(): PoBreadcrumb {
+        return {
+            items: [
+                { label: 'Meus Pedidos', action: this.handleBack.bind(this) },
+                { label: 'Novo Pedido' }
+            ]
+        };
+    }
 
-  addSalesItem(salesItem: any): void {
-    this.salesItems = this.salesItems.concat(salesItem);
-    this.isDisableSubmit = !this.canSaveSalesOrder();
-  }
+    onSubmit(): void {
+        if (this.canSaveSalesOrder()) {
+            this.salesService
+                .create(this.sales)
+                .pipe(
+                    tap(res => this.updateSalesIdOnItems(res.id)),
+                    switchMap(sales => {
+                        this.salesItems.forEach(item =>
+                            this.salesItemService.create(item).subscribe({
+                                error: () => this.handleErrorSubmit()
+                            })
+                        );
+                        return of(sales);
+                    })
+                )
+                .subscribe({
+                    next: sale => {
+                        this.poNotification.success(
+                            `Pedido de Venda ${sale.id} incluído com sucesso!!!`
+                        );
+                        this.handleBack();
+                    },
+                    error: () => this.handleErrorSubmit()
+                });
+        } else {
+            if (this.salesItems.length === 0) {
+                this.poNotification.error(
+                    'Adicione ao menos um produto no carrinho para Salvar o Pedido'
+                );
+            } else {
+                this.poNotification.error(
+                    'Um ou mais campos obrigatorios não foram preenchidos'
+                );
+            }
+        }
+    }
 
-  updateSalesIdOnItems(id: number): void {
-    this.salesItems.map(items => items.salesId = id);
-  }
+    handleErrorSubmit(): void {
+        this.poNotification.error('Falha ao incluir Pedido');
+    }
 
-  canSaveSalesOrder(): boolean {
-    return this.dynamicForm?.valid! && this.salesItems.length > 0;
-  }
+    addSalesItem(salesItem: any): void {
+        this.salesItems = this.salesItems.concat(salesItem);
+        this.isDisableSubmit = !this.canSaveSalesOrder();
+    }
 
-  getForm(form: NgForm) {
-    this.dynamicForm = form;
-    this.dynamicForm.valueChanges?.subscribe(() => {
-      this.isDisableSubmit = !this.canSaveSalesOrder();
-    })
-  }
+    updateSalesIdOnItems(id: number): void {
+        this.salesItems.map(items => (items.salesId = id));
+    }
 
-  getFields(): PoDynamicFormField[] {
-    throw new Error('Method not implemented.');
-  }
+    canSaveSalesOrder(): boolean {
+        return this.dynamicForm?.valid! && this.salesItems.length > 0;
+    }
+
+    getForm(form: NgForm) {
+        this.dynamicForm = form;
+        this.dynamicForm.valueChanges?.subscribe(() => {
+            this.isDisableSubmit = !this.canSaveSalesOrder();
+        });
+    }
+
+    getFields(): PoDynamicFormField[] {
+        throw new Error('Method not implemented.');
+    }
 }
