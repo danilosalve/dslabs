@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BaseResourceForm } from '@app/shared/components/base-resource-form.component';
+import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
 import { PoBreadcrumb, PoDisclaimer, PoDynamicFormField } from '@po-ui/ng-components';
 import { clone } from 'ramda';
 import { finalize, tap } from 'rxjs/operators';

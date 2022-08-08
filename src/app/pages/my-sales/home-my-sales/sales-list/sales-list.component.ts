@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
-import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
+import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import {
   PoDialogService,
   PoPageAction,

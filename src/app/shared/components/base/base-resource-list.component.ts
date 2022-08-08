@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PoNotificationService, PoPageAction, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { BaseResourceServiceFull } from '../services/base-resource-full.service';
-import { DEVICE_BUTTON_STYLE } from './view-button/view-button.component';
+import { BaseResourceServiceFull } from '../../services/base-resource-full.service';
+import { DEVICE_BUTTON_STYLE } from '../view-button/view-button.component';
 
 @Directive()
 export abstract class BaseResourceList<T> implements OnInit, OnDestroy, AfterViewInit {

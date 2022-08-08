@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
+import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
 import { CustomerService } from '../../shared/services/customer.service';
 import { DocumentPipe } from './../../../../shared/pipe/document.pipe';
