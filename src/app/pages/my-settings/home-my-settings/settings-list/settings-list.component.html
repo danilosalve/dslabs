@@ -10,33 +10,36 @@
             ></app-filter-input>
         </div>
     </div>
-    <po-table
+    <app-setting-table
         [bdcWalkTriggerFor]="settingsListStep2"
-        [p-sort]="true"
-        [p-items]="items"
-        [p-columns]="columns"
-        [p-max-columns]="8"
-        [p-loading]="isLoading"
-        [p-actions]="tableActions"
-        [p-height]="tableHeight"
-    ></po-table>
+        (editTable)="onEditTable($event)"
+        [isLoading]="isLoading"
+        [items]="items"
+    ></app-setting-table>
 </po-page-list>
 
 <bdc-walk-dialog #dialogFinish name="dialogFinish" width="650px">
-  <div class="po-row">
-    <p class="po-font-title">Novo por aqui?</p>
-    <p class="po-font-subtitle">
-      Não se preocupe, conheça todas as funcionalidades da página Minhas Configurações.
-    </p>
-    <p class="po-font-text">
-      Com ela você poderá definir quais cadastros serão sincronizados com o Gestão de Vendas,
-      Os cadastros habilitados poderão ser utilizados sempre que você perder a conexão com a Internet,
-      mas cuidado, serão carregados somente dez registros por cadastros, portando lembre-se de filtrar quais registros serão realmente utilizados.
-    </p>
-  </div>
-  <div class="po-row">
-    <po-button class="po-mt-3"(click)="dialogFinish.close()" p-label="Fechar"></po-button>
-  </div>
+    <div class="po-row">
+        <p class="po-font-title">Novo por aqui?</p>
+        <p class="po-font-subtitle">
+            Não se preocupe, conheça todas as funcionalidades da página Minhas
+            Configurações.
+        </p>
+        <p class="po-font-text">
+            Com ela você poderá definir quais cadastros serão sincronizados com
+            o Gestão de Vendas, Os cadastros habilitados poderão ser utilizados
+            sempre que você perder a conexão com a Internet, mas cuidado, serão
+            carregados somente dez registros por cadastros, portando lembre-se
+            de filtrar quais registros serão realmente utilizados.
+        </p>
+    </div>
+    <div class="po-row">
+        <po-button
+            class="po-mt-3"
+            (click)="dialogFinish.close()"
+            p-label="Fechar"
+        ></po-button>
+    </div>
 </bdc-walk-dialog>
 
 <bdc-walk-popup

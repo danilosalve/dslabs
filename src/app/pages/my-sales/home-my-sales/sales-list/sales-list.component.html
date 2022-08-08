@@ -9,23 +9,11 @@
             ></app-filter-input>
         </div>
     </div>
-    <po-table
-        [p-sort]="true"
-        [p-items]="items"
-        [p-columns]="columns"
-        [p-max-columns]="5"
-        [p-loading]="isLoading"
-        [p-actions]="tableActions"
-        [p-height]="tableHeight"
-        [p-auto-collapse]="true"
-    >
-        <ng-template
-            p-table-row-template
-            let-rowItem
-            let-i="rowIndex"
-            [p-table-row-template-arrow-direction]="templateDirection"
-        >
-          <app-sale-status-details [sale]="rowItem"></app-sale-status-details>
-        </ng-template>
-    </po-table>
+    <app-sales-table
+        [items]="items"
+        [isLoading]="isLoading"
+        (showSale)="onShowSale($event)"
+        (editSale)="onEditSale($event)"
+        (deleteSale)="onDelete($event)"
+    ></app-sales-table>
 </po-page-list>
