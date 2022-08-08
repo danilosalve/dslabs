@@ -9,4 +9,5 @@ export interface SalesItems {
   productName: string;
   discount?: number;
   isSelected?: boolean;
+  customerOrderId?: string;
 }

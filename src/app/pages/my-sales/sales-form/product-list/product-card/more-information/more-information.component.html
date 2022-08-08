@@ -1,54 +1,93 @@
-<po-container *ngIf="salesItems" [p-no-border]="true" [p-no-shadow]="true" [p-no-padding]="true">
-  <p class="po-font-subtitle color">{{ salesItems.productName }}</p>
-  <p class="po-font-text-large">{{ salesItems.productId }}</p>
-  <div class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
-    <po-info
-    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
-    p-label="Valor Unitário"
-    [p-value]="value">
-  </po-info>
+<po-container
+    *ngIf="salesItems"
+    [p-no-border]="true"
+    [p-no-shadow]="true"
+    [p-no-padding]="true"
+>
+    <p class="po-font-subtitle color">{{ salesItems.productName }}</p>
+    <p class="po-font-text-large">{{ salesItems.productId }}</p>
+    <div class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+        <po-info
+            class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+            p-label="Valor Unitário"
+            [p-value]="value"
+        >
+        </po-info>
 
-  <po-info
-    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
-    p-label="Valor Total"
-    [p-value]="amount">
-  </po-info>
+        <po-info
+            class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+            p-label="Valor Total"
+            [p-value]="amount"
+        >
+        </po-info>
 
-  <po-info
-    class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
-    p-label="Vlr. Unitário com desconto"
-    [p-value]="discountedValue">
-  </po-info>
-  </div>
+        <po-info
+            class="po-sm-4 po-md-4 po-lg-4 po-xl-4"
+            p-label="Vlr. Unitário com desconto"
+            [p-value]="discountedValue"
+        >
+        </po-info>
+    </div>
 
-  <form [formGroup]="formItem" class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
-    <po-decimal
-      id="discount"
-      formControlName="discount"
-      class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
-      p-label="Desconto percentual (%)"
-      p-placeholder="0%"
-      p-help="Apenas números."
-      (p-blur)="onChange()"
-      p-clean="true"
-      [p-auto-focus]="false"
-      >
-    </po-decimal>
+    <form
+        [formGroup]="formItem"
+        class="po-row po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4"
+    >
+        <po-divider
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            p-label="Desconto"
+        ></po-divider>
+        <po-decimal
+            id="discount"
+            formControlName="discount"
+            class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
+            p-label="Desconto percentual (%)"
+            p-placeholder="0%"
+            p-help="Apenas números."
+            (p-blur)="onChange()"
+            p-clean="true"
+            [p-auto-focus]="false"
+        >
+        </po-decimal>
 
-    <po-decimal
-      id="discountamount"
-      formControlName="discountamount"
-      class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
-      p-label="Valor do desconto"
-      p-placeholder="00,00"
-      p-help="Apenas números."
-      (p-blur)="onChange()"
-      p-clean="true"
-      [p-auto-focus]="false">
-    </po-decimal>
-  </form>
+        <po-decimal
+            id="discountamount"
+            formControlName="discountamount"
+            class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
+            p-label="Valor do desconto"
+            p-placeholder="00,00"
+            p-help="Apenas números."
+            (p-blur)="onChange()"
+            p-clean="true"
+            [p-auto-focus]="false"
+        >
+        </po-decimal>
 
-  <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
-    <app-product-balance [productId]="salesItems.productId" [productName]="salesItems.productName"></app-product-balance>
-  </div>
+        <po-divider
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            p-label="Demais Informações"
+        ></po-divider>
+
+        <po-input
+            id="customerOrderId"
+            formControlName="customerOrderId"
+            name="customerOrderId"
+            class="po-sm-12 po-md-5 po-lg-5 po-xl-5 po-mr-5"
+            p-label="Ped. do Cliente"
+            p-placeholder="000000000"
+            p-help="Numéro do Pedido Cliente"
+            p-clean="true"
+            [p-maxlength]="9"
+            [p-no-autocomplete]="true"
+            [p-optional]="true"
+            (p-blur)="onChangeCustomerOrderId()"
+        ></po-input>
+    </form>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-mt-4">
+        <app-product-balance
+            [productId]="salesItems.productId"
+            [productName]="salesItems.productName"
+        ></app-product-balance>
+    </div>
 </po-container>

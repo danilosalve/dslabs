@@ -20,7 +20,9 @@ export class ProductCardComponent implements OnInit {
         salesId: 0,
         itemId: 0,
         value: 0,
-        amount: 0
+        amount: 0,
+        customerOrderId: ''
+
     };
     formItem!: UntypedFormGroup;
     isEnableButton = false;
@@ -51,7 +53,8 @@ export class ProductCardComponent implements OnInit {
                 this.salesItem.amount,
                 [Validators.required, Validators.min(0.01)]
             ],
-            discount: [0, [Validators.min(0), Validators.max(99.99)]]
+            discount: [0, [Validators.min(0), Validators.max(99.99)]],
+            customerOrderId: ['', [Validators.maxLength(9)]]
         });
     }
 

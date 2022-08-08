@@ -45,7 +45,8 @@ export class ProductListComponent implements OnDestroy {
             quantity: 0,
             amount: 0,
             discount: 0,
-            isSelected: false
+            isSelected: false,
+            customerOrderId: ''
           }))
         )
       )
