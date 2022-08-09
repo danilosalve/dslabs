@@ -1,21 +1,29 @@
 <po-page-list #poPageList [p-title]="titlePage">
     <div class="po-row">
-        <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
-            <app-filter-input
-                [bdcWalkTriggerFor]="settingsListStep1"
-                placeHolder="Pesquisar..."
-                (changeSearch)="onSearchResources($event)"
-                help="Efetue a busca utilizando Tabela ou Descrição"
-                [debounceInput]="1000"
-            ></app-filter-input>
-        </div>
+        <app-filter-input
+            class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12"
+            [bdcWalkTriggerFor]="settingsListStep1"
+            placeHolder="Pesquisar..."
+            (changeSearch)="onSearchResources($event)"
+            help="Efetue a busca utilizando Tabela ou Descrição"
+            [debounceInput]="1000"
+        ></app-filter-input>
     </div>
     <app-setting-table
+        *ngIf="canViewTable"
         [bdcWalkTriggerFor]="settingsListStep2"
         (editTable)="onEditTable($event)"
         [isLoading]="isLoading"
         [items]="items"
     ></app-setting-table>
+    <app-setting-list-view
+        *ngIf="!canViewTable"
+        [bdcWalkTriggerFor]="settingsListStep2"
+        (editTable)="onEditTable($event)"
+        [isLoading]="isLoading"
+        [items]="items"
+        propertyTitle="description"
+    ></app-setting-list-view>
 </po-page-list>
 
 <bdc-walk-dialog #dialogFinish name="dialogFinish" width="650px">
