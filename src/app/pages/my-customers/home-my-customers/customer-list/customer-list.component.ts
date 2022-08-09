@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
+import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
 import { CustomerService } from '../../shared/services/customer.service';
 import { DocumentPipe } from './../../../../shared/pipe/document.pipe';
@@ -14,8 +14,7 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
   constructor(
     protected customerService: CustomerService,
     protected override injector: Injector,
-    protected router: Router,
-    protected documentPipe: DocumentPipe
+    protected router: Router
     ) {
       super(injector, customerService);
     }
@@ -31,22 +30,8 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
       return [];
     }
 
-    getTableActions(): PoTableAction[] {
-      return [
-        {
-          action: this.onShowCustomer.bind(this),
-          icon: 'po-icon-eye',
-          label: 'Visualizar'
-        }
-      ];
-    }
-
     onShowCustomer(customer: Customer): void {
       this.isLoading = true;
       this.router.navigate(['customers/view', customer.id]);
-    }
-
-    transformDocument(document: string): string {
-      return this.documentPipe.transform(document);
     }
 }

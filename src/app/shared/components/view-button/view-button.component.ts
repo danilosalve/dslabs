@@ -26,13 +26,14 @@ export class ViewButtonComponent implements OnInit {
 
   handleDevice(isSmartPhone: boolean): void {
     if (isSmartPhone) {
-      this.label = 'Lista';
+      this.label = 'Tabela';
       this.icon = 'po-icon-list';
     } else {
-      this.label = 'Card';
+      this.label = 'Lista';
       this.icon = 'po-icon-grid';
     }
     this.setClassDevice();
+    this.emitDeviceChange(isSmartPhone);
   }
 
   onChangeDevice(): void {
@@ -49,7 +50,7 @@ export class ViewButtonComponent implements OnInit {
     return this.isRelativePosition;
   }
 
-  emitDeviceChange(isSmartPhone: boolean): void {
-    this.changeDevice.emit({isSmartPhone, class: this.class});
+  emitDeviceChange(isSmartphone: boolean): void {
+    this.changeDevice.emit({isSmartphone, class: this.class});
   }
 }

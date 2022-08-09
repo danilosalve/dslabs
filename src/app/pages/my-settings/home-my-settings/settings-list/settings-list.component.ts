@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
+import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoPageAction, PoTableAction } from '@po-ui/ng-components';
 import { Table } from '../../shared/interfaces/table';
 import { TablesService } from '../../shared/services/tables.service';
@@ -22,17 +22,6 @@ export class SettingsListComponent extends BaseResourceList<Table> {
         return [];
     }
 
-    getTableActions(): PoTableAction[] {
-        return [
-            {
-                action: this.onEditTable.bind(this),
-                icon: 'po-icon-edit',
-                label: 'Editar',
-                disabled: this.canEditTable.bind(this)
-            }
-        ];
-    }
-
     handleSearch(resource: Table[], search: string): Table[] {
         return resource.filter(
             table =>
@@ -48,9 +37,5 @@ export class SettingsListComponent extends BaseResourceList<Table> {
     onEditTable(table: Table): void {
         this.isLoading = true;
         this.router.navigate(['settings/edit', table.id]);
-    }
-
-    canEditTable(table: Table): boolean {
-      return !table.canEdit;
     }
 }

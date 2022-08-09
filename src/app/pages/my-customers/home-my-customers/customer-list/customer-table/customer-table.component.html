@@ -1,0 +1,13 @@
+<po-table
+    [p-sort]="true"
+    [p-items]="items"
+    [p-columns]="columns"
+    [p-max-columns]="8"
+    [p-loading]="isLoading"
+    [p-actions]="actions"
+    [p-height]="height"
+>
+    <ng-template p-table-column-template [p-property]="'document'" let-value>
+        <span [innerText]="transformDocument(value)"></span>
+    </ng-template>
+</po-table>

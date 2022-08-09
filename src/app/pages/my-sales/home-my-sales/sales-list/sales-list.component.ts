@@ -1,12 +1,11 @@
 import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
-import { BaseResourceList } from '@app/shared/components/base-resource-list.component';
+import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import {
   PoDialogService,
   PoPageAction,
-  PoTableAction,
-  PoTableRowTemplateArrowDirection
+  PoTableAction
 } from '@po-ui/ng-components';
 import { Observable, of } from 'rxjs';
 import { concatMap, finalize, map, tap } from 'rxjs/operators';
@@ -19,7 +18,6 @@ import { SalesService } from '../../shared/services/sales.service';
     templateUrl: './sales-list.component.html'
 })
 export class SalesListComponent extends BaseResourceList<SalesBrw> {
-    templateDirection = PoTableRowTemplateArrowDirection.Left;
     sales: Sales[] = [];
     constructor(
         protected salesService: SalesService,
@@ -33,26 +31,6 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
 
     getActions(): PoPageAction[] {
         return [{ label: 'Novo', url: 'sales/new', icon: 'po-icon-plus' }];
-    }
-
-    getTableActions(): PoTableAction[] {
-        return [
-            {
-                action: this.onShowSale.bind(this),
-                icon: 'po-icon-eye',
-                label: 'Visualizar'
-            },
-            {
-                action: this.onEditSale.bind(this),
-                icon: 'po-icon-edit',
-                label: 'Editar'
-            },
-            {
-                action: this.onDelete.bind(this),
-                icon: 'po-icon-delete',
-                label: 'Excluir'
-            }
-        ];
     }
 
     override getItems(search?: string): void {

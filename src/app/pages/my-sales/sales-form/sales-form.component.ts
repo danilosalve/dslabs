@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BaseResourceForm } from '@app/shared/components/base-resource-form.component';
+import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
 import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';

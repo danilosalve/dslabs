@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { BaseResourceDetail } from '@app/shared/components/base-resource-detail.component';
+import { BaseResourceDetail } from '@app/shared/components/base/base-resource-detail.component';
 import { PoBreadcrumb } from '@po-ui/ng-components';
 import { Customer } from '../shared/interface/customer';
 import { CustomerModel } from '../shared/model/customer-model';

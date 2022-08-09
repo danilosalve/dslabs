@@ -1,42 +1,53 @@
 <po-page-list #poPageList [p-title]="titlePage">
     <div class="po-row">
-        <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
-            <app-filter-input
-                [bdcWalkTriggerFor]="settingsListStep1"
-                placeHolder="Pesquisar..."
-                (changeSearch)="onSearchResources($event)"
-                help="Efetue a busca utilizando Tabela ou Descrição"
-                [debounceInput]="1000"
-            ></app-filter-input>
-        </div>
+        <app-filter-input
+            class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12"
+            [bdcWalkTriggerFor]="settingsListStep1"
+            placeHolder="Pesquisar..."
+            (changeSearch)="onSearchResources($event)"
+            help="Efetue a busca utilizando Tabela ou Descrição"
+            [debounceInput]="1000"
+        ></app-filter-input>
     </div>
-    <po-table
+    <app-setting-table
+        *ngIf="canViewTable"
         [bdcWalkTriggerFor]="settingsListStep2"
-        [p-sort]="true"
-        [p-items]="items"
-        [p-columns]="columns"
-        [p-max-columns]="8"
-        [p-loading]="isLoading"
-        [p-actions]="tableActions"
-        [p-height]="tableHeight"
-    ></po-table>
+        (editTable)="onEditTable($event)"
+        [isLoading]="isLoading"
+        [items]="items"
+    ></app-setting-table>
+    <app-setting-list-view
+        *ngIf="!canViewTable"
+        [bdcWalkTriggerFor]="settingsListStep2"
+        (editTable)="onEditTable($event)"
+        [isLoading]="isLoading"
+        [items]="items"
+        propertyTitle="description"
+    ></app-setting-list-view>
 </po-page-list>
 
 <bdc-walk-dialog #dialogFinish name="dialogFinish" width="650px">
-  <div class="po-row">
-    <p class="po-font-title">Novo por aqui?</p>
-    <p class="po-font-subtitle">
-      Não se preocupe, conheça todas as funcionalidades da página Minhas Configurações.
-    </p>
-    <p class="po-font-text">
-      Com ela você poderá definir quais cadastros serão sincronizados com o Gestão de Vendas,
-      Os cadastros habilitados poderão ser utilizados sempre que você perder a conexão com a Internet,
-      mas cuidado, serão carregados somente dez registros por cadastros, portando lembre-se de filtrar quais registros serão realmente utilizados.
-    </p>
-  </div>
-  <div class="po-row">
-    <po-button class="po-mt-3"(click)="dialogFinish.close()" p-label="Fechar"></po-button>
-  </div>
+    <div class="po-row">
+        <p class="po-font-title">Novo por aqui?</p>
+        <p class="po-font-subtitle">
+            Não se preocupe, conheça todas as funcionalidades da página Minhas
+            Configurações.
+        </p>
+        <p class="po-font-text">
+            Com ela você poderá definir quais cadastros serão sincronizados com
+            o Gestão de Vendas, Os cadastros habilitados poderão ser utilizados
+            sempre que você perder a conexão com a Internet, mas cuidado, serão
+            carregados somente dez registros por cadastros, portando lembre-se
+            de filtrar quais registros serão realmente utilizados.
+        </p>
+    </div>
+    <div class="po-row">
+        <po-button
+            class="po-mt-3"
+            (click)="dialogFinish.close()"
+            p-label="Fechar"
+        ></po-button>
+    </div>
 </bdc-walk-dialog>
 
 <bdc-walk-popup
