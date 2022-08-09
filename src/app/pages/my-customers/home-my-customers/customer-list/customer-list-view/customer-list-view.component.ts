@@ -49,7 +49,7 @@ export class CustomerListViewComponent extends BaseResourceListView<Customer> {
       switch (status){
         case CustomerStatus.active:
           return 'Ativo'
-        case CustomerStatus.active:
+        case CustomerStatus.inactive:
           return 'Inativo'
         default:
           return 'Não informado'
@@ -60,7 +60,7 @@ export class CustomerListViewComponent extends BaseResourceListView<Customer> {
       switch (status){
         case CustomerStatus.active:
           return 'color-11'
-        case CustomerStatus.active:
+        case CustomerStatus.inactive:
           return 'color-07'
         default:
           return 'color-03'

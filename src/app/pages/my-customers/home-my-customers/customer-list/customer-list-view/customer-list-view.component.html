@@ -7,7 +7,7 @@
     <ng-template p-list-view-content-template let-item>
         <div class="po-row">
             <po-tag
-                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
                 [p-value]="transformStatus(item.status)"
                 [p-color]="getColorStatus(item.status)"
             ></po-tag>
@@ -22,24 +22,24 @@
                 [p-value]="transformDocument(item.document)"
             ></po-info>
             <po-info
-                class="po-xl-1 po-lg-1 po-md-1 po-sm-3"
+                class="po-xl-1 po-lg-1 po-md-1 po-sm-2"
                 p-label="UF"
                 [p-value]="item.state"
             ></po-info>
             <po-info
-                class="po-xl-4 po-lg-4 po-md-4 po-sm-9"
+                class="po-xl-4 po-lg-4 po-md-4 po-sm-5"
                 p-label="Municipio"
                 [p-value]="item.city"
             ></po-info>
             <po-info
                 class="po-xl-5 po-lg-5 po-md-5 po-sm-5"
-                p-label="Dt. Nascimento/Registro"
-                [p-value]="transformDate(item.registerDate)"
-            ></po-info>
-            <po-info
-                class="po-xl-7 po-lg-7 po-md-7 po-sm-7"
                 p-label="Tipo"
                 [p-value]="transformType(item.customerType)"
+            ></po-info>
+            <po-info
+                class="po-xl-5 po-lg-5 po-md-5 po-sm-6"
+                p-label="Dt. Nascimento/Registro"
+                [p-value]="transformDate(item.registerDate)"
             ></po-info>
         </div>
     </ng-template>
