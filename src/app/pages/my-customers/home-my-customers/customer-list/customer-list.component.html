@@ -21,10 +21,10 @@
         [isLoading]="isLoading"
     ></app-customer-table>
     <app-customer-list-view
-    *ngIf="isSmartPhone || !canViewTable"
-    [items]="items"
-    [isLoading]="isLoading"
-    propertyTitle="name"
-    (titleAction)="onShowCustomer($event)"
+        *ngIf="isSmartPhone || !canViewTable"
+        [items]="items"
+        [isLoading]="isLoading"
+        propertyTitle="name"
+        (titleAction)="onShowCustomer($event)"
     ></app-customer-list-view>
 </po-page-list>

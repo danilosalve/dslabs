@@ -1,10 +1,10 @@
+import { Component, EventEmitter, Injector, Output } from '@angular/core';
+import { SalesBrw } from '@app/pages/my-sales/shared/interfaces/sales';
 import { SalesService } from '@app/pages/my-sales/shared/services/sales.service';
 import { BaseResourceTable } from '@app/shared/components/base/base-resource-table.component';
-import { Component, Output, EventEmitter, Injector } from '@angular/core';
-import { SalesBrw } from '@app/pages/my-sales/shared/interfaces/sales';
 import {
-    PoTableAction,
-    PoTableRowTemplateArrowDirection
+  PoTableAction,
+  PoTableRowTemplateArrowDirection
 } from '@po-ui/ng-components';
 
 @Component({
@@ -41,7 +41,8 @@ export class SalesTableComponent extends BaseResourceTable<SalesBrw> {
             {
                 action: this.handleDeleteSale.bind(this),
                 icon: 'po-icon-delete',
-                label: 'Excluir'
+                label: 'Excluir',
+                type: 'danger'
             }
         ];
     }

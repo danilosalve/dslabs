@@ -1,9 +1,10 @@
-import { CustomerType } from './../../../shared/interface/customer-type';
-import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Customer } from '@app/pages/my-customers/shared/interface/customer';
-import { BaseResourceListView } from '@app/shared/components/base/base-resource-list-view.component';
 import { CustomerStatus } from '@app/pages/my-customers/shared/interface/customer-status.enum';
+import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
+import { BaseResourceListView } from '@app/shared/components/base/base-resource-list-view.component';
+import { PoListViewAction } from '@po-ui/ng-components';
+import { CustomerType } from './../../../shared/interface/customer-type';
 
 @Component({
     selector: 'app-customer-list-view',
@@ -64,5 +65,9 @@ export class CustomerListViewComponent extends BaseResourceListView<Customer> {
         default:
           return 'color-03'
       }
+    }
+
+    getActions(): PoListViewAction[] {
+      return [];
     }
 }

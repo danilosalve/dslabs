@@ -1,19 +1,34 @@
 <po-page-list #poPageList [p-title]="titlePage" [p-actions]="actions">
     <div class="po-row">
-        <div class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12">
-            <app-filter-input
-                placeHolder="Pesquisar..."
-                (changeSearch)="onSearchResources($event)"
-                help="Efetue a busca utilizando código ou Nome do Cliente"
-                [debounceInput]="1000"
-            ></app-filter-input>
-        </div>
+        <app-filter-input
+            class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12"
+            placeHolder="Pesquisar..."
+            (changeSearch)="onSearchResources($event)"
+            help="Efetue a busca utilizando código ou Nome do Cliente"
+            [debounceInput]="1000"
+        ></app-filter-input>
+        <app-view-button
+            *ngIf="canViewTable"
+            [class]="classDevice"
+            (changeDevice)="onChangeDevice($event)"
+            style="margin-top: -2.5%"
+        ></app-view-button>
     </div>
     <app-sales-table
+        *ngIf="!isSmartPhone && canViewTable"
         [items]="items"
         [isLoading]="isLoading"
         (showSale)="onShowSale($event)"
         (editSale)="onEditSale($event)"
         (deleteSale)="onDelete($event)"
     ></app-sales-table>
+    <app-sales-list-view
+        *ngIf="isSmartPhone || !canViewTable"
+        [items]="items"
+        [isLoading]="isLoading"
+        propertyTitle="customerName"
+        (titleAction)="onShowSale($event)"
+        (editSale)="onEditSale($event)"
+        (deleteSale)="onDelete($event)"
+    ></app-sales-list-view>
 </po-page-list>
