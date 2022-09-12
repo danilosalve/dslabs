@@ -1247,7 +1247,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 1,
                 table: 'SA1',
                 description: 'Clientes',
-                status: TableStatus.DISABLED,
+                status: TableStatus.ACTIVATED,
                 canEdit: true,
                 filter: ''
             },
@@ -1279,15 +1279,15 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 5,
                 table: 'SB1',
                 description: 'Produtos',
-                status: TableStatus.DISABLED,
-                canEdit: true,
+                status: TableStatus.ACTIVATED,
+                canEdit: false,
                 filter: ''
             },
             {
                 id: 6,
                 table: 'SB2',
                 description: 'Saldos do Produto',
-                status: TableStatus.DISABLED,
+                status: TableStatus.ACTIVATED,
                 canEdit: false,
                 filter: ''
             },
@@ -1295,16 +1295,16 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 7,
                 table: 'SC5',
                 description: 'Pedidos de Venda',
-                status: TableStatus.DISABLED,
-                canEdit: true,
+                status: TableStatus.ACTIVATED,
+                canEdit: false,
                 filter: ''
             },
             {
                 id: 8,
                 table: 'SC6',
                 description: 'Itens dos Pedidos de Venda',
-                status: TableStatus.DISABLED,
-                canEdit: true,
+                status: TableStatus.ACTIVATED,
+                canEdit: false,
                 filter: ''
             }
         ];
