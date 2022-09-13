@@ -3,7 +3,8 @@
       *ngIf="canViewTable"
       [isLoading]="isLoading"
       [items]="items"
-      (disclaimerEvent)="handleDisclaimerEvent($event)"
+      (selectedItem)="handleDisclaimerEvent($event)"
+      (allSelected)="handleAllSelectedItems($event)"
   ></app-table-resource>
   <app-list-view-resource
       *ngIf="!canViewTable"

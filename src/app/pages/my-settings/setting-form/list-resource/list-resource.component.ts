@@ -11,6 +11,7 @@ import { Customer } from '@app/pages/my-customers/shared/interface/customer';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoDisclaimer, PoPageAction } from '@po-ui/ng-components';
+import { clone } from 'ramda';
 import { finalize, tap } from 'rxjs';
 
 @Component({
@@ -22,6 +23,7 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     @Input() disclaimer: PoDisclaimer[] = [];
     @Input() quickFilter = '';
     @Input() advancedFilter: any;
+    isAllSelected = false;
 
     codeList: string[] = [];
     nameList: string[] = [];
@@ -76,7 +78,12 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     handleDisclaimerEvent(resource: any): void {
         const index = this.disclaimer.findIndex(d => d.value === resource.id);
 
-        if (resource.isSelected && index < 0) {
+        if (index < 0) {
+          this.addDisclaimer(
+            resource.id + '',
+            `Cod. Cliente: ${resource.id}`,
+            resource.id);
+        } else if (resource.isSelected && index < 0) {
             this.addDisclaimer(
                 resource.id + '',
                 `Cod. Cliente: ${resource.id}`,
@@ -87,6 +94,20 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
         }
 
         this.disclaimerEvent.emit(this.disclaimer);
+    }
+
+    handleAllSelectedItems(item: { id: number; isSelected: boolean, isAllSelected: boolean; }[]): void {
+      const disclaimerCopy = clone(this.disclaimer);
+      this.disclaimer = [];
+      item.forEach(i => {
+        if (i.isAllSelected ) {
+          this.addDisclaimer(
+            i.id + '',
+            `Cod. Cliente: ${i.id}`,
+            i.id);
+        }
+      });
+      this.disclaimerEvent.emit(this.disclaimer);
     }
 
     addDisclaimer(
@@ -221,7 +242,7 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
         if (this.documentList.length > 0) {
             let customers: Customer[] = [];
             this.documentList.forEach(document => {
-                document = document.trim();
+                document = document.replace(/[^0-9]/g,'');
                 const customerFiltered = resource.filter(item =>
                     this.isDocumentEqual
                         ? item.document === document

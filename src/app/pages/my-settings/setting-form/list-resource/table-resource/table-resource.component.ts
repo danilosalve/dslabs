@@ -9,7 +9,9 @@ import { PoTableAction } from '@po-ui/ng-components';
     templateUrl: './table-resource.component.html'
 })
 export class TableResourceComponent extends BaseResourceTable<Customer> {
-    @Output() disclaimerEvent = new EventEmitter();
+    @Output() selectedItem = new EventEmitter();
+    @Output() allSelected = new EventEmitter();
+    isAllSelected = false;
     constructor(
         protected customerService: CustomerService,
         protected override injector: Injector
@@ -26,16 +28,20 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
     }
 
     handleSelectedResource(row: any): void {
+      this.isAllSelected = false;
       this.handleDisclaimerEvent(row.id, row.$selected);
     }
 
     handleDisclaimerEvent(id: number, isSelected: boolean): void {
-        this.disclaimerEvent.emit({id, isSelected});
+      this.selectedItem.emit({id, isSelected});
     }
 
     handleAllSelected(rows: any[]): void {
+      const selected: { id: number; isSelected: boolean; isAllSelected: boolean }[] = [];
+      this.isAllSelected = !this.isAllSelected;
       rows.forEach(row => {
-        this.handleDisclaimerEvent(row.id, row.$selected )
+        selected.push({id: row.id, isSelected: row.$selected, isAllSelected: this.isAllSelected});
       });
+      this.allSelected.emit(selected);
     }
 }
