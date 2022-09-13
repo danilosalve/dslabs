@@ -59,7 +59,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Bragança Paulista',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 2,
@@ -69,7 +70,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Manaus',
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 3,
@@ -79,7 +81,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Timóteo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 4,
@@ -89,7 +92,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Ipatinga',
                 status: CustomerStatus.inactive,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 5,
@@ -99,7 +103,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Maracanaú',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 6,
@@ -109,7 +114,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Luziânia',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 7,
@@ -119,7 +125,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 8,
@@ -129,7 +136,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Curitiba',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 9,
@@ -139,7 +147,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Roque',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 10,
@@ -149,7 +158,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 11,
@@ -159,7 +169,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'Águas de São Pedro',
                 status: CustomerStatus.active,
                 customerType: CustomerType.RURAL_PRODUCER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 12,
@@ -169,7 +180,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 13,
@@ -179,7 +191,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 14,
@@ -189,7 +202,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 15,
@@ -199,7 +213,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 16,
@@ -209,7 +224,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 17,
@@ -219,7 +235,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 18,
@@ -229,7 +246,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 19,
@@ -239,7 +257,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 20,
@@ -249,7 +268,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             },
             {
                 id: 21,
@@ -259,7 +279,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 city: 'São Paulo',
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom()
+                registerDate: this.getDateRandom(),
+                lastPurchase: this.getDateRandom()
             }
         ];
 

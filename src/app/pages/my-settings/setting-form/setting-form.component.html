@@ -14,17 +14,23 @@
         [p-fields]="fields"
         [p-value]="table"
         (p-form)="setForm($event)"
+        [hidden]="true"
     ></po-dynamic-form>
+    <po-divider p-label="Filtro rápido"></po-divider>
+    <app-quick-resource-filter (changeQuickFilter)="handleQuickFilter($event)"></app-quick-resource-filter>
     <po-divider p-label="Filtros"> </po-divider>
+    <app-filter-resource (changeFilter)="handleFilter($event)"></app-filter-resource>
     <app-advanced-filter
+        [hidden]="true"
         [bdcWalkTriggerFor]="settingsFormStep2"
         [fieldsTable]="fieldsTable"
         (filterEvent)="handleAdvancedFilter($event)"
         [disclaimer]="disclaimerFilters"
     ></app-advanced-filter>
     <po-divider></po-divider>
-    <po-container>
+    <po-container class="po-mb-2">
         <div class="po-row">
+            <p class="po-font-text-small-bold">Clientes selecionados:</p>
             <po-disclaimer-group
                 [bdcWalkTriggerFor]="settingsFormStep3"
                 class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
@@ -36,10 +42,17 @@
                 *ngIf="disclaimerFilters.length === 0"
                 class="po-table-no-data po-text-center"
             >
-                <span>Não há dados</span>
+                <span>Não há dados selecionados</span>
             </div>
         </div>
     </po-container>
+    <po-divider p-label="Selecionar registros"></po-divider>
+    <app-list-resource
+        (disclaimerEvent)="handleDisclaimer($event)"
+        [disclaimer]="disclaimerFilters"
+        [advancedFilter]="advancedFilter"
+        [quickFilter]="quickFilter"
+    ></app-list-resource>
 </po-page-edit>
 
 <bdc-walk-popup
@@ -54,7 +67,8 @@
     buttonText="Próximo"
 >
     <p>
-        Visualize os dados da Tabela e clique em <b>habilitar</b>, para iniciar o sincronismo deste cadastro.
+        Visualize os dados da Tabela e clique em <b>habilitar</b>, para iniciar
+        o sincronismo deste cadastro.
     </p>
 </bdc-walk-popup>
 
@@ -70,9 +84,7 @@
     [showButton]="true"
     buttonText="Próximo"
 >
-    <p>
-        Selecione os <b>Filtros</b> utilizados para buscar os registros.
-    </p>
+    <p>Selecione os <b>Filtros</b> utilizados para buscar os registros.</p>
 </bdc-walk-popup>
 
 <bdc-walk-popup
@@ -86,7 +98,5 @@
     [showButton]="true"
     buttonText="Entendi"
 >
-    <p>
-        Visualize os filtros cadastrados.
-    </p>
+    <p>Visualize os filtros cadastrados.</p>
 </bdc-walk-popup>

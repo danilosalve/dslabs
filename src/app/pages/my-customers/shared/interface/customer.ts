@@ -10,4 +10,6 @@ export interface Customer {
   status: CustomerStatus;
   customerType: CustomerType;
   registerDate: Date;
+  $selected?: boolean;
+  lastPurchase: Date;
 }

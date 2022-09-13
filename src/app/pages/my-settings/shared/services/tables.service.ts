@@ -57,10 +57,11 @@ export class TablesService extends BaseResourceServiceFull<Table> {
                 label: 'Descrição',
                 type: 'string',
                 width: '70%'
-            },
+            }/*,
             {
                 property: 'status',
                 label: 'Sincronizar?',
+                visible: false,
                 type: 'icon',
                 width: '15%',
                 icons: [
@@ -85,7 +86,7 @@ export class TablesService extends BaseResourceServiceFull<Table> {
                         disabled: (value: Table) => !this.canEditTheTable(value)
                     }
                 ]
-            }
+            }*/
         ];
     }
 
@@ -111,6 +112,7 @@ export class TablesService extends BaseResourceServiceFull<Table> {
         },
         {
           label: 'Sincronizar?',
+          visible: false,
           property: 'isSync',
           type: 'Boolean',
           help: 'Habilitar/Desabilitar o Sincronismo',

@@ -18,6 +18,8 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
   table: Table = new TableModel();
   dynamicForm: NgForm | undefined;
   disclaimerFilters: PoDisclaimer[] = [];
+  quickFilter = '';
+  advancedFilter = '';
 
   constructor(protected override injector: Injector, private tableService: TablesService) {
     super(injector, 'settings', false);
@@ -67,6 +69,7 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
     if (this.isEdit()) {
       this.table = this.getTableWithTransform();
       this.fieldsTable = this.getResourceByActivatedroute('fields');
+      this.titlePage = `Editar Configurações dos ${this.table.description}`;
       if (this.table.filter) {
         this.toDisclaimer(this.table.filter);
       }
@@ -93,5 +96,20 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
   toDisclaimer(filter: string): void {
     this.isDisableSubmit = false;
     this.disclaimerFilters = JSON.parse(filter);
+  }
+
+  handleDisclaimer(disclaimerFilters: PoDisclaimer[]): void {
+    this.disclaimerFilters = clone(disclaimerFilters);
+    this.disclaimerFilters.map(item => item.hideClose = true);
+    this.table.filter = JSON.stringify(this.disclaimerFilters);
+    this.isDisableSubmit = false;
+  }
+
+  handleQuickFilter(quickFilter: {isSelected: boolean, field: string}): void {
+    this.quickFilter = quickFilter.isSelected ? quickFilter.field : '';
+  }
+
+  handleFilter($event: any): void {
+    this.advancedFilter = $event;
   }
 }

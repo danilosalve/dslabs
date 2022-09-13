@@ -1,0 +1,60 @@
+<po-container>
+    <form class="po-row" [formGroup]="formFilter">
+        <po-input
+            class="po-xl-8 po-lg-8 po-md-8 po-sm-12"
+            formControlName="code"
+            p-label="Código"
+            p-clean
+            p-help="Informe o código dos Clientes separando por virgula"
+            p-placeholder="000001,000002,000003"
+            [p-no-autocomplete]="true"
+            [p-optional]="true"
+        ></po-input>
+
+        <po-select
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            p-label="Tipo de busca"
+            p-help="Selecione o tipo de busca desejado"
+            formControlName="codeType"
+            [p-options]="types"
+        ></po-select>
+
+        <po-input
+            class="po-xl-8 po-lg-8 po-md-8 po-sm-12"
+            formControlName="name"
+            p-label="Nome Fantasia / Razão Social"
+            p-clean
+            p-help="Informe o Nome Fantasia ou Razão Social separando por virgula"
+            p-placeholder="João da Silva,Maria Lima,José de Souza"
+            [p-no-autocomplete]="true"
+            [p-optional]="true"
+        ></po-input>
+
+        <po-select
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            p-label="Tipo de busca"
+            p-help="Selecione o tipo de busca desejado"
+            formControlName="nameType"
+            [p-options]="types"
+        ></po-select>
+
+        <po-input
+            class="po-xl-8 po-lg-8 po-md-8 po-sm-12"
+            formControlName="document"
+            p-label="CPF/CNPJ"
+            p-clean
+            p-help="Informe o CPF ou CNPJ dos Clientes separando por virgula"
+            p-placeholder="0000000000001,0000000000002,00000000010"
+            [p-no-autocomplete]="true"
+            [p-optional]="true"
+        ></po-input>
+
+        <po-select
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            p-label="Tipo de busca"
+            p-help="Selecione o tipo de busca desejado"
+            formControlName="documentType"
+            [p-options]="types"
+        ></po-select>
+    </form>
+</po-container>

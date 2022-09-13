@@ -1,0 +1,47 @@
+<po-container>
+  <p class="po-font-text-small-bold">Clientes que compraram em: </p>
+  <br/>
+    <form class="po-row" [formGroup]="formQuickFilter">
+        <po-switch
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            name="lastMonth"
+            formControlName="lastMonth"
+            p-label="Último mês"
+            p-help="Selecionar apenas Clientes que compraram no último mês."
+            p-label-on="Habilitado"
+            p-label-off="Desabilitado"
+            (p-change)="onChangeQuickFilter($event, 'lastMonth')"
+        ></po-switch>
+        <po-switch
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            name="lastThreeMonths"
+            formControlName="lastThreeMonths"
+            p-label="Últimos três meses"
+            p-help="Selecionar apenas Clientes que compraram nos últimos três meses."
+            p-label-on="Habilitado"
+            p-label-off="Desabilitado"
+            (p-change)="onChangeQuickFilter($event, 'lastThreeMonths')"
+        ></po-switch>
+        <po-switch
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            name="newCustomers"
+            formControlName="newCustomers"
+            p-label="Novos Clientes"
+            p-help="Selecionar Clientes cadastrados no último mês."
+            p-label-on="Habilitado"
+            p-label-off="Desabilitado"
+            (p-change)="onChangeQuickFilter($event,'newCustomers')"
+            [p-disabled]="true"
+        ></po-switch>
+        <po-switch
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            name="customersWithoutSale"
+            formControlName="customersWithoutSale"
+            p-label="Não compraram no último mês"
+            p-help="Selecionar Clientes que não compraram no último mês."
+            p-label-on="Habilitado"
+            p-label-off="Desabilitado"
+            (p-change)="onChangeQuickFilter($event, 'customersWithoutSale')"
+        ></po-switch>
+    </form>
+</po-container>

@@ -1,0 +1,15 @@
+<po-container>
+  <app-table-resource
+      *ngIf="canViewTable"
+      [isLoading]="isLoading"
+      [items]="items"
+      (disclaimerEvent)="handleDisclaimerEvent($event)"
+  ></app-table-resource>
+  <app-list-view-resource
+      *ngIf="!canViewTable"
+      [isLoading]="isLoading"
+      [items]="items"
+      propertyTitle="name"
+      (disclaimerEvent)="handleDisclaimerEvent($event)"
+  ></app-list-view-resource>
+</po-container>

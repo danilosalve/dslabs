@@ -10,6 +10,7 @@ export class CustomerModel {
     status = CustomerStatus.active;
     customerType = CustomerType.FINAL_COSTUMER;
     registerDate = new Date();
+    lastPurchase = new Date();
 
     constructor() {}
 }
