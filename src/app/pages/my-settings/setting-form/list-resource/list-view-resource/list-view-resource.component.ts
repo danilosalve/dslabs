@@ -71,7 +71,7 @@ export class ListViewResourceComponent extends BaseResourceListView<Customer>  {
 
     handleMarkItems(): void {
       this.items.forEach(item => {
-        this.disclaimerEvent.emit({id: item.id, isSelected: item.$selected, isAllSelected: false});
+        this.disclaimerEvent.emit({id: item.id, isSelected: item.$selected});
       });
     }
 }

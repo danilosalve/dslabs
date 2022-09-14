@@ -1,4 +1,4 @@
-import { Directive, Injector, AfterViewInit, HostListener, OnInit, Input } from '@angular/core';
+import { AfterViewInit, Directive, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import { PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 
@@ -33,7 +33,7 @@ export abstract class BaseResourceTable<T> implements AfterViewInit, OnInit {
     setTimeout(() => this.setHeight(), 200);
   }
 
-  private setHeight(): void {
+  setHeight(): void {
     let elements = [];
 
     elements.push(this.getElementHeightById('.po-menu-mobile po-clickable'));
@@ -46,12 +46,12 @@ export abstract class BaseResourceTable<T> implements AfterViewInit, OnInit {
     this.height = this.calculateHeight(elements) - 175;
   }
 
-  private getElementHeightById(id: string): number {
+  getElementHeightById(id: string): number {
     const el = document.querySelector(id);
     return el ? el.clientHeight : 0;
   }
 
-  private calculateHeight(elements: number[]): number {
+  calculateHeight(elements: number[]): number {
     return elements.reduce((amount, currency) => amount - currency, window.innerHeight);
   }
 

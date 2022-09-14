@@ -11,7 +11,6 @@ import { Customer } from '@app/pages/my-customers/shared/interface/customer';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoDisclaimer, PoPageAction } from '@po-ui/ng-components';
-import { clone } from 'ramda';
 import { finalize, tap } from 'rxjs';
 
 @Component({
@@ -97,7 +96,6 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     }
 
     handleAllSelectedItems(item: { id: number; isSelected: boolean, isAllSelected: boolean; }[]): void {
-      const disclaimerCopy = clone(this.disclaimer);
       this.disclaimer = [];
       item.forEach(i => {
         if (i.isAllSelected ) {
@@ -108,6 +106,22 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
         }
       });
       this.disclaimerEvent.emit(this.disclaimer);
+    }
+
+    handleSelectedItemListView(resource: any): void {
+      const index = this.disclaimer.findIndex(d => d.value === resource.id);
+
+        if (resource.isSelected && index < 0) {
+            this.addDisclaimer(
+                resource.id + '',
+                `Cod. Cliente: ${resource.id}`,
+                resource.id
+            );
+        } else if (!resource.isSelected && index >= 0) {
+            this.disclaimer.splice(index, 1);
+        }
+
+        this.disclaimerEvent.emit(this.disclaimer);
     }
 
     addDisclaimer(
@@ -274,6 +288,7 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     handleQuickFilter(resource: Customer[]): Customer[] {
       const mounth = new Date().getMonth();
       const year = new Date().getFullYear();
+
       let initialDate = new Date();
       let finalDate = new Date();
 
@@ -284,8 +299,8 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
           resource = resource.filter(item => new Date(item.lastPurchase) >= initialDate && new Date(item.lastPurchase) <= finalDate);
           break;
         case 'lastThreeMonths':
-          initialDate = this.getFirstDay(year, mounth - 3);
-          finalDate = this.getLastDay(year, mounth - 1);
+          const day = new Date().getDate();
+          initialDate = new Date(year, mounth - 3, day);
           resource = resource.filter(item => new Date(item.lastPurchase) >= initialDate && new Date(item.lastPurchase) <= finalDate);
           break;
         case 'newCustomers':

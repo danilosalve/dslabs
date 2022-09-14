@@ -44,4 +44,18 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
       });
       this.allSelected.emit(selected);
     }
+
+    override setHeight(): void {
+      let elements = [];
+
+      elements.push(this.getElementHeightById('.po-menu-mobile po-clickable'));
+      elements.push(this.getElementHeightById('.po-button'));
+      elements.push(this.getElementHeightById('.po-page-header'));
+      elements.push(this.getElementHeightById('.toolbar'));
+      elements.push(this.getElementHeightById('.po-table-subtitle-footer-container'));
+
+      elements.push(this.getElementHeightById('.disclaimer-form'));
+      elements.push(this.getElementHeightById('.po-divider'));
+      this.height = this.calculateHeight(elements) - 250;
+    }
 }

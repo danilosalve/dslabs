@@ -3,9 +3,9 @@ import { Injectable, Injector } from '@angular/core';
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import {
-    PoDynamicViewField,
-    PoSelectOption,
-    PoTableColumn
+  PoDynamicViewField,
+  PoSelectOption,
+  PoTableColumn
 } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -77,7 +77,14 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                 property: 'registerDate',
                 label: 'Dt. Nasc/Registro',
                 type: 'date',
-                width: '15%'
+                width: '15%',
+                visible: false
+            },
+            {
+              property: 'lastPurchase',
+              label: 'Ult. Compra',
+              type: 'date',
+              width: '15%'
             },
             {
                 property: 'customerType',
@@ -153,6 +160,12 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                 property: 'customerTypeDescription',
                 label: 'Tp. Cliente',
                 type: 'string'
+            },
+            {
+                property: 'lastPurchase',
+                label: 'Ult. Compra',
+                type: 'date',
+                divider: 'Dados Financeiros'
             }
         ];
     }
