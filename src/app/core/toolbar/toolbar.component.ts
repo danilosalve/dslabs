@@ -11,6 +11,7 @@ import { BdcWalkService } from 'bdc-walkthrough';
 import { take } from 'rxjs/operators';
 import { SellerModel } from './../../shared/model/seller.model';
 import { SellerService } from './../../shared/services/seller.service';
+import { PermissionsService } from './../permissions/shared/services/permissions.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -39,6 +40,11 @@ export class ToolbarComponent implements OnInit {
           action: () => this.clearBdcWalk()
         },
         {
+          icon: 'po-icon-settings',
+          label: 'Permitir Acesso - Visualizar Clientes',
+          action: () => this.handlePermissionCustomerView()
+        },
+        {
             icon: 'po-icon-info',
             label: 'Sobre',
             action: () => this.handleAbout()
@@ -65,12 +71,14 @@ export class ToolbarComponent implements OnInit {
     isProfile = true;
     titleModal = '';
     @ViewChild(PoModalComponent, { static: true }) poModal!: PoModalComponent;
+    canAccessCustomerView = true;
 
     constructor(
         private sellerService: SellerService,
         private poNotification: PoNotificationService,
         private router: Router,
-        private bdcWalkService: BdcWalkService
+        private bdcWalkService: BdcWalkService,
+        private permissionsService: PermissionsService
     ) {}
 
     ngOnInit() {
@@ -118,5 +126,10 @@ export class ToolbarComponent implements OnInit {
 
     clearBdcWalk(): void {
         this.bdcWalkService.reset();
+    }
+
+    handlePermissionCustomerView(): void {
+      this.canAccessCustomerView = !this.canAccessCustomerView;
+      this.permissionsService.updatePermissionCustomer(this.canAccessCustomerView);
     }
 }

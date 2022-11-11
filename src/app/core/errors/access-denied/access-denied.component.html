@@ -1,0 +1,22 @@
+<po-page-default>
+    <div class="container">
+        <img
+            class="image"
+            src="/assets/img/svg/undraw_access_denied.svg"
+            alt="Acesso Negado"
+        />
+        <p class="po-font-title po-mt-2" style="text-align: center">Ops!</p>
+        <p class="po-font-text-large po-mt-2" style="text-align: center">
+            parece que o seu usuario não possui acesso a esta pagina
+        </p>
+        <p class="po-font-text-large" style="text-align: center">
+            Solicite o acesso para o administrador do sistema.
+        </p>
+        <po-button
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12 po-mt-2"
+            p-label="Voltar para pagina Inicial"
+            p-kind="primary"
+            (p-click)="goToHome()"
+        ></po-button>
+    </div>
+</po-page-default>

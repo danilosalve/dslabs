@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessDeniedComponent } from './core/errors/access-denied/access-denied.component';
 import { NotFoundComponent } from './core/errors/not-found/not-found.component';
 
 const routes: Routes = [
@@ -32,6 +33,13 @@ const routes: Routes = [
     component: NotFoundComponent,
     data: {
       title: 'Pagina não encontrada'
+    }
+  },
+  {
+    path: "access-denied",
+    component: AccessDeniedComponent,
+    data: {
+      title: 'Acesso Negado'
     }
   },
   {
