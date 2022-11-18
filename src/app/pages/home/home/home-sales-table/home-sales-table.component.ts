@@ -37,13 +37,13 @@ export class HomeSalesTableComponent implements OnInit, OnChanges {
         this.columns = this.salesService.getColumns();
         const index = this.findColumnIndexByProperty('subTotal');
         if (index >= 0) {
-          this.columns.splice(index);
+            this.columns.splice(index);
         }
     }
 
     findColumnIndexByProperty(property: string): number {
-      return this.columns.findIndex(i => i.property === property);
-  }
+        return this.columns.findIndex(i => i.property === property);
+    }
 
     getSalesWithCustomerName(): void {
         this.isLoading = true;

@@ -72,3 +72,14 @@
         [p-value]="transformZipCodeSeller(seller.zipCode)"
     ></po-info>
 </div>
+<po-divider p-label="Regras de Acesso"></po-divider>
+<div class="po-row">
+    <po-checkbox
+        class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+        name="viewCustomer"
+        [(ngModel)]="canVisualizeCustomer"
+        p-label="Pode Visualizar um Cliente?"
+        (p-change)="onChangePermissionCustomerView()"
+    >
+    </po-checkbox>
+</div>

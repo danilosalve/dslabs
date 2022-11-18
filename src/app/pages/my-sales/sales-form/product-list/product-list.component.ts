@@ -111,4 +111,10 @@ export class ProductListComponent implements OnDestroy {
       this.items[index].isSelected = true;
     }
   }
+
+  onUploadProducts(products: any[]): void {
+    products.forEach(p => {
+      this.addItem(p);
+    });
+  }
 }

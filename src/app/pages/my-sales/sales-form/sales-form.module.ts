@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
 import { GeneralDataComponent } from './general-data/general-data.component';
+import { DragDropProductsComponent } from './product-list/drag-drop-products/drag-drop-products.component';
 import { MoreInformationComponent } from './product-list/product-card/more-information/more-information.component';
 import { ProductBalanceComponent } from './product-list/product-card/more-information/product-balance/product-balance.component';
 import { ProductCardComponent } from './product-list/product-card/product-card.component';
@@ -14,7 +15,8 @@ import { SalesFormComponent } from './sales-form.component';
     ProductListComponent,
     ProductCardComponent,
     MoreInformationComponent,
-    ProductBalanceComponent
+    ProductBalanceComponent,
+    DragDropProductsComponent
   ],
   imports: [
     SharedModule

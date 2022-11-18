@@ -1,0 +1,30 @@
+<div class="container" appDragDropItems (fileDropped)="uploadListener($event)">
+  <p class="ppo-font-text-large">Pesquise pelo Produto desejado utilizando a caixa de busca</p>
+  <p class="po-font-text-large">ou</p>
+  <p class="po-font-text-large">Importe um Arquivo <strong>CSV</strong> com uma lista de produtos</p>
+    <input
+        type="file"
+        #fileDropRef
+        id="fileDropRef"
+        (change)="uploadListener($event)"
+        accept="text/csv"
+    />
+    <span
+        class="po-upload-drag-drop-area-icon po-icon po-icon-upload-cloud"
+    ></span>
+    <div class="po-upload-drag-drop-area-label">Arraste os arquivos aqui</div>
+    <button class="po-upload-drag-drop-area-select-files">
+        ou selecione os arquivos no computador
+    </button>
+
+    <p class="po-font-text-small">Formatos Suportados: CSV</p>
+    <h6>{{ fileName || 'Nenhum arquivo selecionado' }}</h6>
+    <po-progress
+        *ngIf="isLoadingFile"
+        [p-indeterminate]="false"
+        [p-info]="progressInfo"
+        [p-value]="progressValue"
+        [p-status]="progressStatus"
+        [p-info-icon]="progressIcon"
+    ></po-progress>
+</div>

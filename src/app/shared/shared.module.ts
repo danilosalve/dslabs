@@ -7,13 +7,15 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { BdcWalkModule } from 'bdc-walkthrough';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { ViewButtonComponent } from './components/view-button/view-button.component';
+import { DragDropItemsDirective } from './Directives/drag-drop-items.directive';
 import { DocumentPipe } from './pipe/document.pipe';
 
 @NgModule({
   declarations: [
     FilterInputComponent,
     DocumentPipe,
-    ViewButtonComponent
+    ViewButtonComponent,
+    DragDropItemsDirective
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     PoTemplatesModule,
     FilterInputComponent,
     BdcWalkModule,
-    ViewButtonComponent
+    ViewButtonComponent,
+    DragDropItemsDirective
   ]
 })
 export class SharedModule { }
