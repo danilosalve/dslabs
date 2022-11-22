@@ -1,7 +1,11 @@
 <div class="container" appDragDropItems (fileDropped)="uploadListener($event)">
-  <p class="ppo-font-text-large">Pesquise pelo Produto desejado utilizando a caixa de busca</p>
-  <p class="po-font-text-large">ou</p>
-  <p class="po-font-text-large">Importe um Arquivo <strong>CSV</strong> com uma lista de produtos</p>
+    <p class="ppo-font-text-large">
+        Pesquise pelo Produto desejado utilizando a caixa de busca
+    </p>
+    <p class="po-font-text-large">ou</p>
+    <p class="po-font-text-large">
+        Importe um Arquivo <strong>CSV</strong> com uma lista de produtos
+    </p>
     <input
         type="file"
         #fileDropRef
@@ -9,13 +13,23 @@
         (change)="uploadListener($event)"
         accept="text/csv"
     />
+    <div *ngIf="isSmartphone; else online">
+        <button class="po-upload-drag-drop-area-select-files">
+            selecione um arquivo no celular
+        </button>
+    </div>
     <span
         class="po-upload-drag-drop-area-icon po-icon po-icon-upload-cloud"
     ></span>
-    <div class="po-upload-drag-drop-area-label">Arraste os arquivos aqui</div>
-    <button class="po-upload-drag-drop-area-select-files">
-        ou selecione os arquivos no computador
-    </button>
+
+    <ng-template #online>
+        <div class="po-upload-drag-drop-area-label">
+            Arraste os arquivos aqui
+        </div>
+        <button class="po-upload-drag-drop-area-select-files">
+            ou selecione um arquivo no computador
+        </button>
+    </ng-template>
 
     <p class="po-font-text-small">Formatos Suportados: CSV</p>
     <h6>{{ fileName || 'Nenhum arquivo selecionado' }}</h6>
