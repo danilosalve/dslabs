@@ -13,15 +13,14 @@
         (change)="uploadListener($event)"
         accept="text/csv"
     />
+    <span
+        class="po-upload-drag-drop-area-icon po-icon po-icon-upload-cloud"
+    ></span>
     <div *ngIf="isSmartphone; else online">
         <button class="po-upload-drag-drop-area-select-files">
             selecione um arquivo no celular
         </button>
     </div>
-    <span
-        class="po-upload-drag-drop-area-icon po-icon po-icon-upload-cloud"
-    ></span>
-
     <ng-template #online>
         <div class="po-upload-drag-drop-area-label">
             Arraste os arquivos aqui
