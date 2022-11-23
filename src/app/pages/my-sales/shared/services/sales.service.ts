@@ -82,7 +82,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 property: 'customerId',
                 gridColumns: 3,
                 gridSmColumns: 12,
-                gridMdColumns: 5,
+                gridMdColumns: 6,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
                 options: [],
@@ -96,9 +96,9 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 format: 'dd/mm/yyyy',
                 gridColumns: 2,
                 gridSmColumns: 12,
-                gridMdColumns: 3,
+                gridMdColumns: 6,
                 gridLgColumns: 3,
-                gridXlColumns: 2,
+                gridXlColumns: 3,
                 required: true,
                 disabled: true
             },
@@ -114,6 +114,19 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 required: true,
                 divider: 'Pagamento',
                 placeholder: 'Selecione o Modo de Pagamento'
+            },
+            {
+                label: 'Prazo de Pagamento',
+                property: 'paymentConditionsId',
+                optional: true,
+                gridColumns: 3,
+                gridSmColumns: 12,
+                gridMdColumns: 5,
+                gridLgColumns: 4,
+                gridXlColumns: 3,
+                options: [],
+                required: false,
+                placeholder: 'Selecione a Condição de Pagamento'
             },
             {
                 label: 'Tab. de Preços',
@@ -286,6 +299,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 label: 'Modo de Pagamento',
                 divider: 'Pagamento'
             },
+            { property: 'paymentConditionDescription', label: 'Condição de Pagamento' },
             { property: 'priceListDescription', label: 'Tab. de Preços' },
             { property: 'discount', label: 'Desconto', type: 'currency' },
             {
@@ -344,6 +358,25 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         map(items => items.reduce((amount, currency) => amount + currency.amount, 0))
       )
     }
+
+    getTypeOfFreight(type: string): string {
+      switch (type) {
+          case TypeOfFreight.CIF:
+              return 'CIF';
+          case TypeOfFreight.FOB:
+              return 'FOB';
+          case TypeOfFreight.DESTINARIO:
+              return 'Por conta - Destinario';
+          case TypeOfFreight.REMETENTE:
+              return 'Por conta - Remetente';
+          case TypeOfFreight.TERCEIROS:
+              return 'Por conta - Terceiros';
+          case TypeOfFreight.SEMFRETE:
+              return 'Sem Frete';
+          default:
+              return 'Não especificado';
+      }
+  }
 
     private calculateSalesOrderItemsTotal(
         items: SalesItems[],

@@ -6,6 +6,7 @@ import { MoreInformationComponent } from './product-list/product-card/more-infor
 import { ProductBalanceComponent } from './product-list/product-card/more-information/product-balance/product-balance.component';
 import { ProductCardComponent } from './product-list/product-card/product-card.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { SaleSummaryModule } from './sale-summary/sale-summary.module';
 import { SalesFormComponent } from './sales-form.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SalesFormComponent } from './sales-form.component';
     DragDropProductsComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    SaleSummaryModule
   ]
 })
 export class SalesFormModule { }

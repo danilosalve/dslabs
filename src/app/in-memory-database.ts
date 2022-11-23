@@ -12,6 +12,7 @@ import { FieldType } from './pages/my-settings/shared/interfaces/field-type.enum
 import { Table } from './pages/my-settings/shared/interfaces/table';
 import { TableStatus } from './pages/my-settings/shared/interfaces/table-status.enum';
 import { Carrier } from './shared/interfaces/carrier';
+import { PaymentCondition } from './shared/interfaces/payment-condition';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { PriceList } from './shared/interfaces/price-list/price-list';
 import { Product } from './shared/interfaces/product';
@@ -60,7 +61,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Avenida João Alberto Ahnert, 955',
+                neighborhood: 'Jardim Águas Claras',
+                zipCode: '12929070'
             },
             {
                 id: 2,
@@ -71,7 +75,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Praia Canoa Quebrada, 740',
+                neighborhood: 'Tarumã',
+                zipCode: '69041360'
             },
             {
                 id: 3,
@@ -82,7 +89,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Sapoti, 802',
+                neighborhood: 'Nova Esperança',
+                zipCode: '35181102'
             },
             {
                 id: 4,
@@ -93,7 +103,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.inactive,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Gênova, 1000',
+                neighborhood: 'Bethânia',
+                zipCode: '35164055'
             },
             {
                 id: 5,
@@ -104,7 +117,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua 10, 796',
+                neighborhood: 'Jarí',
+                zipCode: '61916060'
             },
             {
                 id: 6,
@@ -115,7 +131,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Quadra Quadra 94, 206',
+                neighborhood: 'Mansões de Recreio',
+                zipCode: '72809470'
             },
             {
                 id: 7,
@@ -126,7 +145,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Luiza Campanella Giordano, 799',
+                neighborhood: 'Pq Paineiras',
+                zipCode: '03694180'
             },
             {
                 id: 8,
@@ -137,7 +159,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Prof. Maria Balbina C Dias, 283',
+                neighborhood: 'Boa Vista',
+                zipCode: '82560305'
             },
             {
                 id: 9,
@@ -148,7 +173,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Mariko Karube, 112',
+                neighborhood: 'Caete (Mailasqui)',
+                zipCode: '18143301'
             },
             {
                 id: 10,
@@ -159,7 +187,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Douglas Moreno dos Santos, 996',
+                neighborhood: 'Jd. Aurélio',
+                zipCode: '05857245'
             },
             {
                 id: 11,
@@ -170,7 +201,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.RURAL_PRODUCER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Avenida Washington Luís, 539',
+                neighborhood: 'Vila Congonhas',
+                zipCode: '04626911'
             },
             {
                 id: 12,
@@ -181,7 +215,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Travessa Almarjão, 677',
+                neighborhood: 'Vila Maria Alta',
+                zipCode: '02136050'
             },
             {
                 id: 13,
@@ -192,7 +229,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Barão de Calera, 659',
+                neighborhood: 'Parque Cruzeiro do Sul',
+                zipCode: '08070050'
             },
             {
                 id: 14,
@@ -203,7 +243,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Viaduto Diario Popular, 242',
+                neighborhood: 'Centro',
+                zipCode: '01015090'
             },
             {
                 id: 15,
@@ -214,7 +257,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Jesuíno Antônio Batista, 877',
+                neighborhood: 'Jardim Guarani',
+                zipCode: '02851080'
             },
             {
                 id: 16,
@@ -225,7 +271,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Viela da Esperança, 119',
+                neighborhood: 'Fazenda da Juta',
+                zipCode: '03977470'
             },
             {
                 id: 17,
@@ -236,7 +285,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Uberlândia, 475',
+                neighborhood: 'Vila Polopoli',
+                zipCode: '05365040'
             },
             {
                 id: 18,
@@ -247,7 +299,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Clamecy, 144',
+                neighborhood: 'Estância Mirim',
+                zipCode: '04943060'
             },
             {
                 id: 19,
@@ -258,7 +313,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.FINAL_COSTUMER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Parapuã, 496',
+                neighborhood: 'Itaberaba',
+                zipCode: '02831001'
             },
             {
                 id: 20,
@@ -269,7 +327,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Eulália Bastos, 221',
+                neighborhood: 'Tucuruvi',
+                zipCode: '02303020'
             },
             {
                 id: 21,
@@ -280,17 +341,35 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: CustomerStatus.active,
                 customerType: CustomerType.DEALER,
                 registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom()
+                lastPurchase: this.getDateRandom(),
+                address: 'Rua Baltazar Pereira, 128',
+                neighborhood: 'Jardim Regina',
+                zipCode: '05175340'
             }
         ];
 
+        const paymentConditions: PaymentCondition[] = [
+          { id: 1, description: 'A Vista', installments: 0, active: true },
+          { id: 2, description: '10 Dias', installments: 1, active: true },
+          { id: 3, description: '30 Dias', installments: 1, active: true },
+          { id: 4, description: '2x - 60 dias', installments: 2, active: true },
+          { id: 5, description: '3x - 30, 60, 90 dias', installments: 3, active: true },
+          { id: 6, description: '4x - 120 dias', installments: 4, active: true },
+          { id: 7, description: '5x Vezes', installments: 5, active: true },
+          { id: 8, description: '6x Vezes', installments: 6, active: true },
+          { id: 9, description: '10x Vezes', installments: 10, active: true },
+          { id: 10, description: '12x s/ Juros', installments: 12, active: true },
+          { id: 11, description: 'Pagto Antecipado', installments: 0, active: true }
+        ]
+
         const paymentMethod: PaymentMethod[] = [
-            { id: 1, description: 'A Vista - Dinheiro' },
-            { id: 2, description: 'A Vista - Debito' },
-            { id: 3, description: 'Credito - A Vista' },
-            { id: 4, description: 'PicPay' },
-            { id: 5, description: 'Mercado Pago' },
-            { id: 6, description: 'Credito - Parcelado' }
+            { id: 1, description: 'Dinheiro', icon: 'po-icon-money' },
+            { id: 2, description: 'Debito', icon: ' po-icon-debit-payment' },
+            { id: 3, description: 'PIX', icon: 'po-icon-pix-logo' },
+            { id: 4, description: 'PicPay', icon: 'po-icon-debit-payment' },
+            { id: 5, description: 'Mercado Pago', icon: 'po-icon-debit-payment' },
+            { id: 6, description: 'Credito', icon: 'po-icon-credit-payment' },
+            { id: 7, description: 'Boleto', icon: 'po-icon-bar-code' }
         ];
 
         const priceList: PriceList[] = [
@@ -321,92 +400,110 @@ export class InMemoryDatabase implements InMemoryDbService {
             {
                 id: '0001',
                 description: 'ABACATE - KG',
-                price: 4.09
+                price: 4.09,
+                photo: 'abacate.png'
             },
             {
                 id: '0002',
                 description: 'ABACAXI PEROLA - UN',
-                price: 4.06
+                price: 4.06,
+                photo: 'abacaxi.png'
             },
             {
                 id: '0003',
                 description: 'BANANA NANICA - KG',
-                price: 3.49
+                price: 3.49,
+                photo: 'banana.png'
             },
             {
                 id: '0004',
                 description: 'BANANA OURO - KG',
-                price: 7.49
+                price: 7.49,
+                photo: 'banana.png'
             },
             {
                 id: '0005',
                 description: 'BANANA PRATA - KG',
-                price: 3.99
+                price: 3.99,
+                photo: 'banana.png'
             },
             {
                 id: '0006',
                 description: 'CAQUI RAMA FORTE - KG',
-                price: 5.39
+                price: 5.39,
+                photo: 'caqui.png'
             },
             {
                 id: '0007',
                 description: 'GOIABA BRANCA - KG',
-                price: 5.36
+                price: 5.36,
+                photo: 'goiaba.png'
             },
             {
                 id: '0008',
                 description: 'KIWI - BANJERA C/ 6 FRUTAS',
-                price: 24.88
+                price: 24.88,
+                photo: 'kiwi.png'
             },
             {
                 id: '0009',
                 description: 'LARANJA BAIA - DUZIA',
-                price: 2.79
+                price: 2.79,
+                photo: 'laranja.png'
             },
             {
                 id: '0010',
                 description: 'LARANJA PERA - DUZIA',
-                price: 2.29
+                price: 2.29,
+                photo: 'laranja.png'
             },
             {
                 id: '0011',
                 description: 'LIMAO TAITI - DUZIA',
-                price: 1.79
+                price: 1.79,
+                photo: 'limao.png'
             },
             {
                 id: '0012',
                 description: 'MACA NACIONAL FUJI',
-                price: 7.49
+                price: 7.49,
+                photo: 'maca.png'
             },
             {
                 id: '0013',
                 description: 'MAMAO FORMOSA - UN',
-                price: 5.53
+                price: 5.53,
+                photo: ''
             },
             {
                 id: '0014',
                 description: 'MANGA PALMER - KG',
-                price: 4.09
+                price: 4.09,
+                photo: ''
             },
             {
                 id: '0015',
                 description: 'MARACUJA AZEDO',
-                price: 3.73
+                price: 3.73,
+                photo: ''
             },
             {
                 id: '0016',
                 description: 'MORANGO - CAIXA',
-                price: 4.99
+                price: 4.99,
+                photo: 'morango.png'
             },
             {
                 id: '0017',
                 description: 'UVA ITALIA - KG',
-                price: 7.9
+                price: 7.9,
+                photo: ''
             },
             {
                 id: '0018',
                 description: 'UVA RUBI - KG',
-                price: 10.99
+                price: 10.99,
+                photo: ''
             }
         ];
 
@@ -718,107 +815,128 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 1,
                 customerId: 1,
                 paymentMethodId: 1,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 1,
                 priceListId: 1,
                 status: SalesStatus.Closed,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 2,
                 customerId: 2,
-                paymentMethodId: 1,
+                paymentMethodId: 3,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 1,
                 priceListId: undefined,
                 status: SalesStatus.Closed,
-                typeOfFreight: TypeOfFreight.FOB
+                typeOfFreight: TypeOfFreight.FOB,
+                comment: ''
             },
             {
                 id: 3,
                 customerId: 1,
-                paymentMethodId: 1,
+                paymentMethodId: 2,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 5,
                 priceListId: 1,
                 status: SalesStatus.Closed,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 4,
                 customerId: 8,
-                paymentMethodId: 1,
+                paymentMethodId: 3,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 2,
                 priceListId: 1,
                 status: SalesStatus.Blocked,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 5,
                 customerId: 3,
                 paymentMethodId: 1,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 4,
                 priceListId: 1,
                 status: SalesStatus.Open,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 6,
                 customerId: 3,
-                paymentMethodId: 1,
+                paymentMethodId: 2,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 3,
                 priceListId: 1,
                 status: SalesStatus.Closed,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 7,
                 customerId: 2,
                 paymentMethodId: 1,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 2,
                 priceListId: 1,
                 status: SalesStatus.Open,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 8,
                 customerId: 4,
-                paymentMethodId: 1,
+                paymentMethodId: 2,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 2,
                 priceListId: 1,
                 status: SalesStatus.Blocked,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 9,
                 customerId: 5,
-                paymentMethodId: 1,
+                paymentMethodId: 3,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 2,
                 priceListId: 1,
                 status: SalesStatus.Open,
-                typeOfFreight: TypeOfFreight.CIF
+                typeOfFreight: TypeOfFreight.CIF,
+                comment: ''
             },
             {
                 id: 10,
                 customerId: 6,
                 paymentMethodId: 1,
+                paymentConditionsId: 1,
                 issueDate: this.getDateRandom(),
                 carrierId: 6,
                 priceListId: 1,
                 status: SalesStatus.Open,
                 discount: 2,
-                typeOfFreight: TypeOfFreight.SEMFRETE
+                typeOfFreight: TypeOfFreight.SEMFRETE,
+                comment: ''
             },
             {
                 id: 11,
                 customerId: 9,
-                paymentMethodId: 3,
+                paymentMethodId: 6,
+                paymentConditionsId: 2,
                 issueDate: this.getDateRandom(),
                 carrierId: 2,
                 priceListId: 1,
@@ -827,7 +945,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 typeOfFreight: TypeOfFreight.SEMFRETE,
                 expenses: 10.49,
                 insurance: 44.9,
-                freight: 200.9
+                freight: 200.9,
+                comment: ''
             }
         ];
 
@@ -1435,7 +1554,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 11,
                 tableId: 5,
                 field: 'price',
-                label: 'Preço Unitario',
+                label: 'Preço Unitário',
                 description: 'Valor unitário do Produto',
                 type: FieldType.NUMBER,
                 lenght: 16,
@@ -1584,6 +1703,7 @@ export class InMemoryDatabase implements InMemoryDbService {
             customers,
             fields,
             paymentMethod,
+            paymentConditions,
             priceList,
             productBalance,
             products,

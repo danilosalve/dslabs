@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
-import { SalesDetailsComponent } from './sales-details.component';
+import { TotalModule } from './../total/total.module';
 import { GeneralDataComponent } from './general-data/general-data.component';
 import { ItemsComponent } from './items/items.component';
-import { TotalComponent } from './general-data/total/total.component';
+import { SalesDetailsComponent } from './sales-details.component';
 
 @NgModule({
   declarations: [
     SalesDetailsComponent,
     GeneralDataComponent,
-    ItemsComponent,
-    TotalComponent
+    ItemsComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    TotalModule
   ]
 })
 export class SalesDetailsModule { }

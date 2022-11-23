@@ -1,9 +1,11 @@
-<po-loading-overlay p-text="Carregando campos" [hidden]="!isLoading">
-</po-loading-overlay>
+<po-container>
+    <po-loading-overlay p-text="Carregando campos" [hidden]="!isLoading">
+    </po-loading-overlay>
 
-<po-dynamic-form
-  [p-fields]="fields"
-  [p-value]="sales"
-  [hidden]="isLoading"
-  (p-form)="formEmitter($event)"
-></po-dynamic-form>
+    <po-dynamic-form
+        [p-fields]="fields"
+        [p-value]="sales"
+        [hidden]="isLoading"
+        (p-form)="formEmitter($event)"
+    ></po-dynamic-form>
+</po-container>

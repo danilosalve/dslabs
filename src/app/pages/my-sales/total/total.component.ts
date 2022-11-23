@@ -1,19 +1,25 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { SalesOrderTotal } from '@app/pages/my-sales/shared/interfaces/sales-order-total';
 import { SalesModel } from '@app/pages/my-sales/shared/model/sales-model';
 import { SalesTotalModel } from '@app/pages/my-sales/shared/model/sales-total.model';
 import { SalesService } from '@app/pages/my-sales/shared/services/sales.service';
-import { DeviceService } from './../../../../../shared/services/device.service';
-import { Sales } from './../../../shared/interfaces/sales';
+import { DeviceService } from '@app/shared/services/device.service';
+import { Sales } from '../shared/interfaces/sales';
 
 @Component({
     selector: 'app-total',
     templateUrl: './total.component.html',
     styleUrls: ['./total.component.css']
 })
-export class TotalComponent implements OnInit {
+export class TotalComponent implements OnInit, OnChanges {
     @Input() header: Sales = new SalesModel();
     @Input() items: SalesItems[] = [];
     height = 0;
@@ -26,9 +32,12 @@ export class TotalComponent implements OnInit {
         protected salesService: SalesService
     ) {}
 
+    ngOnChanges(changes: SimpleChanges): void {
+        this.calculateTotal();
+    }
+
     ngOnInit(): void {
         this.onInitPage();
-        this.calculateTotal();
     }
 
     onInitPage(): void {
@@ -36,18 +45,21 @@ export class TotalComponent implements OnInit {
     }
 
     calculateTotal(): void {
-      this.saleTotal = this.salesService.calculateSalesOrderTotal(this.header, this.items);
+        this.saleTotal = this.salesService.calculateSalesOrderTotal(
+            this.header,
+            this.items
+        );
     }
 
     getHeight(): number {
         if (this.deviceService.isSmartphone()) {
             return 585;
         } else {
-            return 660;
+            return 0;
         }
     }
 
     transformValue(value: number): string {
-      return this.currencyPipe.transform(value, 'BRL') + '';
+        return this.currencyPipe.transform(value, 'BRL') + '';
     }
 }

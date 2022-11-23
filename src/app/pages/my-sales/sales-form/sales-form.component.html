@@ -16,13 +16,8 @@
     <po-tab p-label="Produtos">
       <app-product-list (changeItems)="addSalesItem($event)"></app-product-list>
     </po-tab>
-    <po-tab p-label="Visualizar Json">
-      <po-widget appDarkenOnHover p-title="Cabeçalho do pedido">
-        <pre class="po-md-2 po-mt-2">{{ sales | json }}</pre>
-      </po-widget>
-      <po-widget appDarkenOnHover p-title="Items do pedido">
-        <pre class="po-md-2 po-mt-2">{{ salesItems | json }}</pre>
-      </po-widget>
+    <po-tab p-label="Resumo">
+      <app-sale-summary [sales]="sales" [salesItems]="salesItems"></app-sale-summary>
     </po-tab>
   </po-tabs>
 </po-page-edit>

@@ -10,8 +10,8 @@ import { SalesItems } from '../../shared/interfaces/sales-items';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { DocumentPipe } from './../../../../shared/pipe/document.pipe';
 import { CarrierService } from './../../../../shared/services/carrier.service';
+import { PaymentConditionsService } from './../../../../shared/services/payment-conditions.service';
 import { PriceListService } from './../../../../shared/services/price-list.service';
-import { TypeOfFreight } from './../../shared/interfaces/typeOfFreight.enum';
 import { SalesModel } from './../../shared/model/sales-model';
 
 interface HeaderStatus {
@@ -34,6 +34,7 @@ export class GeneralDataComponent implements OnInit {
       protected carrierService: CarrierService,
       protected customerService: CustomerService,
       protected paymentService: PaymentMethodService,
+      protected paymentConditionsService: PaymentConditionsService,
       protected poNotificationService: PoNotificationService,
       protected priceListService: PriceListService,
       protected salesService: SalesService,
@@ -110,6 +111,7 @@ export class GeneralDataComponent implements OnInit {
       forkJoin({
         customer: this.customerService.getById(header.customerId!),
         paymentMethod: header.paymentMethodId ? this.paymentService.getById(header.paymentMethodId!): of({description: 'Nao Especificado'}),
+        paymentCondition: header.paymentConditionsId ? this.paymentConditionsService.getById(header.paymentConditionsId!): of({description: 'Nao Especificado'}),
         priceList: header.priceListId ? this.priceListService.getById(header.priceListId!): of({description: 'Nao Especificado'}),
         carrier: header.carrierId ? this.carrierService.getById(header.carrierId!): of({name: 'Nao Especificado'})
       })
@@ -126,6 +128,7 @@ export class GeneralDataComponent implements OnInit {
             customerState: response.customer.state,
             customerCity: response.customer.city,
             paymentMethodDescription: this.getDescription(response.paymentMethod.description),
+            paymentConditionDescription: this.getDescription(response.paymentCondition.description),
             priceListDescription: this.getDescription(response.priceList.description),
             carrierDescription: this.getDescription(response.carrier.name)
           }
@@ -139,21 +142,6 @@ export class GeneralDataComponent implements OnInit {
     }
 
     getTypeOfFreight(type: string): string {
-      switch (type) {
-        case TypeOfFreight.CIF:
-          return 'CIF';
-        case TypeOfFreight.FOB:
-          return 'FOB';
-        case TypeOfFreight.DESTINARIO:
-          return 'Por conta - Destinario';
-        case TypeOfFreight.REMETENTE:
-          return 'Por conta - Remetente';
-        case TypeOfFreight.TERCEIROS:
-          return 'Por conta - Terceiros';
-        case TypeOfFreight.SEMFRETE:
-          return 'Sem Frete';
-        default:
-          return 'Não especificado'
-      }
+      return this.salesService.getTypeOfFreight(type);
     }
 }

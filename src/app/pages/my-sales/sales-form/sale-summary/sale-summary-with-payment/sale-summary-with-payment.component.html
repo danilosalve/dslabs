@@ -1,0 +1,35 @@
+<po-widget>
+    <div class="po-row">
+        <span
+            class="icon-custom po-icon po-icon-payment po-mb-1 po-mr-1"
+        ></span>
+        <p class="po-font-title po-mb-1">Pagamento</p>
+    </div>
+    <div class="po-row">
+        <span [class]="paymentMethodIcon"></span>
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-12 po-sm-10 po-mb-1"
+            p-label="Forma de Pagamento"
+            [p-value]="paymentMethod"
+        >
+        </po-info>
+        <po-info
+            class="po-xl-5 po-lg-5 po-md-12 po-sm-12 po-mb-1"
+            p-label="Prazo de Pagamento"
+            [p-value]="paymentCondition"
+        ></po-info>
+
+        <div *ngIf="installmentsList.length > 0">
+            <p class=".po-font-subtitle po-mb-1">Parcelas</p>
+
+            <ol class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-ml-2">
+                <li
+                    class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-1"
+                    *ngFor="let installment of installmentsList"
+                >
+                    {{ installment | currency: 'BRL' }}
+                </li>
+            </ol>
+        </div>
+    </div>
+</po-widget>

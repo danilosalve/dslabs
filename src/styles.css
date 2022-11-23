@@ -2,3 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*Aumenta o tamanho do po-icon*/
+.icon-custom {
+  font-size: 32px;
+}

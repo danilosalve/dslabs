@@ -12,7 +12,8 @@ export class SalesModel {
   insurance = 0;
   expenses = 0;
   discount = 0;
-  typeOfFreight = TypeOfFreight.SEMFRETE
-
+  typeOfFreight = TypeOfFreight.SEMFRETE;
+  paymentConditionsId: undefined;
+  comment = '';
   constructor() {}
 }

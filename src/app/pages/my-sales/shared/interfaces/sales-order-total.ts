@@ -5,5 +5,5 @@ export interface SalesOrderTotal {
   freight: number;
   expense: number;
   discounts: number;
-  insurance: number
+  insurance: number;
 }

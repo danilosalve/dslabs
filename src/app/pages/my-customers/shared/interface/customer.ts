@@ -12,4 +12,7 @@ export interface Customer {
   registerDate: Date;
   $selected?: boolean;
   lastPurchase: Date;
+  address: string;
+  neighborhood: string;
+  zipCode: string;
 }

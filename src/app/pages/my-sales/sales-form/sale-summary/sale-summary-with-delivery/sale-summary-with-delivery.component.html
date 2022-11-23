@@ -1,0 +1,34 @@
+<po-widget>
+  <div class="po-row">
+      <span
+          class="icon-custom po-icon po-icon-truck po-mb-1 po-mr-1"
+      ></span>
+      <p class="po-font-title po-mb-1">Entrega</p>
+  </div>
+  <div class="po-row">
+      <po-info
+          class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+          p-label="Transportadora"
+          [p-value]="carrierName"
+      ></po-info>
+      <po-info
+          class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mb-1"
+          p-label="Tipo de Frete"
+          [p-value]="getTypeOfFreight(sales?.typeOfFreight!)"
+      ></po-info>
+      <po-info
+          *ngIf="hasCustomer(); else emptyCustomer"
+          class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+          p-label="Endereço de Entrega"
+          [p-value]="deliveryAddress"
+      ></po-info>
+  </div>
+</po-widget>
+
+<ng-template #emptyCustomer>
+  <po-info
+      class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+      p-label="Endereço de Entrega"
+      p-value="Nenhum Cliente selecionado"
+  ></po-info>
+</ng-template>

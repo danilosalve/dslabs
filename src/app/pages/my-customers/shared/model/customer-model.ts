@@ -11,6 +11,9 @@ export class CustomerModel {
     customerType = CustomerType.FINAL_COSTUMER;
     registerDate = new Date();
     lastPurchase = new Date();
+    address = '';
+    neighborhood = '';
+    zipCode = '';
 
     constructor() {}
 }

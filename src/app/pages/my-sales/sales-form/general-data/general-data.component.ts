@@ -11,6 +11,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesService } from '../../shared/services/sales.service';
 import { CarrierService } from './../../../../shared/services/carrier.service';
+import { PaymentConditionsService } from './../../../../shared/services/payment-conditions.service';
 import { PriceListService } from './../../../../shared/services/price-list.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class GeneralDataComponent implements OnInit {
     protected carrierService: CarrierService,
     protected customerService: CustomerService,
     protected paymentService: PaymentMethodService,
+    protected paymentConditionsService: PaymentConditionsService,
     protected priceListService: PriceListService,
     protected salesService: SalesService,
     protected poNotification: PoNotificationService,
@@ -42,12 +44,14 @@ export class GeneralDataComponent implements OnInit {
     let carrierList: PoSelectOption[];
     let customerList: PoSelectOption[];
     let paymentList: PoSelectOption[];
+    let conditionsList: PoSelectOption[];
     let priceList: PoSelectOption[];
 
     forkJoin({
       carriers: this.carrierService.getAll(),
       customers: this.customerService.getAll(),
       payments: this.paymentService.getAll(),
+      paymentConditions: this.paymentConditionsService.getAll(),
       priceLists: this.priceListService.getAll()
     })
       .pipe(
@@ -62,11 +66,13 @@ export class GeneralDataComponent implements OnInit {
           paymentList = this.paymentService.getComboOptions(response.payments);
           carrierList = this.carrierService.getComboOptions(response.carriers);
           priceList = this.priceListService.getComboOptions(response.priceLists);
+          conditionsList = this.paymentConditionsService.getComboOptions(response.paymentConditions);
           this.fields = this.salesService.getFormFields();
           this.setFieldOptions('customerId', customerList);
           this.setFieldOptions('paymentMethodId', paymentList);
           this.setFieldOptions('carrierId', carrierList);
           this.setFieldOptions('priceListId', priceList);
+          this.setFieldOptions('paymentConditionsId', conditionsList);
         },
         error: () => {
           this.handleError('Ocorreu um erro ao inicializar o formulario');

@@ -1,0 +1,69 @@
+<div class="po-row">
+  <span
+      class="icon-custom po-icon po-icon-pushcart po-mb-1 po-mr-1"
+  ></span>
+  <p class="po-font-title po-mb-1">Produtos</p>
+</div>
+
+<div *ngIf="hasProducts(); else emptyProducts">
+    <po-widget
+        *ngFor="let product of products"
+        [p-title]="product.productName"
+    >
+        <div class="po-row">
+            <div class="po-md-2 po-lg-1 po-hidden-sm">
+                <po-avatar
+                    p-size="sm"
+                    [p-src]="product.photo!"
+                ></po-avatar>
+            </div>
+            <div class="po-md-10 po-lg-11">
+                <div class="po-row">
+                    <po-info
+                        class="po-lg-3 po-md-4"
+                        [p-orientation]="orientationInfo"
+                        p-label="Preço Unitário"
+                        [p-value]="transformCurrency(product.value)"
+                    >
+                    </po-info>
+                    <po-tag
+                        class="po-lg-3 po-md-3"
+                        [p-type]="quantityTag"
+                        [p-orientation]="orientation"
+                        p-label="Quantidade"
+                        [p-value]="product.quantity.toString()"
+                    >
+                    </po-tag>
+                    <po-tag
+                        class="po-lg-3 po-md-3"
+                        [p-type]="discountTag"
+                        [p-orientation]="orientation"
+                        p-label="% Desconto"
+                        [p-value]="transformPercent(product.discount!)"
+                    >
+                    </po-tag>
+                    <po-tag
+                        class="po-lg-3 po-md-4"
+                        [p-type]="amountTag"
+                        [p-orientation]="orientation"
+                        p-label="Vlr. Total"
+                        [p-value]="transformCurrency(product.amount)"
+                    >
+                    </po-tag>
+                </div>
+                <div class="po-md-2 po-lg-1 po-visible-sm">
+                    <po-avatar
+                        p-size="md"
+                        [p-src]="product.photo!"
+                    ></po-avatar>
+                </div>
+            </div>
+        </div>
+    </po-widget>
+</div>
+
+<ng-template #emptyProducts>
+    <div class="po-table-no-data po-text-center">
+        <span>Nenhum Produto selecionado</span>
+    </div>
+</ng-template>

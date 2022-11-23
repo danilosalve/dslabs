@@ -81,10 +81,10 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
                 visible: false
             },
             {
-              property: 'lastPurchase',
-              label: 'Ult. Compra',
-              type: 'date',
-              width: '15%'
+                property: 'lastPurchase',
+                label: 'Ult. Compra',
+                type: 'date',
+                width: '15%'
             },
             {
                 property: 'customerType',
@@ -133,7 +133,8 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
             {
                 property: 'id',
                 label: 'Código',
-                key: true
+                key: true,
+                divider: 'Dados do Cliente'
             },
             {
                 property: 'registerDate',
@@ -150,17 +151,36 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
             {
                 property: 'name',
                 label: 'Nome',
-                type: 'string',
-                divider: 'Dados do Cliente'
+                type: 'string'
             },
             { property: 'document', label: 'CNPJ/CPF', type: 'string' },
-            { property: 'state', label: 'UF', type: 'string' },
-            { property: 'city', label: 'Municipio', type: 'string' },
             {
                 property: 'customerTypeDescription',
                 label: 'Tp. Cliente',
                 type: 'string'
             },
+            {
+              property: 'address',
+              label: 'Endereço',
+              type: 'string',
+              divider: 'Endereço'
+            },
+            {
+              property: 'neighborhood',
+              label: 'Bairro',
+              type: 'string'
+            },
+            {
+              property: 'zipCode',
+              label: 'CEP',
+              type: 'string'
+            },
+            {
+                property: 'state',
+                label: 'UF',
+                type: 'string'
+            },
+            { property: 'city', label: 'Municipio', type: 'string' },
             {
                 property: 'lastPurchase',
                 label: 'Ult. Compra',
@@ -171,6 +191,6 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
     }
 
     transformDocument(document: string): string {
-      return this.documentPipe.transform(document);
+        return this.documentPipe.transform(document);
     }
 }

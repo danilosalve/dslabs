@@ -12,8 +12,9 @@ export interface Sales {
   insurance?: number;
   expenses?: number;
   discount?: number;
-  comment?: string;
-  typeOfFreight: TypeOfFreight
+  comment: string;
+  typeOfFreight: TypeOfFreight;
+  paymentConditionsId?: number;
 }
 
 export interface SalesBrw extends Sales {

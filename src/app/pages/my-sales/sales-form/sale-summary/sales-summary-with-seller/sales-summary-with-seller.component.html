@@ -1,0 +1,16 @@
+<po-widget>
+    <div class="po-row">
+        <span class="icon-custom po-icon po-icon-user po-mb-1 po-mr-1"></span>
+        <p class="po-font-title po-mb-1">Dados do Vendedor</p>
+    </div>
+
+    <po-info p-label="Vendedor" [p-value]="seller.name"></po-info>
+
+    <div class="po-mb-1">
+        <p class="po-font-text-bold">E-Mail</p>
+        <span class="po-icon po-icon-mail po-mb-1 po-mr-1"></span>
+        <po-link [p-label]="seller.email" [p-url]="seller.email"> </po-link>
+    </div>
+
+    <po-info *ngIf="sales?.comment" p-label="Comentario do Pedido" [p-value]="sales?.comment"></po-info>
+</po-widget>
