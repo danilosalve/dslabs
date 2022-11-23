@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { SalesItems } from './../../shared/interfaces/sales-items';
 })
 export class ProductListComponent implements OnDestroy {
   @Output() changeItems = new EventEmitter();
+  @Input() isMobile = false;
   items: SalesItems[] = [];
   selectedItem: SalesItems[] = [];
   product$ = new Subscription();

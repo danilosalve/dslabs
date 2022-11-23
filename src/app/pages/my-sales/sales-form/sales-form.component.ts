@@ -1,7 +1,15 @@
-import { Component, Injector } from '@angular/core';
+import {
+  Component,
+  Injector,
+  ViewChild
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
-import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
+import {
+  PoAccordionItemComponent,
+  PoBreadcrumb,
+  PoDynamicFormField
+} from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
@@ -18,6 +26,8 @@ export class SalesFormComponent extends BaseResourceForm {
     dynamicForm: NgForm | undefined;
     salesItems: SalesItems[] = [];
     itemId = 0;
+    @ViewChild(PoAccordionItemComponent, { static: true })
+    generaldata!: PoAccordionItemComponent;
 
     constructor(
         protected salesService: SalesService,

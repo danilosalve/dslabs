@@ -1,6 +1,7 @@
 import { Directive, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeviceService } from '@app/shared/services/device.service';
 import { PoBreadcrumb, PoDynamicFormField, PoNotificationService } from '@po-ui/ng-components';
 
 @Directive()
@@ -12,9 +13,11 @@ export abstract class BaseResourceForm implements OnInit {
     titlePage = '';
     fields: PoDynamicFormField[] = [];
     isLoading = false;
+    isMobile = false;
 
     protected activatedroute: ActivatedRoute;
     protected poNotification: PoNotificationService;
+    protected deviceService: DeviceService;
     private router: Router;
     private titleService: Title;
 
@@ -27,6 +30,7 @@ export abstract class BaseResourceForm implements OnInit {
         this.poNotification = injector.get(PoNotificationService);
         this.router = injector.get(Router);
         this.titleService = injector.get(Title);
+        this.deviceService = injector.get(DeviceService);
     }
 
     ngOnInit(): void {
@@ -51,6 +55,8 @@ export abstract class BaseResourceForm implements OnInit {
             this.titlePage = res['title'];
             this.titleService.setTitle(`DSLABs | ${res['title']}`);
         });
+
+        this.isMobile = this.deviceService.isSmartphone();
     }
 
     handleBack(): void {

@@ -10,6 +10,7 @@ import { SalesItems } from '../../shared/interfaces/sales-items';
 export class SaleSummaryComponent implements AfterContentInit {
     @Input() sales: Sales | undefined;
     @Input() salesItems: SalesItems[] = [];
+    @Input() isMobile = false;
     @ViewChild(PoAccordionItemComponent, { static: true })
     details!: PoAccordionItemComponent;
 

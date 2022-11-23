@@ -1,4 +1,7 @@
-<po-container class="po-xl-8 po-lg-8 po-md-8 po-sm-12" [p-no-padding]="true">
+<po-container
+    class="po-xl-8 po-lg-8 po-md-8 po-sm-12"
+    [p-no-padding]="isMobile"
+>
     <po-accordion>
         <po-accordion-item p-label="Dados do Pedido" #details>
             <app-sale-summary-with-delivery
@@ -8,14 +11,22 @@
                 [sales]="sales"
                 [salesItems]="salesItems"
             ></app-sale-summary-with-payment>
-            <app-sales-summary-with-seller [sales]="sales"></app-sales-summary-with-seller>
+            <app-sales-summary-with-seller
+                [sales]="sales"
+            ></app-sales-summary-with-seller>
         </po-accordion-item>
         <po-accordion-item p-label="Itens do Pedido">
             <app-sale-summary-with-products
                 [salesItems]="salesItems"
             ></app-sale-summary-with-products>
         </po-accordion-item>
-
+        <po-accordion-item *ngIf="isMobile" p-label="Total do Pedido">
+            <app-total
+                *ngIf="sales && salesItems"
+                [header]="sales"
+                [items]="salesItems"
+            ></app-total>
+        </po-accordion-item>
         <po-accordion-item p-label="Visualizar JSON">
             <po-widget p-title="Cabeçalho do pedido">
                 <pre class="po-md-2 po-mt-2">{{ sales | json }}</pre>
@@ -26,7 +37,12 @@
         </po-accordion-item>
     </po-accordion>
 </po-container>
-<aside class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mt-sm-2" style="float: right">
+
+<aside
+    class="po-xl-4 po-lg-4 po-md-4 po-sm-12 po-mt-sm-2"
+    style="float: right"
+    *ngIf="!isMobile"
+>
     <app-total
         *ngIf="sales && salesItems"
         [header]="sales"

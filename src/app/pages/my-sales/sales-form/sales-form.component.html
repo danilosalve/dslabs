@@ -1,23 +1,59 @@
 <po-page-edit
-  [p-title]="titlePage"
-  [p-breadcrumb]="breadcrumb"
-  (p-cancel)="handleBack()"
-  (p-save)="onSubmit()"
-  [p-disable-submit]="isDisableSubmit"
+    [p-title]="titlePage"
+    [p-breadcrumb]="breadcrumb"
+    (p-cancel)="handleBack()"
+    (p-save)="onSubmit()"
+    [p-disable-submit]="isDisableSubmit"
 >
-  <po-tabs>
-    <po-tab [p-active]="true" p-label="Dados Gerais">
-      <app-general-data
-        [sales]="sales"
-        [dynamicForm]="dynamicForm"
-        (getForm)="getForm($event)"
-      ></app-general-data>
-    </po-tab>
-    <po-tab p-label="Produtos">
-      <app-product-list (changeItems)="addSalesItem($event)"></app-product-list>
-    </po-tab>
-    <po-tab p-label="Resumo">
-      <app-sale-summary [sales]="sales" [salesItems]="salesItems"></app-sale-summary>
-    </po-tab>
-  </po-tabs>
+    <div *ngIf="isMobile; else Mobile">
+        <po-accordion>
+            <po-accordion-item p-label="Dados do Gerais">
+                <app-general-data
+                    [sales]="sales"
+                    [dynamicForm]="dynamicForm"
+                    (getForm)="getForm($event)"
+                    [isMobile]="isMobile"
+                ></app-general-data>
+            </po-accordion-item>
+            <po-accordion-item p-label="Selecionar Produtos">
+                <app-product-list
+                    (changeItems)="addSalesItem($event)"
+                    [isMobile]="isMobile"
+                ></app-product-list>
+            </po-accordion-item>
+            <po-accordion-item p-label="Resumo">
+                <app-sale-summary
+                    [sales]="sales"
+                    [salesItems]="salesItems"
+                    [isMobile]="isMobile"
+                ></app-sale-summary>
+            </po-accordion-item>
+        </po-accordion>
+    </div>
 </po-page-edit>
+
+<ng-template #Mobile>
+    <po-tabs>
+        <po-tab [p-active]="true" p-label="Dados Gerais">
+            <app-general-data
+                [sales]="sales"
+                [dynamicForm]="dynamicForm"
+                (getForm)="getForm($event)"
+                [isMobile]="isMobile"
+            ></app-general-data>
+        </po-tab>
+        <po-tab p-label="Produtos">
+            <app-product-list
+                (changeItems)="addSalesItem($event)"
+                [isMobile]="isMobile"
+            ></app-product-list>
+        </po-tab>
+        <po-tab p-label="Resumo">
+            <app-sale-summary
+                [sales]="sales"
+                [salesItems]="salesItems"
+                [isMobile]="isMobile"
+            ></app-sale-summary>
+        </po-tab>
+    </po-tabs>
+</ng-template>

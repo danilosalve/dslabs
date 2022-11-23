@@ -1,7 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
-import { DeviceService } from '@app/shared/services/device.service';
 import { PoBreadcrumb, PoDisclaimer, PoDynamicFormField, PoStepperOrientation } from '@po-ui/ng-components';
 import { clone } from 'ramda';
 import { finalize, tap } from 'rxjs/operators';
@@ -23,7 +22,7 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
   quickFilter = '';
   advancedFilter = '';
 
-  constructor(protected override injector: Injector, private tableService: TablesService, private deviceService: DeviceService) {
+  constructor(protected override injector: Injector, private tableService: TablesService) {
     super(injector, 'settings', false);
   }
 
@@ -34,7 +33,7 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
   }
 
   setOrientation(): void {
-    this.orientation = this.isSmartphone() ? PoStepperOrientation.Horizontal : PoStepperOrientation.Vertical;
+    this.orientation = this.isMobile ? PoStepperOrientation.Horizontal : PoStepperOrientation.Vertical;
   }
 
   getBreadCrumb(): PoBreadcrumb {
@@ -118,9 +117,5 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
 
   handleFilter($event: any): void {
     this.advancedFilter = $event;
-  }
-
-  isSmartphone(): boolean {
-    return this.deviceService.isSmartphone();
   }
 }

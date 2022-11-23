@@ -21,6 +21,7 @@ import { PriceListService } from './../../../../shared/services/price-list.servi
 export class GeneralDataComponent implements OnInit {
   @Input() sales: Sales | undefined;
   @Input() dynamicForm: NgForm | undefined;
+  @Input() isMobile = false;
   @Output() getForm = new EventEmitter();
   fields: Array<PoDynamicFormField> = [];
   isLoading = true;
