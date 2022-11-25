@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Sales } from '@app/pages/my-sales/shared/interfaces/sales';
 import { SalesStatus } from '@app/pages/my-sales/shared/interfaces/sales-status.enum';
 import { PoChartSerie, PoChartType, PoGaugeRanges } from '@po-ui/ng-components';
@@ -17,9 +17,9 @@ export class HomeChartsComponent implements OnChanges {
   totalClosedSales = 0;
   typeChart: PoChartType = PoChartType.Donut;
   salesChartSeries: Array<PoChartSerie> = [
-    { label: 'Aberto', data: 4, tooltip: 'Pedidos em aberto' },
-    { label: 'Bloqueado', data: 3, tooltip: 'Pedidos Bloqueados' },
-    { label: 'Encerrado', data: 2, tooltip: 'Pedidos Encerrados' }
+    { label: 'Aberto', data: 0, tooltip: 'Pedidos em aberto' },
+    { label: 'Bloqueado', data: 0, tooltip: 'Pedidos Bloqueados' },
+    { label: 'Encerrado', data: 0, tooltip: 'Pedidos Encerrados' }
   ];
   salesRanges: Array<PoGaugeRanges> = [
     { from: 0, to: 0, label: 'Baixo', color: '#c64840' },
@@ -27,7 +27,7 @@ export class HomeChartsComponent implements OnChanges {
     { from: 0, to: 2, label: 'Alto', color: '#00b28e' }
   ];
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.getClosedSales();
     this.getOpenSales();
     this.getBlockedSales();
@@ -41,11 +41,11 @@ export class HomeChartsComponent implements OnChanges {
   }
 
   getOpenSales(): void {
-    this.openSales = this.sales.filter(s => s.status !== SalesStatus.Open);
+    this.openSales = this.sales.filter(s => s.status === SalesStatus.Open);
   }
 
   getBlockedSales(): void {
-    this.blockedSales = this.sales.filter(s => s.status !== SalesStatus.Blocked);
+    this.blockedSales = this.sales.filter(s => s.status === SalesStatus.Blocked);
   }
 
   setSalesRange(): void {
