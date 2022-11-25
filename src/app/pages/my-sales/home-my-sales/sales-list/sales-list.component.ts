@@ -4,15 +4,15 @@ import { CustomerService } from '@app/pages/my-customers/shared/services/custome
 import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import {
   PoDialogService,
-  PoPageAction,
-  PoTableAction
+  PoPageAction
 } from '@po-ui/ng-components';
+import 'lodash';
 import { Observable, of } from 'rxjs';
 import { concatMap, finalize, map, tap } from 'rxjs/operators';
 import { Sales, SalesBrw } from '../../shared/interfaces/sales';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { SalesService } from '../../shared/services/sales.service';
-
+declare var _:any;
 @Component({
     selector: 'app-sales-list',
     templateUrl: './sales-list.component.html'
@@ -40,6 +40,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
             .getAll()
             .pipe(
                 tap(() => this.resetResource()),
+                map(sales => _.sortBy(sales, (el:Sales) => - new Date(el.issueDate))),
                 concatMap((sales: SalesBrw[]) => {
                     sales.map(sale => {
                         const subTotal$ = this.getSubTotal(sale.id!);
