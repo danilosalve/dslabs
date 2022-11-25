@@ -613,7 +613,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'ALFACE AMERICANO',
                 price: 4.26,
                 unitOfMeasurement: 'UN',
-                photo: '',
+                photo: 'alface.png',
                 group: 'Verduras'
             },
             {
@@ -621,7 +621,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'ALFACE ROXA',
                 price: 4.47,
                 unitOfMeasurement: 'UN',
-                photo: '',
+                photo: 'repolho-roxo.png',
                 group: 'Verduras'
             },
             {
@@ -629,7 +629,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'ALFACE CRESPA',
                 price: 1.8,
                 unitOfMeasurement: 'UN',
-                photo: '',
+                photo: 'alface.png',
                 group: 'Verduras'
             },
             {
@@ -637,7 +637,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'COENTRO',
                 price: 2.29,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'salsa.png',
                 group: 'Verduras'
             },
             {
@@ -645,7 +645,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'CEBOLINHA',
                 price: 1.79,
                 unitOfMeasurement: 'UN',
-                photo: '',
+                photo: 'cebolinha.png',
                 group: 'Verduras'
             },
             {
@@ -653,7 +653,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'SALSA',
                 price: 1.99,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'salsa.png',
                 group: 'Verduras'
             },
             {
@@ -661,7 +661,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'RUCULA',
                 price: 3.79,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'rucula.png',
                 group: 'Verduras'
             },
             {
@@ -669,7 +669,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'AGRIÃO',
                 price: 3.49,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'agriao.png',
                 group: 'Verduras'
             },
             {
@@ -677,7 +677,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'COUVE MANTEIGA',
                 price: 3.99,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'espinafre.png',
                 group: 'Verduras'
             },
             {
@@ -685,8 +685,40 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: 'ESPINAFRE',
                 price: 4.99,
                 unitOfMeasurement: 'PC',
-                photo: '',
+                photo: 'espinafre.png',
                 group: 'Verduras'
+            },
+            {
+                id: '0034',
+                description: 'BATATA LAVADA',
+                price: 3.99,
+                unitOfMeasurement: 'KG',
+                photo: 'batata.png',
+                group: 'Legumes'
+            },
+            {
+                id: '0035',
+                description: 'CENOURA',
+                price: 2.7,
+                unitOfMeasurement: 'KG',
+                photo: 'cenoura.png',
+                group: 'Legumes'
+            },
+            {
+                id: '0036',
+                description: 'CEBOLA',
+                price: 6.38,
+                unitOfMeasurement: 'KG',
+                photo: 'cebola.png',
+                group: 'Legumes'
+            },
+            {
+                id: '0037',
+                description: 'TOMATE',
+                price: 3.59,
+                unitOfMeasurement: 'KG',
+                photo: 'tomate.png',
+                group: 'Legumes'
             }
         ];
 

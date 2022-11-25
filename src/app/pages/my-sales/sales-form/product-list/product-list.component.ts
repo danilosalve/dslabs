@@ -3,9 +3,14 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
+  OnInit,
   Output
 } from '@angular/core';
-import { PoDialogService, PoNotificationService } from '@po-ui/ng-components';
+import {
+  PoDialogService,
+  PoDisclaimer,
+  PoNotificationService
+} from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ProductService } from './../../../../shared/services/product.service';
@@ -16,7 +21,7 @@ import { SalesItems } from './../../shared/interfaces/sales-items';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnDestroy {
+export class ProductListComponent implements OnDestroy, OnInit {
     @Output() changeItems = new EventEmitter();
     @Input() isMobile = false;
     items: SalesItems[] = [];
@@ -24,6 +29,8 @@ export class ProductListComponent implements OnDestroy {
     product$ = new Subscription();
     isProductNotFound = false;
     itemId = 0;
+    disclaimers: PoDisclaimer[] = [];
+    filter: string = '';
 
     constructor(
         protected poDialog: PoDialogService,
@@ -31,11 +38,47 @@ export class ProductListComponent implements OnDestroy {
         protected poNotification: PoNotificationService
     ) {}
 
+    ngOnInit(): void {
+        this.onInitPage();
+    }
+
+    onInitPage(): void {
+        this.disclaimers = this.onInitDisclaimers();
+    }
+
+    onInitDisclaimers(): PoDisclaimer[] {
+        return [
+            {
+                hideClose: false,
+                label: 'Frutas',
+                property: 'Frutas',
+                value: 'Frutas'
+            },
+            {
+                hideClose: false,
+                label: 'Legumes',
+                property: 'Legumes',
+                value: 'Legumes'
+            },
+            {
+                hideClose: false,
+                label: 'Verduras',
+                property: 'Verduras',
+                value: 'Verduras'
+            }
+        ];
+    }
+
     ngOnDestroy(): void {
         this.product$.unsubscribe();
     }
 
     onSearchProducts(search: string): void {
+        if (this.filter !== search) {
+            this.filter = search;
+            this.disclaimers = this.onInitDisclaimers();
+        }
+
         this.product$ = this.productService
             .getAll()
             .pipe(
@@ -55,7 +98,8 @@ export class ProductListComponent implements OnDestroy {
                         discount: 0,
                         isSelected: false,
                         customerOrderId: '',
-                        photo: `assets/img/products/${product.photo}`
+                        photo: `assets/img/products/${product.photo}`,
+                        group: product.group
                     }))
                 )
             )
@@ -64,10 +108,11 @@ export class ProductListComponent implements OnDestroy {
                     if (search) {
                         const items = products.filter(
                             p =>
-                                p.productId.includes(search) ||
-                                p.productName
-                                    .toLowerCase()
-                                    .includes(search.toLocaleLowerCase())
+                                this.handleFilterByGroup(p.group) &&
+                                (p.productId.includes(search) ||
+                                    p.productName
+                                        .toLowerCase()
+                                        .includes(search.toLocaleLowerCase()))
                         );
                         if (items.length > 0) {
                             this.items = items as SalesItems[];
@@ -160,5 +205,17 @@ export class ProductListComponent implements OnDestroy {
 
     canAddProduct(id: string): boolean {
         return !this.selectedItem.some(p => p.productId === id);
+    }
+
+    onChangeDisclaimers(disclaimers: PoDisclaimer[]): void {
+        this.disclaimers = disclaimers;
+
+        if (this.filter) {
+            this.onSearchProducts(this.filter);
+        }
+    }
+
+    handleFilterByGroup(group: string): boolean {
+        return this.disclaimers.some(d => d.value === group);
     }
 }
