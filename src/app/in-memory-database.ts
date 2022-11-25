@@ -21,9 +21,7 @@ import { Seller } from './shared/interfaces/seller';
 import { SellerModel } from './shared/model/seller.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
-    createDb(
-        reqInfo?: RequestInfo | undefined
-    ): {} | Observable<{}> | Promise<{}> {
+    createDb(reqInfo?: RequestInfo | undefined): {} | Observable<{}> | Promise<{}> {
         const carriers: Carrier[] = [
             {
                 id: 1,
@@ -349,25 +347,54 @@ export class InMemoryDatabase implements InMemoryDbService {
         ];
 
         const paymentConditions: PaymentCondition[] = [
-          { id: 1, description: 'A Vista', installments: 0, active: true },
-          { id: 2, description: '10 Dias', installments: 1, active: true },
-          { id: 3, description: '30 Dias', installments: 1, active: true },
-          { id: 4, description: '2x - 60 dias', installments: 2, active: true },
-          { id: 5, description: '3x - 30, 60, 90 dias', installments: 3, active: true },
-          { id: 6, description: '4x - 120 dias', installments: 4, active: true },
-          { id: 7, description: '5x Vezes', installments: 5, active: true },
-          { id: 8, description: '6x Vezes', installments: 6, active: true },
-          { id: 9, description: '10x Vezes', installments: 10, active: true },
-          { id: 10, description: '12x s/ Juros', installments: 12, active: true },
-          { id: 11, description: 'Pagto Antecipado', installments: 0, active: true }
-        ]
+            { id: 1, description: 'A Vista', installments: 0, active: true },
+            { id: 2, description: '10 Dias', installments: 1, active: true },
+            { id: 3, description: '30 Dias', installments: 1, active: true },
+            {
+                id: 4,
+                description: '2x - 60 dias',
+                installments: 2,
+                active: true
+            },
+            {
+                id: 5,
+                description: '3x - 30, 60, 90 dias',
+                installments: 3,
+                active: true
+            },
+            {
+                id: 6,
+                description: '4x - 120 dias',
+                installments: 4,
+                active: true
+            },
+            { id: 7, description: '5x Vezes', installments: 5, active: true },
+            { id: 8, description: '6x Vezes', installments: 6, active: true },
+            { id: 9, description: '10x Vezes', installments: 10, active: true },
+            {
+                id: 10,
+                description: '12x s/ Juros',
+                installments: 12,
+                active: true
+            },
+            {
+                id: 11,
+                description: 'Pagto Antecipado',
+                installments: 0,
+                active: true
+            }
+        ];
 
         const paymentMethod: PaymentMethod[] = [
             { id: 1, description: 'Dinheiro', icon: 'po-icon-money' },
             { id: 2, description: 'Debito', icon: ' po-icon-debit-payment' },
             { id: 3, description: 'PIX', icon: 'po-icon-pix-logo' },
             { id: 4, description: 'PicPay', icon: 'po-icon-debit-payment' },
-            { id: 5, description: 'Mercado Pago', icon: 'po-icon-debit-payment' },
+            {
+                id: 5,
+                description: 'Mercado Pago',
+                icon: 'po-icon-debit-payment'
+            },
             { id: 6, description: 'Credito', icon: 'po-icon-credit-payment' },
             { id: 7, description: 'Boleto', icon: 'po-icon-bar-code' }
         ];
@@ -401,109 +428,265 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: '0001',
                 description: 'ABACATE - KG',
                 price: 4.09,
-                photo: 'abacate.png'
+                unitOfMeasurement: 'KG',
+                photo: 'abacate.png',
+                group: 'Frutas'
             },
             {
                 id: '0002',
                 description: 'ABACAXI PEROLA - UN',
                 price: 4.06,
-                photo: 'abacaxi.png'
+                unitOfMeasurement: 'UN',
+                photo: 'abacaxi.png',
+                group: 'Frutas'
             },
             {
                 id: '0003',
                 description: 'BANANA NANICA - KG',
                 price: 3.49,
-                photo: 'banana.png'
+                unitOfMeasurement: 'KG',
+                photo: 'banana.png',
+                group: 'Frutas'
             },
             {
                 id: '0004',
                 description: 'BANANA OURO - KG',
                 price: 7.49,
-                photo: 'banana.png'
+                unitOfMeasurement: 'KG',
+                photo: 'banana.png',
+                group: 'Frutas'
             },
             {
                 id: '0005',
                 description: 'BANANA PRATA - KG',
                 price: 3.99,
-                photo: 'banana.png'
+                unitOfMeasurement: 'KG',
+                photo: 'banana.png',
+                group: 'Frutas'
             },
             {
                 id: '0006',
                 description: 'CAQUI RAMA FORTE - KG',
                 price: 5.39,
-                photo: 'caqui.png'
+                unitOfMeasurement: 'KG',
+                photo: 'caqui.png',
+                group: 'Frutas'
             },
             {
                 id: '0007',
                 description: 'GOIABA BRANCA - KG',
                 price: 5.36,
-                photo: 'goiaba.png'
+                unitOfMeasurement: 'KG',
+                photo: 'goiaba.png',
+                group: 'Frutas'
             },
             {
                 id: '0008',
-                description: 'KIWI - BANJERA C/ 6 FRUTAS',
+                description: 'KIWI - BANJEJA C/ 6 FRUTAS',
                 price: 24.88,
-                photo: 'kiwi.png'
+                unitOfMeasurement: 'BJ',
+                photo: 'kiwi.png',
+                group: 'Frutas'
             },
             {
                 id: '0009',
                 description: 'LARANJA BAIA - DUZIA',
                 price: 2.79,
-                photo: 'laranja.png'
+                unitOfMeasurement: 'DZ',
+                photo: 'laranja.png',
+                group: 'Frutas'
             },
             {
                 id: '0010',
                 description: 'LARANJA PERA - DUZIA',
                 price: 2.29,
-                photo: 'laranja.png'
+                unitOfMeasurement: 'DZ',
+                photo: 'laranja.png',
+                group: 'Frutas'
             },
             {
                 id: '0011',
                 description: 'LIMAO TAITI - DUZIA',
                 price: 1.79,
-                photo: 'limao.png'
+                unitOfMeasurement: 'DZ',
+                photo: 'limao.png',
+                group: 'Frutas'
             },
             {
                 id: '0012',
                 description: 'MACA NACIONAL FUJI',
                 price: 7.49,
-                photo: 'maca.png'
+                unitOfMeasurement: 'KG',
+                photo: 'maca.png',
+                group: 'Frutas'
             },
             {
                 id: '0013',
                 description: 'MAMAO FORMOSA - UN',
                 price: 5.53,
-                photo: ''
+                unitOfMeasurement: 'UN',
+                photo: 'mamao.png',
+                group: 'Frutas'
             },
             {
                 id: '0014',
                 description: 'MANGA PALMER - KG',
                 price: 4.09,
-                photo: ''
+                unitOfMeasurement: 'KG',
+                photo: 'manga.png',
+                group: 'Frutas'
             },
             {
                 id: '0015',
                 description: 'MARACUJA AZEDO',
                 price: 3.73,
-                photo: ''
+                unitOfMeasurement: 'KG',
+                photo: 'maracuja.png',
+                group: 'Frutas'
             },
             {
                 id: '0016',
                 description: 'MORANGO - CAIXA',
                 price: 4.99,
-                photo: 'morango.png'
+                unitOfMeasurement: 'CX',
+                photo: 'morango.png',
+                group: 'Frutas'
             },
             {
                 id: '0017',
                 description: 'UVA ITALIA - KG',
                 price: 7.9,
-                photo: ''
+                unitOfMeasurement: 'KG',
+                photo: 'uva_italia.png',
+                group: 'Frutas'
             },
             {
                 id: '0018',
                 description: 'UVA RUBI - KG',
                 price: 10.99,
-                photo: ''
+                unitOfMeasurement: 'KG',
+                photo: 'uva.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0019',
+                description: 'PITAYA VERMELHA - UN',
+                price: 15.9,
+                unitOfMeasurement: 'UN',
+                photo: 'pitaya.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0020',
+                description: 'ACEROLA - KG',
+                price: 7.73,
+                unitOfMeasurement: 'KG',
+                photo: 'acerola.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0021',
+                description: 'GRAVIOLA - UN',
+                price: 115.99,
+                unitOfMeasurement: 'UN',
+                photo: 'graviola.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0022',
+                description: 'COCO SECO UN - 640g',
+                price: 5.11,
+                unitOfMeasurement: 'UN',
+                photo: 'coco.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0023',
+                description: 'JABUTICABA - KG',
+                price: 23.03,
+                unitOfMeasurement: 'KG',
+                photo: 'jabuticaba.png',
+                group: 'Frutas'
+            },
+            {
+                id: '0024',
+                description: 'ALFACE AMERICANO',
+                price: 4.26,
+                unitOfMeasurement: 'UN',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0025',
+                description: 'ALFACE ROXA',
+                price: 4.47,
+                unitOfMeasurement: 'UN',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0026',
+                description: 'ALFACE CRESPA',
+                price: 1.8,
+                unitOfMeasurement: 'UN',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0027',
+                description: 'COENTRO',
+                price: 2.29,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0028',
+                description: 'CEBOLINHA',
+                price: 1.79,
+                unitOfMeasurement: 'UN',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0029',
+                description: 'SALSA',
+                price: 1.99,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0030',
+                description: 'RUCULA',
+                price: 3.79,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0031',
+                description: 'AGRIÃO',
+                price: 3.49,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0032',
+                description: 'COUVE MANTEIGA',
+                price: 3.99,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
+            },
+            {
+                id: '0033',
+                description: 'ESPINAFRE',
+                price: 4.99,
+                unitOfMeasurement: 'PC',
+                photo: '',
+                group: 'Verduras'
             }
         ];
 
