@@ -1,8 +1,4 @@
-import {
-  Component,
-  Injector,
-  ViewChild
-} from '@angular/core';
+import { Component, Injector, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
 import {
@@ -88,8 +84,23 @@ export class SalesFormComponent extends BaseResourceForm {
     }
 
     addSalesItem(salesItem: any): void {
-        this.salesItems = this.salesItems.concat(salesItem);
+        if (this.hasItem(salesItem)) {
+          this.updateSaleItem(salesItem);
+        } else {
+            this.salesItems = [...this.salesItems.concat(salesItem)];
+        }
         this.isDisableSubmit = !this.canSaveSalesOrder();
+    }
+
+    hasItem(salesItem: SalesItems): boolean {
+        return this.salesItems.some(i => i.productId === salesItem.productId);
+    }
+
+    updateSaleItem(salesItem: SalesItems): void {
+      const index = this.salesItems.findIndex(i => i.productId === salesItem.productId);
+      if (index >= 0) {
+        this.salesItems[index] = salesItem;
+      }
     }
 
     updateSalesIdOnItems(id: number): void {

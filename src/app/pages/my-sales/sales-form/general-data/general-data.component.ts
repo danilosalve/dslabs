@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { PaymentMethodService } from '@app/shared/services/payment-method.service';
 import {
-  PoDynamicFormField, PoNotificationService, PoSelectOption
+  PoDynamicFormField, PoDynamicFormFieldChanged, PoDynamicFormValidation, PoNotificationService, PoSelectOption
 } from '@po-ui/ng-components';
 import { forkJoin } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -25,6 +25,7 @@ export class GeneralDataComponent implements OnInit {
   @Output() getForm = new EventEmitter();
   fields: Array<PoDynamicFormField> = [];
   isLoading = true;
+  validateFields: string[] = ['paymentMethodId', 'carrierId', 'priceListId'];
 
   constructor(
     protected carrierService: CarrierService,
@@ -102,5 +103,62 @@ export class GeneralDataComponent implements OnInit {
   formEmitter(form: NgForm) {
     this.dynamicForm = form;
     this.getForm.emit(form);
+  }
+
+  onChangeFields(changedValue: PoDynamicFormFieldChanged): PoDynamicFormValidation {
+    let formValidation: PoDynamicFormValidation = {};
+    const isDisablePayment = (changedValue.value.paymentMethodId === 1 || changedValue.value.paymentMethodId === 2 || changedValue.value.paymentMethodId === 3 );
+
+    if (changedValue.property === 'paymentMethodId') {
+      const fieldPayment = this.getFieldByName('paymentConditionsId');
+      if (isDisablePayment ) {
+        fieldPayment.disabled = true;
+        formValidation = {
+          value: { paymentConditionsId: 1 }
+        }
+      } else {
+        fieldPayment.disabled = false;
+      }
+      formValidation.fields = [fieldPayment];
+    }
+
+    if (changedValue.property === 'priceListId') {
+      const fieldPayment = this.getFieldByName('paymentConditionsId');
+      const fieldMethod = this.getFieldByName('paymentMethodId');
+      if (changedValue.value.priceListId === 3 ) {
+        formValidation = {
+          value: { paymentConditionsId: 1, paymentMethodId: 1 }
+        }
+      }
+
+      fieldPayment.disabled = changedValue.value.priceListId === 3 || isDisablePayment;
+      fieldMethod.disabled = changedValue.value.priceListId === 3;
+      formValidation.fields = [fieldPayment, fieldMethod];
+    }
+
+    if (changedValue.property === 'carrierId') {
+      const fieldFreight = this.getFieldByName('freight');
+      const fieldTypeOfFreight = this.getFieldByName('typeOfFreight');
+      fieldFreight.disabled = changedValue.value.carrierId === 6;
+      fieldTypeOfFreight.disabled = changedValue.value.carrierId === 6;
+
+      if (changedValue.value.carrierId === 6 ) {
+        fieldFreight
+        formValidation = {
+          value: { typeOfFreight: 'S', freight: 0 }
+        }
+      }
+
+      formValidation.fields = [fieldFreight, fieldTypeOfFreight];
+    }
+    return formValidation
+  }
+
+  getFieldByName(property: string): PoDynamicFormField  {
+    let field: PoDynamicFormField = {
+      property
+    }
+    let index = this.fields.findIndex(f => f.property === property);
+    return index ? this.fields[index] : field
   }
 }

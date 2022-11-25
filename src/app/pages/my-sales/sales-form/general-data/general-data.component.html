@@ -7,5 +7,7 @@
         [p-value]="sales"
         [hidden]="isLoading"
         (p-form)="formEmitter($event)"
+        [p-validate]="this.onChangeFields.bind(this)"
+        [p-validate-fields]="validateFields"
     ></po-dynamic-form>
 </po-container>

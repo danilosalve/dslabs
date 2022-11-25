@@ -155,7 +155,8 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 minValue: 0,
                 maxValue: 99.99,
                 thousandMaxlength: 2,
-                placeholder: '0,00'
+                placeholder: '0,00',
+                icon: 'po-icon-finance'
             },
             {
                 label: 'Transportadora',
@@ -217,7 +218,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 3,
                 gridLgColumns: 3,
                 gridXlColumns: 2,
-                placeholder: '0,00'
+                minValue: 0,
+                placeholder: '0,00',
+                disabled: false,
+                icon: 'po-icon-truck'
             },
             {
                 label: 'Seguro',
@@ -230,7 +234,9 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 3,
                 gridLgColumns: 3,
                 gridXlColumns: 2,
-                placeholder: '0,00'
+                minValue: 0,
+                placeholder: '0,00',
+                icon: 'po-icon-finance-secure'
             },
             {
                 label: 'Despesa',
@@ -243,7 +249,9 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 3,
                 gridLgColumns: 3,
                 gridXlColumns: 2,
-                placeholder: '0,00'
+                minValue: 0,
+                placeholder: '0,00',
+                icon: 'po-icon-money'
             },
             {
                 label: 'Comentario',

@@ -11,7 +11,7 @@
         [p-title]="product.productName"
     >
         <div class="po-row">
-            <div class="po-md-2 po-lg-1 po-hidden-sm">
+            <div class="po-hidden-md po-hidden-sm">
                 <po-avatar
                     p-size="sm"
                     [p-src]="product.photo!"
@@ -20,14 +20,14 @@
             <div class="po-md-10 po-lg-11">
                 <div class="po-row">
                     <po-info
-                        class="po-lg-3 po-md-4"
+                        class="po-xl-5 po-lg-5 po-md-12 po-sm-12"
                         [p-orientation]="orientationInfo"
                         p-label="Preço Unitário"
                         [p-value]="transformCurrency(product.value)"
                     >
                     </po-info>
                     <po-tag
-                        class="po-lg-3 po-md-3"
+                        class="po-xl-4 po-lg-4 po-md-12 po-sm-12"
                         [p-type]="quantityTag"
                         [p-orientation]="orientation"
                         p-label="Quantidade"
@@ -35,7 +35,7 @@
                     >
                     </po-tag>
                     <po-tag
-                        class="po-lg-3 po-md-3"
+                        class="po-xl-3 po-lg-3 po-md-12 po-sm-12"
                         [p-type]="discountTag"
                         [p-orientation]="orientation"
                         p-label="% Desconto"
@@ -43,7 +43,7 @@
                     >
                     </po-tag>
                     <po-tag
-                        class="po-lg-3 po-md-4"
+                        class="po-xl-5 po-lg-5 po-md-12 po-sm-12"
                         [p-type]="amountTag"
                         [p-orientation]="orientation"
                         p-label="Vlr. Total"
@@ -51,7 +51,7 @@
                     >
                     </po-tag>
                 </div>
-                <div class="po-md-2 po-lg-1 po-visible-sm">
+                <div class="po-visible-sm po-visible-md">
                     <po-avatar
                         p-size="md"
                         [p-src]="product.photo!"

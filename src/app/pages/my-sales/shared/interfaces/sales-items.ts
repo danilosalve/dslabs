@@ -10,4 +10,5 @@ export interface SalesItems {
   discount?: number;
   isSelected?: boolean;
   customerOrderId?: string;
+  photo?: string;
 }

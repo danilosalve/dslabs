@@ -1,10 +1,9 @@
 import { CurrencyPipe } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges
+  DoCheck,
+  Input, OnInit
 } from '@angular/core';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { SalesOrderTotal } from '@app/pages/my-sales/shared/interfaces/sales-order-total';
@@ -16,10 +15,9 @@ import { Sales } from '../shared/interfaces/sales';
 
 @Component({
     selector: 'app-total',
-    templateUrl: './total.component.html',
-    styleUrls: ['./total.component.css']
+    templateUrl: './total.component.html'
 })
-export class TotalComponent implements OnInit, OnChanges {
+export class TotalComponent implements OnInit, DoCheck {
     @Input() header: Sales = new SalesModel();
     @Input() items: SalesItems[] = [];
     height = 0;
@@ -29,11 +27,13 @@ export class TotalComponent implements OnInit, OnChanges {
     constructor(
         protected currencyPipe: CurrencyPipe,
         protected deviceService: DeviceService,
-        protected salesService: SalesService
+        protected salesService: SalesService,
+        protected cd: ChangeDetectorRef
     ) {}
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngDoCheck(): void {
         this.calculateTotal();
+        this.cd.markForCheck();
     }
 
     ngOnInit(): void {

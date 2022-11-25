@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, Input } from '@angular/core';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { ProductService } from '@app/shared/services/product.service';
 import {
@@ -16,10 +16,9 @@ interface ISaleProduct extends SalesItems {
 
 @Component({
     selector: 'app-sale-summary-with-products',
-    templateUrl: './sale-summary-with-products.component.html',
-    styleUrls: ['./sale-summary-with-products.component.css']
+    templateUrl: './sale-summary-with-products.component.html'
 })
-export class SaleSummaryWithProductsComponent implements OnChanges {
+export class SaleSummaryWithProductsComponent implements DoCheck {
     @Input() salesItems: SalesItems[] = [];
     products: ISaleProduct[] = [];
     orientation = PoTagOrientation.Horizontal;
@@ -31,13 +30,15 @@ export class SaleSummaryWithProductsComponent implements OnChanges {
     constructor(
         protected productService: ProductService,
         protected poNotificationService: PoNotificationService,
-        protected currencyPipe: CurrencyPipe
+        protected currencyPipe: CurrencyPipe,
+        private cd: ChangeDetectorRef
     ) {}
 
-    ngOnChanges(): void {
+    ngDoCheck(): void {
         if (this.hasProducts()) {
             this.geProductPhotoAndMergeWithSaleItem();
         }
+        this.cd.markForCheck();
     }
 
     hasProducts(): boolean {
@@ -54,7 +55,7 @@ export class SaleSummaryWithProductsComponent implements OnChanges {
 
     geProductPhotoAndMergeWithSaleItem(): void {
         this.salesItems.forEach(item => {
-            if (this.canAddProduct(item.itemId)) {
+            if (this.canAddProduct(item.productId)) {
                 this.productService
                     .getById(item.productId)
                     .pipe(take(1))
@@ -62,19 +63,33 @@ export class SaleSummaryWithProductsComponent implements OnChanges {
                         next: product => {
                             const newProduct: ISaleProduct = item;
                             newProduct.photo = `assets/img/products/${product.photo}`;
-                            newProduct.productName = product.description;
-                            this.products.push(newProduct);
+                            newProduct.productName = `${item.itemId} - ${product.description}`;
+                            if (this.canAddProduct(product.id)){
+                              this.products.push(newProduct);
+                            }
                         },
                         error: () =>
                             this.poNotificationService.error(
                                 `Não foi possivel obter o valor do produto ${item.productId}`
                             )
                     });
+            } else {
+                this.onProductChange(item);
             }
         });
     }
 
-    canAddProduct(id: number): boolean {
-        return !this.products.some(p => p.itemId === id);
+    canAddProduct(id: string): boolean {
+        return !this.products.some(p => p.productId === id);
+    }
+
+    onProductChange(saleItem: SalesItems): void {
+        const index = this.products.findIndex(
+            p => p.productId === saleItem.productId
+        );
+        if (index >= 0) {
+            this.products[index].quantity = saleItem.quantity;
+            this.products[index].amount = saleItem.amount;
+        }
     }
 }
