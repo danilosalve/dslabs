@@ -1,18 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
-import { PaymentMethodService } from '@app/shared/services/payment-method.service';
 import {
-  PoDynamicFormField, PoDynamicFormFieldChanged, PoDynamicFormValidation, PoNotificationService, PoSelectOption
+  PoDynamicFormField, PoDynamicFormFieldChanged, PoDynamicFormValidation
 } from '@po-ui/ng-components';
-import { forkJoin } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesService } from '../../shared/services/sales.service';
-import { CarrierService } from './../../../../shared/services/carrier.service';
-import { PaymentConditionsService } from './../../../../shared/services/payment-conditions.service';
-import { PriceListService } from './../../../../shared/services/price-list.service';
 
 @Component({
   selector: 'app-general-data',
@@ -28,76 +20,16 @@ export class GeneralDataComponent implements OnInit {
   validateFields: string[] = ['paymentMethodId', 'carrierId', 'priceListId'];
 
   constructor(
-    protected carrierService: CarrierService,
-    protected customerService: CustomerService,
-    protected paymentService: PaymentMethodService,
-    protected paymentConditionsService: PaymentConditionsService,
-    protected priceListService: PriceListService,
-    protected salesService: SalesService,
-    protected poNotification: PoNotificationService,
-    protected router: Router
+    protected salesService: SalesService
   ) {}
 
   ngOnInit(): void {
-    this.getFields();
+    this.onInitFields();
   }
 
-  getFields(): void {
-    let carrierList: PoSelectOption[];
-    let customerList: PoSelectOption[];
-    let paymentList: PoSelectOption[];
-    let conditionsList: PoSelectOption[];
-    let priceList: PoSelectOption[];
-
-    forkJoin({
-      carriers: this.carrierService.getAll(),
-      customers: this.customerService.getAll(),
-      payments: this.paymentService.getAll(),
-      paymentConditions: this.paymentConditionsService.getAll(),
-      priceLists: this.priceListService.getAll()
-    })
-      .pipe(
-        tap(() => (this.isLoading = true)),
-        finalize(() => (this.isLoading = false))
-      )
-      .subscribe({
-        next: response => {
-          customerList = this.customerService.getComboOptions(
-            response.customers
-          );
-          paymentList = this.paymentService.getComboOptions(response.payments);
-          carrierList = this.carrierService.getComboOptions(response.carriers);
-          priceList = this.priceListService.getComboOptions(response.priceLists);
-          conditionsList = this.paymentConditionsService.getComboOptions(response.paymentConditions);
-          this.fields = this.salesService.getFormFields();
-          this.setFieldOptions('customerId', customerList);
-          this.setFieldOptions('paymentMethodId', paymentList);
-          this.setFieldOptions('carrierId', carrierList);
-          this.setFieldOptions('priceListId', priceList);
-          this.setFieldOptions('paymentConditionsId', conditionsList);
-        },
-        error: () => {
-          this.handleError('Ocorreu um erro ao inicializar o formulario');
-        }
-      });
-  }
-
-  findFieldByProperty(property: string): number {
-    return this.fields.findIndex(f => f.property === property)
-  }
-
-  setFieldOptions(property: string, options: any[]): void {
-    const index = this.findFieldByProperty(property);
-    if (index > -1) {
-      this.fields[index].options = options;
-    } else {
-      this.handleError(`Campo ${property} não localizado`);
-    }
-  }
-
-  handleError(text: string): void {
-    this.poNotification.error(text);
-    this.router.navigate(['sales']);
+  onInitFields(): void {
+    this.fields = this.salesService.getFormFields();
+    this.isLoading = false;
   }
 
   formEmitter(form: NgForm) {

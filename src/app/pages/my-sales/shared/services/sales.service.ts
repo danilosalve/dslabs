@@ -1,6 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
+import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
+import { CarrierService } from '@app/shared/services/carrier.service';
+import { PaymentConditionsService } from '@app/shared/services/payment-conditions.service';
+import { PaymentMethodService } from '@app/shared/services/payment-method.service';
 import {
   PoDynamicFormField,
   PoDynamicViewField,
@@ -10,6 +14,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sales } from '../interfaces/sales';
 import { SalesOrderTotal } from '../interfaces/sales-order-total';
+import { PriceListService } from './../../../../shared/services/price-list.service';
 import { SalesStatus } from './../interfaces/sales-status.enum';
 import { TypeOfFreight } from './../interfaces/typeOfFreight.enum';
 import { SalesTotalModel } from './../model/sales-total.model';
@@ -21,7 +26,12 @@ import { SalesItemsService } from './sales-items.service';
 export class SalesService extends BaseResourceServiceFull<Sales> {
     constructor(
         protected override injector: Injector,
-        private salesItemsService: SalesItemsService
+        private salesItemsService: SalesItemsService,
+        private carrierService: CarrierService,
+        private customerService: CustomerService,
+        private methodService: PaymentMethodService,
+        private conditionsService: PaymentConditionsService,
+        private priceListService: PriceListService
     ) {
         super('api/sales/', injector);
     }
@@ -85,9 +95,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 6,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
-                options: [],
                 required: true,
-                placeholder: 'Selecione o Cliente'
+                placeholder: 'Selecione o Cliente',
+                optionsService: this.customerService,
+                icon: 'po-icon-user'
             },
             {
                 label: 'Dt. Emissão',
@@ -110,10 +121,11 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 5,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
-                options: [],
                 required: true,
                 divider: 'Pagamento',
-                placeholder: 'Selecione o Modo de Pagamento'
+                placeholder: 'Selecione o Modo de Pagamento',
+                optionsService: this.methodService,
+                icon: 'po-icon-money'
             },
             {
                 label: 'Prazo de Pagamento',
@@ -124,9 +136,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 5,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
-                options: [],
                 required: false,
-                placeholder: 'Selecione a Condição de Pagamento'
+                placeholder: 'Selecione a Condição de Pagamento',
+                optionsService: this.conditionsService,
+                icon: 'po-icon-handshake'
             },
             {
                 label: 'Tab. de Preços',
@@ -137,9 +150,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 5,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
-                options: [],
                 required: false,
-                placeholder: 'Selecione a Tabela de Preços'
+                placeholder: 'Selecione a Tabela de Preços',
+                optionsService: this.priceListService,
+                icon: 'po-icon-pallet-full'
             },
             {
                 label: 'Desconto',
@@ -167,9 +181,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridMdColumns: 5,
                 gridLgColumns: 4,
                 gridXlColumns: 3,
-                options: [],
                 divider: 'Entrega',
-                placeholder: 'Selecione a Transportadora'
+                optionsService: this.carrierService,
+                placeholder: 'Selecione a Transportadora',
+                icon: 'po-icon-truck'
             },
             {
                 label: 'Tp. Frete',
@@ -221,7 +236,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 minValue: 0,
                 placeholder: '0,00',
                 disabled: false,
-                icon: 'po-icon-truck'
+                icon: 'po-icon-pushcart'
             },
             {
                 label: 'Seguro',

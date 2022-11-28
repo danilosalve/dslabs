@@ -3,12 +3,14 @@ import { Injectable, Injector } from '@angular/core';
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import {
+  PoComboFilter,
+  PoComboOption,
   PoDynamicViewField,
   PoSelectOption,
   PoTableColumn
 } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 import { Customer } from '../interface/customer';
 import { CustomerType } from '../interface/customer-type';
 import { CustomerStatus } from './../interface/customer-status.enum';
@@ -16,7 +18,7 @@ import { CustomerStatus } from './../interface/customer-status.enum';
 @Injectable({
     providedIn: 'root'
 })
-export class CustomerService extends BaseResourceServiceFull<Customer> {
+export class CustomerService extends BaseResourceServiceFull<Customer> implements PoComboFilter {
     constructor(
         protected override injector: Injector,
         protected documentPipe: DocumentPipe
@@ -192,5 +194,25 @@ export class CustomerService extends BaseResourceServiceFull<Customer> {
 
     transformDocument(document: string): string {
         return this.documentPipe.transform(document);
+    }
+
+    getFilteredData(params: any, filterParams?: any): Observable<PoComboOption[]> {
+      return this.getByName(params.value)
+      .pipe(
+        map(customers => customers.map(customer => ({
+          label: customer.name,
+          value: customer.id
+        })))
+      )
+    }
+
+    getObjectByValue(value: string | number, filterParams?: any): Observable<PoComboOption> {
+      return this.getById(value)
+      .pipe(
+        map(customer => ({
+          label: customer.name,
+          value: customer.id
+        }))
+      )
     }
 }
