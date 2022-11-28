@@ -1,4 +1,4 @@
-<po-container [p-no-border]="true" [p-no-shadow]="true" [p-no-padding]="true">
+<po-container [p-no-border]="true" [p-no-padding]="true">
   <po-button
     class="po-mb-1"
     p-label="Consultar Estoque"
@@ -9,16 +9,24 @@
   ></po-button>
 
   <div *ngIf="isDisplayList">
-    <div *ngFor="let item of productBalances">
-      <po-widget [p-title]="item.warehouseDescription" class="po-xl-6 po-lg-12 po-md-12 po-sm-12 po-mt-1">
-        <div class="po-row">
-          <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Armazem" [p-value]="item.warehouse"></po-info>
-          <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Saldo Atual" [p-value]="item.availablequantity + ''"></po-info>
-          <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Quantidade Pedido Vendas" [p-value]="item.orderquantity + ''"></po-info>
-          <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Quantidade Empenhada" [p-value]="item.allocatedquantity + ''"></po-info>
-          <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Qtde prevista p/ entrada" [p-value]="item.expectedinflow + ''"></po-info>
-        </div>
-      </po-widget>
+    <div *ngIf="hasProductBalance(); else emptyProductBalance">
+      <div *ngFor="let item of productBalances">
+        <po-widget [p-title]="item.warehouseDescription" class="po-xl-6 po-lg-12 po-md-12 po-sm-12 po-mt-1">
+          <div class="po-row">
+            <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Armazem" [p-value]="item.warehouse"></po-info>
+            <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Saldo Atual" [p-value]="item.availablequantity + ''"></po-info>
+            <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Quantidade Pedido Vendas" [p-value]="item.orderquantity + ''"></po-info>
+            <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Quantidade Empenhada" [p-value]="item.allocatedquantity + ''"></po-info>
+            <po-info class="po-sm-4 po-md-4 po-lg-4 po-xl-4" p-label="Qtde prevista p/ entrada" [p-value]="item.expectedinflow + ''"></po-info>
+          </div>
+        </po-widget>
+      </div>
     </div>
   </div>
 </po-container>
+
+<ng-template #emptyProductBalance>
+  <div class="po-table-no-data po-text-center">
+      <span>Não há Dados</span>
+  </div>
+</ng-template>

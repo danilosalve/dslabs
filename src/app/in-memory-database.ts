@@ -719,6 +719,14 @@ export class InMemoryDatabase implements InMemoryDbService {
                 unitOfMeasurement: 'KG',
                 photo: 'tomate.png',
                 group: 'Legumes'
+            },
+            {
+                id: '0038',
+                description: 'PERA',
+                price: 8.5,
+                unitOfMeasurement: 'KG',
+                photo: 'pera.png',
+                group: 'Frutas'
             }
         ];
 

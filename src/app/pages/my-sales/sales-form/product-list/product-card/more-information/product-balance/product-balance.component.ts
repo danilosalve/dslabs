@@ -41,4 +41,8 @@ export class ProductBalanceComponent {
         error: () => this.poNotification.error('Falha ao Localizar produto')
       });
   }
+
+  hasProductBalance(): boolean {
+    return this.productBalances.length > 0
+  }
 }
