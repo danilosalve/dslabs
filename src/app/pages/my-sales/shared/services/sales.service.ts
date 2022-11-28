@@ -125,7 +125,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 divider: 'Pagamento',
                 placeholder: 'Selecione o Modo de Pagamento',
                 optionsService: this.methodService,
-                icon: 'po-icon-money'
+                icon: 'po-icon-payment'
             },
             {
                 label: 'Prazo de Pagamento',

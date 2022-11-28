@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Meus Clientes',
-        icon: 'po-icon-handshake',
+        icon: 'po-icon-users',
         shortLabel: 'Clientes',
         action: () => {
           this.router.navigate(['customers']);
