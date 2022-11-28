@@ -1,7 +1,9 @@
 <po-page-default p-title="Meus Indicadores de Vendas">
+  <app-home-cards  [sales]="sales" [isLoading]="isLoading" (changeSalesFilter)="handleFilter($event)"></app-home-cards>
   <app-home-charts [sales]="sales" [isLoading]="isLoading" (showMeSalesEvent)="showMeSales()"></app-home-charts>
   <app-home-sales-table
     [sales]="sales"
     [isLoading]="isLoading"
+    [status]="statusFilter"
   ></app-home-sales-table>
 </po-page-default>

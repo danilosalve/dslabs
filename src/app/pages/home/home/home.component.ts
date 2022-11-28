@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   sales$ = new Subscription();
   isLoading = true;
   sales: Sales[] = [];
+  statusFilter: string = '';
 
   constructor(
     protected salesService: SalesService,
@@ -53,5 +54,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showMeSales(): void {
     this.ngZone.run(() => this.router.navigate(['/sales']));
+  }
+
+  handleFilter(status: string): void {
+    this.statusFilter = status;
   }
 }

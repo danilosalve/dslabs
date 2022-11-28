@@ -7,6 +7,7 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { BdcWalkModule } from 'bdc-walkthrough';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { ViewButtonComponent } from './components/view-button/view-button.component';
+import { DarkenOnHoverDirective } from './Directives/darken-on-hover.directive';
 import { DragDropItemsDirective } from './Directives/drag-drop-items.directive';
 import { DocumentPipe } from './pipe/document.pipe';
 
@@ -15,7 +16,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     FilterInputComponent,
     DocumentPipe,
     ViewButtonComponent,
-    DragDropItemsDirective
+    DragDropItemsDirective,
+    DarkenOnHoverDirective
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { DocumentPipe } from './pipe/document.pipe';
     FilterInputComponent,
     BdcWalkModule,
     ViewButtonComponent,
-    DragDropItemsDirective
+    DragDropItemsDirective,
+    DarkenOnHoverDirective
   ]
 })
 export class SharedModule { }

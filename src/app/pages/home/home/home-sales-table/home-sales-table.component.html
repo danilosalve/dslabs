@@ -1,13 +1,11 @@
 <po-container class="po-m-1">
-  <po-table
-  *ngIf="columns"
-  [p-sort]="true"
-  [p-items]="sales"
-  [p-columns]="columns"
-  [p-max-columns]="5"
-  [p-loading]="isLoading"
-  [p-loading]="isLoading"
-  [p-striped]="true"
-></po-table>
+    <po-table
+        *ngIf="columns"
+        [p-sort]="true"
+        [p-items]="salesPresentention"
+        [p-columns]="columns"
+        [p-max-columns]="5"
+        [p-loading]="isLoading"
+        [p-striped]="true"
+    ></po-table>
 </po-container>
-

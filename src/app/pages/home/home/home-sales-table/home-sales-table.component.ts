@@ -18,7 +18,9 @@ import { SalesBrw } from './../../../my-sales/shared/interfaces/sales';
 export class HomeSalesTableComponent implements OnInit, OnChanges {
     @Input() sales: SalesBrw[] = [];
     @Input() isLoading = false;
+    @Input() status = ''
     columns: PoTableColumn[] = [];
+    salesPresentention: SalesBrw[] = [];
 
     constructor(
         protected customerService: CustomerService,
@@ -26,7 +28,7 @@ export class HomeSalesTableComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.getSalesWithCustomerName();
+        this.getSalesWithCustomerName(this.status);
     }
 
     ngOnInit(): void {
@@ -45,10 +47,16 @@ export class HomeSalesTableComponent implements OnInit, OnChanges {
         return this.columns.findIndex(i => i.property === property);
     }
 
-    getSalesWithCustomerName(): void {
+    getSalesWithCustomerName(status?: string): void {
         this.isLoading = true;
-        this.sales = this.sales.filter(s => s.status !== SalesStatus.Closed);
-        this.sales
+
+        if (this.status !== undefined) {
+          this.salesPresentention = this.sales.filter(s => status ? s.status === status : s.status !== SalesStatus.Closed);
+        } else {
+          this.salesPresentention = this.sales;
+        }
+
+        this.salesPresentention
             .map(sale => {
                 this.customerService
                     .getById(sale.customerId!)

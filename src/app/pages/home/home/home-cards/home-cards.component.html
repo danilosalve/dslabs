@@ -1,0 +1,46 @@
+<po-container class="po-m-2">
+    <po-loading-overlay
+        [hidden]="!isLoading"
+        p-text="Carregando Indicadores"
+    ></po-loading-overlay>
+    <po-widget
+        appDarkenOnHover
+        class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-2"
+        p-title="Total vendas"
+        p-primary-label="Filtrar"
+        (p-primary-action)="handleEventFilter()"
+    >
+        <div class="po-font-subtitle po-text-center">{{ salesInfo.total | currency: 'BRL'}}</div>
+        <div class="po-text-center">Última atualização em {{lastUpdated}}</div>
+    </po-widget>
+    <po-widget
+        appDarkenOnHover
+        class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-2"
+        p-title="Total vendas em aberto"
+        p-primary-label="Filtrar"
+        (p-primary-action)="handleEventFilter('A')"
+    >
+        <div class="po-font-subtitle po-text-center">{{ salesInfo.opened | currency: 'BRL'}}</div>
+        <div class="po-text-center">Última atualização em {{lastUpdated}}</div>
+    </po-widget>
+    <po-widget
+        appDarkenOnHover
+        class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-2"
+        p-title="Total vendas bloqueadas"
+        p-primary-label="Filtrar"
+        (p-primary-action)="handleEventFilter('B')"
+    >
+        <div class="po-font-subtitle po-text-center">{{ salesInfo.blocked | currency: 'BRL'}}</div>
+        <div class="po-text-center">Última atualização em {{lastUpdated}}</div>
+    </po-widget>
+    <po-widget
+        appDarkenOnHover
+        class="po-xl-3 po-lg-3 po-md-3 po-sm-12 po-mt-2"
+        p-title="Total vendas encerrados"
+        p-primary-label="Filtrar"
+        (p-primary-action)="handleEventFilter('E')"
+    >
+        <div class="po-font-subtitle po-text-center">{{ salesInfo.closed | currency: 'BRL'}}</div>
+        <div class="po-text-center">Última atualização em {{lastUpdated}}</div>
+    </po-widget>
+</po-container>
