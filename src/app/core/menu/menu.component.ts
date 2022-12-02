@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PoMenuItem } from '@po-ui/ng-components';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { PoMenuComponent, PoMenuItem } from '@po-ui/ng-components';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
   menus: Array<PoMenuItem> = [];
+  private _routerSubscription$!: Subscription;
+  @ViewChild('poMenu') poMenu!: PoMenuComponent;
 
   constructor(private router: Router) {}
+
+  ngAfterViewInit(): void {
+    this._routerSubscription$ = this.router.events.subscribe(event =>{
+      if (event instanceof NavigationStart) {
+        this.poMenu.collapse();
+      }
+    });
+  }
+  ngOnDestroy(): void {
+    this._routerSubscription$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.setMenuItems();

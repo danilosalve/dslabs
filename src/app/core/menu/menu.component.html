@@ -1,10 +1,11 @@
 <div class="po-wrapper">
     <app-toolbar></app-toolbar>
     <po-menu
+        #poMenu
         class="menu"
         [p-filter]="true"
         [p-menus]="menus"
-        [p-collapsed]="false"
+        [p-collapsed]="true"
         p-short-logo="../../../assets/img/png/logo.png"
         p-logo-alt="Logo Portal Gestão de Vendas"
     >
