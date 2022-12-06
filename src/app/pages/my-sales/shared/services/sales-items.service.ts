@@ -14,6 +14,10 @@ export class SalesItemsService extends BaseResourceServiceFull<SalesItems> {
     super('api/salesItems/', injector);
   }
 
+  getHeadersForExcel(): string[] {
+    return [];
+  }
+
   getBySalesId(id: string): Observable<SalesItems[]> {
     return this.http.get<SalesItems[]>(`${this.apiPath}?salesId=${id}`).pipe(
       retry(2),

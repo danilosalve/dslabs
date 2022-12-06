@@ -123,6 +123,10 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
         ];
     }
 
+    getHeadersForExcel(): string[] {
+      return ["Código", "Nome", "Documento", "UF", "Cidade", 'Status', 'Tp. Cliente', 'Data', 'Ult. Compra', 'Endereço', 'Bairro', 'CEP'];
+    }
+
     getComboOptions(customers: Customer[]): PoSelectOption[] {
         return customers.map(customer => ({
             value: customer.id,

@@ -14,4 +14,5 @@ export abstract class BaseResourceServiceFull<T> extends BaseResourceService<T> 
   }
 
   abstract getColumns(): PoTableColumn[];
+  abstract getHeadersForExcel(): string[];
 }

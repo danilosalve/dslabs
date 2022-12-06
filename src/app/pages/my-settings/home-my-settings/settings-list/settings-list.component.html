@@ -1,4 +1,4 @@
-<po-page-list #poPageList [p-title]="titlePage">
+<po-page-list #poPageList [p-title]="titlePage" [p-actions]="actions">
     <div class="po-row">
         <app-filter-input
             class="po-offset-xl-9 po-offset-lg-8 po-offset-md-7 po-sm-12"
@@ -26,7 +26,7 @@
     ></app-setting-list-view>
 </po-page-list>
 
-<bdc-walk-dialog #dialogFinish name="dialogFinish" width="650px">
+<bdc-walk-dialog #dialogWelcome name="dialogWelcome" width="650px">
     <div class="po-row">
         <p class="po-font-title">Novo por aqui?</p>
         <p class="po-font-subtitle">
@@ -44,7 +44,7 @@
     <div class="po-row">
         <po-button
             class="po-mt-3"
-            (click)="dialogFinish.close()"
+            (click)="dialogWelcome.close()"
             p-label="Fechar"
         ></po-button>
     </div>
@@ -54,12 +54,11 @@
     #settingsListStep1
     name="settingsListStep1"
     header="Passo 1"
-    xPosition="after"
     [onButtonCompleteTask]="{ settingsListStep1: 1 }"
-    class="warning"
     sideNoteText="1/2"
     [showButton]="true"
     buttonText="Próximo"
+    xPosition="after"
 >
     <p>
         Pesquise utilizando o <b>código</b> da Tabela ou <b>Descrição</b>,
@@ -71,12 +70,11 @@
     #settingsListStep2
     name="settingsListStep2"
     header="Passo 2"
-    xPosition="after"
     [mustCompleted]="{ settingsListStep1: 1 }"
-    class="warning"
     sideNoteText="2/2"
     [showButton]="true"
     buttonText="Entendi"
+    xPosition="after"
 >
     <p>
         Clique em <b>editar</b> para acessar as configurações de

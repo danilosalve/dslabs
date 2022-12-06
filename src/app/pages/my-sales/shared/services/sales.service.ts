@@ -85,6 +85,27 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
         ];
     }
 
+    getHeadersForExcel(): string[] {
+        return [
+            'Código',
+            'Cód. Cliente',
+            'Metodo de Pagto',
+            'Cód. Cond. de Pagto',
+            'Emissão',
+            'Transportadora',
+            'Tab. Preço',
+            'Status',
+            'Desconto',
+            'Tipo Frete',
+            'Despesa',
+            'Seguro',
+            'Frete',
+            'Comentario',
+            'Nome do Cliente',
+            'Sub-Total'
+        ];
+    }
+
     getFormFields(): Array<PoDynamicFormField> {
         let fields: Array<PoDynamicFormField> = [
             {
@@ -322,7 +343,10 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 label: 'Modo de Pagamento',
                 divider: 'Pagamento'
             },
-            { property: 'paymentConditionDescription', label: 'Condição de Pagamento' },
+            {
+                property: 'paymentConditionDescription',
+                label: 'Condição de Pagamento'
+            },
             { property: 'priceListDescription', label: 'Tab. de Preços' },
             { property: 'discount', label: 'Desconto', type: 'currency' },
             {
@@ -361,45 +385,47 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
     }
 
     async getAsyncSubtotalWithSaleId(id: number): Promise<number> {
-      const data$ = this.salesItemsService.getBySalesId(id.toString())
-      .pipe(
-        map(items => items.filter(i => i.salesId === id)),
-        map(items => items.reduce((amount, currency) => amount + currency.amount, 0))
-      )
+        const data$ = this.salesItemsService.getBySalesId(id.toString()).pipe(
+            map(items => items.filter(i => i.salesId === id)),
+            map(items =>
+                items.reduce((amount, currency) => amount + currency.amount, 0)
+            )
+        );
 
-      try {
-        return await firstValueFrom(data$, {defaultValue: 0}) ?? 0 ;
-      } catch(e) {
-        throw(e);
-      }
+        try {
+            return (await firstValueFrom(data$, { defaultValue: 0 })) ?? 0;
+        } catch (e) {
+            throw e;
+        }
     }
 
     getSubtotalWithSaleId(id: number): Observable<number> {
-      return this.salesItemsService.getBySalesId(id.toString())
-      .pipe(
-        map(items => items.filter(i => i.salesId === id)),
-        map(items => items.reduce((amount, currency) => amount + currency.amount, 0))
-      )
+        return this.salesItemsService.getBySalesId(id.toString()).pipe(
+            map(items => items.filter(i => i.salesId === id)),
+            map(items =>
+                items.reduce((amount, currency) => amount + currency.amount, 0)
+            )
+        );
     }
 
     getTypeOfFreight(type: string): string {
-      switch (type) {
-          case TypeOfFreight.CIF:
-              return 'CIF';
-          case TypeOfFreight.FOB:
-              return 'FOB';
-          case TypeOfFreight.DESTINARIO:
-              return 'Por conta - Destinario';
-          case TypeOfFreight.REMETENTE:
-              return 'Por conta - Remetente';
-          case TypeOfFreight.TERCEIROS:
-              return 'Por conta - Terceiros';
-          case TypeOfFreight.SEMFRETE:
-              return 'Sem Frete';
-          default:
-              return 'Não especificado';
-      }
-  }
+        switch (type) {
+            case TypeOfFreight.CIF:
+                return 'CIF';
+            case TypeOfFreight.FOB:
+                return 'FOB';
+            case TypeOfFreight.DESTINARIO:
+                return 'Por conta - Destinario';
+            case TypeOfFreight.REMETENTE:
+                return 'Por conta - Remetente';
+            case TypeOfFreight.TERCEIROS:
+                return 'Por conta - Terceiros';
+            case TypeOfFreight.SEMFRETE:
+                return 'Sem Frete';
+            default:
+                return 'Não especificado';
+        }
+    }
 
     private calculateSalesOrderItemsTotal(
         items: SalesItems[],

@@ -12,6 +12,10 @@ import { TableStatus } from '../interfaces/table-status.enum';
     providedIn: 'root'
 })
 export class TablesService extends BaseResourceServiceFull<Table> {
+
+    getHeadersForExcel(): string[] {
+      return ['Código', 'Descrição', 'Status', 'Pode Editar?', 'Filtro'];
+    }
     constructor(
         protected override injector: Injector,
         protected poNotification: PoNotificationService

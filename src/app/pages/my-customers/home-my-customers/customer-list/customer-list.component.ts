@@ -2,7 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
 import { PoPageAction } from '@po-ui/ng-components';
-import * as XLSX from 'xlsx';
 import { CustomerService } from '../../shared/services/customer.service';
 import { Customer } from './../../shared/interface/customer';
 
@@ -28,25 +27,11 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
     }
 
     getActions(): PoPageAction[] {
-        return [
-            {
-                label: 'Exportar para Excel',
-                action: () => this.onExportToexcel(),
-                icon: 'po-icon-export',
-                type: 'default'
-            }
-        ];
+        return [];
     }
 
     onShowCustomer(customer: Customer): void {
         this.isLoading = true;
         this.router.navigate(['customers/view', customer.id]);
-    }
-
-    onExportToexcel(): void {
-        const ws = XLSX.utils.json_to_sheet(this.items);
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-        XLSX.writeFile(wb, 'customers.xlsx');
     }
 }

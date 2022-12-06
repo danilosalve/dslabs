@@ -21,7 +21,9 @@ import { Seller } from './shared/interfaces/seller';
 import { SellerModel } from './shared/model/seller.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
-    createDb(reqInfo?: RequestInfo | undefined): {} | Observable<{}> | Promise<{}> {
+    createDb(
+        reqInfo?: RequestInfo | undefined
+    ): {} | Observable<{}> | Promise<{}> {
         const carriers: Carrier[] = [
             {
                 id: 1,
@@ -1044,7 +1046,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Closed,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 0
             },
             {
                 id: 2,
@@ -1056,7 +1062,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: undefined,
                 status: SalesStatus.Closed,
                 typeOfFreight: TypeOfFreight.FOB,
-                comment: ''
+                comment: '',
+                discount: 10,
+                expenses: 0,
+                insurance: 0,
+                freight: 79.94
             },
             {
                 id: 3,
@@ -1068,7 +1078,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Closed,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 0
             },
             {
                 id: 4,
@@ -1080,7 +1094,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Blocked,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 0
             },
             {
                 id: 5,
@@ -1092,7 +1110,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Open,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 127.84
             },
             {
                 id: 6,
@@ -1104,7 +1126,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Closed,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 300.47
             },
             {
                 id: 7,
@@ -1116,7 +1142,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Open,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 10.9,
+                expenses: 0,
+                insurance: 0,
+                freight: 10.9
             },
             {
                 id: 8,
@@ -1128,7 +1158,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Blocked,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 19.9,
+                expenses: 0,
+                insurance: 0,
+                freight: 179.39
             },
             {
                 id: 9,
@@ -1140,7 +1174,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 priceListId: 1,
                 status: SalesStatus.Open,
                 typeOfFreight: TypeOfFreight.CIF,
-                comment: ''
+                comment: '',
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 0
             },
             {
                 id: 10,
@@ -1151,7 +1189,10 @@ export class InMemoryDatabase implements InMemoryDbService {
                 carrierId: 6,
                 priceListId: 1,
                 status: SalesStatus.Open,
-                discount: 2,
+                discount: 0,
+                expenses: 0,
+                insurance: 0,
+                freight: 0,
                 typeOfFreight: TypeOfFreight.SEMFRETE,
                 comment: ''
             },
@@ -1164,11 +1205,11 @@ export class InMemoryDatabase implements InMemoryDbService {
                 carrierId: 2,
                 priceListId: 1,
                 status: SalesStatus.Open,
-                discount: 2,
+                discount: 0,
                 typeOfFreight: TypeOfFreight.SEMFRETE,
-                expenses: 10.49,
-                insurance: 44.9,
-                freight: 200.9,
+                expenses: 0,
+                insurance: 59.9,
+                freight: 179.9,
                 comment: ''
             },
             {
@@ -1182,9 +1223,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 status: SalesStatus.Closed,
                 discount: 2,
                 typeOfFreight: TypeOfFreight.CIF,
-                expenses: 10.49,
-                insurance: 44.9,
-                freight: 200.9,
+                expenses: 79.98,
+                insurance: 499.97,
+                freight: 398.9,
                 comment: ''
             }
         ];
@@ -1240,8 +1281,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 1,
                 productId: '0001',
                 value: 4.09,
-                quantity: 12,
-                amount: 49.08,
+                quantity: 90,
+                amount: 368.1,
                 productName: '',
                 discount: 0
             },
@@ -1251,8 +1292,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 2,
                 productId: '0005',
                 value: 3.99,
-                quantity: 2,
-                amount: 7.98,
+                quantity: 400,
+                amount: 1596,
                 productName: '',
                 discount: 0
             },
@@ -1262,8 +1303,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 3,
                 productId: '0002',
                 value: 4.06,
-                quantity: 6,
-                amount: 24.36,
+                quantity: 35,
+                amount: 142.1,
                 productName: '',
                 discount: 0
             },
@@ -1438,8 +1479,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 1,
                 productId: '0003',
                 value: 3.49,
-                quantity: 8,
-                amount: 27.92,
+                quantity: 129,
+                amount: 450.21,
                 productName: '',
                 discount: 0
             },
@@ -1449,8 +1490,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 2,
                 productId: '0002',
                 value: 4.06,
-                quantity: 6,
-                amount: 24.36,
+                quantity: 77,
+                amount: 312.62,
                 productName: '',
                 discount: 0
             },
@@ -1515,8 +1556,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 1,
                 productId: '0002',
                 value: 4.06,
-                quantity: 3,
-                amount: 12.18,
+                quantity: 10,
+                amount: 40.6,
                 productName: '',
                 discount: 0
             },
@@ -1526,8 +1567,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 2,
                 productId: '0001',
                 value: 4.09,
-                quantity: 5,
-                amount: 20.45,
+                quantity: 30,
+                amount: 122.7,
                 productName: '',
                 discount: 0
             },
@@ -1536,9 +1577,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 salesId: 8,
                 itemId: 1,
                 productId: '0002',
-                value: 10.99,
-                quantity: 3,
-                amount: 32.97,
+                value: 4.06,
+                quantity: 47,
+                amount: 190.82,
                 productName: '',
                 discount: 0
             },
@@ -1548,8 +1589,8 @@ export class InMemoryDatabase implements InMemoryDbService {
                 itemId: 2,
                 productId: '0015',
                 value: 3.73,
-                quantity: 3,
-                amount: 11.19,
+                quantity: 49,
+                amount: 182.77,
                 productName: '',
                 discount: 0
             },
@@ -1682,6 +1723,72 @@ export class InMemoryDatabase implements InMemoryDbService {
                 value: 23.03,
                 quantity: 500,
                 amount: 11515,
+                productName: '',
+                discount: 0
+            },
+            {
+                id: 45,
+                salesId: 2,
+                itemId: 4,
+                productId: '0037',
+                value: 3.59,
+                quantity: 500,
+                amount: 1795,
+                productName: '',
+                discount: 0
+            },
+            {
+                id: 46,
+                salesId: 2,
+                itemId: 5,
+                productId: '0024',
+                value: 4.26,
+                quantity: 79,
+                amount: 336.54,
+                productName: '',
+                discount: 0
+            },
+            {
+                id: 46,
+                salesId: 8,
+                itemId: 3,
+                productId: '0032',
+                value: 3.99,
+                quantity: 96,
+                amount: 383.04,
+                productName: '',
+                discount: 0.5
+            },
+            {
+                id: 47,
+                salesId: 7,
+                itemId: 3,
+                productId: '0037',
+                value: 3.59,
+                quantity: 12.5,
+                amount: 44.875,
+                productName: '',
+                discount: 0
+            },
+            {
+                id: 48,
+                salesId: 7,
+                itemId: 4,
+                productId: '0034',
+                value: 3.99,
+                quantity: 300,
+                amount: 1197,
+                productName: '',
+                discount: 0
+            },
+            {
+                id: 49,
+                salesId: 7,
+                itemId: 5,
+                productId: '0024',
+                value: 4.26,
+                quantity: 50,
+                amount: 213,
                 productName: '',
                 discount: 0
             }
@@ -2021,18 +2128,23 @@ export class InMemoryDatabase implements InMemoryDbService {
         return of(db).pipe(delay(1300));
     }
 
-    getDateRandom(isNewDate = true, day = 1, month = 1, year = new Date().getFullYear()): Date {
+    getDateRandom(
+        isNewDate = true,
+        day = 1,
+        month = 1,
+        year = new Date().getFullYear()
+    ): Date {
         const dateIni = new Date(`${year}-${month}-${day}`);
         const dateEnd = new Date();
 
         if (dateIni > dateEnd) {
-          dateIni.setFullYear(year-1);
+            dateIni.setFullYear(year - 1);
         }
         const diff = dateEnd.getTime() - dateIni.getTime();
         if (isNewDate) {
-          return new Date(dateIni.getTime() + diff * Math.random());
+            return new Date(dateIni.getTime() + diff * Math.random());
         } else {
-          return dateIni
+            return dateIni;
         }
     }
 }
