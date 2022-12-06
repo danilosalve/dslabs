@@ -117,6 +117,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridLgColumns: 4,
                 gridXlColumns: 3,
                 required: true,
+                showRequired: true,
                 placeholder: 'Selecione o Cliente',
                 optionsService: this.customerService,
                 icon: 'po-icon-user'
@@ -132,6 +133,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridLgColumns: 3,
                 gridXlColumns: 3,
                 required: true,
+                showRequired: true,
                 disabled: true
             },
             {
@@ -143,6 +145,7 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                 gridLgColumns: 4,
                 gridXlColumns: 3,
                 required: true,
+                showRequired: true,
                 divider: 'Pagamento',
                 placeholder: 'Selecione o Modo de Pagamento',
                 optionsService: this.methodService,
