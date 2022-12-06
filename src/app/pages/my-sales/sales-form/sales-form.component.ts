@@ -1,5 +1,6 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
 import {
   PoAccordionItemComponent,
@@ -26,6 +27,7 @@ export class SalesFormComponent extends BaseResourceForm {
     generaldata!: PoAccordionItemComponent;
 
     constructor(
+        protected customerService: CustomerService,
         protected salesService: SalesService,
         protected salesItemService: SalesItemsService,
         protected override injector: Injector
@@ -62,6 +64,7 @@ export class SalesFormComponent extends BaseResourceForm {
                         this.poNotification.success(
                             `Pedido de Venda ${sale.id} incluído com sucesso!!!`
                         );
+                        this.updateCustomerLastPurchaseDate(sale.customerId);
                         this.handleBack();
                     },
                     error: () => this.handleErrorSubmit()
@@ -120,5 +123,13 @@ export class SalesFormComponent extends BaseResourceForm {
 
     getFields(): PoDynamicFormField[] {
         throw new Error('Method not implemented.');
+    }
+
+    updateCustomerLastPurchaseDate(id: number): void {
+      this.customerService.getById(id)
+      .pipe(
+        tap(customer => customer.lastPurchase = new Date()),
+        switchMap(customer => this.customerService.put(customer, customer.id))
+      ).subscribe();
     }
 }
