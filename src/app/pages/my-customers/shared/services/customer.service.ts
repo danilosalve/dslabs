@@ -10,7 +10,7 @@ import {
   PoTableColumn
 } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { catchError, filter, map, retry } from 'rxjs/operators';
 import { Customer } from '../interface/customer';
 import { CustomerType } from '../interface/customer-type';
 import { CustomerStatus } from './../interface/customer-status.enum';
@@ -203,6 +203,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
     getFilteredData(params: any, filterParams?: any): Observable<PoComboOption[]> {
       return this.getByName(params.value)
       .pipe(
+        map(customers => customers.filter(c => c.status === CustomerStatus.active)),
         map(customers => customers.map(customer => ({
           label: customer.name,
           value: customer.id
@@ -213,6 +214,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
     getObjectByValue(value: string | number, filterParams?: any): Observable<PoComboOption> {
       return this.getById(value)
       .pipe(
+        filter(customer => customer.status === CustomerStatus.active),
         map(customer => ({
           label: customer.name,
           value: customer.id
