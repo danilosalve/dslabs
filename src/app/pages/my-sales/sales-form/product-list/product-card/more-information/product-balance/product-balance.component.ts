@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductBalanceService } from '@app/shared/services/product-balance.service';
 import { PoNotificationService } from '@po-ui/ng-components';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, take, tap } from 'rxjs/operators';
 import { ProductBalance } from './../../../../../../../shared/interfaces/product-balance';
 
 @Component({
@@ -26,20 +26,19 @@ export class ProductBalanceComponent {
 
   getProductBalance(): void {
     this.productBalance
-      .getAll()
+      .getByProductId(this.productId)
       .pipe(
         tap(() => (this.isLoading = true)),
+        take(1),
         finalize(() => (this.isLoading = false))
       )
       .subscribe({
         next: products => {
-          this.productBalances = products.filter(
-            p => p.productId === this.productId
-          ),
+          this.productBalances = products;
           this.isDisplayList = true;
         },
         error: () => this.poNotification.error('Falha ao Localizar produto')
-      });
+      })
   }
 
   hasProductBalance(): boolean {
