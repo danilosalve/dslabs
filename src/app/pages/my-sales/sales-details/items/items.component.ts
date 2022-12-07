@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { PoTableColumn } from '@po-ui/ng-components';
-import { ProductService } from './../../../../shared/services/product.service';
+import { ProductService } from '../../../my-products/shared/services/product.service';
 import { SalesItemsService } from './../../shared/services/sales-items.service';
 
 @Component({

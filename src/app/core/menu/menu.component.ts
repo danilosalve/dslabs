@@ -52,6 +52,14 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       },
       {
+        label: 'Meus Produtos',
+        icon: 'po-icon-pushcart',
+        shortLabel: 'Produtos',
+        action: () => {
+          this.router.navigate(['products']);
+        }
+      },
+      {
         label: 'Meus Pedidos',
         shortLabel: 'Vendas',
         icon: 'po-icon-cart',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ProductService } from '@app/pages/my-products/shared/services/product.service';
 import { DeviceService } from '@app/shared/services/device.service';
-import { ProductService } from '@app/shared/services/product.service';
 import { PoNotificationService, PoProgressStatus } from '@po-ui/ng-components';
 export class CsvData {
     productId: string;

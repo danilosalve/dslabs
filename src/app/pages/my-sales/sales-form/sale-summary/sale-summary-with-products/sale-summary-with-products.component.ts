@@ -1,12 +1,12 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, DoCheck, Input } from '@angular/core';
+import { ProductService } from '@app/pages/my-products/shared/services/product.service';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
-import { ProductService } from '@app/shared/services/product.service';
 import {
-  PoInfoOrientation,
-  PoNotificationService,
-  PoTagOrientation,
-  PoTagType
+    PoInfoOrientation,
+    PoNotificationService,
+    PoTagOrientation,
+    PoTagType
 } from '@po-ui/ng-components';
 import { take } from 'rxjs/operators';
 

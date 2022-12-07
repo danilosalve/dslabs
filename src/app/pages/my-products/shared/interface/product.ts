@@ -4,5 +4,6 @@ export interface Product {
   price: number,
   unitOfMeasurement: string,
   photo: string,
-  group: string
+  group: string,
+  stockBalance?: number
 }

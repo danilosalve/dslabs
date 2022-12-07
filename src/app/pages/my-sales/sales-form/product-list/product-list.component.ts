@@ -1,19 +1,19 @@
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output
 } from '@angular/core';
 import {
-  PoDialogService,
-  PoDisclaimer,
-  PoNotificationService
+    PoDialogService,
+    PoDisclaimer,
+    PoNotificationService
 } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { ProductService } from './../../../../shared/services/product.service';
+import { ProductService } from '../../../my-products/shared/services/product.service';
 import { SalesItems } from './../../shared/interfaces/sales-items';
 
 @Component({

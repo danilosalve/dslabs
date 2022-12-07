@@ -1,0 +1,39 @@
+<po-loading-overlay [hidden]="!isLoading"></po-loading-overlay>
+<po-list-view [p-items]="items" [p-property-title]="propertyTitle">
+    <ng-template p-list-view-content-template let-item>
+        <div class="po-row">
+            <po-tag
+                class="po-xl-5 po-lg-5 po-md-12 po-sm-12"
+                [p-value]="item.group"
+                [p-color]="getColorGroup(item.group)"
+            ></po-tag>
+        </div>
+        <div class="po-row">
+            <po-avatar
+                class="po-xl-2 po-lg-2 po-md-2 po-sm-3"
+                p-size="md"
+                [p-src]="getPhotoSRC(item.photo)"
+            ></po-avatar>
+            <po-info
+                class="po-xl-3 po-lg-3 po-md-4 po-sm-6"
+                p-label="Código"
+                [p-value]="item.id"
+            ></po-info>
+            <po-info
+                class="po-xl-2 po-lg-2 po-md-2 po-sm-2"
+                p-label="UM"
+                [p-value]="item.unitOfMeasurement"
+            ></po-info>
+            <po-info
+                class="po-xl-2 po-lg-2 po-md-2 po-sm-4"
+                p-label="Preço"
+                [p-value]="item.price"
+            ></po-info>
+            <po-info
+                class="po-xl-2 po-lg-2 po-md-2 po-sm-4"
+                p-label="Qtd. Estoque"
+                [p-value]="item.stockBalance"
+            ></po-info>
+        </div>
+    </ng-template>
+</po-list-view>

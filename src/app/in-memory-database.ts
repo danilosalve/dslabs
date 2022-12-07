@@ -3,6 +3,7 @@ import { delay, Observable, of } from 'rxjs';
 import { Customer } from './pages/my-customers/shared/interface/customer';
 import { CustomerStatus } from './pages/my-customers/shared/interface/customer-status.enum';
 import { CustomerType } from './pages/my-customers/shared/interface/customer-type';
+import { Product } from './pages/my-products/shared/interface/product';
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
 import { SalesStatus } from './pages/my-sales/shared/interfaces/sales-status.enum';
@@ -15,7 +16,6 @@ import { Carrier } from './shared/interfaces/carrier';
 import { PaymentCondition } from './shared/interfaces/payment-condition';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { PriceList } from './shared/interfaces/price-list/price-list';
-import { Product } from './shared/interfaces/product';
 import { ProductBalance } from './shared/interfaces/product-balance';
 import { Seller } from './shared/interfaces/seller';
 import { SellerModel } from './shared/model/seller.model';
@@ -1028,7 +1028,447 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0015',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: 10,
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 31,
+                productId: '0016',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 32,
+                productId: '0016',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 33,
+                productId: '0017',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 34,
+                productId: '0017',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 35,
+                productId: '0018',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 36,
+                productId: '0018',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 37,
+                productId: '0019',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 38,
+                productId: '0019',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 39,
+                productId: '0020',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 40,
+                productId: '0020',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 41,
+                productId: '0021',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 42,
+                productId: '0021',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 43,
+                productId: '0022',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 44,
+                productId: '0022',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 45,
+                productId: '0023',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 46,
+                productId: '0023',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 47,
+                productId: '0024',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 48,
+                productId: '0025',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 49,
+                productId: '0026',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 50,
+                productId: '0026',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 51,
+                productId: '0027',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 52,
+                productId: '0027',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 53,
+                productId: '0028',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 54,
+                productId: '0028',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 55,
+                productId: '0029',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 56,
+                productId: '0029',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 57,
+                productId: '0030',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 58,
+                productId: '0030',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 59,
+                productId: '0031',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 60,
+                productId: '0031',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 61,
+                productId: '0032',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 62,
+                productId: '0032',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 63,
+                productId: '0033',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 64,
+                productId: '0033',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 65,
+                productId: '0034',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 66,
+                productId: '0034',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 67,
+                productId: '0035',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 67,
+                productId: '0035',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 68,
+                productId: '0036',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 68,
+                productId: '0036',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 61,
+                productId: '0037',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 62,
+                productId: '0037',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 61,
+                productId: '0038',
+                warehouse: '01',
+                warehouseDescription: 'CD SP',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                allocatedquantity: 0,
+                expectedinflow: 0,
+                orderquantity: 0
+            },
+            {
+                id: 62,
+                productId: '0038',
+                warehouse: '02',
+                warehouseDescription: 'CD CAMPINAS',
+                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
