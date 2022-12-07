@@ -8,7 +8,7 @@ import {
 } from '@po-ui/ng-components';
 import 'lodash';
 import { Observable, of } from 'rxjs';
-import { concatMap, finalize, map, tap } from 'rxjs/operators';
+import { concatMap, finalize, map, take, tap } from 'rxjs/operators';
 import { Sales, SalesBrw } from '../../shared/interfaces/sales';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
 import { SalesService } from '../../shared/services/sales.service';
@@ -48,6 +48,7 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
                         customer$
                             .pipe(
                                 concatMap(() => subTotal$),
+                                take(1),
                                 finalize(() => (this.isLoading = false))
                             )
                             .subscribe(res => {
@@ -90,7 +91,9 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
             this.isLoading = true;
             this.salesService
                 .delete(sales.id ? sales.id : 0)
-                .pipe(finalize(() => (this.isLoading = false)))
+                .pipe(
+                  take(1),
+                  finalize(() => (this.isLoading = false)))
                 .subscribe({
                     next: () => {
                         this.handleDelete(sales);
@@ -163,7 +166,8 @@ export class SalesListComponent extends BaseResourceList<SalesBrw> {
             map(res => ({
                 id: id,
                 subTotal: res
-            }))
+            })),
+            take(1)
         );
     }
 

@@ -5,7 +5,7 @@ import { BaseResourceList } from '@app/shared/components/base/base-resource-list
 import { PoPageAction } from '@po-ui/ng-components';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { finalize, map, mergeMap, tap } from 'rxjs/operators';
+import { finalize, map, mergeMap, take, tap } from 'rxjs/operators';
 import { ProductBalanceService } from './../../../../shared/services/product-balance.service';
 
 @Component({
@@ -78,7 +78,8 @@ export class ProductListComponent extends BaseResourceList<Product> {
             map(res => ({
                 ...product,
                 stockBalance: res
-            }))
+            })),
+            take(1)
         );
     }
 }

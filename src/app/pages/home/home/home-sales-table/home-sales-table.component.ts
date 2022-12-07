@@ -9,6 +9,7 @@ import { CustomerService } from '@app/pages/my-customers/shared/services/custome
 import { SalesStatus } from '@app/pages/my-sales/shared/interfaces/sales-status.enum';
 import { SalesService } from '@app/pages/my-sales/shared/services/sales.service';
 import { PoTableColumn } from '@po-ui/ng-components';
+import { take } from 'rxjs';
 import { SalesBrw } from './../../../my-sales/shared/interfaces/sales';
 
 @Component({
@@ -60,6 +61,7 @@ export class HomeSalesTableComponent implements OnInit, OnChanges {
             .map(sale => {
                 this.customerService
                     .getById(sale.customerId!)
+                    .pipe(take(1))
                     .subscribe(customer => (sale.customerName = customer.name));
             })
             .map(() => (this.isLoading = false));

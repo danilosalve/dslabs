@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SalesItems } from '@app/pages/my-sales/shared/interfaces/sales-items';
 import { PoTableColumn } from '@po-ui/ng-components';
+import { take } from 'rxjs/operators';
 import { ProductService } from '../../../my-products/shared/services/product.service';
 import { SalesItemsService } from './../../shared/services/sales-items.service';
 
@@ -31,6 +32,7 @@ export class ItemsComponent implements OnInit{
   transformItemWithProductName(): void {
     this.items.map(item => {
       this.productService.getById(item.productId)
+      .pipe(take(1))
       .subscribe(product => item.productName = product.description)
     })
     .map(() => this.isLoading = false);

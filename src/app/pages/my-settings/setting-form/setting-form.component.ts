@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
 import { PoBreadcrumb, PoDisclaimer, PoDynamicFormField, PoStepperOrientation } from '@po-ui/ng-components';
 import { clone } from 'ramda';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, take, tap } from 'rxjs/operators';
 import { Field } from '../shared/interfaces/field';
 import { TableStatus } from '../shared/interfaces/table-status.enum';
 import { Table } from './../shared/interfaces/table';
@@ -53,6 +53,7 @@ export class SettingFormComponent extends BaseResourceForm implements OnInit {
         this.isDisableSubmit = true;
         this.isLoading = true;
       }),
+      take(1),
       finalize(() => {
         this.isDisableSubmit = false;
         this.isLoading = false;

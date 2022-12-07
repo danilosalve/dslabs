@@ -4,7 +4,7 @@ import { SalesService } from '@app/pages/my-sales/shared/services/sales.service'
 import { PaymentMethodService } from '@app/shared/services/payment-method.service';
 import { PoDynamicViewField, PoNotificationService } from '@po-ui/ng-components';
 import { forkJoin, of } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, take, tap } from 'rxjs/operators';
 import { Sales } from '../../shared/interfaces/sales';
 import { SalesItems } from '../../shared/interfaces/sales-items';
 import { SalesStatus } from '../../shared/interfaces/sales-status.enum';
@@ -117,6 +117,7 @@ export class GeneralDataComponent implements OnInit {
       })
       .pipe(
         tap(() => (this.isLoading = true)),
+        take(1),
         finalize(() => (this.isLoading = false))
       )
       .subscribe({

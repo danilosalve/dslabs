@@ -9,7 +9,7 @@ import {
   PoDynamicFormField
 } from '@po-ui/ng-components';
 import { of } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
 import { SalesStatus } from '../shared/interfaces/sales-status.enum';
 import { SalesModel } from '../shared/model/sales-model';
@@ -55,12 +55,16 @@ export class SalesFormComponent extends BaseResourceForm {
                     tap(res => this.updateSalesIdOnItems(res.id)),
                     switchMap(sales => {
                         this.salesItems.forEach(item =>
-                            this.salesItemService.create(item).subscribe({
-                                error: () => this.handleErrorSubmit()
-                            })
+                            this.salesItemService
+                                .create(item)
+                                .pipe(take(1))
+                                .subscribe({
+                                    error: () => this.handleErrorSubmit()
+                                })
                         );
                         return of(sales);
-                    })
+                    }),
+                    take(1)
                 )
                 .subscribe({
                     next: sale => {
@@ -139,7 +143,8 @@ export class SalesFormComponent extends BaseResourceForm {
                 tap(customer => (customer.lastPurchase = new Date())),
                 switchMap(customer =>
                     this.customerService.put(customer, customer.id)
-                )
+                ),
+                take(1)
             )
             .subscribe();
     }
@@ -155,7 +160,8 @@ export class SalesFormComponent extends BaseResourceForm {
                     })),
                     switchMap(product =>
                         this.productBalance.put(product, product.id)
-                    )
+                    ),
+                    take(1)
                 )
                 .subscribe();
         });
@@ -170,7 +176,8 @@ export class SalesFormComponent extends BaseResourceForm {
                         (acc, currency) => acc + currency.availablequantity,
                         0
                     )
-                )
+                ),
+                take(1)
             )
             .subscribe({
                 next: avaliableQuantity =>
