@@ -2,14 +2,16 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
+import { ProductBalanceService } from '@app/shared/services/product-balance.service';
 import {
   PoAccordionItemComponent,
   PoBreadcrumb,
   PoDynamicFormField
 } from '@po-ui/ng-components';
 import { of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Sales } from '../shared/interfaces/sales';
+import { SalesStatus } from '../shared/interfaces/sales-status.enum';
 import { SalesModel } from '../shared/model/sales-model';
 import { SalesItemsService } from '../shared/services/sales-items.service';
 import { SalesService } from '../shared/services/sales.service';
@@ -28,6 +30,7 @@ export class SalesFormComponent extends BaseResourceForm {
 
     constructor(
         protected customerService: CustomerService,
+        protected productBalance: ProductBalanceService,
         protected salesService: SalesService,
         protected salesItemService: SalesItemsService,
         protected override injector: Injector
@@ -65,6 +68,7 @@ export class SalesFormComponent extends BaseResourceForm {
                             `Pedido de Venda ${sale.id} incluído com sucesso!!!`
                         );
                         this.updateCustomerLastPurchaseDate(sale.customerId);
+                        this.updateProductBalance(this.salesItems);
                         this.handleBack();
                     },
                     error: () => this.handleErrorSubmit()
@@ -88,10 +92,11 @@ export class SalesFormComponent extends BaseResourceForm {
 
     addSalesItem(salesItem: any): void {
         if (this.hasItem(salesItem)) {
-          this.updateSaleItem(salesItem);
+            this.updateSaleItem(salesItem);
         } else {
             this.salesItems = [...this.salesItems.concat(salesItem)];
         }
+        this.handleSalesOrderStatus(salesItem);
         this.isDisableSubmit = !this.canSaveSalesOrder();
     }
 
@@ -100,10 +105,12 @@ export class SalesFormComponent extends BaseResourceForm {
     }
 
     updateSaleItem(salesItem: SalesItems): void {
-      const index = this.salesItems.findIndex(i => i.productId === salesItem.productId);
-      if (index >= 0) {
-        this.salesItems[index] = salesItem;
-      }
+        const index = this.salesItems.findIndex(
+            i => i.productId === salesItem.productId
+        );
+        if (index >= 0) {
+            this.salesItems[index] = salesItem;
+        }
     }
 
     updateSalesIdOnItems(id: number): void {
@@ -126,10 +133,50 @@ export class SalesFormComponent extends BaseResourceForm {
     }
 
     updateCustomerLastPurchaseDate(id: number): void {
-      this.customerService.getById(id)
-      .pipe(
-        tap(customer => customer.lastPurchase = new Date()),
-        switchMap(customer => this.customerService.put(customer, customer.id))
-      ).subscribe();
+        this.customerService
+            .getById(id)
+            .pipe(
+                tap(customer => (customer.lastPurchase = new Date())),
+                switchMap(customer =>
+                    this.customerService.put(customer, customer.id)
+                )
+            )
+            .subscribe();
+    }
+
+    updateProductBalance(items: SalesItems[]): void {
+        items.forEach(i => {
+            this.productBalance
+                .getByProductId(i.productId)
+                .pipe(
+                    map(products => ({
+                        ...products[0],
+                        orderquantity: i.quantity
+                    })),
+                    switchMap(product =>
+                        this.productBalance.put(product, product.id)
+                    )
+                )
+                .subscribe();
+        });
+    }
+
+    handleSalesOrderStatus(item: SalesItems): void {
+        this.productBalance
+            .getByProductId(item.productId)
+            .pipe(
+                map(productBalances =>
+                    productBalances.reduce(
+                        (acc, currency) => acc + currency.availablequantity,
+                        0
+                    )
+                )
+            )
+            .subscribe({
+                next: avaliableQuantity =>
+                    avaliableQuantity <= 0 || avaliableQuantity <= item.quantity
+                        ? (this.sales.status = SalesStatus.Blocked)
+                        : undefined
+            });
     }
 }

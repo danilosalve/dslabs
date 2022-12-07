@@ -741,7 +741,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 1000,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 10
             },
             {
                 id: 2,
@@ -751,7 +751,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 700,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 587
             },
             {
                 id: 3,
@@ -761,7 +761,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 904,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 129
             },
             {
                 id: 4,
@@ -781,7 +781,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 2022,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 3
             },
             {
                 id: 6,
@@ -791,7 +791,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 601,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 1
             },
             {
                 id: 7,
@@ -801,7 +801,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 276,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 3
             },
             {
                 id: 8,
@@ -851,7 +851,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: 400,
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 4
             },
             {
                 id: 13,
@@ -1041,7 +1041,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 3
             },
             {
                 id: 32,
@@ -1061,7 +1061,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 2
             },
             {
                 id: 34,
@@ -1081,7 +1081,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 53
             },
             {
                 id: 36,
@@ -1201,7 +1201,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 50
             },
             {
                 id: 48,
@@ -1381,7 +1381,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 300
             },
             {
                 id: 66,
@@ -1441,7 +1441,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
                 allocatedquantity: 0,
                 expectedinflow: 0,
-                orderquantity: 0
+                orderquantity: 12.5
             },
             {
                 id: 62,
