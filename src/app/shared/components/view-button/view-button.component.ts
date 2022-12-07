@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DeviceService } from './../../services/device.service';
 
-export const DEVICE_BUTTON_STYLE = 'po-xl-3 po-lg-4 po-md-3 po-sm-12';
+export const DEVICE_BUTTON_STYLE = 'po-hidden-xl po-hidden-lg po-hidden-md po-sm-12';
 @Component({
   selector: 'app-view-button',
   templateUrl: './view-button.component.html',
