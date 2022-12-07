@@ -80,7 +80,8 @@ export class ProductService extends BaseResourceServiceFull<Product> {
             'Preço',
             'Unid. Medida',
             'Foto',
-            'Grupo'
+            'Grupo',
+            'Sld. Estoque'
         ];
     }
 }
