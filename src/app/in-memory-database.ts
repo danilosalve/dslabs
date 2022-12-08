@@ -1,8 +1,10 @@
 import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { delay, Observable, of } from 'rxjs';
 import { Customer } from './pages/my-customers/shared/interface/customer';
+import { CustomerPerson } from './pages/my-customers/shared/interface/customer-person.enum';
 import { CustomerStatus } from './pages/my-customers/shared/interface/customer-status.enum';
 import { CustomerType } from './pages/my-customers/shared/interface/customer-type';
+import { CustomerModel } from './pages/my-customers/shared/model/customer-model';
 import { Product } from './pages/my-products/shared/interface/product';
 import { Sales } from './pages/my-sales/shared/interfaces/sales';
 import { SalesItems } from './pages/my-sales/shared/interfaces/sales-items';
@@ -52,300 +54,426 @@ export class InMemoryDatabase implements InMemoryDbService {
         ];
 
         const customers: Customer[] = [
-            {
-                id: 1,
-                name: 'MADG Marketing ME',
-                document: '84696014000181',
-                state: 'SP',
-                city: 'Bragança Paulista',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Avenida João Alberto Ahnert, 955',
-                neighborhood: 'Jardim Águas Claras',
-                zipCode: '12929070'
-            },
-            {
-                id: 2,
-                name: 'Breadcrumb Padaria ME',
-                document: '52299624000155',
-                state: 'AM',
-                city: 'Manaus',
-                status: CustomerStatus.active,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Praia Canoa Quebrada, 740',
-                neighborhood: 'Tarumã',
-                zipCode: '69041360'
-            },
-            {
-                id: 3,
-                name: 'Kibaum Alimentos ME',
-                document: '41129289000120',
-                state: 'MG',
-                city: 'Timóteo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Sapoti, 802',
-                neighborhood: 'Nova Esperança',
-                zipCode: '35181102'
-            },
-            {
-                id: 4,
-                name: 'Marcenaria do Manuel Ltda',
-                document: '23478793000154',
-                state: 'MG',
-                city: 'Ipatinga',
-                status: CustomerStatus.inactive,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Gênova, 1000',
-                neighborhood: 'Bethânia',
-                zipCode: '35164055'
-            },
-            {
-                id: 5,
-                name: 'CactusMovie Filmagens Ltda',
-                document: '97174374000165',
-                state: 'CE',
-                city: 'Maracanaú',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua 10, 796',
-                neighborhood: 'Jarí',
-                zipCode: '61916060'
-            },
-            {
-                id: 6,
-                name: 'Três Irmãos Informática ME',
-                document: '84870812000188',
-                state: 'GO',
-                city: 'Luziânia',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Quadra Quadra 94, 206',
-                neighborhood: 'Mansões de Recreio',
-                zipCode: '72809470'
-            },
-            {
-                id: 7,
-                name: 'Paulo e Aline Tecnologia Ltda',
-                document: '80040460000182',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Luiza Campanella Giordano, 799',
-                neighborhood: 'Pq Paineiras',
-                zipCode: '03694180'
-            },
-            {
-                id: 8,
-                name: 'Mudanças Ursinhos Ltda',
-                document: '90054224000179',
-                state: 'PR',
-                city: 'Curitiba',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Prof. Maria Balbina C Dias, 283',
-                neighborhood: 'Boa Vista',
-                zipCode: '82560305'
-            },
-            {
-                id: 9,
-                name: 'THOR Ferramentas LTDA',
-                document: '78739414000124',
-                state: 'SP',
-                city: 'São Roque',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Mariko Karube, 112',
-                neighborhood: 'Caete (Mailasqui)',
-                zipCode: '18143301'
-            },
-            {
-                id: 10,
-                name: 'Beatriz Lúcia Sebastiana da Costa',
-                document: '79590029833',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Douglas Moreno dos Santos, 996',
-                neighborhood: 'Jd. Aurélio',
-                zipCode: '05857245'
-            },
-            {
-                id: 11,
-                name: 'Carlos Heitor Miguel Baptista',
-                document: '45633994850',
-                state: 'SP',
-                city: 'Águas de São Pedro',
-                status: CustomerStatus.active,
-                customerType: CustomerType.RURAL_PRODUCER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Avenida Washington Luís, 539',
-                neighborhood: 'Vila Congonhas',
-                zipCode: '04626911'
-            },
-            {
-                id: 12,
-                name: 'Anderson Kauê Heitor Lopes',
-                document: '99823412863',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Travessa Almarjão, 677',
-                neighborhood: 'Vila Maria Alta',
-                zipCode: '02136050'
-            },
-            {
-                id: 13,
-                name: 'Luís Renato Pedro Ribeiro',
-                document: '58167534871',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Barão de Calera, 659',
-                neighborhood: 'Parque Cruzeiro do Sul',
-                zipCode: '08070050'
-            },
-            {
-                id: 14,
-                name: 'Jennifer Vera Pereira',
-                document: '26107997806',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Viaduto Diario Popular, 242',
-                neighborhood: 'Centro',
-                zipCode: '01015090'
-            },
-            {
-                id: 15,
-                name: 'Benedita Isabelly Moraes',
-                document: '77998490888',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Jesuíno Antônio Batista, 877',
-                neighborhood: 'Jardim Guarani',
-                zipCode: '02851080'
-            },
-            {
-                id: 16,
-                name: 'Eduarda Sandra Sabrina Nogueira',
-                document: '04452686893',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Viela da Esperança, 119',
-                neighborhood: 'Fazenda da Juta',
-                zipCode: '03977470'
-            },
-            {
-                id: 17,
-                name: 'Augusto e Mariane Contábil ME',
-                document: '16639016000189',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Uberlândia, 475',
-                neighborhood: 'Vila Polopoli',
-                zipCode: '05365040'
-            },
-            {
-                id: 18,
-                name: 'Sacolão -  Meu pé de Laranja Lima',
-                document: '01112463000108',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Clamecy, 144',
-                neighborhood: 'Estância Mirim',
-                zipCode: '04943060'
-            },
-            {
-                id: 19,
-                name: 'Betina Lorena Drumond',
-                document: '81107387884',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.FINAL_COSTUMER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Parapuã, 496',
-                neighborhood: 'Itaberaba',
-                zipCode: '02831001'
-            },
-            {
-                id: 20,
-                name: 'Pães e Doces Dona Florinda',
-                document: '34971954000163',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Eulália Bastos, 221',
-                neighborhood: 'Tucuruvi',
-                zipCode: '02303020'
-            },
-            {
-                id: 21,
-                name: 'Luiza e Maitê Restaurante ME',
-                document: '43571746000168',
-                state: 'SP',
-                city: 'São Paulo',
-                status: CustomerStatus.active,
-                customerType: CustomerType.DEALER,
-                registerDate: this.getDateRandom(),
-                lastPurchase: this.getDateRandom(),
-                address: 'Rua Baltazar Pereira, 128',
-                neighborhood: 'Jardim Regina',
-                zipCode: '05175340'
-            }
+            new CustomerModel(
+                1,
+                1,
+                'MADG Marketing ME',
+                CustomerPerson.LEGAL,
+                '84696014000181',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'Bragança Paulista',
+                'Avenida João Alberto Ahnert, 955',
+                'Jardim Águas Claras',
+                '12929070',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Andréia',
+                'andreia@madg.com.br',
+                1128302252
+            ),
+            new CustomerModel(
+                2,
+                1,
+                'Breadcrumb Padaria ME',
+                CustomerPerson.LEGAL,
+                '52299624000155',
+                CustomerType.DEALER,
+                'AM',
+                'Manaus',
+                'Rua Praia Canoa Quebrada, 740',
+                'Tarumã',
+                '69041360',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Cristiano',
+                'cristiano@padariabreadcrumb.com.br',
+                9226008589
+            ),
+            new CustomerModel(
+                3,
+                1,
+                'Kibaum Alimentos ME',
+                CustomerPerson.LEGAL,
+                '41129289000120',
+                CustomerType.DEALER,
+                'MG',
+                'Timóteo',
+                'Rua Sapoti, 802',
+                'Nova Esperança',
+                '35181102',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'RICARDO',
+                'fiscal@kibaumalimento.com',
+                3139588567
+            ),
+            new CustomerModel(
+                4,
+                1,
+                'Marcenaria do Manuel Ltda',
+                CustomerPerson.LEGAL,
+                '23478793000154',
+                CustomerType.FINAL_COSTUMER,
+                'MG',
+                'Ipatinga',
+                'Rua Gênova, 1000',
+                'Bethânia',
+                '35164055',
+                '',
+                CustomerStatus.inactive,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Manuel',
+                'mane.marcenaria@marcenariadomanuel.com',
+                3126970935
+            ),
+            new CustomerModel(
+                5,
+                1,
+                'CactusMovie Filmagens Ltda',
+                CustomerPerson.LEGAL,
+                '97174374000165',
+                CustomerType.FINAL_COSTUMER,
+                'CE',
+                'Maracanaú',
+                'Rua 10, 796',
+                'Jarí',
+                '61916060',
+                'Praça da Cidade',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'GERALDO',
+                'contato@cactusmovie.com',
+                8535083768
+            ),
+            new CustomerModel(
+                6,
+                1,
+                'Três Irmãos Informática ME',
+                CustomerPerson.LEGAL,
+                '84870812000188',
+                CustomerType.FINAL_COSTUMER,
+                'GO',
+                'Luziânia',
+                'Quadra 94, 206',
+                'Mansões de Recreio',
+                '72809470',
+                'rua da feira de sexta',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'ALAN',
+                'alan.carlos@tresirmaosinfo.com.br',
+                6136109398
+            ),
+            new CustomerModel(
+                7,
+                1,
+                'Paulo e Aline Tecnologia Ltda',
+                CustomerPerson.LEGAL,
+                '80040460000182',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Luiza Campanella Giordano, 799',
+                'Pq Paineiras',
+                '03694180',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'PAULETE',
+                'paulo@tecnologia.com.br',
+                1139749472
+            ),
+            new CustomerModel(
+                8,
+                1,
+                'Mudanças Ursinhos Ltda',
+                CustomerPerson.LEGAL,
+                '90054224000179',
+                CustomerType.FINAL_COSTUMER,
+                'PR',
+                'Curitiba',
+                'Rua Prof. Maria Balbina C Dias, 283',
+                'Boa Vista',
+                '82560305',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'BIRO',
+                'biro@cavaco.com.br',
+                4138325569
+            ),
+            new CustomerModel(
+                9,
+                1,
+                'THOR Ferramentas LTDA',
+                CustomerPerson.LEGAL,
+                '78739414000124',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Roque',
+                'Rua Mariko Karube, 112',
+                'Caete (Mailasqui)',
+                '18143301',
+                'Prox. Estrada do Vinho',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Trovão',
+                'deusdotrovao@thor.com.br',
+                1125719512
+            ),
+            new CustomerModel(
+                10,
+                1,
+                'Beatriz Lúcia Sebastiana da Costa',
+                CustomerPerson.NATURAL,
+                '79590029833',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Douglas Moreno dos Santos, 996',
+                'Jd. Aurélio',
+                '05857245',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Bia',
+                'biazita@email.com',
+                1151585851
+            ),
+            new CustomerModel(
+                11,
+                1,
+                'Carlos Heitor Miguel Baptista',
+                CustomerPerson.NATURAL,
+                '45633994850',
+                CustomerType.RURAL_PRODUCER,
+                'SP',
+                'Águas de São Pedro',
+                'Avenida Washington Luís, 539',
+                'Vila Congonhas',
+                '04626911',
+                'Prox. ao Centro',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Carlos',
+                'carlinhosecarlao@hmail.com',
+                1938476002
+            ),
+            new CustomerModel(
+                12,
+                1,
+                'Anderson Kauê Heitor Lopes',
+                CustomerPerson.NATURAL,
+                '99823412863',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Travessa Almarjão, 677',
+                'Vila Maria Alta',
+                '02136050',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Anderson',
+                'andinholopes@vmail.com',
+                1144445555
+            ),
+            new CustomerModel(
+                13,
+                1,
+                'Luís Renato Pedro Ribeiro',
+                CustomerPerson.NATURAL,
+                '58167534871',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Barão de Calera, 659',
+                'Parque Cruzeiro do Sul',
+                '08070050',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Luizão',
+                'luludeluxemburgo@ameil.com.br',
+                1137383837
+            ),
+            new CustomerModel(
+                14,
+                1,
+                'Jennifer Vera Pereira',
+                CustomerPerson.NATURAL,
+                '26107997806',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Viaduto Diario Popular, 242',
+                'Centro',
+                '01015090',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'JENI',
+                'jeniferdotinder@ameil.com.br',
+                1137383837
+            ),
+            new CustomerModel(
+                15,
+                1,
+                'Benedita Isabelly Moraes',
+                CustomerPerson.NATURAL,
+                '77998490888',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Jesuíno Antônio Batista, 877',
+                'Jardim Guarani',
+                '02851080',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'bene',
+                'benebenedita@email.com.br',
+                1139393939
+            ),
+            new CustomerModel(
+                16,
+                1,
+                'Eduarda Sandra Sabrina Nogueira',
+                CustomerPerson.NATURAL,
+                '77998490888',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Viela da Esperança, 119',
+                'Fazenda da Juta',
+                '03977470',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Duda',
+                'dudadudu@email.com.br',
+                1144445555
+            ),
+            new CustomerModel(
+                17,
+                1,
+                'Augusto e Mariane Contábil ME',
+                CustomerPerson.LEGAL,
+                '16639016000189',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Uberlândia, 475',
+                'Vila Polopoli',
+                '05365040',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'GUTO',
+                'guto@email.com.br',
+                1155555555
+            ),
+            new CustomerModel(
+                18,
+                1,
+                'Sacolão -  Meu pé de Laranja Lima',
+                CustomerPerson.LEGAL,
+                '01112463000108',
+                CustomerType.DEALER,
+                'SP',
+                'São Paulo',
+                'Rua Clamecy, 144',
+                'Estância Mirim',
+                '04943060',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'PAULO',
+                'paulo@email.com.br',
+                1155555555
+            ),
+            new CustomerModel(
+                19,
+                1,
+                'Betina Lorena Drumond',
+                CustomerPerson.NATURAL,
+                '81107387884',
+                CustomerType.FINAL_COSTUMER,
+                'SP',
+                'São Paulo',
+                'Rua Parapuã, 496',
+                'Itaberaba',
+                '02831001',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Betina',
+                'betina@email.com.br',
+                1128310001
+            ),
+            new CustomerModel(
+                20,
+                1,
+                'Pães e Doces Dona Florinda',
+                CustomerPerson.LEGAL,
+                '34971954000163',
+                CustomerType.DEALER,
+                'SP',
+                'São Paulo',
+                'Rua Eulália Bastos, 221',
+                'Tucuruvi',
+                '02303020',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'JOZE',
+                'jose@email.com.br',
+                1123030200
+            ),
+            new CustomerModel(
+                21,
+                1,
+                'Luiza e Maitê Restaurante ME',
+                CustomerPerson.LEGAL,
+                '43571746000168',
+                CustomerType.DEALER,
+                'SP',
+                'São Paulo',
+                'Rua Baltazar Pereira, 128',
+                'Jardim Regina',
+                '05175340',
+                '',
+                CustomerStatus.active,
+                this.getDateRandom(),
+                this.getDateRandom(),
+                'Luiza',
+                'luiza@email.com.br',
+                1151753400
+            )
         ];
 
         const paymentConditions: PaymentCondition[] = [
@@ -1028,7 +1156,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0015',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1038,7 +1168,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0016',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 3
@@ -1048,7 +1180,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0016',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1058,7 +1192,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0017',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 2
@@ -1068,7 +1204,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0017',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1078,7 +1216,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0018',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 53
@@ -1088,7 +1228,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0018',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1098,7 +1240,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0019',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1108,7 +1252,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0019',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1118,7 +1264,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0020',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1128,7 +1276,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0020',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1138,7 +1288,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0021',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1148,7 +1300,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0021',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1158,7 +1312,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0022',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1168,7 +1324,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0022',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1178,7 +1336,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0023',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1188,7 +1348,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0023',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1198,7 +1360,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0024',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 50
@@ -1208,7 +1372,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0025',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1218,7 +1384,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0026',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1228,7 +1396,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0026',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1238,7 +1408,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0027',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1248,7 +1420,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0027',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1258,7 +1432,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0028',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1268,7 +1444,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0028',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1278,7 +1456,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0029',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1288,7 +1468,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0029',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1298,7 +1480,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0030',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1308,7 +1492,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0030',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1318,7 +1504,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0031',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1328,7 +1516,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0031',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1338,7 +1528,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0032',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1348,7 +1540,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0032',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1358,7 +1552,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0033',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1368,7 +1564,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0033',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1378,7 +1576,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0034',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 300
@@ -1388,7 +1588,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0034',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1398,7 +1600,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0035',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1408,7 +1612,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0035',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1418,7 +1624,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0036',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1428,7 +1636,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0036',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1438,7 +1648,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0037',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 12.5
@@ -1448,7 +1660,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0037',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1458,7 +1672,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0038',
                 warehouse: '01',
                 warehouseDescription: 'CD SP',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0
@@ -1468,7 +1684,9 @@ export class InMemoryDatabase implements InMemoryDbService {
                 productId: '0038',
                 warehouse: '02',
                 warehouseDescription: 'CD CAMPINAS',
-                availablequantity: Number.parseInt((Math.random() * 1000).toFixed()),
+                availablequantity: Number.parseInt(
+                    (Math.random() * 1000).toFixed()
+                ),
                 allocatedquantity: 0,
                 expectedinflow: 0,
                 orderquantity: 0

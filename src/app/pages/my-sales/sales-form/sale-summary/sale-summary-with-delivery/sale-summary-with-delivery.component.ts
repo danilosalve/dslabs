@@ -1,9 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  DoCheck,
-  Input
-} from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, Input } from '@angular/core';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { Sales } from '@app/pages/my-sales/shared/interfaces/sales';
 import { SalesService } from '@app/pages/my-sales/shared/services/sales.service';
@@ -61,7 +56,7 @@ export class SaleSummaryWithDeliveryComponent implements DoCheck {
             )
             .subscribe({
                 next: customer =>
-                    (this.deliveryAddress = `${customer.address} - ${customer.zipCode} - ${customer.neighborhood}, ${customer.city} - ${customer.state}`),
+                    (this.deliveryAddress = `${customer.addressDelivery} - ${customer.zipCodeDelivery} - ${customer.neighborhoodDelivery}, ${customer.cityDelivery} - ${customer.stateDelivery}`),
                 error: () =>
                     this.handleError('do Cliente', this.sales?.customerId)
             });
@@ -88,6 +83,6 @@ export class SaleSummaryWithDeliveryComponent implements DoCheck {
     }
 
     getTypeOfFreight(type: string): string {
-      return this.salesService.getTypeOfFreight(type);
+        return this.salesService.getTypeOfFreight(type);
     }
 }

@@ -56,6 +56,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
                 ]
             },
             { property: 'id', label: 'Código', type: 'number', width: '8%' },
+            { property: 'store', label: 'Loja', type: 'number', width: '5%', visible: false },
             {
                 property: 'name',
                 label: 'Nome Cliente',

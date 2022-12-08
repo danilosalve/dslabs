@@ -3,6 +3,7 @@ import { CustomerService } from '@app/pages/my-customers/shared/services/custome
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { PoDynamicViewField } from '@po-ui/ng-components';
 import { Customer } from '../../shared/interface/customer';
+import { CustomerPerson } from '../../shared/interface/customer-person.enum';
 import { CustomerType } from '../../shared/interface/customer-type';
 import { CustomerModel } from '../../shared/model/customer-model';
 import { CustomerStatus } from './../../shared/interface/customer-status.enum';
@@ -18,12 +19,34 @@ interface HeaderStatus {
     templateUrl: './registration-data.component.html'
 })
 export class RegistrationDataComponent implements OnInit {
-    @Input() customer: Customer = new CustomerModel();
+    @Input() customer: Customer = new CustomerModel(
+        0,
+        0,
+        '',
+        CustomerPerson.LEGAL,
+        '',
+        CustomerType.FINAL_COSTUMER,
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        CustomerStatus.inactive,
+        new Date(),
+        new Date(),
+        '',
+        '',
+        0
+    );
     fields: PoDynamicViewField[] = [];
     customerPresentation: any;
     isLoading = true;
 
-    constructor(private customerService: CustomerService, private documentPipe: DocumentPipe) {}
+    constructor(
+        private customerService: CustomerService,
+        private documentPipe: DocumentPipe
+    ) {}
 
     ngOnInit(): void {
         this.onInitView();
@@ -74,10 +97,10 @@ export class RegistrationDataComponent implements OnInit {
                 customerStatus.color = 'color-07';
                 customerStatus.icon = 'po-icon-lock';
                 break;
-                default:
-                  customerStatus.description = 'Status Invalido';
-                  customerStatus.color = 'color-07';
-                  customerStatus.icon = 'po-icon-lock';
+            default:
+                customerStatus.description = 'Status Invalido';
+                customerStatus.color = 'color-07';
+                customerStatus.icon = 'po-icon-lock';
                 break;
         }
         return customerStatus;
