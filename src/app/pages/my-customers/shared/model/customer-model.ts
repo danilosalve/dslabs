@@ -27,6 +27,7 @@ export class CustomerModel {
     neighborhoodDelivery: string;
     zipCodeDelivery: string;
     complementDelivery: string;
+    fantasyName: string;
 
     constructor(
         id: number,
@@ -52,7 +53,8 @@ export class CustomerModel {
         addressDelivery?: string,
         neighborhoodDelivery?: string,
         zipCodeDelivery?: string,
-        complementDelivery?: string
+        complementDelivery?: string,
+        fantasyName?: string
     ) {
         this.id = id;
         this.store = store;
@@ -78,5 +80,6 @@ export class CustomerModel {
         this.neighborhoodDelivery = neighborhoodDelivery ? neighborhoodDelivery : neighborhood;
         this.zipCodeDelivery = zipCodeDelivery? zipCodeDelivery : zipCode;
         this.complementDelivery = complementDelivery ? complementDelivery : complement;
+        this.fantasyName = fantasyName ? fantasyName : name;
     }
 }
