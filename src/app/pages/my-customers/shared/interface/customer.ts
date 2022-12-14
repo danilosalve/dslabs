@@ -5,6 +5,7 @@ import { CustomerType } from './customer-type';
 export interface Customer {
   id: number;
   name: string;
+  fantasyName?: string;
   document: string;
   state: string;
   city: string;
