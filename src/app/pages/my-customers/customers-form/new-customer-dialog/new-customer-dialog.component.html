@@ -1,0 +1,47 @@
+<po-container>
+    <form [formGroup]="newCustomerForm">
+        <div class="po-row po-mb-2">
+            <p class="po-font-text po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2">
+                Selecione as prefências abaixo para cadastro de um novo cliente.
+            </p>
+
+            <po-radio-group
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                formControlName="typeOfPerson"
+                p-label="Tipo de cliente"
+                [p-required]="true"
+                [p-options]="typeOfPersonsOptions"
+                [p-disabled]="isCustomerSelected"
+            >
+            </po-radio-group>
+
+            <po-checkbox
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                formControlName="customerLink"
+                p-label="Vincular Cliente?"
+                (p-change)="onChangeCustomerLink($event)"
+            >
+            </po-checkbox>
+        </div>
+
+        <div class="po-row" *ngIf="newCustomerForm.get('customerLink')!.value">
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
+                p-icon="po-icon-user"
+                formControlName="customerId"
+                p-placeholder="Selecione o Cliente..."
+                p-help="Pesquise utilizando o nome do cliente..."
+                p-label="Cliente"
+                [p-clean]="true"
+                [p-filter-service]="customerService"
+                [p-show-required]="true"
+                (p-change)="handleCustomerSelection($event)"
+            ></po-combo>
+            <po-checkbox
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                formControlName="copyCustomer"
+                p-label="Copiar informações para o cadastro"
+            ></po-checkbox>
+        </div>
+    </form>
+</po-container>

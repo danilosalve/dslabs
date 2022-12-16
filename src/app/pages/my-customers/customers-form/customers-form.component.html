@@ -1,0 +1,41 @@
+<po-page-edit
+    [p-title]="titlePage"
+    [p-breadcrumb]="breadcrumb"
+    (p-cancel)="handleBack()"
+    (p-save)="onSubmit()"
+    [p-disable-submit]="formCustomer.invalid"
+>
+    <po-stepper #poStepperComponent (p-change-step)="handleChangeStep($event)">
+        <po-step p-label="Identificação">
+            <app-general-data [customer]="customer" [formCustomer]="formCustomer"></app-general-data>
+        </po-step>
+        <po-step p-label="Contato">
+            <app-contacts [customer]="customer" [formCustomer]="formCustomer"></app-contacts>
+        </po-step>
+        <po-step p-label="Endereços">
+            <app-address [customer]="customer" [formCustomer]="formCustomer"></app-address>
+        </po-step>
+        <po-step p-label="Financeiro">
+            <app-financial-data [customer]="customer" [formCustomer]="formCustomer"></app-financial-data>
+        </po-step>
+    </po-stepper>
+    <footer class="footer">
+        <div class="po-row">
+            <po-button
+                class="po-offset-xl-8 po-xl-2 po-offset-lg-6 po-lg-3 po-offset-md-4 po-md-4 po-sm-12 po-mb-1"
+                p-label="Voltar passo"
+                [p-danger]="true"
+                (p-click)="previousStep()"
+                [p-disabled]="!canMoveToPreviousPage()"
+            ></po-button>
+            <po-button
+                class="po-xl-2 po-lg-3 po-md-4 po-sm-12 po-mb-1"
+                p-label="Próximo passo"
+                (p-click)="nextStep()"
+                [p-disabled]="stepper === 4"
+            ></po-button>
+        </div>
+    </footer>
+</po-page-edit>
+
+

@@ -1,0 +1,84 @@
+<po-container>
+    <h2 class="po-font-subtitle">Dados Gerais</h2>
+    <br />
+    <form [formGroup]="formCustomer">
+        <div class="po-row">
+            <po-input
+                class="po-xl-3 po-lg-3 po-md-7 po-sm-12"
+                [p-label]="documentLabel"
+                [p-no-autocomplete]="true"
+                formControlName="document"
+                p-clean
+                p-required="true"
+                [p-show-required]="true"
+                [p-minlength]="minDocument"
+                [p-maxlength]="maxDocument"
+                p-help="Apenas números."
+                [p-mask]="documentMask"
+                p-mask-format-model="false"
+                p-error-pattern="Documento inválido"
+                [p-placeholder]="documentPlaceHolder"
+            ></po-input>
+            <po-input
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Razão social ou nome completo"
+                formControlName="name"
+                [p-no-autocomplete]="true"
+                p-clean
+                p-required="true"
+                [p-show-required]="true"
+                p-placeholder="Digite a razão social ou nome completo do cliente"
+            ></po-input>
+            <po-input
+                *ngIf="customer.typePerson === 'J'"
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Nome Fantasia"
+                formControlName="fantasyName"
+                [p-no-autocomplete]="true"
+                p-clean
+                [p-optional]="true"
+                p-placeholder="Digite nome fantasia do cliente"
+            ></po-input>
+            <po-select
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Tipo de Cliente"
+                formControlName="customerType"
+                [p-options]="customerTypeOptions"
+                [p-required]="true"
+                [p-show-required]="true"
+                p-placeholder="Selecione o tipo de cliente"
+            ></po-select>
+            <po-number
+                class="po-xl-3 po-lg-4 po-md-6 po-sm-12"
+                p-label="Código do cliente"
+                formControlName="id"
+                p-readonly="true"
+                p-help="O código do cliente que foi vinculado a esse cadastro."
+                p-placeholder="1"
+            ></po-number>
+            <po-number
+                class="po-xl-3 po-lg-4 po-md-6 po-sm-12"
+                p-label="Loja do cliente"
+                formControlName="store"
+                [p-no-autocomplete]="true"
+                p-clean
+                p-required="true"
+                [p-show-required]="true"
+                [p-min]="1"
+                [p-minlength]="1"
+                [p-maxlength]="2"
+                p-help="Sugerimos um código de identificação mas você pode alterá-lo."
+                p-placeholder="10"
+                p-error-pattern="Informe a loja do cliente entre os valor de 1 a 99"
+            ></po-number>
+            <po-select
+                class="po-xl-3 po-lg-4 po-md-12 po-sm-12"
+                p-label="Tipo de Pessoa"
+                formControlName="typePerson"
+                [p-options]="typePersonOptions"
+                [p-disabled]="true"
+                p-placeholder="Selecione o tipo de cliente"
+            ></po-select>
+        </div>
+    </form>
+</po-container>

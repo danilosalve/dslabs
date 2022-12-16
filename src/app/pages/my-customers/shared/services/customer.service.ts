@@ -35,6 +35,16 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
         );
     }
 
+    getByDocument(document: string): Observable<Customer[]> {
+        return this.http
+            .get<Customer[]>(`${this.apiPath}?document=${document}`)
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    throw error;
+                })
+            );
+    }
+
     getColumns(): PoTableColumn[] {
         return [
             {
@@ -56,7 +66,13 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
                 ]
             },
             { property: 'id', label: 'Código', type: 'number', width: '8%' },
-            { property: 'store', label: 'Loja', type: 'number', width: '5%', visible: false },
+            {
+                property: 'store',
+                label: 'Loja',
+                type: 'number',
+                width: '5%',
+                visible: false
+            },
             {
                 property: 'name',
                 label: 'Nome Cliente',
@@ -125,7 +141,38 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
     }
 
     getHeadersForExcel(): string[] {
-      return ["Código", "Nome", "Documento", "UF", "Cidade", 'Status', 'Tp. Cliente', 'Data', 'Ult. Compra', 'Endereço', 'Bairro', 'CEP'];
+        return [
+            'Código',
+            'Loja',
+            'Nome/Razão Social',
+            'Tipo de Pessoa',
+            'CPF/CNPJ',
+            'Tp. Cliente',
+            'UF',
+            'Municipio',
+            'Endereço',
+            'Bairro',
+            'CEP',
+            'Complemento',
+            'Status',
+            'Dt. Cadastro',
+            'Ult. Compra',
+            'Nome Contato',
+            'E-Mail',
+            'Telefone Comercial',
+            'UF de Entrega',
+            'Municipio de Entrega',
+            'Endereço de Entrega',
+            'Bairro de Entrega',
+            'CEP de Entrega',
+            'Complemento de Entrega',
+            'Nome Fantasia',
+            'Cond. Pagamento',
+            'Metodo de Pagamento',
+            'Tabela de Preço',
+            'Vlr. Limite de Crédito',
+            'Dt. Limite de Crédito'
+        ];
     }
 
     getComboOptions(customers: Customer[]): PoSelectOption[] {
@@ -167,20 +214,20 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
                 type: 'string'
             },
             {
-              property: 'address',
-              label: 'Endereço',
-              type: 'string',
-              divider: 'Endereço'
+                property: 'address',
+                label: 'Endereço',
+                type: 'string',
+                divider: 'Endereço'
             },
             {
-              property: 'neighborhood',
-              label: 'Bairro',
-              type: 'string'
+                property: 'neighborhood',
+                label: 'Bairro',
+                type: 'string'
             },
             {
-              property: 'zipCode',
-              label: 'CEP',
-              type: 'string'
+                property: 'zipCode',
+                label: 'CEP',
+                type: 'string'
             },
             {
                 property: 'state',
@@ -201,25 +248,33 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
         return this.documentPipe.transform(document);
     }
 
-    getFilteredData(params: any, filterParams?: any): Observable<PoComboOption[]> {
-      return this.getByName(params.value)
-      .pipe(
-        map(customers => customers.filter(c => c.status === CustomerStatus.active)),
-        map(customers => customers.map(customer => ({
-          label: customer.name,
-          value: customer.id
-        })))
-      )
+    getFilteredData(
+        params: any,
+        filterParams?: any
+    ): Observable<PoComboOption[]> {
+        return this.getByName(params.value).pipe(
+            map(customers =>
+                customers.filter(c => c.status === CustomerStatus.active)
+            ),
+            map(customers =>
+                customers.map(customer => ({
+                    label: customer.name,
+                    value: customer.id
+                }))
+            )
+        );
     }
 
-    getObjectByValue(value: string | number, filterParams?: any): Observable<PoComboOption> {
-      return this.getById(value)
-      .pipe(
-        filter(customer => customer.status === CustomerStatus.active),
-        map(customer => ({
-          label: customer.name,
-          value: customer.id
-        }))
-      )
+    getObjectByValue(
+        value: string | number,
+        filterParams?: any
+    ): Observable<PoComboOption> {
+        return this.getById(value).pipe(
+            filter(customer => customer.status === CustomerStatus.active),
+            map(customer => ({
+                label: customer.name,
+                value: customer.id
+            }))
+        );
     }
 }

@@ -1,0 +1,165 @@
+<po-container class="po-mb-2">
+    <h2 class="po-font-subtitle">Endereço de Faturamento</h2>
+    <h3 class="po-font-text-large">
+        Logradouro padrão ou principal do cliente.
+    </h3>
+    <br />
+
+    <form [formGroup]="formCustomer">
+        <po-input
+            class="po-xl-2 po-lg-2 po-md-5 po-sm-12"
+            p-label="CEP"
+            [p-no-autocomplete]="true"
+            formControlName="zipCode"
+            p-clean
+            p-placeholder="00000-000"
+            [p-minlength]="9"
+            [p-maxlength]="9"
+            [p-optional]="true"
+            p-mask="99999-999"
+            p-mask-format-model="false"
+            p-error-pattern="Informe apenas números"
+        ></po-input>
+        <po-combo
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Estado"
+            formControlName="state"
+            [p-filter-service]="statesService"
+            p-placeholder="Selecione o estado"
+            [p-required]="true"
+            [p-show-required]="true"
+            [p-clean]="true"
+            (p-change)="onChangeState()"
+        ></po-combo>
+        <po-combo
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Cidade"
+            formControlName="city"
+            p-placeholder="Selecione a cidade/municipio"
+            [p-filter-service]="cityService"
+            [p-filter-params]="formCustomer.get('state')?.value"
+            [p-optional]="true"
+            [p-clean]="true"
+            [p-disabled]="
+                formCustomer.get('state')?.value === undefined ||
+                formCustomer.get('state')?.value.length === 0
+            "
+        ></po-combo>
+        <po-input
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Endereço"
+            [p-no-autocomplete]="true"
+            formControlName="address"
+            p-clean
+            p-placeholder="Digite o endereço de faturamento"
+            [p-optional]="true"
+        ></po-input>
+        <po-input
+            class="po-xl-6 po-lg-6 po-md-12 po-sm-12"
+            p-label="Bairro"
+            [p-no-autocomplete]="true"
+            formControlName="neighborhood"
+            p-clean
+            p-placeholder="Digite o bairro"
+            [p-optional]="true"
+        ></po-input>
+        <po-input
+            class="po-xl-6 po-lg-6 po-md-12 po-sm-12"
+            p-label="Complemento"
+            [p-no-autocomplete]="true"
+            formControlName="complement"
+            p-clean
+            p-placeholder="Digite o complemento"
+            [p-optional]="true"
+        ></po-input>
+    </form>
+</po-container>
+
+<br />
+
+<po-container>
+    <h2 class="po-font-subtitle">Endereço de Entrega</h2>
+    <h3 class="po-font-text-large">
+        Logradouro utilizado para as entregas dos pedidos feitos.
+    </h3>
+    <br />
+    <form [formGroup]="formCustomer">
+        <div class="po-row">
+            <po-switch
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
+                p-help="Copiar endereço de faturamento"
+                p-label="Endereço de cobrança é o mesmo de faturamento?"
+                p-label-off="Não"
+                p-label-on="Sim"
+                (p-change)="copyMainAddressToDeliveryAddress($event)"
+            >
+            </po-switch>
+            <po-input
+                class="po-xl-2 po-lg-2 po-md-5 po-sm-12"
+                p-label="CEP"
+                [p-no-autocomplete]="true"
+                formControlName="zipCodeDelivery"
+                p-clean
+                p-placeholder="00000-000"
+                [p-minlength]="9"
+                [p-maxlength]="9"
+                [p-optional]="true"
+                p-mask="99999-999"
+                p-mask-format-model="false"
+                p-error-pattern="Informe apenas números"
+            ></po-input>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Estado"
+                formControlName="stateDelivery"
+                [p-filter-service]="statesService"
+                p-placeholder="Selecione o estado"
+                [p-required]="true"
+                [p-show-required]="true"
+                [p-clean]="true"
+                (p-change)="onChangeStateDelivery()"
+            ></po-combo>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Cidade"
+                formControlName="cityDelivery"
+                p-placeholder="Selecione a cidade/municipio"
+                [p-filter-service]="cityService"
+                [p-filter-params]="formCustomer.get('stateDelivery')?.value"
+                [p-optional]="true"
+                [p-clean]="true"
+                [p-disabled]="
+                    formCustomer.get('stateDelivery')?.value === undefined ||
+                    formCustomer.get('stateDelivery')?.value.length === 0
+                "
+            ></po-combo>
+            <po-input
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Endereço"
+                [p-no-autocomplete]="true"
+                formControlName="addressDelivery"
+                p-clean
+                p-placeholder="Digite o endereço de faturamento"
+                [p-optional]="true"
+            ></po-input>
+            <po-input
+                class="po-xl-6 po-lg-6 po-md-12 po-sm-12"
+                p-label="Bairro"
+                [p-no-autocomplete]="true"
+                formControlName="neighborhoodDelivery"
+                p-clean
+                p-placeholder="Digite o bairro"
+                [p-optional]="true"
+            ></po-input>
+            <po-input
+                class="po-xl-6 po-lg-6 po-md-12 po-sm-12"
+                p-label="Complemento"
+                [p-no-autocomplete]="true"
+                formControlName="complementDelivery"
+                p-clean
+                p-placeholder="Digite o complemento"
+                [p-optional]="true"
+            ></po-input>
+        </div>
+    </form>
+</po-container>

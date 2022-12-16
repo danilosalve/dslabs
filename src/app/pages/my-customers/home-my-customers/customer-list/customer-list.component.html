@@ -26,4 +26,12 @@
         propertyTitle="name"
         (titleAction)="onShowCustomer($event)"
     ></app-customer-list-view>
+    <po-modal #poModalNewCustomer p-title="Cadastro de Cliente">
+      <app-new-customer-dialog (changeForm)="handleInclusionForm($event)"></app-new-customer-dialog>
+      <po-modal-footer>
+        <po-button class="po-hidden-sm" [p-danger]="true" p-label="Cancelar" (p-click)="poModalNewCustomer.close()"> </po-button>
+        <po-button class="po-hidden-sm" p-icon="po-icon-plus" p-kind="primary" p-label="Iniciar Cadastro" (p-click)="confirmCustomerInclusion()"> </po-button>
+        <po-button class="po-visible-sm po-sm-12" p-label="Confirmar" p-kind="primary" (p-click)="confirmCustomerInclusion()"> </po-button>
+      </po-modal-footer>
+    </po-modal>
 </po-page-list>

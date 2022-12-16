@@ -29,4 +29,9 @@ export interface Customer {
   neighborhoodDelivery: string;
   zipCodeDelivery: string;
   complementDelivery: string;
+  paymentConditionId?: number;
+  paymentMethodId?: number;
+  priceListdId?: number;
+  creditLimit?: number;
+  creditLimitExpirationDate?: Date;
 }

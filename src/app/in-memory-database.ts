@@ -15,11 +15,13 @@ import { FieldType } from './pages/my-settings/shared/interfaces/field-type.enum
 import { Table } from './pages/my-settings/shared/interfaces/table';
 import { TableStatus } from './pages/my-settings/shared/interfaces/table-status.enum';
 import { Carrier } from './shared/interfaces/carrier';
+import { City } from './shared/interfaces/city';
 import { PaymentCondition } from './shared/interfaces/payment-condition';
 import { PaymentMethod } from './shared/interfaces/payment-method';
 import { PriceList } from './shared/interfaces/price-list/price-list';
 import { ProductBalance } from './shared/interfaces/product-balance';
 import { Seller } from './shared/interfaces/seller';
+import { State } from './shared/interfaces/state';
 import { SellerModel } from './shared/model/seller.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
@@ -2768,6 +2770,237 @@ export class InMemoryDatabase implements InMemoryDbService {
             )
         ];
 
+        const states: State[] = [
+            {
+                id: 11,
+                uf: 'RO',
+                name: 'Rondônia'
+            },
+            {
+                id: 12,
+                uf: 'AC',
+                name: 'Acre'
+            },
+            {
+                id: 13,
+                uf: 'AM',
+                name: 'Amazonas'
+            },
+            {
+                id: 14,
+                uf: 'RR',
+                name: 'Roraima'
+            },
+            {
+                id: 15,
+                uf: 'PA',
+                name: 'Pará'
+            },
+            {
+                id: 16,
+                uf: 'AP',
+                name: 'Amapá'
+            },
+            {
+                id: 17,
+                uf: 'TO',
+                name: 'Tocantins'
+            },
+            {
+                id: 21,
+                uf: 'MA',
+                name: 'Maranhão'
+            },
+            {
+                id: 22,
+                uf: 'PI',
+                name: 'Piauí'
+            },
+            {
+                id: 23,
+                uf: 'CE',
+                name: 'Ceará'
+            },
+            {
+                id: 24,
+                uf: 'RN',
+                name: 'Rio Grande do Norte'
+            },
+            {
+                id: 25,
+                uf: 'PB',
+                name: 'Paraíba'
+            },
+            {
+                id: 26,
+                uf: 'PE',
+                name: 'Pernambuco'
+            },
+            {
+                id: 27,
+                uf: 'AL',
+                name: 'Alagoas'
+            },
+            {
+                id: 28,
+                uf: 'SE',
+                name: 'Sergipe'
+            },
+            {
+                id: 29,
+                uf: 'BA',
+                name: 'Bahia'
+            },
+            {
+                id: 31,
+                uf: 'MG',
+                name: 'Minas Gerais'
+            },
+            {
+                id: 32,
+                uf: 'ES',
+                name: 'Espírito Santo'
+            },
+            {
+                id: 33,
+                uf: 'RJ',
+                name: 'Rio de Janeiro'
+            },
+            {
+                id: 35,
+                uf: 'SP',
+                name: 'São Paulo'
+            },
+            {
+                id: 41,
+                uf: 'PR',
+                name: 'Paraná'
+            },
+            {
+                id: 42,
+                uf: 'SC',
+                name: 'Santa Catarina'
+            },
+            {
+                id: 43,
+                uf: 'RS',
+                name: 'Rio Grande do Sul'
+            },
+            {
+                id: 50,
+                uf: 'MS',
+                name: 'Mato Grosso do Sul'
+            },
+            {
+                id: 51,
+                uf: 'MT',
+                name: 'Mato Grosso'
+            },
+            {
+                id: 52,
+                uf: 'GO',
+                name: 'Goiás'
+            },
+            {
+                id: 53,
+                uf: 'DF',
+                name: 'Distrito Federal'
+            }
+        ];
+
+        const citys: City[] = [
+            {
+                id: 1,
+                state: 'AM',
+                name: 'Manaus'
+            },
+            {
+                id: 2,
+                state: 'CE',
+                name: 'Maracanaú'
+            },
+            {
+                id: 3,
+                state: 'GO',
+                name: 'Luziânia'
+            },
+            {
+                id: 4,
+                state: 'MG',
+                name: 'Timóteo'
+            },
+            {
+                id: 5,
+                state: 'MG',
+                name: 'Ipatinga'
+            },
+            {
+                id: 6,
+                state: 'PR',
+                name: 'Curitiba'
+            },
+            {
+                id: 7,
+                state: 'SP',
+                name: 'Águas de São Pedro'
+            },
+            {
+                id: 8,
+                state: 'SP',
+                name: 'Bragança Paulista'
+            },
+            {
+                id: 9,
+                state: 'SP',
+                name: 'Campinas'
+            },
+            {
+                id: 10,
+                state: 'SP',
+                name: 'Itú'
+            },
+            {
+                id: 11,
+                state: 'SP',
+                name: 'Jundiai'
+            },
+            {
+                id: 12,
+                state: 'SP',
+                name: 'Osasco'
+            },
+            {
+                id: 13,
+                state: 'SP',
+                name: 'Santos'
+            },
+            {
+                id: 14,
+                state: 'SP',
+                name: 'São Roque'
+            },
+            {
+                id: 15,
+                state: 'SP',
+                name: 'São Paulo'
+            },
+            {
+                id: 16,
+                state: 'RJ',
+                name: 'Angra dos Reis'
+            },
+            {
+                id: 17,
+                state: 'RJ',
+                name: 'Rio de Janeiro'
+            },
+            {
+                id: 18,
+                state: 'MG',
+                name: 'Belo Horizonte'
+            }
+        ]
+
         const db = {
             carriers,
             customers,
@@ -2780,7 +3013,9 @@ export class InMemoryDatabase implements InMemoryDbService {
             sales,
             salesItems,
             sellers,
-            tables
+            tables,
+            states,
+            citys
         };
 
         return of(db).pipe(delay(1300));

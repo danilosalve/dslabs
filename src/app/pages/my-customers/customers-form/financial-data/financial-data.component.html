@@ -1,0 +1,61 @@
+<po-container>
+    <h2 class="po-font-subtitle">Dados Financeiros</h2>
+    <br />
+    <form [formGroup]="formCustomer">
+        <div class="po-row">
+            <po-decimal
+                class="po-xl-3 po-lg-3 po-md-6 po-sm-12"
+                p-label="Valor do limite de crédito"
+                [p-no-autocomplete]="true"
+                formControlName="creditLimit"
+                p-clean
+                p-placeholder="Digite o limite de crédito"
+                [p-decimals-length]="2"
+                [p-min]="0"
+                [p-optional]="true"
+                p-help="Apenas números"
+                p-error-pattern="Informe apenas números positivos"
+            ></po-decimal>
+
+            <po-datepicker
+                class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
+                p-label="Vencimento do limite de crédito"
+                [p-no-autocomplete]="true"
+                formControlName="creditLimitExpirationDate"
+                p-clean
+                p-help="dd/mm/aaaa"
+                [p-iso-format]="isoFormat"
+                [p-min-date]="minDate"
+                p-required="true"
+                [p-show-required]="true"
+            ></po-datepicker>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Tabela de preço"
+                formControlName="priceListdId"
+                [p-filter-service]="priceListService"
+                p-placeholder="Selecione a tabela de preço preferencial"
+                p-help="Caso seja necessário, você poderá alterar a tabela de preço durante o pedido."
+                [p-clean]="true"
+            ></po-combo>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Metodo de pagamento"
+                formControlName="paymentMethodId"
+                [p-filter-service]="paymentMethodService"
+                p-placeholder="Selecione o modo de pagamento preferencial"
+                p-help="Caso seja necessário, você poderá alterar a tabela de preço durante o pedido."
+                [p-clean]="true"
+            ></po-combo>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                p-label="Condição de pagamento"
+                formControlName="paymentConditionId"
+                [p-filter-service]="paymentConditionsService"
+                p-placeholder="Selecione o condição de pagamento preferencial"
+                p-help="Caso seja necessário, você poderá alterar a tabela de preço durante o pedido."
+                [p-clean]="true"
+            ></po-combo>
+        </div>
+    </form>
+</po-container>
