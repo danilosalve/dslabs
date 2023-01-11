@@ -1,8 +1,8 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseResourceList } from '@app/shared/components/base/base-resource-list.component';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import { PoModalComponent, PoPageAction } from '@po-ui/ng-components';
-import { CustomerPerson } from '../../shared/interface/customer-person.enum';
 import { CustomerService } from '../../shared/services/customer.service';
 import { Customer } from './../../shared/interface/customer';
 
@@ -15,7 +15,7 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
     poModalNewCustomer!: PoModalComponent;
     isFormInvalid = false;
     formNewCustomer = {
-        typeOfPerson: CustomerPerson.LEGAL,
+        typeOfPerson: TypeOfPerson.LEGAL,
         customerLink: false,
         customerId: undefined,
         copyCustomer: false

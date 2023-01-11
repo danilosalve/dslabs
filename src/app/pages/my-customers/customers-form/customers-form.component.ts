@@ -1,16 +1,16 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { BaseResourceForm } from '@app/shared/components/base/base-resource-form.component';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import {
   PoBreadcrumb,
   PoDynamicFormField,
   PoStepperComponent
 } from '@po-ui/ng-components';
 import { finalize, take } from 'rxjs/operators';
+import { CustomerType } from '../shared/enum/customer-type.enum';
 import { Customer } from '../shared/interface/customer';
-import { CustomerPerson } from '../shared/interface/customer-person.enum';
-import { CustomerStatus } from '../shared/interface/customer-status.enum';
-import { CustomerType } from '../shared/interface/customer-type';
 import { CustomerModel } from '../shared/model/customer-model';
 import { CustomerService } from '../shared/services/customer.service';
 import { CustomerFormService } from './shared/services/customer-form.service';
@@ -26,7 +26,7 @@ export class CustomersFormComponent extends BaseResourceForm implements OnInit {
         0,
         1,
         '',
-        CustomerPerson.LEGAL,
+        TypeOfPerson.LEGAL,
         '',
         CustomerType.FINAL_COSTUMER,
         '',
@@ -35,7 +35,7 @@ export class CustomersFormComponent extends BaseResourceForm implements OnInit {
         '',
         '',
         '',
-        CustomerStatus.inactive,
+        ResourceStatus.inactive,
         new Date(),
         new Date(),
         '',
@@ -207,12 +207,12 @@ export class CustomersFormComponent extends BaseResourceForm implements OnInit {
             });
     }
 
-    getTypeOfPerson(type: string): CustomerPerson {
+    getTypeOfPerson(type: string): TypeOfPerson {
         switch (type) {
             case 'J':
-                return CustomerPerson.LEGAL;
+                return TypeOfPerson.LEGAL;
             default:
-                return CustomerPerson.NATURAL;
+                return TypeOfPerson.NATURAL;
         }
     }
 

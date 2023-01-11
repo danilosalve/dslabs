@@ -5,9 +5,9 @@ import {
   Validators
 } from '@angular/forms';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { Customer } from '../../../shared/interface/customer';
-import { CustomerStatus } from '../../../shared/interface/customer-status.enum';
 import { DocumentExistValidator } from '../validators/document-exist-validator';
 import { documentValidator } from '../validators/document.validator';
 
@@ -54,7 +54,7 @@ export class CustomerFormService {
             businessPhone: [customer.businessPhone],
             registerDate: [customer.registerDate],
             lastPurchase: [customer.lastPurchase],
-            status: [CustomerStatus.active],
+            status: [ResourceStatus.active],
             zipCode: [
                 customer.zipCode,
                 Validators.compose([

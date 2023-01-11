@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
 import {
@@ -11,9 +12,8 @@ import {
 } from '@po-ui/ng-components';
 import { Observable } from 'rxjs';
 import { catchError, filter, map, retry } from 'rxjs/operators';
+import { CustomerType } from '../enum/customer-type.enum';
 import { Customer } from '../interface/customer';
-import { CustomerType } from '../interface/customer-type';
-import { CustomerStatus } from './../interface/customer-status.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -54,12 +54,12 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
                 width: '8%',
                 labels: [
                     {
-                        value: CustomerStatus.active,
+                        value: ResourceStatus.active,
                         color: 'color-11',
                         label: 'Ativo'
                     },
                     {
-                        value: CustomerStatus.inactive,
+                        value: ResourceStatus.inactive,
                         color: 'color-07',
                         label: 'Inativo'
                     }
@@ -254,7 +254,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
     ): Observable<PoComboOption[]> {
         return this.getByName(params.value).pipe(
             map(customers =>
-                customers.filter(c => c.status === CustomerStatus.active)
+                customers.filter(c => c.status === ResourceStatus.active)
             ),
             map(customers =>
                 customers.map(customer => ({
@@ -270,7 +270,7 @@ export class CustomerService extends BaseResourceServiceFull<Customer> implement
         filterParams?: any
     ): Observable<PoComboOption> {
         return this.getById(value).pipe(
-            filter(customer => customer.status === CustomerStatus.active),
+            filter(customer => customer.status === ResourceStatus.active),
             map(customer => ({
                 label: customer.name,
                 value: customer.id

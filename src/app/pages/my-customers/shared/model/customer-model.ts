@@ -1,12 +1,12 @@
-import { CustomerPerson } from '../interface/customer-person.enum';
-import { CustomerStatus } from '../interface/customer-status.enum';
-import { CustomerType } from '../interface/customer-type';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
+import { CustomerType } from '../enum/customer-type.enum';
 
 export class CustomerModel {
     id: number;
     store: number;
     name: string;
-    typePerson:CustomerPerson;
+    typePerson: TypeOfPerson;
     document: string;
     customerType: CustomerType;
     state: string;
@@ -15,7 +15,7 @@ export class CustomerModel {
     neighborhood: string;
     zipCode: string;
     complement: string;
-    status: CustomerStatus;
+    status: ResourceStatus;
     registerDate: Date;
     lastPurchase: Date;
     contactName: string;
@@ -38,7 +38,7 @@ export class CustomerModel {
         id: number,
         store: number,
         name: string,
-        typePerson: CustomerPerson,
+        typePerson: TypeOfPerson,
         document: string,
         customerType: CustomerType,
         state: string,
@@ -47,7 +47,7 @@ export class CustomerModel {
         neighborhood: string,
         zipCode: string,
         complement: string,
-        status: CustomerStatus,
+        status: ResourceStatus,
         registerDate: Date,
         lastPurchase: Date,
         contactName: string,

@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { PoDynamicViewField } from '@po-ui/ng-components';
+import { CustomerType } from '../../shared/enum/customer-type.enum';
 import { Customer } from '../../shared/interface/customer';
-import { CustomerPerson } from '../../shared/interface/customer-person.enum';
-import { CustomerType } from '../../shared/interface/customer-type';
 import { CustomerModel } from '../../shared/model/customer-model';
-import { CustomerStatus } from './../../shared/interface/customer-status.enum';
 
 interface HeaderStatus {
     description: string;
@@ -23,7 +23,7 @@ export class RegistrationDataComponent implements OnInit {
         0,
         0,
         '',
-        CustomerPerson.LEGAL,
+        TypeOfPerson.LEGAL,
         '',
         CustomerType.FINAL_COSTUMER,
         '',
@@ -32,7 +32,7 @@ export class RegistrationDataComponent implements OnInit {
         '',
         '',
         '',
-        CustomerStatus.inactive,
+        ResourceStatus.inactive,
         new Date(),
         new Date(),
         '',
@@ -80,19 +80,19 @@ export class RegistrationDataComponent implements OnInit {
         this.isLoading = false;
     }
 
-    getStatus(status: CustomerStatus): HeaderStatus {
+    getStatus(status: ResourceStatus): HeaderStatus {
         const customerStatus: HeaderStatus = {
             color: '',
             description: '',
             icon: ''
         };
         switch (status) {
-            case CustomerStatus.active:
+            case ResourceStatus.active:
                 customerStatus.description = 'Ativo';
                 customerStatus.color = 'color-11';
                 customerStatus.icon = 'po-icon-ok';
                 break;
-            case CustomerStatus.inactive:
+            case ResourceStatus.inactive:
                 customerStatus.description = 'Inativo';
                 customerStatus.color = 'color-07';
                 customerStatus.icon = 'po-icon-lock';

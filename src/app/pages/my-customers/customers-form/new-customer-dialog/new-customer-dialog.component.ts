@@ -10,6 +10,7 @@ import {
   UntypedFormGroup,
   Validators
 } from '@angular/forms';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import { PoRadioGroupOption } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import {
@@ -18,7 +19,6 @@ import {
   filter,
   take
 } from 'rxjs/operators';
-import { CustomerPerson } from './../../shared/interface/customer-person.enum';
 import { CustomerService } from './../../shared/services/customer.service';
 
 @Component({
@@ -32,8 +32,8 @@ export class NewCustomerDialogComponent implements OnInit, OnDestroy {
     isCustomerSelected = false;
     formCustomer$ = new Subscription();
     readonly typeOfPersonsOptions: Array<PoRadioGroupOption> = [
-        { label: 'Pessoa Fisica', value: CustomerPerson.NATURAL },
-        { label: 'Pessoa Juridica', value: CustomerPerson.LEGAL }
+        { label: 'Pessoa Fisica', value: TypeOfPerson.NATURAL },
+        { label: 'Pessoa Juridica', value: TypeOfPerson.LEGAL }
     ];
 
     constructor(
@@ -52,7 +52,7 @@ export class NewCustomerDialogComponent implements OnInit, OnDestroy {
 
     onInitForm(): void {
         this.newCustomerForm = this.formBuilder.group({
-            typeOfPerson: [CustomerPerson.LEGAL],
+            typeOfPerson: [TypeOfPerson.LEGAL],
             customerLink: [false],
             customerId: [undefined],
             copyCustomer: [false]

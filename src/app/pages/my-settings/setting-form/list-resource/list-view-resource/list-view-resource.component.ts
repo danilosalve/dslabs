@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CustomerType } from '@app/pages/my-customers/shared/enum/customer-type.enum';
 import { Customer } from '@app/pages/my-customers/shared/interface/customer';
-import { CustomerStatus } from '@app/pages/my-customers/shared/interface/customer-status.enum';
-import { CustomerType } from '@app/pages/my-customers/shared/interface/customer-type';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceListView } from '@app/shared/components/base/base-resource-list-view.component';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { PoListViewAction } from '@po-ui/ng-components';
 
 @Component({
@@ -45,9 +45,9 @@ export class ListViewResourceComponent extends BaseResourceListView<Customer>  {
 
     transformStatus(status: string): string {
         switch (status) {
-            case CustomerStatus.active:
+            case ResourceStatus.active:
                 return 'Ativo';
-            case CustomerStatus.inactive:
+            case ResourceStatus.inactive:
                 return 'Inativo';
             default:
                 return 'Não informado';
@@ -56,9 +56,9 @@ export class ListViewResourceComponent extends BaseResourceListView<Customer>  {
 
     getColorStatus(status: string): string {
         switch (status) {
-            case CustomerStatus.active:
+            case ResourceStatus.active:
                 return 'color-11';
-            case CustomerStatus.inactive:
+            case ResourceStatus.inactive:
                 return 'color-07';
             default:
                 return 'color-03';

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { CustomerType } from '@app/pages/my-customers/shared/interface/customer-type';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import { PoSelectOption } from '@po-ui/ng-components';
+import { CustomerType } from '../../shared/enum/customer-type.enum';
 import { Customer } from '../../shared/interface/customer';
-import { CustomerPerson } from './../../shared/interface/customer-person.enum';
 
 @Component({
   selector: 'app-general-data',
@@ -38,11 +38,11 @@ export class GeneralDataComponent implements OnInit {
     return [
       {
         label: 'Pessoa Fisica',
-        value: CustomerPerson.NATURAL
+        value: TypeOfPerson.NATURAL
       },
       {
         label: 'Pessoa Juridica',
-        value: CustomerPerson.LEGAL
+        value: TypeOfPerson.LEGAL
       }
     ]
   }
@@ -69,7 +69,7 @@ export class GeneralDataComponent implements OnInit {
   }
 
   handleTypePerson(): void {
-    if (this.customer.typePerson === CustomerPerson.NATURAL) {
+    if (this.customer.typePerson === TypeOfPerson.NATURAL) {
       this.documentLabel = 'CPF';
       this.documentMask = '999.999.999-99';
       this.documentPlaceHolder = '000.000.000-00';

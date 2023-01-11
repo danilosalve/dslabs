@@ -1,6 +1,6 @@
-import { CustomerPerson } from './customer-person.enum';
-import { CustomerStatus } from './customer-status.enum';
-import { CustomerType } from './customer-type';
+import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
+import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
+import { CustomerType } from '../enum/customer-type.enum';
 
 export interface Customer {
   id: number;
@@ -9,7 +9,7 @@ export interface Customer {
   document: string;
   state: string;
   city: string;
-  status: CustomerStatus;
+  status: ResourceStatus;
   customerType: CustomerType;
   registerDate: Date;
   $selected?: boolean;
@@ -18,7 +18,7 @@ export interface Customer {
   neighborhood: string;
   zipCode: string;
   complement?: string;
-  typePerson: CustomerPerson;
+  typePerson: TypeOfPerson;
   store: number;
   contactName?: string;
   email?: string;
