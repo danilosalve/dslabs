@@ -1,0 +1,7 @@
+export enum ProspectStatus {
+  QUALIFIED,
+  DEVELOPMENT,
+  MANAGER,
+  DISQUALIFIED,
+  CUSTOMER
+}

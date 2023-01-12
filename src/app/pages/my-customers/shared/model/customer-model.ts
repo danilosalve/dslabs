@@ -1,26 +1,12 @@
 import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
+import { PersonModel } from '../../../../shared/model/person-model';
 import { CustomerType } from '../enum/customer-type.enum';
 
-export class CustomerModel {
-    id: number;
+export class CustomerModel extends PersonModel {
     store: number;
-    name: string;
-    typePerson: TypeOfPerson;
-    document: string;
     customerType: CustomerType;
-    state: string;
-    city: string;
-    address: string;
-    neighborhood: string;
-    zipCode: string;
-    complement: string;
-    status: ResourceStatus;
-    registerDate: Date;
     lastPurchase: Date;
-    contactName: string;
-    email: string;
-    businessPhone: number;
     stateDelivery: string;
     cityDelivery: string;
     addressDelivery: string;
@@ -31,8 +17,6 @@ export class CustomerModel {
     paymentConditionId: number;
     paymentMethodId: number;
     priceListdId: number;
-    creditLimit: number;
-    creditLimitExpirationDate: Date;
 
     constructor(
         id: number,
@@ -66,35 +50,41 @@ export class CustomerModel {
         creditLimit?: number,
         creditLimitExpirationDate?: Date
     ) {
-        this.id = id;
+        super(
+            id,
+            name,
+            document,
+            registerDate,
+            typePerson,
+            status,
+            state,
+            city,
+            address,
+            neighborhood,
+            zipCode,
+            complement,
+            contactName,
+            email,
+            businessPhone,
+            creditLimit,
+            creditLimitExpirationDate
+        );
         this.store = store;
-        this.name = name;
-        this.typePerson = typePerson;
-        this.document = document;
         this.customerType = customerType;
-        this.state = state;
-        this.city = city;
-        this.address = address;
-        this.neighborhood = neighborhood;
-        this.zipCode = zipCode;
-        this.complement = complement;
-        this.status = status;
-        this.registerDate = registerDate;
         this.lastPurchase = lastPurchase;
-        this.contactName = contactName;
-        this.email = email;
-        this.businessPhone = businessPhone;
         this.stateDelivery = stateDelivery ? stateDelivery : state;
         this.cityDelivery = cityDelivery ? cityDelivery : city;
         this.addressDelivery = addressDelivery ? addressDelivery : address;
-        this.neighborhoodDelivery = neighborhoodDelivery ? neighborhoodDelivery : neighborhood;
-        this.zipCodeDelivery = zipCodeDelivery? zipCodeDelivery : zipCode;
-        this.complementDelivery = complementDelivery ? complementDelivery : complement;
+        this.neighborhoodDelivery = neighborhoodDelivery
+            ? neighborhoodDelivery
+            : neighborhood;
+        this.zipCodeDelivery = zipCodeDelivery ? zipCodeDelivery : zipCode;
+        this.complementDelivery = complementDelivery
+            ? complementDelivery
+            : complement;
         this.fantasyName = fantasyName ? fantasyName : name;
         this.paymentConditionId = paymentConditionId ? paymentConditionId : 0;
         this.paymentMethodId = paymentMethodId ? paymentMethodId : 0;
         this.priceListdId = priceListdId ? priceListdId : 0;
-        this.creditLimit = creditLimit ? creditLimit : 0;
-        this.creditLimitExpirationDate = creditLimitExpirationDate ? creditLimitExpirationDate : new Date();
     }
 }

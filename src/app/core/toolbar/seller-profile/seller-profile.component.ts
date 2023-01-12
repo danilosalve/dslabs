@@ -3,8 +3,8 @@ import { PermissionsService } from '@app/core/permissions/shared/services/permis
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { PhonePipe } from '@app/shared/pipe/phone.pipe';
 import { ZipcodePipe } from '@app/shared/pipe/zipcode.pipe';
+import { SellerModel } from '../../../shared/model/seller-model';
 import { Seller } from './../../../shared/interfaces/seller';
-import { SellerModel } from './../../../shared/model/seller.model';
 
 @Component({
     selector: 'app-seller-profile',

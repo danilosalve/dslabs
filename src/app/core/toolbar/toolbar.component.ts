@@ -9,7 +9,7 @@ import {
 } from '@po-ui/ng-components';
 import { BdcWalkService } from 'bdc-walkthrough';
 import { take } from 'rxjs/operators';
-import { SellerModel } from './../../shared/model/seller.model';
+import { SellerModel } from '../../shared/model/seller-model';
 import { SellerService } from './../../shared/services/seller.service';
 
 @Component({

@@ -4,7 +4,7 @@ import {
 } from '@angular/forms';
 import { Sales } from '@app/pages/my-sales/shared/interfaces/sales';
 import { Seller } from '@app/shared/interfaces/seller';
-import { SellerModel } from '@app/shared/model/seller.model';
+import { SellerModel } from '@app/shared/model/seller-model';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { take } from 'rxjs/operators';
 import { SellerService } from './../../../../../shared/services/seller.service';

@@ -1,5 +1,6 @@
 import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { delay, Observable, of } from 'rxjs';
+import { prospectDB } from './database/prospects';
 import { CustomerType } from './pages/my-customers/shared/enum/customer-type.enum';
 import { Customer } from './pages/my-customers/shared/interface/customer';
 import { CustomerModel } from './pages/my-customers/shared/model/customer-model';
@@ -22,7 +23,7 @@ import { PriceList } from './shared/interfaces/price-list/price-list';
 import { ProductBalance } from './shared/interfaces/product-balance';
 import { Seller } from './shared/interfaces/seller';
 import { State } from './shared/interfaces/state';
-import { SellerModel } from './shared/model/seller.model';
+import { SellerModel } from './shared/model/seller-model';
 
 export class InMemoryDatabase implements InMemoryDbService {
     createDb(
@@ -3001,6 +3002,8 @@ export class InMemoryDatabase implements InMemoryDbService {
             }
         ]
 
+        const prospects = prospectDB;
+
         const db = {
             carriers,
             customers,
@@ -3015,7 +3018,8 @@ export class InMemoryDatabase implements InMemoryDbService {
             sellers,
             tables,
             states,
-            citys
+            citys,
+            prospects
         };
 
         return of(db).pipe(delay(1300));
