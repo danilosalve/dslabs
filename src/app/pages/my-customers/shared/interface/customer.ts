@@ -1,12 +1,8 @@
-import { Person } from '@app/shared/interfaces/person';
-import { CustomerType } from '../enum/customer-type.enum';
+import { BusinessPerson } from '@app/shared/interfaces/business-person';
 
-export interface Customer extends Person {
-  fantasyName?: string;
-  customerType: CustomerType;
+export interface Customer extends BusinessPerson {
   $selected?: boolean;
   lastPurchase: Date;
-  store: number;
   stateDelivery: string;
   cityDelivery: string;
   addressDelivery: string;

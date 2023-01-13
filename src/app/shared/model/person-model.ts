@@ -2,7 +2,7 @@ import { Person } from '@app/shared/interfaces/person';
 import { ResourceStatus } from '../enum/resource-status.enum';
 import { TypeOfPerson } from '../enum/type-of-person.enum';
 
-export class PersonModel implements Person {
+export abstract class PersonModel implements Person {
     id: number;
     name: string;
     document: string;
@@ -15,11 +15,6 @@ export class PersonModel implements Person {
     neighborhood: string;
     zipCode: string;
     complement?: string | undefined;
-    contactName?: string | undefined;
-    email?: string | undefined;
-    businessPhone?: number | undefined;
-    creditLimit?: number | undefined;
-    creditLimitExpirationDate?: Date | undefined;
 
     constructor(
         id = 0,
@@ -33,12 +28,7 @@ export class PersonModel implements Person {
         address = '',
         neighborhood = '',
         zipCode = '',
-        complement = '',
-        contactName = '',
-        email = '',
-        businessPhone = 0,
-        creditLimit = 0,
-        creditLimitExpirationDate = new Date()
+        complement = ''
     ) {
         this.id = id;
         this.name = name;
@@ -52,11 +42,6 @@ export class PersonModel implements Person {
         this.neighborhood = neighborhood;
         this.zipCode = zipCode;
         this.complement = complement;
-        this.contactName = contactName;
-        this.email = email;
-        this.businessPhone = businessPhone;
-        this.creditLimit = creditLimit;
-        this.creditLimitExpirationDate = creditLimitExpirationDate;
     }
 
     get age(): number {

@@ -1,14 +1,12 @@
 import { CustomerType } from '@app/pages/my-customers/shared/enum/customer-type.enum';
 import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
-import { PersonModel } from '@app/shared/model/person-model';
+import { BusinessPersonModel } from '@app/shared/model/business-person-model';
+
 import { ProspectStatus } from '../enum/prospect-status.enum';
 import { Prospect } from './../interfaces/prospect';
 
-export class ProspectModel extends PersonModel implements Prospect {
-    store: number;
-    fantasyName?: string | undefined;
-    customerType: CustomerType;
+export class ProspectModel extends BusinessPersonModel implements Prospect {
     statusProspect: ProspectStatus;
 
     constructor(
@@ -36,27 +34,28 @@ export class ProspectModel extends PersonModel implements Prospect {
     ) {
         super(
             id,
+            store,
             name,
-            document,
-            registerDate,
             typePerson,
-            status,
+            document,
+            customerType,
             state,
             city,
             address,
             neighborhood,
             zipCode,
             complement,
+            status,
+            registerDate,
             contactName,
             email,
             businessPhone,
+            fantasyName,
             creditLimit,
             creditLimitExpirationDate
         );
-        this.store = store;
-        this.customerType = customerType;
-        this.statusProspect = statusProspect ? statusProspect : ProspectStatus.QUALIFIED;
-        this.fantasyName = fantasyName ? fantasyName : this.name;
+        this.statusProspect = statusProspect
+            ? statusProspect
+            : ProspectStatus.QUALIFIED;
     }
 }
-

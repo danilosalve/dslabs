@@ -1,10 +1,5 @@
-import { CustomerType } from '@app/pages/my-customers/shared/enum/customer-type.enum';
-import { Person } from '@app/shared/interfaces/person';
+import { BusinessPerson } from '@app/shared/interfaces/business-person';
 import { ProspectStatus } from '../enum/prospect-status.enum';
-
-export interface Prospect extends Person {
-  store: number;
-  fantasyName?: string;
-  customerType: CustomerType;
+export interface Prospect extends BusinessPerson {
   statusProspect: ProspectStatus;
 }

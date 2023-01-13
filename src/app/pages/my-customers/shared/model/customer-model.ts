@@ -1,11 +1,10 @@
 import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
-import { PersonModel } from '../../../../shared/model/person-model';
+import { BusinessPersonModel } from '@app/shared/model/business-person-model';
 import { CustomerType } from '../enum/customer-type.enum';
+import { Customer } from '../interface/customer';
 
-export class CustomerModel extends PersonModel {
-    store: number;
-    customerType: CustomerType;
+export class CustomerModel extends BusinessPersonModel implements Customer {
     lastPurchase: Date;
     stateDelivery: string;
     cityDelivery: string;
@@ -13,7 +12,6 @@ export class CustomerModel extends PersonModel {
     neighborhoodDelivery: string;
     zipCodeDelivery: string;
     complementDelivery: string;
-    fantasyName: string;
     paymentConditionId: number;
     paymentMethodId: number;
     priceListdId: number;
@@ -51,26 +49,27 @@ export class CustomerModel extends PersonModel {
         creditLimitExpirationDate?: Date
     ) {
         super(
-            id,
-            name,
-            document,
-            registerDate,
-            typePerson,
-            status,
-            state,
-            city,
-            address,
-            neighborhood,
-            zipCode,
-            complement,
-            contactName,
-            email,
-            businessPhone,
-            creditLimit,
-            creditLimitExpirationDate
+          id,
+          store,
+          name,
+          typePerson,
+          document,
+          customerType,
+          state,
+          city,
+          address,
+          neighborhood,
+          zipCode,
+          complement,
+          status,
+          registerDate,
+          contactName,
+          email,
+          businessPhone,
+          fantasyName,
+          creditLimit,
+          creditLimitExpirationDate
         );
-        this.store = store;
-        this.customerType = customerType;
         this.lastPurchase = lastPurchase;
         this.stateDelivery = stateDelivery ? stateDelivery : state;
         this.cityDelivery = cityDelivery ? cityDelivery : city;
@@ -82,7 +81,6 @@ export class CustomerModel extends PersonModel {
         this.complementDelivery = complementDelivery
             ? complementDelivery
             : complement;
-        this.fantasyName = fantasyName ? fantasyName : name;
         this.paymentConditionId = paymentConditionId ? paymentConditionId : 0;
         this.paymentMethodId = paymentMethodId ? paymentMethodId : 0;
         this.priceListdId = priceListdId ? priceListdId : 0;

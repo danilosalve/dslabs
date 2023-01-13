@@ -14,9 +14,4 @@ export interface Person extends BaseResource {
   neighborhood: string;
   zipCode: string;
   complement?: string;
-  contactName?: string;
-  email?: string;
-  businessPhone?: number;
-  creditLimit?: number;
-  creditLimitExpirationDate?: Date;
 }
