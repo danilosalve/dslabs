@@ -3,7 +3,7 @@ import { CustomerType } from '@app/pages/my-customers/shared/enum/customer-type.
 import { Customer } from '@app/pages/my-customers/shared/interface/customer';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceListView } from '@app/shared/components/base/base-resource-list-view.component';
-import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
+import { UtilsService } from '@app/shared/services/utils.service';
 import { PoListViewAction } from '@po-ui/ng-components';
 
 @Component({
@@ -13,21 +13,10 @@ import { PoListViewAction } from '@po-ui/ng-components';
 export class CustomerListViewComponent extends BaseResourceListView<Customer> {
   type = {}
     constructor(
-        private customerService: CustomerService
+        protected customerService: CustomerService,
+        protected utilsService: UtilsService
     ) {
         super();
-    }
-
-    transformDocument(document: string): string {
-        return this.customerService.transformDocument(document);
-    }
-
-    transformDate(registerDate: Date): string {
-      const date =
-      typeof registerDate.toLocaleDateString === 'function'
-          ? registerDate
-          : new Date(registerDate);
-      return date ? date.toLocaleDateString() : '';
     }
 
     transformType(type: string): string {
@@ -42,28 +31,6 @@ export class CustomerListViewComponent extends BaseResourceListView<Customer> {
           return 'Exportação';
         default:
           return 'Não informado'
-      }
-    }
-
-    transformStatus(status: string): string {
-      switch (status){
-        case ResourceStatus.active:
-          return 'Ativo'
-        case ResourceStatus.inactive:
-          return 'Inativo'
-        default:
-          return 'Não informado'
-      }
-    }
-
-    getColorStatus(status: string): string {
-      switch (status){
-        case ResourceStatus.active:
-          return 'color-11'
-        case ResourceStatus.inactive:
-          return 'color-07'
-        default:
-          return 'color-03'
       }
     }
 

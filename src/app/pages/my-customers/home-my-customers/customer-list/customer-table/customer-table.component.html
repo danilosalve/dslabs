@@ -8,6 +8,6 @@
     [p-height]="height"
 >
     <ng-template p-table-column-template [p-property]="'document'" let-value>
-        <span [innerText]="transformDocument(value)"></span>
+        <span [innerText]="customerService.transformDocument(value)"></span>
     </ng-template>
 </po-table>

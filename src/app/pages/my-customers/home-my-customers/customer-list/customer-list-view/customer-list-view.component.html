@@ -8,8 +8,8 @@
         <div class="po-row">
             <po-tag
                 class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
-                [p-value]="transformStatus(item.status)"
-                [p-color]="getColorStatus(item.status)"
+                [p-value]="utilsService.transformStatus(item.status)"
+                [p-color]="utilsService.getColorStatus(item.status)"
             ></po-tag>
             <po-info
                 class="po-xl-2 po-lg-2 po-md-2 po-sm-2"
@@ -19,7 +19,7 @@
             <po-info
                 class="po-xl-5 po-lg-5 po-md-5 po-sm-10"
                 p-label="CPF/CNPJ"
-                [p-value]="transformDocument(item.document)"
+                [p-value]="customerService.transformDocument(item.document)"
             ></po-info>
             <po-info
                 class="po-xl-1 po-lg-1 po-md-1 po-sm-2"
@@ -39,7 +39,7 @@
             <po-info
                 class="po-xl-5 po-lg-5 po-md-5 po-sm-6"
                 p-label="Dt. Nascimento/Registro"
-                [p-value]="transformDate(item.registerDate)"
+                [p-value]="utilsService.transformDate(item.registerDate)"
             ></po-info>
         </div>
     </ng-template>

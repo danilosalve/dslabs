@@ -1,9 +1,8 @@
-import { BaseResourceTable } from './../../../../../shared/components/base/base-resource-table.component';
 import { Component, EventEmitter, Injector, Output } from '@angular/core';
 import { Customer } from '@app/pages/my-customers/shared/interface/customer';
-import { PoTableAction } from '@po-ui/ng-components';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
-import { CustomerListComponent } from '../customer-list.component';
+import { PoTableAction } from '@po-ui/ng-components';
+import { BaseResourceTable } from './../../../../../shared/components/base/base-resource-table.component';
 
 @Component({
   selector: 'app-customer-table',
@@ -31,9 +30,5 @@ export class CustomerTableComponent extends BaseResourceTable<Customer> {
 
   handleShowCustomer($event: Customer): void {
     this.showCustomer.emit($event);
-  }
-
-  transformDocument(document: string): string {
-    return this.customerService.transformDocument(document);
   }
 }
