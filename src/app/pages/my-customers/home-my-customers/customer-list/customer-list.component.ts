@@ -32,7 +32,8 @@ export class CustomerListComponent extends BaseResourceList<Customer> {
         return resource.filter(
             customers =>
                 customers.id?.toString().includes(search) ||
-                customers.name?.toLowerCase().includes(search.toLowerCase())
+                customers.name?.toLowerCase().includes(search.toLowerCase()) ||
+                customers.document?.toLowerCase().includes(search.toLowerCase())
         );
     }
 
