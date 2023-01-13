@@ -13,7 +13,7 @@ import { BaseResourceService } from './base-resource.service';
 })
 export class PaymentMethodService extends BaseResourceService<PaymentMethod> implements PoComboFilter {
     constructor(protected override injector: Injector) {
-        super('api/paymentMethod/', injector);
+        super('api/paymentMethods/', injector);
     }
 
     getByDescription(name: string): Observable<PaymentMethod[]> {

@@ -7,7 +7,7 @@ import { ProspectModel } from './../pages/my-prospects/shared/model/prospect-mod
 
 let id = 0;
 
-export const prospectDB: Prospect[] = [
+export const prospects: Prospect[] = [
     new ProspectModel(
         ++id,
         1,

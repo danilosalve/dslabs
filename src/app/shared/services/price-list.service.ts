@@ -11,7 +11,7 @@ import { BaseResourceService } from './base-resource.service';
 })
 export class PriceListService extends BaseResourceService<PriceList> {
   constructor(protected override injector: Injector) {
-    super('api/priceList/', injector);
+    super('api/priceLists/', injector);
   }
 
   getByDescription(name: string): Observable<PriceList[]> {

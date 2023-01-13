@@ -10,7 +10,7 @@ import { ProductBalance } from '../interfaces/product-balance';
 })
 export class ProductBalanceService extends BaseResourceService<ProductBalance> {
     constructor(protected override injector: Injector) {
-        super('api/productBalance/', injector);
+        super('api/productBalances/', injector);
     }
 
     getByProductId(productId: string): Observable<ProductBalance[]> {
