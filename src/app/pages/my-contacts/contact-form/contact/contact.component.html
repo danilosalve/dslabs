@@ -1,0 +1,34 @@
+<po-container>
+  <h2 class="po-font-subtitle">Contatos</h2>
+  <br />
+  <form [formGroup]="formContact">
+      <div class="po-row">
+          <po-email
+              class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+              p-label="Email"
+              [p-no-autocomplete]="true"
+              formControlName="email"
+              p-clean
+              p-placeholder="Digite o email do contato"
+              p-error-pattern="Informe um e-mail válido"
+              [p-optional]="true"
+          ></po-email>
+          <po-input
+              class="po-xl-3 po-lg-3 po-md-7 po-sm-12"
+              p-label="Telefone"
+              [p-no-autocomplete]="true"
+              formControlName="phone"
+              [p-optional]="true"
+              p-clean
+              [p-minlength]="14"
+              [p-maxlength]="15"
+              p-help="Apenas números."
+              p-mask-format-model="false"
+              p-error-pattern="Informe apenas números"
+              p-placeholder="(00) 0000-0000"
+              [p-mask]="phoneMask"
+              (p-change-model)="onChangePhone($event)"
+          ></po-input>
+      </div>
+  </form>
+</po-container>

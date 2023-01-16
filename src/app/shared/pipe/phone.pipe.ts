@@ -12,6 +12,7 @@ export class PhonePipe implements PipeTransform {
     }
 
     phone = phone.replace(/\D/g, '');
+
     switch (phone.length) {
       case 8:
         return phone.replace(/^(\d{4})(\d{4})/, '$1-$2');
@@ -20,7 +21,7 @@ export class PhonePipe implements PipeTransform {
       case 10:
         return phone.replace(/^(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
       case 11:
-        return phone.replace(/^(\d{3})(\d{4})(\d{4})/, '($1) $2-$3');
+        return phone.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
       case 12:
         return phone.replace(/^(\d{3})(\d{5})(\d{4})/, '($1) $2-$3');
       case 13:

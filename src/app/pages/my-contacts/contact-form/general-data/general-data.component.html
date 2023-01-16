@@ -1,0 +1,57 @@
+<po-container>
+    <h2 class="po-font-subtitle">Dados Gerais</h2>
+    <br />
+    <form [formGroup]="formContact">
+        <po-radio-group
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            formControlName="typePerson"
+            p-label="Tipo de pessoa"
+            [p-required]="true"
+            [p-options]="typeOfPersonsOptions"
+            (p-change)="onChangeTypePerson($event)"
+        >
+        </po-radio-group>
+        <po-input
+            class="po-xl-3 po-lg-3 po-md-7 po-sm-12"
+            [p-label]="documentLabel"
+            [p-no-autocomplete]="true"
+            formControlName="document"
+            p-clean
+            [p-minlength]="minDocument"
+            [p-maxlength]="maxDocument"
+            p-help="Apenas números."
+            [p-mask]="documentMask"
+            p-mask-format-model="false"
+            p-error-pattern="Documento inválido"
+            [p-placeholder]="documentPlaceHolder"
+        ></po-input>
+        <po-input
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Nome"
+            formControlName="name"
+            [p-no-autocomplete]="true"
+            p-clean
+            p-required="true"
+            [p-show-required]="true"
+            p-placeholder="Digite o nome do contato"
+        ></po-input>
+        <po-input
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12"
+            p-label="Departamento"
+            formControlName="department"
+            [p-no-autocomplete]="true"
+            p-clean
+            p-required="false"
+            p-placeholder="Digite o departamento do Contato"
+        ></po-input>
+        <po-datepicker
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12"
+            p-label="Dt Nascimento/Registro"
+            formControlName="registerDate"
+            p-required="false"
+            [p-iso-format]="isoFormat"
+            [p-max-date]="maxDate"
+        >
+        </po-datepicker>
+    </form>
+</po-container>

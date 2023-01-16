@@ -1,0 +1,16 @@
+<po-table
+    [p-sort]="true"
+    [p-items]="items"
+    [p-columns]="columns"
+    [p-max-columns]="10"
+    [p-loading]="isLoading"
+    [p-actions]="actions"
+    [p-height]="height"
+>
+    <ng-template p-table-column-template [p-property]="'document'" let-value>
+        <span [innerText]="contactsService.transformDocument(value)"></span>
+    </ng-template>
+    <ng-template p-table-column-template [p-property]="'phone'" let-value>
+        <span [innerText]="contactsService.transformPhone(value)"></span>
+    </ng-template>
+</po-table>

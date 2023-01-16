@@ -49,7 +49,7 @@ export class CustomersFormComponent extends BaseResourceForm implements OnInit {
         protected customerService: CustomerService,
         protected customerFormService: CustomerFormService
     ) {
-        super(injector, 'customers', true);
+        super(injector, 'customers', false);
     }
 
     override ngOnInit(): void {

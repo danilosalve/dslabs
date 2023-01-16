@@ -8,7 +8,7 @@ let id = 0;
 export const contacts: Contact[] = [
     new ContactModel(
         ++id,
-        'THEODORE EVELYN MOSBY',
+        'Theodore Evelyn Mosby',
         '75260298349',
         new Date(1982, 0, 3),
         TypeOfPerson.NATURAL,
@@ -25,7 +25,7 @@ export const contacts: Contact[] = [
     ),
     new ContactModel(
         ++id,
-        'BARNEY STINSON',
+        'Barney Stinson',
         '91856339505',
         new Date(1978, 4, 3),
         TypeOfPerson.NATURAL,
@@ -42,8 +42,8 @@ export const contacts: Contact[] = [
     ),
     new ContactModel(
         ++id,
-        'LILY ALDRIN',
-        '',
+        'Lily Aldrin',
+        '52358124761',
         new Date(1984, 2, 3),
         TypeOfPerson.NATURAL,
         ResourceStatus.active,
@@ -61,7 +61,7 @@ export const contacts: Contact[] = [
     new ContactModel(
         ++id,
         'Andreia',
-        '',
+        '33109176149',
         new Date(1994, 8, 7),
         TypeOfPerson.NATURAL,
         ResourceStatus.active,
@@ -77,8 +77,8 @@ export const contacts: Contact[] = [
     ),
     new ContactModel(
         ++id,
-        'CRISTIANO',
-        '',
+        'Cristiano',
+        '78721316252',
         new Date(1992, 10, 27),
         TypeOfPerson.NATURAL,
         ResourceStatus.active,
@@ -95,7 +95,7 @@ export const contacts: Contact[] = [
     new ContactModel(
         ++id,
         'Leonel',
-        '',
+        '00062688898',
         new Date(2006, 11, 3),
         TypeOfPerson.NATURAL,
         ResourceStatus.active,
@@ -106,7 +106,24 @@ export const contacts: Contact[] = [
         '03694180',
         '',
         4136464161,
-        'leo.messi@teste.com',
+        'leo.thomaz@teste.com',
         'VENDAS'
+    ),
+    new ContactModel(
+        ++id,
+        'Lucas Paro',
+        '20939847000143',
+        new Date(2002, 9, 2),
+        TypeOfPerson.LEGAL,
+        ResourceStatus.active,
+        'SP',
+        'Santos',
+        'Rua Edson Arantes, 10',
+        'Vila Belmiro',
+        '01594180',
+        '',
+        13994751310,
+        'lucas@teste.com',
+        'Financeiro'
     )
 ];

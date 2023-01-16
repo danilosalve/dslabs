@@ -1,0 +1,32 @@
+<po-page-list #poPageList [p-title]="titlePage" [p-actions]="actions">
+    <div class="po-row">
+        <app-view-button
+            *ngIf="canViewTable"
+            class="po-xl-1 po-lg-2 po-md-6 po-sm-12"
+            (changeDevice)="onChangeDevice($event)"
+        ></app-view-button>
+        <app-filter-input
+            class="po-offset-lg-6 po-offset-xl-8 po-xl-3 po-lg-4 po-offset-lg-6 po-md-6 po-sm-12"
+            placeHolder="Pesquisar..."
+            (changeSearch)="onSearchResources($event)"
+            help="Efetue a busca utilizando código, nome ou email do contato"
+            [debounceInput]="1000"
+        ></app-filter-input>
+    </div>
+    <app-contacts-table
+        *ngIf="!isSmartPhone && canViewTable"
+        [items]="items"
+        [isLoading]="isLoading"
+        (showContact)="onShowContact($event)"
+        (editContact)="onEditContact($event)"
+    >
+    </app-contacts-table>
+    <app-contacts-list-view
+        *ngIf="isSmartPhone || !canViewTable"
+        [items]="items"
+        [isLoading]="isLoading"
+        propertyTitle="name"
+        (titleAction)="onShowContact($event)"
+        (editContact)="onEditContact($event)"
+    ></app-contacts-list-view>
+</po-page-list>

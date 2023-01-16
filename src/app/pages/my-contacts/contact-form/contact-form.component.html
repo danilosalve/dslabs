@@ -1,0 +1,36 @@
+<po-page-edit
+    [p-title]="titlePage"
+    [p-breadcrumb]="breadcrumb"
+    (p-cancel)="handleBack()"
+    (p-save)="onSubmit()"
+    [p-disable-submit]="formContact.invalid"
+>
+    <po-stepper #poStepperComponent (p-change-step)="handleChangeStep($event)">
+        <po-step p-label="Dados Gerais">
+          <app-general-data [contact]="contact" [formContact]="formContact"></app-general-data>
+        </po-step>
+        <po-step p-label="Contato">
+          <app-contact [contact]="contact" [formContact]="formContact"></app-contact>
+        </po-step>
+        <po-step p-label="Endereço">
+          <app-address [contact]="contact" [formContact]="formContact"></app-address>
+        </po-step>
+    </po-stepper>
+    <footer class="footer">
+        <div class="po-row">
+            <po-button
+                class="po-offset-xl-8 po-xl-2 po-offset-lg-6 po-lg-3 po-offset-md-4 po-md-4 po-sm-12 po-mb-1"
+                p-label="Voltar passo"
+                [p-danger]="true"
+                (p-click)="previousStep()"
+                [p-disabled]="!canMoveToPreviousPage()"
+            ></po-button>
+            <po-button
+                class="po-xl-2 po-lg-3 po-md-4 po-sm-12 po-mb-1"
+                p-label="Próximo passo"
+                (p-click)="nextStep()"
+                [p-disabled]="stepper === 3"
+            ></po-button>
+        </div>
+    </footer>
+</po-page-edit>

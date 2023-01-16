@@ -1,0 +1,37 @@
+<po-container>
+    <h2 class="po-font-subtitle">Dados cadastrais</h2>
+    <br />
+
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-4 po-sm-12"
+            [p-label]="utilsService.handleTypePerson(contact.typePerson).label"
+            [p-value]="documentPipe.transform(contact.document)"
+        ></po-info>
+
+        <po-info
+            class="po-xl-7 po-lg-7 po-md-8 po-sm-12"
+            p-label="Nome"
+            [p-value]="contact.name"
+        ></po-info>
+
+        <po-tag
+            class="po-xl-2 po-lg-2 po-md-4 po-sm-12"
+            p-label="Status do cadastro"
+            [p-value]="utilsService.transformStatus(contact.status)"
+            [p-color]="utilsService.getColorStatus(contact.status)"
+        ></po-tag>
+
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-4 po-sm-12"
+            p-label="Dt de Nascimento/Registro"
+            [p-value]="utilsService.transformDate(contact.registerDate)"
+        ></po-info>
+
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-8 po-sm-12"
+            p-label="Departamento"
+            [p-value]="contact.department"
+        ></po-info>
+    </div>
+</po-container>

@@ -1,0 +1,32 @@
+<po-container>
+    <h2 class="po-font-subtitle">Endereço</h2>
+    <br />
+
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="CEP"
+            [p-value]="zipCodePipe.transform(contact.zipCode)"
+        ></po-info>
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="UF"
+            [p-value]="contact.state"
+        ></po-info>
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-12"
+            p-label="Municipio"
+            [p-value]="contact.city"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Endereço"
+            [p-value]="contact.address"
+        ></po-info>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Complemento"
+            [p-value]="contact.complement"
+        ></po-info>
+    </div>
+</po-container>

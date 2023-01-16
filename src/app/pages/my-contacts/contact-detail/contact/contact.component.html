@@ -1,0 +1,19 @@
+<po-container>
+    <h2 class="po-font-subtitle">Contato</h2>
+    <br />
+    <div class="po-row">
+        <po-info
+        class="po-xl-2 po-lg-2 po-md-12 po-sm-12"
+            p-label="Telefone"
+            [p-value]="phonePipe.transform(contact.phone)"
+        >
+        </po-info>
+
+        <po-info
+        class="po-xl-10 po-lg-10 po-md-12 po-sm-12"
+            p-label="E-Mail"
+            [p-value]="contact.email"
+        >
+        </po-info>
+    </div>
+</po-container>

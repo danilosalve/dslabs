@@ -3,6 +3,8 @@ import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { delay, Observable, of } from 'rxjs';
 import { carriers } from './database/carriers';
 import { citys } from './database/citys';
+import { contactRelationships } from './database/contact-relationships';
+import { contacts } from './database/contacts';
 import { customers } from './database/customers';
 import { fields } from './database/fields';
 import { paymentConditions } from './database/paymentConditions';
@@ -15,7 +17,6 @@ import { sales } from './database/sales';
 import { salesItems } from './database/salesItems';
 import { states } from './database/states';
 import { tables } from './database/tables';
-
 
 import { Seller } from './shared/interfaces/seller';
 import { SellerModel } from './shared/model/seller-model';
@@ -56,7 +57,9 @@ export class InMemoryDatabase implements InMemoryDbService {
             tables,
             states,
             citys,
-            prospects
+            prospects,
+            contacts,
+            contactRelationships
         };
 
         return of(db).pipe(delay(1300));

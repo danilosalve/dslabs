@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { TypeOfPerson } from '@app/shared/enum/type-of-person.enum';
 import { PoSelectOption } from '@po-ui/ng-components';
 import { CustomerType } from '../../shared/enum/customer-type.enum';
 import { Customer } from '../../shared/interface/customer';
+import { UtilsService } from './../../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-general-data',
@@ -22,29 +22,18 @@ export class GeneralDataComponent implements OnInit {
   minDocument = 0;
   maxDocument = 18;
 
-  constructor() { }
+  constructor(
+    protected utilsService: UtilsService
+  ) { }
 
   ngOnInit(): void {
     this.onInitPage();
   }
 
   onInitPage(): void {
-    this.typePersonOptions = this.getTypePersonOptions();
+    this.typePersonOptions = this.utilsService.getTypePersonOptions();
     this.customerTypeOptions = this.getCustomerTypeOptions();
     this.handleTypePerson();
-  }
-
-  getTypePersonOptions(): PoSelectOption[] {
-    return [
-      {
-        label: 'Pessoa Fisica',
-        value: TypeOfPerson.NATURAL
-      },
-      {
-        label: 'Pessoa Juridica',
-        value: TypeOfPerson.LEGAL
-      }
-    ]
   }
 
   getCustomerTypeOptions(): PoSelectOption[] {
@@ -69,18 +58,11 @@ export class GeneralDataComponent implements OnInit {
   }
 
   handleTypePerson(): void {
-    if (this.customer.typePerson === TypeOfPerson.NATURAL) {
-      this.documentLabel = 'CPF';
-      this.documentMask = '999.999.999-99';
-      this.documentPlaceHolder = '000.000.000-00';
-      this.minDocument = 14;
-      this.maxDocument = 14;
-    } else {
-      this.documentLabel = 'CNPJ';
-      this.documentMask = '99.999.999/9999-99';
-      this.documentPlaceHolder = '00.000.000/0000-00';
-      this.minDocument = 18;
-      this.maxDocument = 18;
-    }
+    const typePerson = this.utilsService.handleTypePerson(this.customer.typePerson);
+    this.documentLabel = typePerson.label;
+    this.documentMask = typePerson.mask;
+    this.documentPlaceHolder = typePerson.placeHolder;
+    this.minDocument = typePerson.min;
+    this.maxDocument = typePerson.max;
   }
 }
