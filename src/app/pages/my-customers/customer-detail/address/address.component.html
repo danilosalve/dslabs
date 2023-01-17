@@ -1,0 +1,72 @@
+<po-container>
+    <h2 class="po-font-subtitle">Endereços</h2>
+    <br />
+
+    <po-divider p-label="ENDEREÇO DE FATURAMENTO"></po-divider>
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="CEP"
+            [p-value]="zipCodePipe.transform(customer.zipCode)"
+        ></po-info>
+        <po-info
+            class="po-xl-2 po-lg-3 po-md-3 po-sm-12"
+            p-label="País"
+            p-value="Brasil"
+        ></po-info>
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="UF"
+            [p-value]="customer.state"
+        ></po-info>
+        <po-info
+            class="po-xl-4 po-lg-6 po-md-6 po-sm-12"
+            p-label="Municipio"
+            [p-value]="customer.city"
+        ></po-info>
+        <po-info
+            class="po-xl-8 po-lg-8 po-md-12 po-sm-12"
+            p-label="Endereço"
+            [p-value]="customer.address"
+        ></po-info>
+        <po-info
+            class="po-xl-4 po-lg-4 po-md-12 po-sm-12"
+            p-label="Complemento"
+            [p-value]="customer.complement"
+        ></po-info>
+    </div>
+
+    <po-divider p-label="ENDEREÇO DE ENTREGA"></po-divider>
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="CEP"
+            [p-value]="zipCodePipe.transform(customer.zipCodeDelivery)"
+        ></po-info>
+        <po-info
+            class="po-xl-2 po-lg-3 po-md-3 po-sm-12"
+            p-label="País"
+            p-value="Brasil"
+        ></po-info>
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="UF"
+            [p-value]="customer.stateDelivery"
+        ></po-info>
+        <po-info
+            class="po-xl-4 po-lg-6 po-md-6 po-sm-12"
+            p-label="Municipio"
+            [p-value]="customer.cityDelivery"
+        ></po-info>
+        <po-info
+            class="po-xl-8 po-lg-8 po-md-12 po-sm-12"
+            p-label="Endereço"
+            [p-value]="customer.addressDelivery"
+        ></po-info>
+        <po-info
+            class="po-xl-4 po-lg-4 po-md-12 po-sm-12"
+            p-label="Complemento"
+            [p-value]="customer.complementDelivery"
+        ></po-info>
+    </div>
+</po-container>

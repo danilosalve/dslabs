@@ -15,5 +15,15 @@ export const contactRelationships: ContactRelationship[] = [
     id: 3,
     contactId: 6,
     customerId: 7
+  },
+  {
+    id: 4,
+    contactId: 7,
+    customerId: 8
+  },
+  {
+    id: 5,
+    contactId: 8,
+    customerId: 1
   }
 ];

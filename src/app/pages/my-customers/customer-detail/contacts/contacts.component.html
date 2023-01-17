@@ -1,0 +1,22 @@
+
+  <po-container>
+    <po-loading [hidden]="!isLoading"></po-loading>
+    <h2 class="po-font-subtitle">Contatos</h2>
+    <br />
+
+    <p [hidden]="!isLoading">Carregando Contatos...</p>
+
+    <div *ngIf="contacts.length > 0; else emptyContact">
+      <div *ngFor="let contact of contacts">
+        <app-contact [contact]="contact"></app-contact>
+      </div>
+    </div>
+
+    <ng-template #emptyContact>
+      <div class="po-table-no-data po-text-center">
+          <span>Não existem contatos vinculados a este cliente</span>
+      </div>
+    </ng-template>
+
+  </po-container>
+

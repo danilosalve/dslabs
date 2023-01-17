@@ -1,5 +1,58 @@
-<po-loading-overlay [hidden]="!isLoading"></po-loading-overlay>
 <po-container>
-  <po-dynamic-view *ngIf="!isLoading" [p-fields]="fields" [p-value]="customerPresentation"></po-dynamic-view>
-</po-container>
+    <h2 class="po-font-subtitle">Dados cadastrais</h2>
+    <br />
 
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-12 po-sm-12"
+            [p-label]="utilsService.handleTypePerson(customer.typePerson).label"
+            [p-value]="documentPipe.transform(customer.document)"
+        ></po-info>
+
+        <po-info
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
+            [p-label]="nameLabel"
+            [p-value]="customer.name"
+        ></po-info>
+
+        <po-info
+            *ngIf="isLegalPerson()"
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
+            p-label="Nome fantasia"
+            [p-value]="customer.fantasyName"
+        ></po-info>
+    </div>
+
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            p-label="Código do cliente"
+            [p-value]="customerCode"
+        ></po-info>
+
+        <po-info
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            p-label="Tipo de cliente"
+            [p-value]="customerType"
+        ></po-info>
+        <po-info
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            [p-label]="dateRegisterLabel"
+            [p-value]="utilsService.transformDate(customer.registerDate)"
+        ></po-info>
+    </div>
+
+    <div class="po-row">
+        <po-info
+            class="po-xl-3 po-lg-4 po-md-4 po-sm-12"
+            p-label="Telefone comercial"
+            [p-value]="phonePipe.transform(customer.businessPhone!)"
+        ></po-info>
+        <po-tag
+            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            p-label="Status do cadastro"
+            [p-value]="utilsService.transformStatus(customer.status)"
+            [p-color]="utilsService.getColorStatus(customer.status)"
+        ></po-tag>
+    </div>
+</po-container>

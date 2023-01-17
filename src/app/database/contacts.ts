@@ -125,5 +125,22 @@ export const contacts: Contact[] = [
         13994751310,
         'lucas@teste.com',
         'Financeiro'
+    ),
+    new ContactModel(
+        ++id,
+        'Maximiliano Felipe',
+        '59024072654',
+        new Date(1979, 9, 2),
+        TypeOfPerson.NATURAL,
+        ResourceStatus.active,
+        'SP',
+        'Guarujá',
+        'Rua Cinqüenta e Sete, 851',
+        'Moema',
+        '11445540',
+        '',
+        13984087515,
+        'max@teste.com',
+        'Comercial'
     )
 ];

@@ -1,0 +1,63 @@
+<div class="po-row po-xl-12 po-lg-12 po-md-12 po-sm-12">
+    <div class="po-xl-4 po-lg-4 po-md-4 po-sm-12" style="float: right">
+        <po-widget class="po-mt-1" [p-height]="500">
+            <h2 class="po-font-subtitle">Limite de crédito</h2>
+
+            <po-chart [p-series]="series" [p-type]="typeChart" [p-height]="410">
+            </po-chart>
+
+            <p class="po-text-center">
+                Total de crédito :
+                {{ customer.creditLimit | currency : 'BRL' }}
+            </p>
+        </po-widget>
+    </div>
+
+    <div
+        class="po-xl-8 po-lg-8 po-md-8 po-sm-12 po-mb-sm-1"
+        style="float: left"
+    >
+        <po-widget
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            [p-height]="240"
+            style="margin-left: 10px"
+        >
+            <h2 class="po-font-subtitle">Risco de crédito</h2>
+            <p
+                class="po-font-display po-text-center po-mt-5"
+                style="color: #00b28e"
+            >
+                Muito baixo
+            </p>
+            <p class="po-text-center">
+                Baseado no histórico financeiro do cliente
+            </p>
+        </po-widget>
+
+        <div class="po-row" style="margin-left: 10px">
+            <po-widget
+                class="po-xl-6 po-lg-6 po-md-6 po-sm-12"
+                [p-height]="230"
+            >
+                <h2 class="po-font-subtitle">Inadimplência</h2>
+                <p
+                    class="po-font-display po-text-center po-mt-3"
+                    style="color: #00b28e"
+                >
+                    {{ 0.009 | percent : '0.1-2' }}
+                </p>
+                <p class="po-text-center">De probabilidade de inadimplência</p>
+            </po-widget>
+
+            <po-widget
+                class="po-xl-6 po-lg-6 po-md-6 po-sm-12 po-mb-1"
+                [p-height]="218"
+            >
+                <h2 class="po-font-subtitle">Títulos</h2>
+                <p class="po-font-display po-text-center po-mt-1">8</p>
+                <p class="po-text-center">Quantidade de títulos em aberto</p>
+            </po-widget>
+        </div>
+    </div>
+</div>
+<br />

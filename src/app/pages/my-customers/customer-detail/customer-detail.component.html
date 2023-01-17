@@ -1,5 +1,11 @@
 <po-page-detail [p-breadcrumb]="breadcrumb" (p-back)="handleBack()" [p-title]="titlePage">
   <app-registration-data [customer]="customer"></app-registration-data>
+  <br/>
+  <app-financial-data [customer]="customer"></app-financial-data>
+  <br/>
+  <app-contacts [customer]="customer"></app-contacts>
+  <br/>
+  <app-address [customer]="customer"></app-address>
 </po-page-detail>
 
 

@@ -1,0 +1,5 @@
+<po-divider [p-label]="contact.name"></po-divider>
+<div class="po-row">
+  <po-info class="po-xl-6 po-lg-6 po-md-6 po-sm-12" p-label="Email" [p-value]="contact.email"></po-info>
+  <po-info class="po-xl-6 po-lg-6 po-md-6 po-sm-12" p-label="Telefone" [p-value]="phonePipe.transform(contact.phone)"></po-info>
+</div>
