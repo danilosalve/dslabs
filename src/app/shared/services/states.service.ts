@@ -56,7 +56,7 @@ export class StatesService extends BaseResourceService<State> implements PoCombo
             map(states =>
                 states.filter(
                     s =>
-                        s.name.toLocaleLowerCase().includes(params.value) ||
+                        s.name.toLocaleLowerCase().includes(params.value.toLowerCase()) ||
                         s.uf
                             .toLocaleLowerCase()
                             .includes(params.value.toLowerCase())
