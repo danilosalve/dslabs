@@ -3,6 +3,7 @@
     [p-items]="items"
     [p-property-title]="propertyTitle"
     (p-title-action)="handleTitleAction($event)"
+    [p-actions]="actions"
 >
     <ng-template p-list-view-content-template let-item>
         <div class="po-row">
@@ -44,3 +45,12 @@
         </div>
     </ng-template>
 </po-list-view>
+
+<po-modal #poModalAddContact p-title="Adicionar contato">
+  <app-add-contact [customer]="customer" (changeForm)="handleSaveContact($event)"></app-add-contact>
+  <po-modal-footer>
+    <po-button class="po-hidden-sm" [p-danger]="true" p-label="Cancelar" (p-click)="poModalAddContact.close()"> </po-button>
+    <po-button class="po-hidden-sm" p-icon="po-icon-plus" p-kind="primary" p-label="Adicionar" (p-click)="submitContactForm()"> </po-button>
+    <po-button class="po-visible-sm po-sm-12" p-label="Adicionar" p-kind="primary" (p-click)="submitContactForm()"> </po-button>
+  </po-modal-footer>
+</po-modal>

@@ -1,15 +1,18 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { ResourceStatus } from '@app/shared/enum/resource-status.enum';
 import { DocumentPipe } from '@app/shared/pipe/document.pipe';
 import { PhonePipe } from '@app/shared/pipe/phone.pipe';
 import { BaseResourceServiceFull } from '@app/shared/services/base-resource-full.service';
-import { PoTableColumn } from '@po-ui/ng-components';
+import { PoComboFilter, PoComboOption, PoTableColumn } from '@po-ui/ng-components';
+import { catchError, filter, map, retry } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { Contact } from '../interfaces/contact';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ContactsService extends BaseResourceServiceFull<Contact> {
+export class ContactsService extends BaseResourceServiceFull<Contact> implements PoComboFilter {
     constructor(
         protected override injector: Injector,
         protected documentPipe: DocumentPipe,
@@ -17,6 +20,15 @@ export class ContactsService extends BaseResourceServiceFull<Contact> {
     ) {
         super('api/contacts/', injector);
     }
+
+    getByName(name: string): Observable<Contact[]> {
+      return this.http.get<Contact[]>(`${this.apiPath}?name=${name}`).pipe(
+          retry(2),
+          catchError((error: HttpErrorResponse) => {
+              throw error;
+          })
+      );
+  }
 
     getColumns(): PoTableColumn[] {
         return [
@@ -93,4 +105,34 @@ export class ContactsService extends BaseResourceServiceFull<Contact> {
     transformPhone(phone: number): string {
         return this.phonePipe.transform(phone);
     }
+
+    getFilteredData(
+      params: any,
+      filterParams?: any
+  ): Observable<PoComboOption[]> {
+      return this.getByName(params.value).pipe(
+          map(contacts =>
+              contacts.filter(c => c.status === ResourceStatus.active)
+          ),
+          map(contacts =>
+              contacts.map(contact => ({
+                  label: contact.name,
+                  value: contact.id
+              }))
+          )
+      );
+  }
+
+  getObjectByValue(
+      value: string | number,
+      filterParams?: any
+  ): Observable<PoComboOption> {
+      return this.getById(value).pipe(
+          filter(contact => contact.status === ResourceStatus.active),
+          map(contact => ({
+              label: contact.name,
+              value: contact.id
+          }))
+      );
+  }
 }

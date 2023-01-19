@@ -14,7 +14,6 @@ import { Customer } from './../../shared/interface/customer';
 export class ContactsComponent implements OnInit {
     @Input() customer!: Customer;
     contacts: Contact[] = [];
-    contactsMessage = '';
     isLoading = false;
 
     constructor(
@@ -33,7 +32,7 @@ export class ContactsComponent implements OnInit {
                 tap(() => (this.isLoading = true)),
                 mergeMap(contactsRelationships => {
                   let contacts: Contact[] = [];
-                  contactsRelationships.map(contactsRelationship =>
+                  contactsRelationships.forEach(contactsRelationship =>
                         this.getContact(contactsRelationship.contactId).subscribe(contact =>
                             contacts.push(contact)
                         )

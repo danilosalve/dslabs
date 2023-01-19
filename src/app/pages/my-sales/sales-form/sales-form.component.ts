@@ -118,7 +118,7 @@ export class SalesFormComponent extends BaseResourceForm {
     }
 
     updateSalesIdOnItems(id: number): void {
-        this.salesItems.map(items => (items.salesId = id));
+        this.salesItems.forEach(items => (items.salesId = id));
     }
 
     canSaveSalesOrder(): boolean {

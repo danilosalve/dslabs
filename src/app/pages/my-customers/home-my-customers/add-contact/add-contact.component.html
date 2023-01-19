@@ -1,0 +1,39 @@
+<po-container>
+    <form [formGroup]="formContact">
+        <div class="po-row">
+            <p class="po-font-text po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2">
+                Selecione as prefências abaixo para vincular um novo contato ao cliente.
+            </p>
+            <po-combo
+                class="po-xl-12 po-lg-12 po-md-12 po-sm-12 po-mb-2"
+                p-icon="po-icon-user"
+                formControlName="contactId"
+                p-placeholder="Selecione o contato..."
+                p-help="Pesquise utilizando o nome do contato..."
+                p-label="Contato"
+                [p-clean]="true"
+                [p-filter-service]="contactService"
+                [p-show-required]="true"
+            ></po-combo>
+        </div>
+    </form>
+</po-container>
+
+<br/>
+
+<po-container>
+  <h2 class="po-font-subtitle">Contatos</h2>
+  <br />
+  <p [hidden]="!isLoading">Carregando Contatos...</p>
+  <div [hidden]="isLoading" *ngIf="contacts.length > 0; else emptyContact">
+    <div *ngFor="let contact of contacts">
+      <app-contact [contact]="contact"></app-contact>
+    </div>
+  </div>
+  <ng-template #emptyContact>
+    <div class="po-table-no-data po-text-center">
+        <span [hidden]="isLoading">Não existem contatos vinculados a este cliente</span>
+    </div>
+  </ng-template>
+</po-container>
+
