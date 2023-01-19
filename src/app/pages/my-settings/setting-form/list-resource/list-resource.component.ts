@@ -45,9 +45,6 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
                     this.handleAdvancedFilter();
                 }
 
-                if (propName === 'quickFilter') {
-                }
-
                 if (
                     propName === 'advancedFilter' ||
                     propName === 'quickFilter'
@@ -59,7 +56,7 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     }
 
     getActions(): PoPageAction[] {
-        throw [];
+        return [];
     }
 
     handleSearch(resource: Customer[], search: string): Customer[] {
@@ -77,17 +74,11 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
     handleDisclaimerEvent(resource: any): void {
         const index = this.disclaimer.findIndex(d => d.value === resource.id);
 
-        if (index < 0) {
+        if ((index < 0) || (resource.isSelected && index < 0)) {
           this.addDisclaimer(
             resource.id + '',
             `Cod. Cliente: ${resource.id}`,
             resource.id);
-        } else if (resource.isSelected && index < 0) {
-            this.addDisclaimer(
-                resource.id + '',
-                `Cod. Cliente: ${resource.id}`,
-                resource.id
-            );
         } else if (index >= 0 && this.disclaimer.length > 0) {
             this.disclaimer.splice(index, 1);
         }
@@ -256,7 +247,7 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
         if (this.documentList.length > 0) {
             let customers: Customer[] = [];
             this.documentList.forEach(document => {
-                document = document.replace(/[^0-9]/g,'');
+                document = document.replace(/[^\d]/g,'');
                 const customerFiltered = resource.filter(item =>
                     this.isDocumentEqual
                         ? item.document === document

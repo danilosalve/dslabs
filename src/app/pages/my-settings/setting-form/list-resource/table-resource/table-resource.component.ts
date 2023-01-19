@@ -24,7 +24,7 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
     }
 
     getActions(): PoTableAction[] {
-        throw [];
+        return [];
     }
 
     handleSelectedResource(row: any): void {

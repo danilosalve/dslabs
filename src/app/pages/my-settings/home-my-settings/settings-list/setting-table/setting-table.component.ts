@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Injector } from '@angular/core';
+import { Component, EventEmitter, Injector, Output } from '@angular/core';
 import { Table } from '@app/pages/my-settings/shared/interfaces/table';
 import { TablesService } from '@app/pages/my-settings/shared/services/tables.service';
 import { BaseResourceTable } from '@app/shared/components/base/base-resource-table.component';
