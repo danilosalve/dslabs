@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Injector, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Output, ViewChild } from '@angular/core';
 import { Customer } from '@app/pages/my-customers/shared/interface/customer';
 import { CustomerService } from '@app/pages/my-customers/shared/services/customer.service';
 import { BaseResourceTable } from '@app/shared/components/base/base-resource-table.component';
-import { PoTableAction } from '@po-ui/ng-components';
+import { PoNotificationService, PoTableAction, PoTableComponent } from '@po-ui/ng-components';
 
 @Component({
     selector: 'app-table-resource',
@@ -12,9 +12,15 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
     @Output() selectedItem = new EventEmitter();
     @Output() allSelected = new EventEmitter();
     isAllSelected = false;
+    maxNumberOfCheckedItems = 2;
+
+    @ViewChild('poTable') poTable!: PoTableComponent;
+
+
     constructor(
         protected customerService: CustomerService,
-        protected override injector: Injector
+        protected override injector: Injector,
+        protected poNotification: PoNotificationService
     ) {
         super(injector, customerService);
     }
@@ -29,7 +35,14 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
 
     handleSelectedResource(row: any): void {
       this.isAllSelected = false;
-      this.handleDisclaimerEvent(row.id, row.$selected);
+      const countNumberOfCheckedItems = this.poTable.getSelectedRows().length;
+
+      if (this.maxNumberOfCheckedItems < countNumberOfCheckedItems) {
+        this.poTable.unselectRowItem(row);
+        this.poNotification.warning('Limite de registros selecionados')
+      } else {
+        this.handleDisclaimerEvent(row.id, row.$selected);
+      }
     }
 
     handleDisclaimerEvent(id: number, isSelected: boolean): void {
