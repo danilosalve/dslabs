@@ -155,7 +155,9 @@ export class ListResourceComponent extends BaseResourceList<Customer> implements
         if (this.disclaimer.length > 0) {
             this.disclaimer.forEach(d => {
                 let index = this.items.findIndex(i => d.value === i.id);
-                this.items[index].$selected = index >= 0;
+                if (index >= 0) {
+                  this.items[index].$selected = true;
+                }
             });
         }
     }

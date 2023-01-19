@@ -12,7 +12,8 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
     @Output() selectedItem = new EventEmitter();
     @Output() allSelected = new EventEmitter();
     isAllSelected = false;
-    maxNumberOfCheckedItems = 2;
+    maxNumberOfCheckedItems = 15;
+    checkedItemsCounter = 0;
 
     @ViewChild('poTable') poTable!: PoTableComponent;
 
@@ -35,11 +36,12 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
 
     handleSelectedResource(row: any): void {
       this.isAllSelected = false;
-      const countNumberOfCheckedItems = this.poTable.getSelectedRows().length;
+      this.checkedItemsCounter = row.$selected ? ++this.checkedItemsCounter : --this.checkedItemsCounter;
 
-      if (this.maxNumberOfCheckedItems < countNumberOfCheckedItems) {
+      if ((this.maxNumberOfCheckedItems < this.checkedItemsCounter) && row.$selected) {
         this.poTable.unselectRowItem(row);
-        this.poNotification.warning('Limite de registros selecionados')
+        this.checkedItemsCounter--;
+        this.poNotification.warning(`O limite de registros que podem ser marcados para este recuros é de ${this.maxNumberOfCheckedItems}`);
       } else {
         this.handleDisclaimerEvent(row.id, row.$selected);
       }
@@ -52,8 +54,17 @@ export class TableResourceComponent extends BaseResourceTable<Customer> {
     handleAllSelected(rows: any[]): void {
       const selected: { id: number; isSelected: boolean; isAllSelected: boolean }[] = [];
       this.isAllSelected = !this.isAllSelected;
+
       rows.forEach(row => {
-        selected.push({id: row.id, isSelected: row.$selected, isAllSelected: this.isAllSelected});
+        this.checkedItemsCounter = row.$selected ? ++this.checkedItemsCounter : --this.checkedItemsCounter;
+
+        if ((this.maxNumberOfCheckedItems < this.checkedItemsCounter) && row.$selected) {
+          this.poTable.unselectRowItem(row);
+          this.checkedItemsCounter--;
+          this.poNotification.warning(`O limite de registros que podem ser marcados para este recuros é de ${this.maxNumberOfCheckedItems}`);
+        } else {
+          selected.push({id: row.id, isSelected: row.$selected, isAllSelected: this.isAllSelected});
+        }
       });
       this.allSelected.emit(selected);
     }

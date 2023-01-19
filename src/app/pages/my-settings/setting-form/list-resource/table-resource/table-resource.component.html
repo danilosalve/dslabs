@@ -9,7 +9,9 @@
     [p-height]="height"
     [p-selectable]="true"
     (p-selected)="handleSelectedResource($event)"
+    (p-unselected)="handleSelectedResource($event)"
     (p-all-selected)="handleAllSelected($event)"
+    (p-all-unselected)="handleAllSelected($event)"
 >
     <ng-template p-table-column-template [p-property]="'document'" let-value>
         <span [innerText]="transformDocument(value)"></span>
