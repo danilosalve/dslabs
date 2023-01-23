@@ -208,12 +208,11 @@ export class CustomersFormComponent extends BaseResourceForm implements OnInit {
     }
 
     getTypeOfPerson(type: string): TypeOfPerson {
-        switch (type) {
-            case 'J':
-                return TypeOfPerson.LEGAL;
-            default:
-                return TypeOfPerson.NATURAL;
-        }
+      if (type === 'J') {
+        return TypeOfPerson.LEGAL;
+      } else {
+        return TypeOfPerson.NATURAL;
+      }
     }
 
     getQueryParamMapBoolean(param: string): boolean {
