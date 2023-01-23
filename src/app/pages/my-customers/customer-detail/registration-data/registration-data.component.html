@@ -25,18 +25,18 @@
 
     <div class="po-row">
         <po-info
-            class="po-xl-3 po-lg-3 po-md-3 po-sm-12"
+            class="po-xl-3 po-lg-3 po-md-6 po-sm-12"
             p-label="Código do cliente"
             [p-value]="customerCode"
         ></po-info>
 
         <po-info
-            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
             p-label="Tipo de cliente"
             [p-value]="customerType"
         ></po-info>
         <po-info
-            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
             [p-label]="dateRegisterLabel"
             [p-value]="utilsService.transformDate(customer.registerDate)"
         ></po-info>
@@ -44,12 +44,12 @@
 
     <div class="po-row">
         <po-info
-            class="po-xl-3 po-lg-4 po-md-4 po-sm-12"
+            class="po-xl-3 po-lg-3 po-md-6 po-sm-12"
             p-label="Telefone comercial"
             [p-value]="phonePipe.transform(customer.businessPhone!)"
         ></po-info>
         <po-tag
-            class="po-xl-4 po-lg-4 po-md-4 po-sm-12"
+            class="po-xl-4 po-lg-4 po-md-6 po-sm-12"
             p-label="Status do cadastro"
             [p-value]="utilsService.transformStatus(customer.status)"
             [p-color]="utilsService.getColorStatus(customer.status)"
