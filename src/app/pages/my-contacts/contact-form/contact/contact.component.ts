@@ -12,7 +12,6 @@ export class ContactComponent {
   @Input() formContact!: UntypedFormGroup;
   @Input() contact!: Contact;
   phoneMask = '(99) 9999-99999';
-  constructor() { }
 
   onChangePhone(phone: string): void {
     if (phone.length === 10) {

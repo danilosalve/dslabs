@@ -26,7 +26,7 @@ export class ProspectModel extends BusinessPersonModel implements Prospect {
         registerDate = new Date(),
         contactName: string,
         email: string,
-        businessPhone: number,
+        phone: number,
         statusProspect: ProspectStatus,
         fantasyName = '',
         creditLimit = 0,
@@ -49,7 +49,7 @@ export class ProspectModel extends BusinessPersonModel implements Prospect {
             registerDate,
             contactName,
             email,
-            businessPhone,
+            phone,
             fantasyName,
             creditLimit,
             creditLimitExpirationDate

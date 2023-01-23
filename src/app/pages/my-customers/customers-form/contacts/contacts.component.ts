@@ -11,5 +11,4 @@ import { Customer } from '../../shared/interface/customer';
 export class ContactsComponent {
   @Input() customer!: Customer;
   @Input() formCustomer!: UntypedFormGroup;
-  constructor() { }
 }

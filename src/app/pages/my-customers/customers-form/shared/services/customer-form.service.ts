@@ -51,7 +51,7 @@ export class CustomerFormService {
             typePerson: [customer.typePerson],
             contactName: [customer.contactName],
             email: [customer.email, [Validators.email]],
-            businessPhone: [customer.businessPhone],
+            phone: [customer.phone],
             registerDate: [customer.registerDate],
             lastPurchase: [customer.lastPurchase],
             status: [ResourceStatus.active],

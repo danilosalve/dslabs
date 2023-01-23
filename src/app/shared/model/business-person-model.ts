@@ -10,7 +10,7 @@ export class BusinessPersonModel extends PersonModel implements BusinessPerson {
   customerType: CustomerType;
   contactName?: string | undefined;
   email?: string | undefined;
-  businessPhone?: number | undefined;
+  phone?: number | undefined;
   creditLimit?: number | undefined;
   creditLimitExpirationDate?: Date | undefined;
 
@@ -31,7 +31,7 @@ export class BusinessPersonModel extends PersonModel implements BusinessPerson {
     registerDate = new Date(),
     contactName: string,
     email: string,
-    businessPhone: number,
+    phone: number,
     fantasyName = '',
     creditLimit = 0,
     creditLimitExpirationDate = new Date()
@@ -56,7 +56,7 @@ export class BusinessPersonModel extends PersonModel implements BusinessPerson {
     this.fantasyName = fantasyName ? fantasyName : this.name;
     this.contactName = contactName;
     this.email = email;
-    this.businessPhone = businessPhone;
+    this.phone = phone;
     this.creditLimit = creditLimit;
     this.creditLimitExpirationDate = creditLimitExpirationDate;
   }

@@ -34,7 +34,7 @@ export class CustomerModel extends BusinessPersonModel implements Customer {
         lastPurchase: Date,
         contactName: string,
         email: string,
-        businessPhone: number,
+        phone: number,
         stateDelivery?: string,
         cityDelivery?: string,
         addressDelivery?: string,
@@ -65,7 +65,7 @@ export class CustomerModel extends BusinessPersonModel implements Customer {
           registerDate,
           contactName,
           email,
-          businessPhone,
+          phone,
           fantasyName,
           creditLimit,
           creditLimitExpirationDate

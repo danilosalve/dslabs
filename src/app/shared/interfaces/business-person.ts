@@ -7,7 +7,7 @@ export interface BusinessPerson extends Person {
   customerType: CustomerType;
   contactName?: string;
   email?: string;
-  businessPhone?: number;
+  phone?: number;
   creditLimit?: number;
   creditLimitExpirationDate?: Date;
 }
