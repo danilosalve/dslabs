@@ -17,6 +17,12 @@ const routes: Routes = [
     )
   },
   {
+    path: 'prospects',
+    loadChildren: () => import('./pages/my-prospects/my-prospects.module').then(
+      m => m.MyProspectsModule
+    )
+  },
+  {
     path: 'contacts',
     loadChildren: () => import('./pages/my-contacts/my-contacts.module').then(
       m => m.MyContactsModule
