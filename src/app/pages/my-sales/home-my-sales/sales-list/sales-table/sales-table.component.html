@@ -1,19 +1,21 @@
 <po-table
-[p-sort]="true"
-[p-items]="items"
-[p-columns]="columns"
-[p-max-columns]="6"
-[p-loading]="isLoading"
-[p-actions]="actions"
-[p-height]="height"
-[p-auto-collapse]="true"
+    [p-sort]="true"
+    [p-items]="items"
+    [p-columns]="columns"
+    [p-max-columns]="6"
+    [p-loading]="isLoading"
+    [p-actions]="actions"
+    [p-height]="height"
+    [p-auto-collapse]="true"
+    [p-draggable]="true"
+    p-container="shadow"
 >
-<ng-template
-    p-table-row-template
-    let-rowItem
-    let-i="rowIndex"
-    [p-table-row-template-arrow-direction]="templateDirection"
->
-  <app-sale-status-details [sale]="rowItem"></app-sale-status-details>
-</ng-template>
+    <ng-template
+        p-table-row-template
+        let-rowItem
+        let-i="rowIndex"
+        [p-table-row-template-arrow-direction]="templateDirection"
+    >
+        <app-sale-status-details [sale]="rowItem"></app-sale-status-details>
+    </ng-template>
 </po-table>
