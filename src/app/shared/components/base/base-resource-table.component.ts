@@ -42,6 +42,7 @@ export abstract class BaseResourceTable<T> implements AfterViewInit, OnInit {
     elements.push(this.getElementHeightById('.po-page-header'));
     elements.push(this.getElementHeightById('.toolbar'));
     elements.push(this.getElementHeightById('.po-table-subtitle-footer-container'));
+    elements.push(this.getElementHeightById('.po-table-actions'));
 
     this.height = this.calculateHeight(elements) - 175;
   }

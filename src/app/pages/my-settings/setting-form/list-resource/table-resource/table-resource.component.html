@@ -14,6 +14,7 @@
     (p-all-unselected)="handleAllSelected($event)"
     [p-draggable]="true"
     p-container="shadow"
+    [p-hide-batch-actions]="true"
 >
     <ng-template p-table-column-template [p-property]="'document'" let-value>
         <span [innerText]="transformDocument(value)"></span>

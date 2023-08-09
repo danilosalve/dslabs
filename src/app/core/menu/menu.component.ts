@@ -12,10 +12,10 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
   private _routerSubscription$!: Subscription;
   @ViewChild('poMenu') poMenu!: PoMenuComponent;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngAfterViewInit(): void {
-    this._routerSubscription$ = this.router.events.subscribe(event =>{
+    this._routerSubscription$ = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.poMenu.collapse();
       }
@@ -44,28 +44,32 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       },
       {
-        label: 'Meus Clientes',
+        label: 'Minhas Contas',
         icon: 'po-icon-users',
-        shortLabel: 'Clientes',
-        action: () => {
-          this.router.navigate(['customers']);
-        }
-      },
-      {
-        label: 'Meus Prospects',
-        icon: 'po-icon-users',
-        shortLabel: 'Prospects',
-        action: () => {
-          this.router.navigate(['prospects']);
-        }
-      },
-      {
-        label: 'Meus Contatos',
-        icon: 'po-icon-user',
-        shortLabel: 'Contatos',
-        action: () => {
-          this.router.navigate(['contacts']);
-        }
+        shortLabel: 'Contas',
+        subItems: [
+          {
+            label: 'Meus Clientes',
+            icon: 'po-icon-users',
+            action: () => {
+              this.router.navigate(['customers']);
+            }
+          },
+          {
+            label: 'Meus Prospects',
+            shortLabel: 'Prospects',
+            action: () => {
+              this.router.navigate(['prospects']);
+            }
+          },
+          {
+            label: 'Meus Contatos',
+            shortLabel: 'Contatos',
+            action: () => {
+              this.router.navigate(['contacts']);
+            }
+          }
+        ]
       },
       {
         label: 'Meus Produtos',
