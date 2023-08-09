@@ -6,6 +6,8 @@
     [p-loading]="isLoading"
     [p-actions]="actions"
     [p-height]="height"
+    [p-draggable]="true"
+    p-container="shadow"
 >
     <ng-template p-table-column-template [p-property]="'document'" let-value>
         <span [innerText]="customerService.transformDocument(value)"></span>

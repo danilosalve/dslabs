@@ -1,5 +1,5 @@
 # DSLABS
-Este projeto tem o objetivo de testar novas funcionalidades quem podem ser implementadas no Dashboard Backoffice ou no Portal Gestão de Vendas.
+Este projeto tem o objetivo de testar novas funcionalidades.
 
 ## Ferramentas
 * [Angular CLI](https://github.com/angular/angular-cli) versão 14.1.0.
