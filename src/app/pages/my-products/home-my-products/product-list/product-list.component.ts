@@ -44,13 +44,13 @@ export class ProductListComponent extends BaseResourceList<Product> {
                     this.isLoading = true;
                 }),
                 mergeMap(products => {
-                    products.map(product =>
+                    products.forEach(product =>
                         this.getProductBalance(product).subscribe(
                             res => {
                               if (product.stockBalance) {
-                                product.stockBalance += res.stockBalance || 0;
+                                product.stockBalance += res.stockBalance ?? 0;
                               } else {
-                                product.stockBalance = res.stockBalance || 0;
+                                product.stockBalance = res.stockBalance ?? 0;
                               }
                             }
                         )

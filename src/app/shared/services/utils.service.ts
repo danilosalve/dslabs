@@ -14,8 +14,6 @@ interface Document {
     providedIn: 'root'
 })
 export class UtilsService {
-    constructor() {}
-
     transformStatus(status: string): string {
         switch (status) {
             case ResourceStatus.active:

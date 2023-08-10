@@ -34,8 +34,6 @@ export class SaleStatusDetailsComponent implements AfterViewInit {
     }
   ];
 
-  constructor() {}
-
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.setStepperActive(this.getStetByStatus());
