@@ -1,0 +1,139 @@
+<po-page-list #poPageList [p-title]="titlePage" [p-actions]="actions">
+    <po-container *ngIf="!isLoading; else loading">
+        <div class="example-container">
+            <h2>Em Aberto</h2>
+            <div
+                cdkDropList
+                #openList="cdkDropList"
+                id="Abertos"
+                [cdkDropListData]="open"
+                [cdkDropListConnectedTo]="[approvedList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+            >
+                <po-widget *ngFor="let item of open" cdkDrag>
+                    <div class="po-row">
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Núm. Pedido"
+                            [p-value]="item.id!.toString()"
+                        ></po-info>
+                        <po-tag
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            [p-value]="transformStatus(item.status).description"
+                            [p-color]="transformStatus(item.status).color"
+                        ></po-tag>
+                        <po-info
+                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                            p-label="Nm. Cliente"
+                            [p-value]="item.customerName!"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Dt. Emissão"
+                            [p-value]="transformDate(item.issueDate)"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="SubTotal"
+                            [p-value]="
+                                transformSubTotal(item.subTotal!.toString())!
+                            "
+                        ></po-info>
+                    </div>
+                </po-widget>
+            </div>
+        </div>
+        <div class="example-container">
+            <h2>Aprovados</h2>
+            <div
+                cdkDropList
+                id="Aprovados"
+                #approvedList="cdkDropList"
+                [cdkDropListData]="approved"
+                [cdkDropListConnectedTo]="[invoicedList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+            >
+                <po-widget *ngFor="let item of approved" cdkDrag>
+                    <div class="po-row">
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Núm. Pedido"
+                            [p-value]="item.id!.toString()"
+                        ></po-info>
+                        <po-tag
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            [p-value]="transformStatus(item.status).description"
+                            [p-color]="transformStatus(item.status).color"
+                        ></po-tag>
+                        <po-info
+                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                            p-label="Nm. Cliente"
+                            [p-value]="item.customerName!"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Dt. Emissão"
+                            [p-value]="transformDate(item.issueDate)"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="SubTotal"
+                            [p-value]="
+                                transformSubTotal(item.subTotal!.toString())!
+                            "
+                        ></po-info>
+                    </div>
+                </po-widget>
+            </div>
+        </div>
+        <div class="example-container">
+            <h2>Faturados</h2>
+            <div
+                cdkDropList
+                id="Faturados"
+                #invoicedList="cdkDropList"
+                [cdkDropListData]="invoiced"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+            >
+                <po-widget *ngFor="let item of invoiced" cdkDrag>
+                    <div class="po-row">
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Núm. Pedido"
+                            [p-value]="item.id!.toString()"
+                        ></po-info>
+                        <po-tag
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            [p-value]="transformStatus(item.status).description"
+                            [p-color]="transformStatus(item.status).color"
+                        ></po-tag>
+                        <po-info
+                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+                            p-label="Nm. Cliente"
+                            [p-value]="item.customerName!"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="Dt. Emissão"
+                            [p-value]="transformDate(item.issueDate)"
+                        ></po-info>
+                        <po-info
+                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+                            p-label="SubTotal"
+                            [p-value]="
+                                transformSubTotal(item.subTotal!.toString())!
+                            "
+                        ></po-info>
+                    </div>
+                </po-widget>
+            </div>
+        </div>
+    </po-container>
+
+    <ng-template #loading>
+        <po-loading-overlay p-text="Carregando Vendas"> </po-loading-overlay>
+    </ng-template>
+</po-page-list>

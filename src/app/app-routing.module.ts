@@ -47,6 +47,12 @@ const routes: Routes = [
     )
   },
   {
+    path: 'invoices',
+    loadChildren: () => import('./pages/my-billings/my-billings.module').then(
+      m => m.MyBillingsModule
+    )
+  },
+  {
     path: "not-found",
     component: NotFoundComponent,
     data: {
