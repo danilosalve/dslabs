@@ -6,7 +6,19 @@
     [p-loading]="isLoading"
     [p-actions]="actions"
     [p-height]="height"
+    [p-auto-collapse]="true"
     [p-draggable]="true"
     p-container="shadow"
 >
+    <ng-template
+        p-table-row-template
+        let-rowItem
+        let-i="rowIndex"
+        [p-table-row-template-arrow-direction]="templateDirection"
+    >
+        <po-avatar
+          [p-src]="getPhotoSRC(rowItem)"
+          p-size="xl"
+        ></po-avatar>
+    </ng-template>
 </po-table>

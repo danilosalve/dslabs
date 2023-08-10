@@ -46,7 +46,8 @@ export class ProductService extends BaseResourceServiceFull<Product> {
                 label: 'Sld. Estoque',
                 type: 'number',
                 width: '15%',
-                visible: true
+                visible: true,
+                format: '1.0-0'
             },
             {
                 property: 'group',
