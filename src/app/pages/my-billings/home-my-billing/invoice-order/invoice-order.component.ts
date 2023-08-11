@@ -42,7 +42,7 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
     throw new Error('Method not implemented.');
   }
 
-  drop(event: { previousContainer: { data: any[] , id: string }; container: { data: any[]; }; previousIndex: number; currentIndex: number; }) {
+  drop(event: { previousContainer: { data: any[], id: string }; container: { data: any[]; }; previousIndex: number; currentIndex: number; }) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -53,12 +53,13 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
         event.currentIndex
       );
 
+      const sale = event.container.data[event.currentIndex] as Sales;
       if (event.previousContainer.id === 'Abertos') {
-        this.poNotificationService.success('Pedido aprovado com sucesso!');
         event.container.data[event.currentIndex].status = SalesStatus.Approved;
+        this.updateSalesStatus(sale, sale.id!)
       } else if (event.previousContainer.id === 'Aprovados') {
-        this.poNotificationService.success('Pedido Faturado com sucesso!');
         event.container.data[event.currentIndex].status = SalesStatus.Closed;
+        this.updateSalesStatus(sale, sale.id!);
       }
     }
   }
@@ -92,6 +93,8 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
     if (sale.status != SalesStatus.Approved && sale.status != SalesStatus.Closed) {
       this.open.push(sale);
     }
+
+    this.items.push(sale);
   }
 
   getCustomerName(sale: Sales): Observable<SalesBrw> {
@@ -114,45 +117,11 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
     );
   }
 
-  transformStatus(status: string): { description: string; color: string } {
-    switch (status) {
-      case SalesStatus.Open:
-        return {
-          description: 'Aberto',
-          color: 'color-11'
-        };
-      case SalesStatus.Closed:
-        return {
-          description: 'Encerrado',
-          color: 'color-07'
-        };
-      case SalesStatus.Blocked:
-        return {
-          description: 'Bloqueado',
-          color: 'color-08'
-        };
-      case SalesStatus.Approved:
-        return {
-          description: 'Aprovado',
-          color: 'color-02'
-        };
-      default:
-        return {
-          description: 'Não informado',
-          color: ''
-        };
-    }
-  }
-
-  transformDate(issueDate: Date): string {
-    const date =
-      typeof issueDate.toLocaleDateString === 'function'
-        ? issueDate
-        : new Date(issueDate);
-    return date ? date.toLocaleDateString() : '';
-  }
-
-  transformSubTotal(value: string): string | null {
-    return this.currencyPipe.transform(value);
+  updateSalesStatus(sale: Sales, id: number): void {
+    const message = sale.status === SalesStatus.Approved ? 'aprovado' : 'atualizado';
+    this.salesService.put(sale, id).subscribe({
+      next: () =>  this.poNotificationService.success(`Pedido ${message} com sucesso!`),
+      error: () => this.poNotificationService.error('Falha ao atualizar pedido de Venda')
+    })
   }
 }

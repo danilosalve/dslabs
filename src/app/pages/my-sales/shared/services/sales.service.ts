@@ -10,7 +10,7 @@ import {
   PoDynamicViewField,
   PoTableColumn
 } from '@po-ui/ng-components';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sales } from '../interfaces/sales';
 import { SalesOrderTotal } from '../interfaces/sales-order-total';
@@ -58,6 +58,11 @@ export class SalesService extends BaseResourceServiceFull<Sales> {
                         value: SalesStatus.Blocked,
                         color: 'color-08',
                         label: 'Bloqueado'
+                    },
+                    {
+                        value: SalesStatus.Approved,
+                        color: 'color-02',
+                        label: 'Aprovado'
                     }
                 ]
             },

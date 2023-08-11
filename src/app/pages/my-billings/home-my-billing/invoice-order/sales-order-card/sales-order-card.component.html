@@ -1,0 +1,29 @@
+<po-widget *ngFor="let item of items" cdkDrag appDarkenOnHover>
+    <div class="po-row">
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+            p-label="Núm. Pedido"
+            [p-url]="getSaleViewUrl(item.id!)"
+            [p-value]="item.id!.toString()"
+        ></po-info>
+        <po-tag
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+            [p-value]="transformStatus(item.status).description"
+            [p-color]="transformStatus(item.status).color"
+        ></po-tag>
+        <po-info
+            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
+            p-label="Nm. Cliente"
+            [p-value]="item.customerName!"
+        ></po-info>
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+            p-label="Dt. Emissão"
+            [p-value]="transformDate(item.issueDate)"
+        ></po-info>
+        <po-info
+            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
+            p-label="SubTotal"
+            [p-value]="transformSubTotal(item.subTotal!.toString())!"
+        ></po-info></div
+></po-widget>

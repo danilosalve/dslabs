@@ -1,139 +1,149 @@
 <po-page-list #poPageList [p-title]="titlePage" [p-actions]="actions">
+    <bdc-walk-dialog #welcomeMyBillings name="welcomeMyBillings" width="650px">
+        <po-container>
+            <div class="po-row">
+                <p class="po-font-title">Novo por aqui?</p>
+                <p class="po-font-subtitle">
+                    Não se preocupe, conheça todas as funcionalidades da página
+                    Meu Faturamento.
+                </p>
+                <p class="po-font-text">
+                    Com ela você poderá Aprovar e Faturar as sua Vendas de uma
+                    maneira muito mais pratica. Clique e arraste um Pedido de
+                    Venda para executar uma ação;
+                </p>
+            </div>
+            <div class="po-row">
+                <po-button
+                    class="po-mt-3"
+                    (click)="welcomeMyBillings.close()"
+                    p-label="Fechar"
+                ></po-button>
+            </div>
+        </po-container>
+    </bdc-walk-dialog>
+
+    <bdc-walk-popup
+        #myBillingsListStep1
+        name="myBillingsListStep1"
+        header="Passo 1"
+        [onButtonCompleteTask]="{ myBillingsListStep1: 1 }"
+        sideNoteText="1/3"
+        [showButton]="true"
+        buttonText="Próximo"
+        xPosition="after"
+    >
+        <p>
+            Aqui você pode encontrar todos os seus Pedidos Vendas com status
+            <b> em Aberto</b> ou <b>bloqueados</b>.
+        </p>
+    </bdc-walk-popup>
+
+    <bdc-walk-popup
+        #myBillingsListStep2
+        name="myBillingsListStep2"
+        header="Passo 2"
+        [mustCompleted]="{ myBillingsListStep1: 1 }"
+        [onButtonCompleteTask]="{ myBillingsListStep1: 2 }"
+        sideNoteText="2/3"
+        [showButton]="true"
+        buttonText="Próximo"
+        xPosition="after"
+    >
+        <p>
+            Aqui você pode encontrar todas os seus Pedidos de Vendas Aprovados.
+        </p>
+        <br />
+        <p>
+            Clique em um Pedido de Venda com status <b>em aberto</b> ou
+            <b>bloqueado</b>e arraste até aqui para aprovar um Pedido de Venda.
+        </p>
+    </bdc-walk-popup>
+
+    <bdc-walk-popup
+        #myBillingsListStep3
+        name="myBillingsListStep3"
+        header="Passo 3"
+        [mustCompleted]="{ myBillingsListStep1: 2 }"
+        [onButtonCompleteTask]="{ myBillingsListStep1: 3 }"
+        sideNoteText="3/3"
+        [showButton]="true"
+        buttonText="Entendi"
+        xPosition="after"
+    >
+        <p>Aqui você pode encontrar todos os Pedidos de Vendas Faturadas.</p>
+        <br />
+        <p>
+            Clique em um Pedido de Venda com status <b>Aprovado</b> e arraste
+            até aqui para Faturar o Pedido de Venda.
+        </p>
+    </bdc-walk-popup>
+
     <po-container *ngIf="!isLoading; else loading">
-        <div class="example-container">
+        <div class="container">
             <h2>Em Aberto</h2>
             <div
                 cdkDropList
+                appDarkenWithBlueOnHover
+                [bdcWalkTriggerFor]="myBillingsListStep1"
                 #openList="cdkDropList"
                 id="Abertos"
                 [cdkDropListData]="open"
                 [cdkDropListConnectedTo]="[approvedList]"
-                class="example-list"
+                class="list"
                 (cdkDropListDropped)="drop($event)"
             >
-                <po-widget *ngFor="let item of open" cdkDrag>
-                    <div class="po-row">
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Núm. Pedido"
-                            [p-value]="item.id!.toString()"
-                        ></po-info>
-                        <po-tag
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            [p-value]="transformStatus(item.status).description"
-                            [p-color]="transformStatus(item.status).color"
-                        ></po-tag>
-                        <po-info
-                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
-                            p-label="Nm. Cliente"
-                            [p-value]="item.customerName!"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Dt. Emissão"
-                            [p-value]="transformDate(item.issueDate)"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="SubTotal"
-                            [p-value]="
-                                transformSubTotal(item.subTotal!.toString())!
-                            "
-                        ></po-info>
-                    </div>
-                </po-widget>
+                <app-sales-order-card
+                    *ngIf="open.length; else emptySales"
+                    [items]="open"
+                ></app-sales-order-card>
             </div>
         </div>
-        <div class="example-container">
+        <div class="container">
             <h2>Aprovados</h2>
             <div
                 cdkDropList
+                appDarkenWithBlueOnHover
                 id="Aprovados"
+                [bdcWalkTriggerFor]="myBillingsListStep2"
                 #approvedList="cdkDropList"
                 [cdkDropListData]="approved"
                 [cdkDropListConnectedTo]="[invoicedList]"
-                class="example-list"
+                class="list"
                 (cdkDropListDropped)="drop($event)"
             >
-                <po-widget *ngFor="let item of approved" cdkDrag>
-                    <div class="po-row">
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Núm. Pedido"
-                            [p-value]="item.id!.toString()"
-                        ></po-info>
-                        <po-tag
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            [p-value]="transformStatus(item.status).description"
-                            [p-color]="transformStatus(item.status).color"
-                        ></po-tag>
-                        <po-info
-                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
-                            p-label="Nm. Cliente"
-                            [p-value]="item.customerName!"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Dt. Emissão"
-                            [p-value]="transformDate(item.issueDate)"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="SubTotal"
-                            [p-value]="
-                                transformSubTotal(item.subTotal!.toString())!
-                            "
-                        ></po-info>
-                    </div>
-                </po-widget>
+                <app-sales-order-card
+                    *ngIf="approved.length; else emptySales"
+                    [items]="approved"
+                ></app-sales-order-card>
             </div>
         </div>
-        <div class="example-container">
+        <div class="container">
             <h2>Faturados</h2>
             <div
                 cdkDropList
+                appDarkenWithBlueOnHover
                 id="Faturados"
                 #invoicedList="cdkDropList"
+                [bdcWalkTriggerFor]="myBillingsListStep3"
                 [cdkDropListData]="invoiced"
-                class="example-list"
+                class="list"
                 (cdkDropListDropped)="drop($event)"
             >
-                <po-widget *ngFor="let item of invoiced" cdkDrag>
-                    <div class="po-row">
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Núm. Pedido"
-                            [p-value]="item.id!.toString()"
-                        ></po-info>
-                        <po-tag
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            [p-value]="transformStatus(item.status).description"
-                            [p-color]="transformStatus(item.status).color"
-                        ></po-tag>
-                        <po-info
-                            class="po-xl-12 po-lg-12 po-md-12 po-sm-12"
-                            p-label="Nm. Cliente"
-                            [p-value]="item.customerName!"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="Dt. Emissão"
-                            [p-value]="transformDate(item.issueDate)"
-                        ></po-info>
-                        <po-info
-                            class="po-xl-6 po-lg-6 po-md-6 po-sm-6"
-                            p-label="SubTotal"
-                            [p-value]="
-                                transformSubTotal(item.subTotal!.toString())!
-                            "
-                        ></po-info>
-                    </div>
-                </po-widget>
+                <app-sales-order-card
+                    *ngIf="invoiced.length; else emptySales"
+                    [items]="invoiced"
+                ></app-sales-order-card>
             </div>
         </div>
     </po-container>
 
     <ng-template #loading>
         <po-loading-overlay p-text="Carregando Vendas"> </po-loading-overlay>
+    </ng-template>
+    <ng-template #emptySales>
+        <div class="po-font-text-bold po-text-center po-mt-2">
+            <span>Não há dados</span>
+        </div>
     </ng-template>
 </po-page-list>
