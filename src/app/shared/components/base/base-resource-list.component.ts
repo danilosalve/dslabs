@@ -41,6 +41,7 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
         this.onDevice();
         this.getItems();
         this.onInitPage();
+        this.listenLoading();
     }
 
     ngOnDestroy(): void {
@@ -63,6 +64,10 @@ export abstract class BaseResourceList<T> implements OnInit, OnDestroy {
             this.titlePage = res['title'];
             this.titleService.setTitle(`DSLABs | ${res['title']}`);
         });
+    }
+
+    listenLoading(): void {
+      this.resourceService.loading.subscribe(() => (this.isLoading = false));
     }
 
     getItems(search?: string): void {
