@@ -19,6 +19,7 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
   open: SalesBrw[] = [];
   approved: SalesBrw[] = [];
   invoiced: SalesBrw[] = [];
+  isProgressBarHidden = true;
 
   constructor(
     protected customerService: CustomerService,
@@ -46,6 +47,7 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      this.isProgressBarHidden = false;
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -119,7 +121,11 @@ export class InvoiceOrderComponent extends BaseResourceList<SalesBrw> implements
 
   updateSalesStatus(sale: Sales, id: number): void {
     const message = sale.status === SalesStatus.Approved ? 'aprovado' : 'atualizado';
-    this.salesService.put(sale, id).subscribe({
+    this.salesService.put(sale, id)
+    .pipe(
+      finalize(() => this.isProgressBarHidden = true)
+    )
+    .subscribe({
       next: () =>  this.poNotificationService.success(`Pedido ${message} com sucesso!`),
       error: () => this.poNotificationService.error('Falha ao atualizar pedido de Venda')
     })

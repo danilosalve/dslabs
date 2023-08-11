@@ -79,6 +79,8 @@
         </p>
     </bdc-walk-popup>
 
+    <po-progress [hidden]="isProgressBarHidden" [p-indeterminate]="true" p-text="Atualizando Pedido de Venda"></po-progress>
+
     <po-container *ngIf="!isLoading; else loading">
         <div class="container">
             <h2>Em Aberto</h2>
